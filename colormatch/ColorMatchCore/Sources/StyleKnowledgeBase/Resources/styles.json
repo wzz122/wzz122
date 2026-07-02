@@ -1,0 +1,130 @@
+[
+  {
+    "styleId": "film-fade",
+    "name": "胶片感",
+    "tagline": "提黑压对比、轻度去饱和，模拟负片的低反差褪色质感",
+    "signature": [
+      { "key": "blacks", "min": 4, "max": 60, "weight": 1.5 },
+      { "key": "contrast", "min": -50, "max": -4, "weight": 1.2 },
+      { "key": "satTotal", "min": -45, "max": -3, "weight": 1.0 },
+      { "key": "highlights", "min": -50, "max": 10, "weight": 0.6 },
+      { "key": "shadowTintSat", "min": 3, "max": 40, "weight": 0.7 }
+    ],
+    "explanation": [
+      "黑色色阶被抬起，画面最暗处不再是纯黑，这是胶片扫描件最典型的特征",
+      "对比度整体压低，亮部与暗部的过渡更平缓，营造柔和的宽容度观感",
+      "整体饱和度轻度下拉，颜色向低纯度收敛，避免数码感的鲜艳",
+      "阴影带一点冷色或绿色倾向时，褪色感会更接近老负片"
+    ],
+    "tweaks": [
+      { "when": "画面发灰没有层次", "do": "把黑色色阶回拉 5-10，或对比度加 5" },
+      { "when": "肤色显得病态", "do": "HSL 橙色明亮度 +5，饱和度回加 3-5" },
+      { "when": "想要更浓的年代感", "do": "阴影色调向青绿方向（色相 120-180）加 5-10 饱和" }
+    ],
+    "suitableFor": ["日常街拍", "旅行记录", "静物咖啡馆", "阴天场景"],
+    "avoidFor": ["需要通透蓝天的风光", "商业产品图"]
+  },
+  {
+    "styleId": "japan-airy",
+    "name": "日系清透",
+    "tagline": "提亮低反差、微冷白平衡，干净通透的空气感",
+    "signature": [
+      { "key": "exposure", "min": 0.15, "max": 1.3, "weight": 1.5 },
+      { "key": "contrast", "min": -40, "max": -3, "weight": 1.2 },
+      { "key": "temperature", "min": -25, "max": 4, "weight": 1.0 },
+      { "key": "shadows", "min": 4, "max": 60, "weight": 0.8 },
+      { "key": "satTotal", "min": -35, "max": 4, "weight": 0.8 }
+    ],
+    "explanation": [
+      "曝光整体上提，画面以亮调为主，留白感是日系的骨架",
+      "对比度压低后阴影被抬起，暗部细节浮出来，画面不再沉重",
+      "白平衡保持中性或轻微偏冷，颜色干净不腻",
+      "饱和度克制，靠亮度而不是颜色浓度表达情绪"
+    ],
+    "tweaks": [
+      { "when": "天空过曝失去层次", "do": "高光 -15 到 -30，白色色阶 -10" },
+      { "when": "画面冷得发灰", "do": "色温回加 3-6，或阴影色调加一点暖黄" },
+      { "when": "绿植不够清新", "do": "HSL 绿色明亮度 +10，饱和度 -5" }
+    ],
+    "suitableFor": ["逆光人像", "窗边静物", "白墙建筑", "晴天外拍"],
+    "avoidFor": ["夜景", "深色调情绪片"]
+  },
+  {
+    "styleId": "teal-orange",
+    "name": "青橙电影感",
+    "tagline": "阴影推青、高光留橙，好莱坞式的冷暖对撞",
+    "signature": [
+      { "key": "shadowTintSat", "min": 8, "max": 60, "weight": 1.5 },
+      { "key": "shadowTintHue", "min": 150, "max": 260, "weight": 1.5 },
+      { "key": "highlightTintSat", "min": 4, "max": 60, "weight": 1.0 },
+      { "key": "highlightTintHue", "min": 300, "max": 60, "weight": 1.0 },
+      { "key": "contrast", "min": 0, "max": 60, "weight": 0.7 },
+      { "key": "hslSat.orange", "min": -12, "max": 40, "weight": 0.5 }
+    ],
+    "explanation": [
+      "阴影被推向青色（色相 180-220），与肤色的橙形成互补色对撞",
+      "高光保留或加强橙暖，人物从冷色环境里被“拎”出来",
+      "对比度为正，明暗分离干脆，这是电影感的另一半",
+      "橙色通道被保护甚至加强，保证肤色在冷调环境里依然健康"
+    ],
+    "tweaks": [
+      { "when": "肤色被青色污染", "do": "HSL 橙色饱和度 +8，色相 +3 往红拉回" },
+      { "when": "青色太重像滤镜", "do": "阴影色调饱和度减到 15 以下" },
+      { "when": "夜景灯光发绿", "do": "色调（tint）+5 往品红方向修正" }
+    ],
+    "suitableFor": ["城市夜景", "逆光人像", "街头电影感", "汽车硬照"],
+    "avoidFor": ["食物", "花卉特写", "婴儿粉嫩肤色"]
+  },
+  {
+    "styleId": "night-neon",
+    "name": "夜景霓虹",
+    "tagline": "压黑提蓝紫、高饱和霓虹，赛博都市夜色",
+    "signature": [
+      { "key": "satTotal", "min": 5, "max": 90, "weight": 1.3 },
+      { "key": "hslSat.blue", "min": 5, "max": 70, "weight": 1.2 },
+      { "key": "hslSat.purple", "min": 3, "max": 70, "weight": 1.0 },
+      { "key": "blacks", "min": -45, "max": 2, "weight": 0.8 },
+      { "key": "contrast", "min": 3, "max": 60, "weight": 0.7 },
+      { "key": "exposure", "min": -1.5, "max": 0.2, "weight": 0.6 }
+    ],
+    "explanation": [
+      "黑色色阶下压，夜色的底必须足够黑，霓虹才有对比的舞台",
+      "蓝、紫通道饱和度拉高，路灯与招牌的光色成为画面主角",
+      "整体饱和度为正，但靠通道选择性加强而不是全局猛推",
+      "曝光保持克制甚至下压，保留夜晚的暗部神秘感"
+    ],
+    "tweaks": [
+      { "when": "灯牌过曝成白色", "do": "高光 -30 到 -50，白色色阶 -15" },
+      { "when": "皮肤被霓虹染紫", "do": "HSL 橙色明亮度 +8，紫色饱和度局部回减" },
+      { "when": "噪点被颜色放大", "do": "全局饱和度回减 5，改用明度对比表达" }
+    ],
+    "suitableFor": ["城市夜拍", "雨夜反光", "便利店门口", "车流光轨"],
+    "avoidFor": ["自然风光", "日光人像"]
+  },
+  {
+    "styleId": "portrait-skin",
+    "name": "人像肤色",
+    "tagline": "微暖通透、橙色通道稳定，一切为肤色让路",
+    "signature": [
+      { "key": "hslSat.orange", "min": -12, "max": 12, "weight": 1.5 },
+      { "key": "hslHue.orange", "min": -5, "max": 5, "weight": 1.2 },
+      { "key": "temperature", "min": 2, "max": 28, "weight": 1.0 },
+      { "key": "vibrance", "min": 3, "max": 45, "weight": 0.8 },
+      { "key": "saturation", "min": -12, "max": 12, "weight": 0.8 },
+      { "key": "highlights", "min": -55, "max": 2, "weight": 0.6 }
+    ],
+    "explanation": [
+      "橙色通道的饱和与色相被锁在小范围内，肤色是不能牺牲的锚点",
+      "白平衡轻微偏暖，皮肤显得健康有血色",
+      "用 vibrance 而不是 saturation 提色彩，低饱和的肤色区域被自动保护",
+      "高光压低让皮肤高光过渡柔和，避免油光感"
+    ],
+    "tweaks": [
+      { "when": "肤色偏黄", "do": "色调（tint）+3 往品红，或 HSL 橙色色相 -3" },
+      { "when": "肤色偏红", "do": "色温 -3，HSL 红色饱和度 -5" },
+      { "when": "背景抢肤色", "do": "背景对应通道（绿/蓝）明亮度 -10、饱和度 -10" }
+    ],
+    "suitableFor": ["室内人像", "外拍写真", "亲子记录", "证件照精修"],
+    "avoidFor": ["无人物的风光", "刻意冷调的情绪片"]
+  }
+]
