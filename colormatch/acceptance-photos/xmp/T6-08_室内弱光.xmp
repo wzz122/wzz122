@@ -1,0 +1,83 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="ColorMatch">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+    xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+    crs:Version="15.4"
+    crs:ProcessVersion="11.0"
+    crs:PresetType="Normal"
+    crs:Cluster="ColorMatch"
+    crs:UUID="C01AC7E0000040008000000000000008"
+    crs:SupportsAmount="False"
+    crs:SupportsColor="True"
+    crs:SupportsMonochrome="False"
+    crs:SupportsHighDynamicRange="True"
+    crs:SupportsSceneReferred="True"
+    crs:WhiteBalance="Custom"
+    crs:IncrementalTemperature="-40"
+    crs:IncrementalTint="34"
+    crs:Exposure2012="-1.50"
+    crs:Contrast2012="-28"
+    crs:Highlights2012="+60"
+    crs:Shadows2012="-19"
+    crs:Whites2012="+40"
+    crs:Blacks2012="-16"
+    crs:Vibrance="-27"
+    crs:Saturation="-5"
+    crs:HueAdjustmentRed="-15"
+    crs:HueAdjustmentOrange="-5"
+    crs:HueAdjustmentYellow="+9"
+    crs:HueAdjustmentGreen="0"
+    crs:HueAdjustmentAqua="0"
+    crs:HueAdjustmentBlue="0"
+    crs:HueAdjustmentPurple="0"
+    crs:HueAdjustmentMagenta="0"
+    crs:SaturationAdjustmentRed="+8"
+    crs:SaturationAdjustmentOrange="+8"
+    crs:SaturationAdjustmentYellow="-5"
+    crs:SaturationAdjustmentGreen="0"
+    crs:SaturationAdjustmentAqua="0"
+    crs:SaturationAdjustmentBlue="+1"
+    crs:SaturationAdjustmentPurple="0"
+    crs:SaturationAdjustmentMagenta="0"
+    crs:LuminanceAdjustmentRed="+6"
+    crs:LuminanceAdjustmentOrange="+35"
+    crs:LuminanceAdjustmentYellow="+35"
+    crs:LuminanceAdjustmentGreen="0"
+    crs:LuminanceAdjustmentAqua="0"
+    crs:LuminanceAdjustmentBlue="+2"
+    crs:LuminanceAdjustmentPurple="0"
+    crs:LuminanceAdjustmentMagenta="0"
+    crs:SplitToningShadowHue="92"
+    crs:SplitToningShadowSaturation="14"
+    crs:SplitToningHighlightHue="84"
+    crs:SplitToningHighlightSaturation="50"
+    crs:SplitToningBalance="0"
+    crs:ColorGradeShadowLum="0"
+    crs:ColorGradeMidtoneHue="0"
+    crs:ColorGradeMidtoneSat="0"
+    crs:ColorGradeMidtoneLum="0"
+    crs:ColorGradeHighlightLum="0"
+    crs:ColorGradeBlending="50"
+    crs:ColorGradeGlobalHue="0"
+    crs:ColorGradeGlobalSat="0"
+    crs:ColorGradeGlobalLum="0"
+    crs:HasSettings="True">
+   <crs:Name>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">T6-08 室内弱光</rdf:li>
+    </rdf:Alt>
+   </crs:Name>
+   <crs:Group>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">ColorMatch</rdf:li>
+    </rdf:Alt>
+   </crs:Group>
+      <crs:ToneCurvePV2012>
+       <rdf:Seq>
+        <rdf:li>0, 0</rdf:li>
+        <rdf:li>255, 255</rdf:li>
+       </rdf:Seq>
+      </crs:ToneCurvePV2012>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>

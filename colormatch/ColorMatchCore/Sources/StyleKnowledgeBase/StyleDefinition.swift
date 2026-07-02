@@ -52,6 +52,11 @@ public struct StyleMatch: Sendable, Equatable {
     public let style: StyleDefinition
     /// 0..1，1 为全部签名项命中
     public let score: Double
+
+    public init(style: StyleDefinition, score: Double) {
+        self.style = style
+        self.score = score
+    }
 }
 
 /// 从 GradeParameters 解析签名键的取值。

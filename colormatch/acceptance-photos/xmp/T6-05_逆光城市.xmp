@@ -1,0 +1,83 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="ColorMatch">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+    xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+    crs:Version="15.4"
+    crs:ProcessVersion="11.0"
+    crs:PresetType="Normal"
+    crs:Cluster="ColorMatch"
+    crs:UUID="C01AC7E0000040008000000000000005"
+    crs:SupportsAmount="False"
+    crs:SupportsColor="True"
+    crs:SupportsMonochrome="False"
+    crs:SupportsHighDynamicRange="True"
+    crs:SupportsSceneReferred="True"
+    crs:WhiteBalance="Custom"
+    crs:IncrementalTemperature="-1"
+    crs:IncrementalTint="0"
+    crs:Exposure2012="-0.34"
+    crs:Contrast2012="-5"
+    crs:Highlights2012="0"
+    crs:Shadows2012="-4"
+    crs:Whites2012="+15"
+    crs:Blacks2012="-3"
+    crs:Vibrance="-1"
+    crs:Saturation="-1"
+    crs:HueAdjustmentRed="0"
+    crs:HueAdjustmentOrange="0"
+    crs:HueAdjustmentYellow="-2"
+    crs:HueAdjustmentGreen="0"
+    crs:HueAdjustmentAqua="-3"
+    crs:HueAdjustmentBlue="-3"
+    crs:HueAdjustmentPurple="0"
+    crs:HueAdjustmentMagenta="0"
+    crs:SaturationAdjustmentRed="0"
+    crs:SaturationAdjustmentOrange="+18"
+    crs:SaturationAdjustmentYellow="+15"
+    crs:SaturationAdjustmentGreen="0"
+    crs:SaturationAdjustmentAqua="-1"
+    crs:SaturationAdjustmentBlue="+4"
+    crs:SaturationAdjustmentPurple="0"
+    crs:SaturationAdjustmentMagenta="0"
+    crs:LuminanceAdjustmentRed="0"
+    crs:LuminanceAdjustmentOrange="+17"
+    crs:LuminanceAdjustmentYellow="+14"
+    crs:LuminanceAdjustmentGreen="0"
+    crs:LuminanceAdjustmentAqua="+13"
+    crs:LuminanceAdjustmentBlue="+9"
+    crs:LuminanceAdjustmentPurple="0"
+    crs:LuminanceAdjustmentMagenta="0"
+    crs:SplitToningShadowHue="0"
+    crs:SplitToningShadowSaturation="0"
+    crs:SplitToningHighlightHue="255"
+    crs:SplitToningHighlightSaturation="3"
+    crs:SplitToningBalance="0"
+    crs:ColorGradeShadowLum="0"
+    crs:ColorGradeMidtoneHue="0"
+    crs:ColorGradeMidtoneSat="0"
+    crs:ColorGradeMidtoneLum="0"
+    crs:ColorGradeHighlightLum="0"
+    crs:ColorGradeBlending="50"
+    crs:ColorGradeGlobalHue="0"
+    crs:ColorGradeGlobalSat="0"
+    crs:ColorGradeGlobalLum="0"
+    crs:HasSettings="True">
+   <crs:Name>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">T6-05 逆光城市</rdf:li>
+    </rdf:Alt>
+   </crs:Name>
+   <crs:Group>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">ColorMatch</rdf:li>
+    </rdf:Alt>
+   </crs:Group>
+      <crs:ToneCurvePV2012>
+       <rdf:Seq>
+        <rdf:li>0, 0</rdf:li>
+        <rdf:li>255, 255</rdf:li>
+       </rdf:Seq>
+      </crs:ToneCurvePV2012>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>
