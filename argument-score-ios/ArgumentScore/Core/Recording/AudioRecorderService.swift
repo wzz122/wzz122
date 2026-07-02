@@ -9,7 +9,7 @@ struct RecordedClip: Codable, Hashable {
 
 /// AVAudioRecorder 封装：AAC 32kbps 单声道（够 ASR 用、上传快），带电平表和硬性时长截断。
 @Observable
-final class AudioRecorderService: NSObject {
+final class AudioRecorderService {
     private(set) var isRecording = false
     private(set) var elapsed: TimeInterval = 0
     /// 0...1 的归一化输入电平，用于 UI 呼吸动画

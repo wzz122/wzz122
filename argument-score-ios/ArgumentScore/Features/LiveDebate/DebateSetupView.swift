@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// 开场配置：双方称呼、议题、评委文风
 struct DebateSetupView: View {
