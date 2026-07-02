@@ -1,0 +1,17 @@
+# Xcode
+xcuserdata/
+DerivedData/
+*.xcuserstate
+
+# Node
+node_modules/
+.wrangler/
+.dev.vars
+
+# Python
+__pycache__/
+*.pyc
+
+# 密钥文件永不入库
+*.env
+api-keys*

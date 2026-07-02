@@ -1,0 +1,22 @@
+# 冷静报告 v2 API
+name = "argument-score-api"
+main = "src/index.ts"
+compatibility_date = "2026-06-01"
+
+# 非敏感配置直接放 vars；所有 key 一律用 `wrangler secret put` 配置：
+#   wrangler secret put ARGUMENT_API_TOKEN
+#   wrangler secret put OPENAI_API_KEY
+#   wrangler secret put GEMINI_API_KEY
+[vars]
+AI_PROVIDER = "gemini"
+OPENAI_TRANSCRIPTION_MODEL = "gpt-4o-mini-transcribe"
+OPENAI_TRANSCRIPTION_DIARIZE_MODEL = "gpt-4o-transcribe-diarize"
+SESSION_BUDGET_JPY = "100"
+DAILY_BUDGET_JPY = "2000"
+# 单价表（日元），上线前按官方价目表复核
+PRICE_TABLE_JSON = '{"asrDiarizePerMin":0.9,"asrMiniPerMin":0.45,"llmInPer1k":0.045,"llmOutPer1k":0.375}'
+
+# 每日预算熔断需要 KV（可选，不配则跳过全局熔断）：
+# [[kv_namespaces]]
+# binding = "BUDGET_KV"
+# id = "<your-kv-id>"
