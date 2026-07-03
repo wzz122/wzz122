@@ -79,11 +79,35 @@ Codex 完成了 8 组本地等价验收但**没有交付 XMP 文件**，Lightroo
 - `colormatch/CLAUDE_CODE_REPORT.md`（本文件）
 - 核心包与 App 源码本次零改动。
 
+## 第二轮增补（2026-07-03 下午，用户反馈后）
+
+用户裁定：Lightroom 比对不阻塞使用，推迟到上架前；StoreKit 点测尽量自动化。
+
+- **发现并修复付费墙真 bug**：`ColorMatch.storekit` 为手写文件，schema
+  非法（产品放在 `nonConsumables` 键而非 `products`+`type`、价格含货币
+  符号 `¥1,500`）——此文件下商品永远加载不出来，paywall 会空转。
+  已按 Xcode 标准格式重写（纯数字价格、JPN storefront）。
+- 新增宿主化测试 target `ColorMatchIOSTests`（xcodeproj gem 注入）+
+  测试计划 `ColorMatchIOSTests.xctestplan`：购买/恢复/权益持久化/回收
+  四链路 SKTestSession 用例。
+- **环境限制**：iOS 26.5 模拟器上经 CLI 跑 SKTestSession 装载配置必失败
+  （SKInternalErrorDomain Code=3），依次排除了文件格式、宿主 App、
+  模拟器重启、测试计划两种 schema 共四种方案，判定为运行时/CLI 限制。
+  测试保留在仓库中（Xcode GUI 可直接跑），scheme 里默认 skipped
+  以免 CLI `xcodebuild test` 挂死。
+- 真机部署就绪：`DEVELOPMENT_TEAM = V8M45Z67M9` 已写入工程
+  （原为空，装真机会卡签名）。
+- 环境坑记录：项目位于 iCloud 同步目录，新写文件可能被冲突改名为
+  `X 2.ext`（已清理一例 `CLAUDE 2.md`）。
+
 ## 遗留问题（人工清单）
 
-1. 真机/模拟器手动过一遍：选图 → 仿色 → 导出 XMP → 杀 App 重开配方仍在。
-2. Xcode StoreKit Testing 点测购买/恢复/限次弹窗。
-3. Lightroom 导入 `acceptance-photos/xmp/` 的 8 个预设，按
-   `LIGHTROOM_GUIDE.md` 回传截图 → 完成 T6 最终结论。
+1. 真机装机后手动过一遍：选图 → 仿色 → 导出 XMP → 杀 App 重开配方仍在
+   （用户已安排 Codex 装机）。
+2. StoreKit 购买弹窗：模拟器 CLI 不可行（见上）；正式验证在真机沙盒
+   （需 App Store Connect 先建好内购商品）或 Xcode GUI 跑
+   ColorMatchIOSTests。
+3. Lightroom 比对推迟到上架前：材料已备好（`acceptance-photos/xmp/` +
+   `LIGHTROOM_GUIDE.md`），不阻塞日常使用。
 4. 工作区仍有与本任务无关的既有改动（server/、Dockerfile、package.json 等），
    未纳入本次提交，需另行处置。
