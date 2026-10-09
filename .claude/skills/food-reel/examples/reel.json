@@ -1,0 +1,91 @@
+{
+  "lang": "zh",
+  "cover": {
+    "area": "谷町",
+    "hook": "饼干一样的",
+    "title": "梦幻可丽饼",
+    "duration": 1.8
+  },
+  "voice": {
+    "tts_voice": "zf_xiaoxiao",
+    "speed": 1.15
+  },
+  "bgm": {
+    "file": "bgm.mp3",
+    "volume": 0.22
+  },
+  "beats": [
+    {
+      "line": "谷町藏着一家，脆得像饼干的梦幻可丽饼",
+      "clips": [
+        {
+          "file": "clips/c1.mp4",
+          "focus": [
+            0.5,
+            0.4
+          ],
+          "in": 0.8
+        }
+      ]
+    },
+    {
+      "line": "饼皮现烤，咬下去咔嚓一声",
+      "caption": "饼皮现烤 **咔嚓一声**",
+      "clips": [
+        {
+          "file": "clips/c2.mp4",
+          "asmr": 0.6
+        },
+        {
+          "file": "clips/c3.mp4",
+          "in": 1
+        }
+      ]
+    },
+    {
+      "line": "里面是满满的草莓和奶油，甜而不腻，一口接一口根本停不下来",
+      "clips": [
+        {
+          "file": "clips/c4.mp4",
+          "w": 2,
+          "speed": 0.5
+        },
+        {
+          "file": "clips/c5.mp4",
+          "push": false
+        }
+      ]
+    },
+    {
+      "line": "最离谱的是，只要八百日元",
+      "caption": "只要 **800日元**",
+      "clips": [
+        {
+          "file": "clips/c6.mp4"
+        }
+      ]
+    },
+    {
+      "line": "",
+      "dur": 2.5,
+      "info": [
+        "📍 谷町四丁目站 步行3分",
+        "💰 800日元～",
+        "🕐 11:00-19:00 周三休"
+      ],
+      "clips": [
+        {
+          "file": "clips/c7.mp4"
+        }
+      ]
+    },
+    {
+      "line": "先收藏，下次去大阪一定要吃！",
+      "clips": [
+        {
+          "file": "clips/c8.mp4"
+        }
+      ]
+    }
+  ]
+}
