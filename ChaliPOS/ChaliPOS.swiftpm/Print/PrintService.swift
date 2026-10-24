@@ -25,6 +25,11 @@ enum PrintService {
         send([image], jobName: "小票 \(order.pickupLabel)", pageSize: CGSize(width: width, height: height), printerURL: store.settings.receiptPrinterURL, store: store)
     }
 
+    /// 扫码点单二维码海报（A6，用普通打印机打）
+    static func printPoster(_ image: UIImage, store: AppStore) {
+        send([image], jobName: "扫码点单二维码", pageSize: CGSize(width: mm(105), height: mm(148)), printerURL: nil, store: store)
+    }
+
     /// 选择 AirPrint 打印机，返回打印机 URL
     static func pickPrinter(current: String?, completion: @escaping (String) -> Void) {
         let initial = current.flatMap { URL(string: $0) }.map { UIPrinter(url: $0) }

@@ -39,8 +39,35 @@ struct ShopSettings: Codable, Hashable {
     /// 选中的 AirPrint 标签打印机 / 小票打印机
     var labelPrinterURL: String?
     var receiptPrinterURL: String?
+    /// 扫码点单（Supabase）
+    var qrEnabled: Bool = false
+    /// 关掉后顾客页面显示「暂停接单」，高峰期太忙时用
+    var qrAccepting: Bool = true
+    var qrSupabaseURL: String = ""
+    var qrAnonKey: String = ""
+    var qrStaffKey: String = ""
+    /// 顾客扫码打开的页面地址（二维码里放这个地址 + ?s=门店ID）
+    var qrPageURL: String = ""
 
     static let defaultPIN = "0000"
+
+    /// 扫码点单需要的连接信息都填好了
+    var isQRConfigured: Bool {
+        qrEnabled && !qrSupabaseURL.isEmpty && !qrAnonKey.isEmpty && !qrStaffKey.isEmpty
+    }
+
+    /// 顾客扫的二维码地址。seat 为桌号（可选）。
+    func qrOrderURL(seat: String? = nil) -> URL? {
+        guard var components = URLComponents(string: qrPageURL.trimmingCharacters(in: .whitespaces)),
+              components.scheme == "https" || components.scheme == "http" else { return nil }
+        var items = (components.queryItems ?? []).filter { $0.name != "s" && $0.name != "t" }
+        items.append(URLQueryItem(name: "s", value: storeID))
+        if let seat, !seat.trimmingCharacters(in: .whitespaces).isEmpty {
+            items.append(URLQueryItem(name: "t", value: seat.trimmingCharacters(in: .whitespaces)))
+        }
+        components.queryItems = items
+        return components.url
+    }
 
     var usesDefaultPIN: Bool { ownerPIN == ShopSettings.defaultPIN }
 
@@ -65,6 +92,12 @@ struct ShopSettings: Codable, Hashable {
         dayCutoffHour = try c.decodeIfPresent(Int.self, forKey: .dayCutoffHour) ?? d.dayCutoffHour
         labelPrinterURL = try c.decodeIfPresent(String.self, forKey: .labelPrinterURL)
         receiptPrinterURL = try c.decodeIfPresent(String.self, forKey: .receiptPrinterURL)
+        qrEnabled = try c.decodeIfPresent(Bool.self, forKey: .qrEnabled) ?? d.qrEnabled
+        qrAccepting = try c.decodeIfPresent(Bool.self, forKey: .qrAccepting) ?? d.qrAccepting
+        qrSupabaseURL = try c.decodeIfPresent(String.self, forKey: .qrSupabaseURL) ?? d.qrSupabaseURL
+        qrAnonKey = try c.decodeIfPresent(String.self, forKey: .qrAnonKey) ?? d.qrAnonKey
+        qrStaffKey = try c.decodeIfPresent(String.self, forKey: .qrStaffKey) ?? d.qrStaffKey
+        qrPageURL = try c.decodeIfPresent(String.self, forKey: .qrPageURL) ?? d.qrPageURL
     }
 
     func commission(for channel: Channel) -> Double {

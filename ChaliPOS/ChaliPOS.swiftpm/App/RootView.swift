@@ -3,6 +3,7 @@ import SwiftUI
 enum Screen: String, CaseIterable, Identifiable {
     case order
     case orders
+    case qr
     case soldOut
     case close
     case admin
@@ -13,6 +14,7 @@ enum Screen: String, CaseIterable, Identifiable {
         switch self {
         case .order: return "点单"
         case .orders: return "订单"
+        case .qr: return "扫码"
         case .soldOut: return "售罄"
         case .close: return "日结"
         case .admin: return "管理"
@@ -23,6 +25,7 @@ enum Screen: String, CaseIterable, Identifiable {
         switch self {
         case .order: return "cup.and.saucer.fill"
         case .orders: return "list.bullet.rectangle"
+        case .qr: return "qrcode.viewfinder"
         case .soldOut: return "nosign"
         case .close: return "yensign.circle"
         case .admin: return "lock.shield"
@@ -36,6 +39,7 @@ struct RootView: View {
     @State private var screen: Screen = ScreenshotMode.initialScreen
 
     private let dayTimer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
+    private let onlineTimer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -50,12 +54,23 @@ struct RootView: View {
         .onAppear {
             // 收银机不自动锁屏
             UIApplication.shared.isIdleTimerDisabled = true
+            store.schedulePublish()
         }
         .onReceive(dayTimer) { _ in
             store.rollOverIfNeeded()
         }
+        .onReceive(onlineTimer) { _ in
+            guard scenePhase == .active else { return }
+            Task { await store.pollOnlineOrders() }
+        }
         .onChange(of: scenePhase) { phase in
             if phase == .active { store.rollOverIfNeeded() }
+        }
+        .onChange(of: store.screenRequest) { request in
+            if let request {
+                screen = request
+                store.screenRequest = nil
+            }
         }
     }
 
@@ -64,6 +79,7 @@ struct RootView: View {
         switch screen {
         case .order: OrderScreen()
         case .orders: OrdersScreen()
+        case .qr: QRInboxScreen()
         case .soldOut: SoldOutScreen()
         case .close: DailyCloseScreen()
         case .admin: AdminScreen()
@@ -93,10 +109,10 @@ private struct TopBar: View {
 
             Spacer(minLength: 8)
 
-            HStack(spacing: 4) {
-                ForEach(Screen.allCases) { item in
-                    tabButton(item)
-                }
+            // 竖屏放不下时去掉图标
+            ViewThatFits(in: .horizontal) {
+                tabs(showIcons: true)
+                tabs(showIcons: false)
             }
 
             Spacer(minLength: 8)
@@ -120,19 +136,38 @@ private struct TopBar: View {
     private func badge(for item: Screen) -> Int {
         switch item {
         case .orders: return store.makingCount
+        case .qr: return store.pendingOnlineCount
         case .soldOut: return store.soldOutCount
         default: return 0
         }
     }
 
-    private func tabButton(_ item: Screen) -> some View {
+    private func badgeColor(for item: Screen) -> Color {
+        switch item {
+        case .soldOut: return Theme.danger
+        case .qr: return Theme.pink
+        default: return Theme.statusColor(.making)
+        }
+    }
+
+    private func tabs(showIcons: Bool) -> some View {
+        HStack(spacing: 4) {
+            ForEach(Screen.allCases) { item in
+                tabButton(item, showIcon: showIcons)
+            }
+        }
+    }
+
+    private func tabButton(_ item: Screen, showIcon: Bool) -> some View {
         let selected = screen == item
         let count = badge(for: item)
         return Button {
             screen = item
         } label: {
             HStack(spacing: 6) {
-                Image(systemName: item.icon)
+                if showIcon {
+                    Image(systemName: item.icon)
+                }
                 Text(item.title)
                 if count > 0 {
                     Text("\(count)")
@@ -140,11 +175,12 @@ private struct TopBar: View {
                         .padding(.horizontal, 6)
                         .padding(.vertical, 1)
                         .foregroundColor(.white)
-                        .background(Capsule().fill(item == .soldOut ? Theme.danger : Theme.statusColor(.making)))
+                        .background(Capsule().fill(badgeColor(for: item)))
                 }
             }
             .font(.system(size: 17, weight: .semibold))
-            .padding(.horizontal, 14)
+            .fixedSize()
+            .padding(.horizontal, 12)
             .frame(height: 42)
             .foregroundColor(selected ? .white : Theme.ink)
             .background(

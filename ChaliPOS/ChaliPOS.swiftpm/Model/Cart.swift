@@ -5,6 +5,8 @@ struct Cart: Hashable {
     var channel: Channel = .inStore
     var dining: DiningOption = .takeOut
     var lines: [OrderLine] = []
+    /// 从扫码单接过来的购物车
+    var online: OnlineOrderRef? = nil
 
     var isEmpty: Bool { lines.isEmpty }
     var total: Int { lines.reduce(0) { $0 + $1.total } }
@@ -50,6 +52,7 @@ struct Cart: Hashable {
 
     mutating func clear() {
         lines.removeAll()
+        online = nil
     }
 
     /// 「小料」栏：把小料加到最后一杯。最后一行有多杯时，拆出一杯单独加。

@@ -41,6 +41,10 @@ enum LabelBuilder {
 
     static func footerText(for order: Order, calendar: BusinessCalendar) -> String {
         let time = calendar.timeString(order.createdAt)
+        if let online = order.online {
+            let seat = online.seat.map { " \($0)" } ?? ""
+            return "扫码 \(online.numberLabel)\(seat) \(order.dining.label) \(time)"
+        }
         if order.channel.isDelivery {
             let ref = order.platformOrderRef.map { " #" + $0 } ?? ""
             return "\(order.channel.shortLabel)\(ref) \(time)"

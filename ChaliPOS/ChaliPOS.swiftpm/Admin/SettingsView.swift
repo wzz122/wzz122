@@ -5,6 +5,9 @@ struct SettingsView: View {
     @State private var draft = ShopSettings()
     @State private var loaded = false
     @State private var newPIN = ""
+    @State private var qrTestResult: String?
+    @State private var testingQR = false
+    @State private var showPoster = false
 
     private var hasChanges: Bool { loaded && draft != store.settings }
 
@@ -91,6 +94,8 @@ struct SettingsView: View {
                     Text("选好打印机后结账直接出标签，不再弹打印面板。标签按 40×30mm 排版；请用支持 AirPrint 的标签机，或之后接入厂商 SDK。")
                 }
 
+                qrSection
+
                 Section {
                     SecureField("新密码（4 位数字）", text: $newPIN)
                         .keyboardType(.numberPad)
@@ -135,6 +140,59 @@ struct SettingsView: View {
                 draft = store.settings
                 loaded = true
             }
+        }
+        .sheet(isPresented: $showPoster) {
+            QRPosterSheet()
+                .environmentObject(store)
+        }
+    }
+
+    private var qrSection: some View {
+        Section {
+            Toggle("启用扫码点单", isOn: $draft.qrEnabled)
+            TextField("Supabase Project URL（https://xxxx.supabase.co）", text: $draft.qrSupabaseURL)
+                .keyboardType(.URL)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+            TextField("anon / publishable key", text: $draft.qrAnonKey)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+            SecureField("门店密钥（chali.create_store 返回的）", text: $draft.qrStaffKey)
+            TextField("顾客页面地址（https://…/chalichali/）", text: $draft.qrPageURL)
+                .keyboardType(.URL)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+            HStack {
+                Button {
+                    testingQR = true
+                    qrTestResult = nil
+                    let candidate = draft
+                    Task {
+                        qrTestResult = await store.testQRConnection(candidate)
+                        testingQR = false
+                    }
+                } label: {
+                    Label(testingQR ? "连接中…" : "测试连接（发布一次菜单）", systemImage: "antenna.radiowaves.left.and.right")
+                }
+                .disabled(testingQR)
+                Spacer()
+                Button {
+                    showPoster = true
+                } label: {
+                    Label("二维码海报", systemImage: "qrcode")
+                }
+                .disabled(store.settings.qrOrderURL() == nil)
+            }
+            .buttonStyle(.borderless)
+            if let qrTestResult {
+                Text(qrTestResult)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(qrTestResult.hasPrefix("连接成功") ? Theme.green : Theme.danger)
+            }
+        } header: {
+            Text("扫码点单")
+        } footer: {
+            Text("顾客扫码在手机上点单，到柜台付款。门店 ID：\(draft.storeID)。菜单、价格和售罄会自动同步到顾客页面。部署步骤见 ChaliPOS/QROrder/README.md。")
         }
     }
 

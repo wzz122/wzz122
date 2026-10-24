@@ -189,6 +189,9 @@ struct OrderRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 6) {
                     Badge(text: order.channel.shortLabel, color: Theme.channelColor(order.channel))
+                    if let online = order.online {
+                        Badge(text: "扫码 \(online.numberLabel)", color: Theme.pink)
+                    }
                     Text(time)
                         .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundColor(.secondary)

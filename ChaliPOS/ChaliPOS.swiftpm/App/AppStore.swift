@@ -1,4 +1,5 @@
 import SwiftUI
+import AudioToolbox
 
 struct ToastMessage: Identifiable, Equatable {
     let id = UUID()
@@ -20,8 +21,33 @@ final class AppStore: ObservableObject {
     @Published var cart = Cart()
     @Published var toast: ToastMessage?
 
+    /// 扫码点单
+    @Published private(set) var onlineOrders: [OnlineOrder] = []
+    @Published private(set) var onlineSync = OnlineSyncState()
+    /// 让 RootView 切换页面 / 让点单页打开结账（接扫码单时用）
+    @Published var screenRequest: Screen?
+    @Published var checkoutRequest = false
+
     let files: FileStore
     private var pastOrdersCache: [String: [Order]] = [:]
+    private var onlineSince: Date?
+    private var seenOnlineIDs: Set<UUID> = []
+    private var isPolling = false
+    private var publishTask: Task<Void, Never>?
+    /// 网络断了没发出去的状态更新，下次轮询时重发
+    private var pendingOnlineUpdates: [UUID: PendingOnlineUpdate] = [:]
+
+    struct OnlineSyncState: Equatable {
+        var lastSync: Date?
+        var menuPublishedAt: Date?
+        var error: String?
+    }
+
+    private struct PendingOnlineUpdate {
+        var status: OnlineOrderStatus
+        var pickupNumber: Int?
+        var reason: String?
+    }
 
     init(files: FileStore = FileStore()) {
         self.files = files
@@ -52,6 +78,9 @@ final class AppStore: ObservableObject {
         today = day
         todayOrders = files.loadOrders(day: day)
         refreshFrequent()
+        onlineOrders.removeAll { !$0.status.isOpen }
+        onlineSince = nil
+        schedulePublish()
     }
 
     // MARK: - 点单
@@ -65,6 +94,10 @@ final class AppStore: ObservableObject {
     }
 
     func setChannel(_ channel: Channel) {
+        if cart.online != nil && channel != .inStore {
+            showToast("这是扫码单，不能改成外卖渠道", isError: true)
+            return
+        }
         cart.channel = channel
         if channel.isDelivery { cart.dining = .takeOut }
         cart.reprice(menu: menu, eatInPricing: settings.eatInPricing)
@@ -188,12 +221,16 @@ final class AppStore: ObservableObject {
             platformOrderRef: platformRef,
             status: .making,
             completedAt: nil,
-            refundedAt: nil
+            refundedAt: nil,
+            online: cart.online
         )
         todayOrders.append(order)
         persistOrders(todayOrders, day: today)
         cart = Cart(channel: .inStore, dining: settings.defaultDining)
         refreshFrequent()
+        if let online = order.online {
+            sendOnlineStatus(online.id, .accepted, pickupNumber: order.pickupNumber)
+        }
         return order
     }
 
@@ -230,12 +267,19 @@ final class AppStore: ObservableObject {
             order.status = status
             order.completedAt = status == .done ? Date() : nil
         }
+        // 扫码单：做好了 → 顾客手机上显示「可取餐」
+        if let online = orders(for: day).first(where: { $0.id == orderID })?.online {
+            sendOnlineStatus(online.id, status == .done ? .ready : .accepted, pickupNumber: nil)
+        }
     }
 
     func refund(orderID: UUID, day: String) {
         modifyOrder(id: orderID, day: day) { order in
             order.status = .refunded
             order.refundedAt = Date()
+        }
+        if let online = orders(for: day).first(where: { $0.id == orderID })?.online {
+            sendOnlineStatus(online.id, .cancelled, pickupNumber: nil, reason: "已退款")
         }
         showToast("已登记退款")
     }
@@ -248,6 +292,7 @@ final class AppStore: ObservableObject {
             menu.items[index].soldOutDay = soldOut ? today : nil
         }
         persistMenu()
+        schedulePublish()
     }
 
     // MARK: - 菜单编辑（老板）
@@ -311,7 +356,10 @@ final class AppStore: ObservableObject {
 
     private func menuChanged() {
         persistMenu()
-        cart.reprice(menu: menu, eatInPricing: settings.eatInPricing)
+        if cart.online == nil {
+            cart.reprice(menu: menu, eatInPricing: settings.eatInPricing)
+        }
+        schedulePublish()
     }
 
     // MARK: - 设置与日结
@@ -323,8 +371,11 @@ final class AppStore: ObservableObject {
         } catch {
             showToast("设置保存失败：\(error.localizedDescription)", isError: true)
         }
-        cart.reprice(menu: menu, eatInPricing: settings.eatInPricing)
+        if cart.online == nil {
+            cart.reprice(menu: menu, eatInPricing: settings.eatInPricing)
+        }
         rollOverIfNeeded()
+        schedulePublish()
     }
 
     func close(for day: String) -> DailyClose? {
@@ -341,6 +392,181 @@ final class AppStore: ObservableObject {
         } catch {
             showToast("日结保存失败：\(error.localizedDescription)", isError: true)
         }
+    }
+
+    // MARK: - 扫码点单
+
+    var qrClient: QRClient? { QRClient(settings: settings) }
+    var pendingOnlineCount: Int { onlineOrders.filter { $0.status == .received }.count }
+
+    /// 每 5 秒由 RootView 调用：先补发失败的状态更新，再拉取有变化的扫码单
+    func pollOnlineOrders() async {
+        guard let client = qrClient, !isPolling else { return }
+        isPolling = true
+        defer { isPolling = false }
+        await flushPendingOnlineUpdates(client)
+        do {
+            let changed = try await client.fetchOrders(since: onlineSince)
+            mergeOnlineOrders(changed, notify: true)
+            onlineSync.lastSync = Date()
+            if pendingOnlineUpdates.isEmpty { onlineSync.error = nil }
+        } catch {
+            onlineSync.error = error.localizedDescription
+        }
+    }
+
+    private func mergeOnlineOrders(_ changed: [OnlineOrder], notify: Bool) {
+        var newOnes: [OnlineOrder] = []
+        for order in changed {
+            if let index = onlineOrders.firstIndex(where: { $0.id == order.id }) {
+                // 本地刚改过、还没发出去的状态以本地为准
+                if pendingOnlineUpdates[order.id] == nil {
+                    onlineOrders[index] = order
+                }
+            } else {
+                onlineOrders.append(order)
+            }
+            if order.status == .received && !seenOnlineIDs.contains(order.id) {
+                newOnes.append(order)
+            }
+            seenOnlineIDs.insert(order.id)
+            if onlineSince == nil || order.updatedAt > onlineSince! {
+                onlineSince = order.updatedAt
+            }
+        }
+        onlineOrders.sort { $0.createdAt < $1.createdAt }
+        if notify && !newOnes.isEmpty {
+            AudioServicesPlaySystemSound(1007)
+            showToast("新扫码单 " + newOnes.map(\.numberLabel).joined(separator: "、"))
+        }
+    }
+
+    /// 接扫码单：放进购物车并打开结账。购物车里有别的东西时返回 false，让界面先确认。
+    @discardableResult
+    func beginCheckout(_ order: OnlineOrder, replacingCart: Bool = false) -> Bool {
+        if !cart.isEmpty && cart.online?.id != order.id && !replacingCart {
+            return false
+        }
+        cart = order.makeCart()
+        screenRequest = .order
+        checkoutRequest = true
+        return true
+    }
+
+    func rejectOnlineOrder(_ order: OnlineOrder, reason: String) {
+        sendOnlineStatus(order.id, .cancelled, pickupNumber: nil, reason: reason)
+        if cart.online?.id == order.id { cart.clear() }
+        showToast("已拒单 \(order.numberLabel)")
+    }
+
+    /// 做好了：本地订单标记完成（顺带通知顾客）；本机没有对应订单时直接通知
+    func markOnlineReady(_ order: OnlineOrder) {
+        if let local = todayOrders.first(where: { $0.online?.id == order.id }) {
+            setStatus(.done, orderID: local.id, day: local.businessDay)
+        } else {
+            sendOnlineStatus(order.id, .ready, pickupNumber: nil)
+        }
+    }
+
+    func markOnlinePickedUp(_ order: OnlineOrder) {
+        sendOnlineStatus(order.id, .completed, pickupNumber: nil)
+    }
+
+    func localOrder(for online: OnlineOrder) -> Order? {
+        todayOrders.first { $0.online?.id == online.id }
+    }
+
+    func setQRAccepting(_ accepting: Bool) {
+        var updated = settings
+        updated.qrAccepting = accepting
+        updateSettings(updated)
+        showToast(accepting ? "扫码点单：接单中" : "扫码点单：已暂停接单")
+    }
+
+    private func sendOnlineStatus(_ id: UUID, _ status: OnlineOrderStatus, pickupNumber: Int?, reason: String? = nil) {
+        // 先改本地，顾客页面在下一次请求成功后更新
+        if let index = onlineOrders.firstIndex(where: { $0.id == id }) {
+            onlineOrders[index].status = status
+            if let pickupNumber { onlineOrders[index].pickupNumber = pickupNumber }
+            if status == .cancelled { onlineOrders[index].cancelReason = reason }
+        }
+        let previous = pendingOnlineUpdates[id]
+        pendingOnlineUpdates[id] = PendingOnlineUpdate(
+            status: status,
+            pickupNumber: pickupNumber ?? previous?.pickupNumber,
+            reason: reason
+        )
+        guard let client = qrClient else { return }
+        Task { @MainActor [weak self] in
+            await self?.flushPendingOnlineUpdates(client)
+        }
+    }
+
+    private func flushPendingOnlineUpdates(_ client: QRClient) async {
+        for (id, update) in pendingOnlineUpdates {
+            do {
+                let saved = try await client.updateOrder(id: id, status: update.status, pickupNumber: update.pickupNumber, reason: update.reason)
+                // 发送期间又有新的修改就保留，下次再发
+                if pendingOnlineUpdates[id]?.status == update.status {
+                    pendingOnlineUpdates[id] = nil
+                }
+                mergeOnlineOrders([saved], notify: false)
+            } catch {
+                onlineSync.error = "扫码单状态没有同步：\(error.localizedDescription)（会自动重试）"
+                return
+            }
+        }
+    }
+
+    /// 菜单、售罄、设置变化后发布到顾客页面（合并 0.8 秒内的多次修改）
+    func schedulePublish() {
+        guard qrClient != nil else { return }
+        publishTask?.cancel()
+        publishTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(nanoseconds: 800_000_000)
+            guard !Task.isCancelled else { return }
+            await self?.publishMenuNow()
+        }
+    }
+
+    @discardableResult
+    func publishMenuNow() async -> Bool {
+        guard let client = qrClient else { return false }
+        do {
+            try await publish(with: client, settings: settings)
+            onlineSync.menuPublishedAt = Date()
+            onlineSync.error = nil
+            return true
+        } catch {
+            onlineSync.error = "菜单没有发布：\(error.localizedDescription)"
+            return false
+        }
+    }
+
+    /// 设置页「测试连接」：用还没保存的设置试着发布一次菜单
+    func testQRConnection(_ draft: ShopSettings) async -> String {
+        guard draft.qrEnabled else { return "请先打开「启用扫码点单」" }
+        guard let client = QRClient(settings: draft) else { return "请填写 Supabase URL、API key 和门店密钥" }
+        do {
+            try await publish(with: client, settings: draft)
+            _ = try await client.fetchOrders(since: Date())
+            return "连接成功，菜单已发布"
+        } catch {
+            return error.localizedDescription
+        }
+    }
+
+    private func publish(with client: QRClient, settings: ShopSettings) async throws {
+        let published = PublishedMenu(menu: menu, settings: settings, businessDay: today)
+        try await client.publishMenu(published, accepting: settings.qrAccepting, cutoffHour: settings.dayCutoffHour)
+    }
+
+    /// 截图模式：不联网，直接放入示例扫码单
+    func injectOnlineOrdersForScreenshot(_ orders: [OnlineOrder]) {
+        seenOnlineIDs.formUnion(orders.map(\.id))
+        onlineOrders = orders
+        onlineSync.lastSync = Date()
+        onlineSync.menuPublishedAt = Date()
     }
 
     // MARK: - 提示

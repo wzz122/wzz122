@@ -16,6 +16,7 @@ enum ScreenshotMode {
     static var initialScreen: Screen {
         switch page {
         case "orders": return .orders
+        case "qr", "qrposter": return .qr
         case "soldout": return .soldOut
         case "close": return .close
         case "reports", "menu": return .admin
@@ -33,6 +34,9 @@ enum ScreenshotMode {
         settings.invoiceNumber = "T1234567890123"
         settings.cashFloat = 20000
         settings.commissionPercent = [Channel.uber.rawValue: 35, Channel.panda.rawValue: 25, Channel.rocket.rawValue: 20]
+        // 扫码页面：启用但不填连接信息，截图时不联网
+        settings.qrEnabled = true
+        settings.qrPageURL = "https://wzz122.github.io/chalichali/"
         try? files.saveSettings(settings)
 
         let calendar = BusinessCalendar(cutoffHour: settings.dayCutoffHour)
@@ -46,6 +50,7 @@ enum ScreenshotMode {
         try? files.saveOrders(demoOrders(menu: menu, settings: settings, day: today, calendar: calendar), day: today)
 
         let store = AppStore(files: files)
+        store.injectOnlineOrdersForScreenshot(demoOnlineOrders(menu: menu, day: today))
         if page == "order" || page == "checkout" {
             let specs: [(String, DrinkSize, Temperature, Sweetness, [String], Int)] = [
                 ("oolong-roast-milk", .l, .lessIce, .s50, ["pearl"], 2),
@@ -119,6 +124,40 @@ enum ScreenshotMode {
             ))
         }
         return orders
+    }
+
+    /// 扫码单示例：两张待接单、一张制作中、一张可取餐、一张已取消
+    private static func demoOnlineOrders(menu: ShopMenu, day: String) -> [OnlineOrder] {
+        func line(_ id: String, _ size: DrinkSize, _ temp: Temperature, _ sweetness: Sweetness, _ toppings: [String], _ quantity: Int) -> OnlineOrderLine? {
+            guard let item = menu.item(id: id),
+                  let made = Pricing.makeLine(item: item, size: size, temp: temp, sweetness: sweetness, toppingIDs: toppings,
+                                              menu: menu, channel: .inStore, dining: .takeOut, eatInPricing: .sameTaxIncluded)
+            else { return nil }
+            return OnlineOrderLine(itemID: id, name: made.name, nameJP: made.nameJP, size: size, temp: temp, sweetness: sweetness,
+                                   toppings: made.toppings, basePrice: made.basePrice, unitPrice: made.unitPrice, quantity: quantity)
+        }
+        func order(_ number: Int, minutesAgo: Double, seat: String?, dining: DiningOption, note: String?, status: OnlineOrderStatus,
+                   pickup: Int?, reason: String? = nil, _ lines: [OnlineOrderLine?]) -> OnlineOrder {
+            let items = lines.compactMap { $0 }
+            let created = Date().addingTimeInterval(-minutesAgo * 60)
+            return OnlineOrder(
+                id: UUID(), number: number, businessDay: day, seat: seat, dining: dining, lines: items,
+                total: items.reduce(0) { $0 + $1.unitPrice * $1.quantity }, cupCount: items.reduce(0) { $0 + $1.quantity },
+                note: note, status: status, pickupNumber: pickup, cancelReason: reason, createdAt: created, updatedAt: created
+            )
+        }
+        return [
+            order(3, minutesAgo: 24, seat: nil, dining: .takeOut, note: nil, status: .cancelled, pickup: nil, reason: "顾客没有来付款",
+                  [line("kiwi-trip", .l, .normalIce, .s100, [], 1)]),
+            order(4, minutesAgo: 16, seat: "T2", dining: .eatIn, note: nil, status: .ready, pickup: 36,
+                  [line("lemon-oolong", .l, .normalIce, .s50, [], 2)]),
+            order(5, minutesAgo: 9, seat: nil, dining: .takeOut, note: nil, status: .accepted, pickup: 37,
+                  [line("pink-guava-grape", .l, .lessIce, .s100, ["coconutJelly"], 1)]),
+            order(6, minutesAgo: 3, seat: "T3", dining: .eatIn, note: "氷は別でお願いします", status: .received, pickup: nil,
+                  [line("oolong-roast-milk", .l, .lessIce, .s50, ["pearl"], 2), line("kiwi-trip", .l, .normalIce, .s100, [], 1)]),
+            order(7, minutesAgo: 1, seat: nil, dining: .takeOut, note: nil, status: .received, pickup: nil,
+                  [line("salt-osmanthus-milk", .m, .noIce, .s30, ["cheese"], 1)]),
+        ]
     }
 
     /// 日结截图：按应有现金填好面额

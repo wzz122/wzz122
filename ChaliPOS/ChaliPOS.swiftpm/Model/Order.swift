@@ -269,6 +269,8 @@ struct Order: Codable, Identifiable, Hashable {
     var status: OrderStatus
     var completedAt: Date?
     var refundedAt: Date?
+    /// 扫码点单接过来的订单
+    var online: OnlineOrderRef? = nil
 
     var cupCount: Int { lines.reduce(0) { $0 + $1.quantity } }
     var change: Int? { cashReceived.map { $0 - total } }

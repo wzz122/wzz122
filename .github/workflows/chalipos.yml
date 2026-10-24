@@ -21,6 +21,23 @@ jobs:
         working-directory: ChaliPOS/CoreTests
         run: swift test
 
+  qr-order:
+    name: 扫码点单（数据库 + 顾客页面）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: 安装 Playwright
+        working-directory: ChaliPOS/QROrder/tests
+        run: |
+          npm install --no-save --no-package-lock playwright@1.49.1
+          npx playwright install --with-deps chromium
+      - name: Postgres + PostgREST 上跑数据库函数和顾客页面测试
+        working-directory: ChaliPOS/QROrder/tests
+        run: ./run_local.sh
+
   ios-typecheck:
     name: iPad App 类型检查（iOS SDK）
     runs-on: macos-15
@@ -89,7 +106,7 @@ jobs:
           fi
           sleep 3
           mkdir -p ChaliPOS/screenshots
-          for page in order options checkout orders soldout close reports menu; do
+          for page in order options checkout orders qr qrposter soldout close reports menu; do
             xcrun simctl terminate "$UDID" com.wzz122.ChaliPOS 2>/dev/null || true
             xcrun simctl launch "$UDID" com.wzz122.ChaliPOS -screenshot "$page"
             sleep 8

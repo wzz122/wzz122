@@ -65,10 +65,12 @@ struct OrderScreen: View {
         }
         .animation(.easeOut(duration: 0.15), value: options?.id)
         .animation(.easeOut(duration: 0.15), value: checkoutID)
+        .onChange(of: store.checkoutRequest) { _ in openRequestedCheckout() }
         .onAppear {
             if store.frequentCombos.isEmpty, case .frequent = category, let first = store.menu.categories.first {
                 category = .category(first.id)
             }
+            openRequestedCheckout()
             if ScreenshotMode.isActive {
                 category = .category("milktea")
                 if ScreenshotMode.isPage("options"), let item = store.menu.item(id: "oolong-roast-milk") {
@@ -76,6 +78,18 @@ struct OrderScreen: View {
                 }
                 if ScreenshotMode.isPage("checkout") { checkoutID = UUID() }
             }
+        }
+    }
+}
+
+extension OrderScreen {
+    /// 扫码页点了「接单并收款」：切到点单页后直接打开结账
+    fileprivate func openRequestedCheckout() {
+        guard store.checkoutRequest else { return }
+        store.checkoutRequest = false
+        if !store.cart.isEmpty {
+            options = nil
+            checkoutID = UUID()
         }
     }
 }

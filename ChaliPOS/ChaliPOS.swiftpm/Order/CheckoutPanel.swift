@@ -87,6 +87,9 @@ struct CheckoutPanel: View {
             Text(title)
                 .font(.system(size: 26, weight: .heavy))
                 .foregroundColor(Theme.ink)
+            if let online = completed?.online ?? cart.online {
+                Badge(text: "扫码 \(online.numberLabel)", color: Theme.pink)
+            }
             Spacer()
             if step != .done {
                 Text("\(cart.cupCount) 杯")
@@ -369,6 +372,11 @@ struct CheckoutPanel: View {
                 Text(labelStatus(order))
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
+                if let online = order.online {
+                    Text("已通知顾客：扫码单 \(online.numberLabel) 的取餐号是 \(order.pickupLabel)")
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(Theme.pink)
+                }
                 Spacer(minLength: 0)
                 HStack(spacing: 12) {
                     SecondaryButton("补打标签", systemImage: "tag") {

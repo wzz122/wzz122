@@ -14,6 +14,19 @@ struct CartPanel: View {
             if cart.channel.isDelivery {
                 deliveryBanner
             }
+            if let online = cart.online {
+                HStack(spacing: 8) {
+                    Image(systemName: "qrcode.viewfinder")
+                    Text("扫码单 \(online.numberLabel)\(online.seat.map { " · \($0)" } ?? "")：按顾客下单时的价格收款")
+                        .lineLimit(2)
+                }
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.white)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Theme.pink)
+            }
             Divider()
             if cart.isEmpty {
                 emptyState
