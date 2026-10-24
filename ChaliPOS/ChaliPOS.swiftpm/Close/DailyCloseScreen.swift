@@ -18,7 +18,7 @@ struct DailyCloseScreen: View {
             ScrollView {
                 cashCountCard
             }
-            .frame(width: 470)
+            .frame(width: 440)
 
             ScrollView {
                 VStack(spacing: 16) {
@@ -111,8 +111,8 @@ struct DailyCloseScreen: View {
             HStack(spacing: 12) {
                 stat("单数", "\(summary.orderCount)")
                 stat("杯数", "\(summary.cupCount)")
-                stat("销售额", Money.yen(summary.gross))
             }
+            stat("销售额", Money.yen(summary.gross))
             if summary.refundCount > 0 {
                 Text("退款 \(summary.refundCount) 单 \(Money.yen(summary.refundAmount))，已从销售额中扣除")
                     .font(.system(size: 14))

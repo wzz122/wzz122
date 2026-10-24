@@ -71,9 +71,18 @@ jobs:
           xcrun simctl list devices | grep "$UDID"
           xcrun simctl boot "$UDID"
           xcrun simctl bootstatus "$UDID" -b > /dev/null
-          xcrun simctl status_bar "$UDID" override --time "15:30" --batteryState charged --batteryLevel 100 || true
+          # App 和状态栏都用日本时间
+          export SIMCTL_CHILD_TZ=Asia/Tokyo
+          xcrun simctl status_bar "$UDID" override --time "$(TZ=Asia/Tokyo date +%H:%M)" --batteryState charged --batteryLevel 100 || true
           APP="$RUNNER_TEMP/dd/Build/Products/Release-iphonesimulator/ChaliPOS.app"
           xcrun simctl install "$UDID" "$APP"
+          # 转成横屏（通过 Simulator 菜单；没有辅助功能权限时保持竖屏）
+          open -a Simulator --args -CurrentDeviceUDID "$UDID"
+          sleep 15
+          osascript -e 'tell application "Simulator" to activate' \
+            -e 'tell application "System Events" to tell process "Simulator" to click menu item "Rotate Left" of menu "Device" of menu bar 1' \
+            || echo "::warning::无法旋转模拟器，截图保持竖屏"
+          sleep 3
           mkdir -p ChaliPOS/screenshots
           for page in order options checkout orders soldout close reports menu; do
             xcrun simctl terminate "$UDID" com.wzz122.ChaliPOS 2>/dev/null || true

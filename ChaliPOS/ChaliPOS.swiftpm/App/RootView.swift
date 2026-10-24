@@ -50,7 +50,6 @@ struct RootView: View {
         .onAppear {
             // 收银机不自动锁屏
             UIApplication.shared.isIdleTimerDisabled = true
-            ScreenshotMode.rotateToLandscape()
         }
         .onReceive(dayTimer) { _ in
             store.rollOverIfNeeded()

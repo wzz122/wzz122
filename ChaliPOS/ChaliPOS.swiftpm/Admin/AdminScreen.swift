@@ -107,6 +107,7 @@ struct PINPadView: View {
             RoundedRectangle(cornerRadius: 24, style: .continuous)
                 .fill(Color.white)
         )
+        .compositingGroup()
         .shadow(color: .black.opacity(0.12), radius: 16, y: 4)
     }
 

@@ -79,7 +79,8 @@ enum ScreenshotMode {
         ]
         let channels: [Channel] = [.inStore, .inStore, .inStore, .uber, .inStore, .panda, .inStore, .inStore, .rocket, .inStore]
         let payments: [PaymentMethod] = [.cash, .credit, .payPay, .cash, .transitIC, .cash, .payPay, .iD]
-        let start = calendar.date(for: day)?.addingTimeInterval(11 * 3600) ?? Date()
+        let dayStart = (calendar.date(for: day) ?? Date()).addingTimeInterval(Double(calendar.cutoffHour) * 3600 + 60)
+        let lastOrder = Date().addingTimeInterval(-180)
 
         var orders: [Order] = []
         for number in 1...38 {
@@ -102,7 +103,7 @@ enum ScreenshotMode {
                 storeID: settings.storeID,
                 businessDay: day,
                 pickupNumber: number,
-                createdAt: start.addingTimeInterval(Double(number) * 13 * 60),
+                createdAt: max(dayStart, lastOrder.addingTimeInterval(-Double(38 - number) * 13 * 60)),
                 channel: channel,
                 dining: cart.dining,
                 lines: cart.lines,
@@ -129,12 +130,5 @@ enum ScreenshotMode {
             rest %= value
         }
         return counts.filter { $0.value > 0 }
-    }
-
-    /// 截图时把界面转成横屏
-    static func rotateToLandscape() {
-        guard isActive,
-              let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first else { return }
-        scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight)) { _ in }
     }
 }

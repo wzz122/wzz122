@@ -6,7 +6,7 @@ struct DrinkGrid: View {
     let selection: CategorySelection
     let onOpen: (MenuItem) -> Void
 
-    private let columns = [GridItem(.adaptive(minimum: 168), spacing: 12)]
+    private let columns = [GridItem(.adaptive(minimum: 148), spacing: 12)]
 
     var body: some View {
         ScrollView {
@@ -158,6 +158,7 @@ struct DrinkCard: View {
         .overlay {
             if soldOut { SoldOutStamp() }
         }
+        .compositingGroup()
         .shadow(color: .black.opacity(0.05), radius: 3, y: 1)
         .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
@@ -205,6 +206,7 @@ struct ComboCard: View {
         .overlay {
             if soldOut { SoldOutStamp() }
         }
+        .compositingGroup()
         .shadow(color: .black.opacity(0.05), radius: 3, y: 1)
         .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
@@ -233,6 +235,7 @@ struct ToppingCard: View {
             RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .fill(Color.white)
         )
+        .compositingGroup()
         .shadow(color: .black.opacity(0.05), radius: 3, y: 1)
         .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     }

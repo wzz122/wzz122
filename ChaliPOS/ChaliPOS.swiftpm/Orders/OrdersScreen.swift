@@ -221,6 +221,25 @@ struct OrderDetailView: View {
 
     private var labels: [CupLabel] { LabelBuilder.labels(for: order, calendar: store.calendar) }
 
+    @ViewBuilder
+    private var actionButtons: some View {
+        if order.status == .making {
+            BigButton("标记完成", systemImage: "checkmark") {
+                store.setStatus(.done, orderID: order.id, day: order.businessDay)
+            }
+        } else if order.status == .done {
+            SecondaryButton("改回制作中", systemImage: "arrow.uturn.backward") {
+                store.setStatus(.making, orderID: order.id, day: order.businessDay)
+            }
+        }
+        SecondaryButton("补打标签", systemImage: "tag") {
+            PrintService.printLabels(for: order, store: store)
+        }
+        SecondaryButton("打印小票", systemImage: "doc.text") {
+            PrintService.printReceipt(for: order, store: store)
+        }
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -272,23 +291,9 @@ struct OrderDetailView: View {
                     }
                 }
 
-                HStack(spacing: 12) {
-                    if order.status == .making {
-                        BigButton("标记完成", systemImage: "checkmark") {
-                            store.setStatus(.done, orderID: order.id, day: order.businessDay)
-                        }
-                    } else if order.status == .done {
-                        SecondaryButton("改回制作中", systemImage: "arrow.uturn.backward") {
-                            store.setStatus(.making, orderID: order.id, day: order.businessDay)
-                        }
-                    }
-                    SecondaryButton("补打标签", systemImage: "tag") {
-                        PrintService.printLabels(for: order, store: store)
-                    }
-                    SecondaryButton("打印小票", systemImage: "doc.text") {
-                        PrintService.printReceipt(for: order, store: store)
-                    }
-                    Spacer(minLength: 0)
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 12) { actionButtons }
+                    VStack(alignment: .leading, spacing: 12) { actionButtons }
                 }
 
                 if !order.isRefunded {

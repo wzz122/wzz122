@@ -79,6 +79,7 @@ struct ItemOptionsPanel: View {
             RoundedRectangle(cornerRadius: 24, style: .continuous)
                 .fill(Color.white)
         )
+        .compositingGroup()
         .shadow(color: .black.opacity(0.2), radius: 20, y: 6)
     }
 
