@@ -69,6 +69,13 @@ struct OrderScreen: View {
             if store.frequentCombos.isEmpty, case .frequent = category, let first = store.menu.categories.first {
                 category = .category(first.id)
             }
+            if ScreenshotMode.isActive {
+                category = .category("milktea")
+                if ScreenshotMode.isPage("options"), let item = store.menu.item(id: "oolong-roast-milk") {
+                    options = OptionsContext(item: item)
+                }
+                if ScreenshotMode.isPage("checkout") { checkoutID = UUID() }
+            }
         }
     }
 }

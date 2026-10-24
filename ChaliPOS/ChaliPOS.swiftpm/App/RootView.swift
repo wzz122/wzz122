@@ -33,7 +33,7 @@ enum Screen: String, CaseIterable, Identifiable {
 struct RootView: View {
     @EnvironmentObject private var store: AppStore
     @Environment(\.scenePhase) private var scenePhase
-    @State private var screen: Screen = .order
+    @State private var screen: Screen = ScreenshotMode.initialScreen
 
     private let dayTimer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
 
@@ -50,6 +50,7 @@ struct RootView: View {
         .onAppear {
             // 收银机不自动锁屏
             UIApplication.shared.isIdleTimerDisabled = true
+            ScreenshotMode.rotateToLandscape()
         }
         .onReceive(dayTimer) { _ in
             store.rollOverIfNeeded()

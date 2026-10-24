@@ -89,6 +89,7 @@ struct OrdersScreen: View {
         }
         .onAppear {
             if day.isEmpty { day = store.today }
+            if ScreenshotMode.isPage("orders") { selectedID = dayOrders.first?.id }
         }
     }
 

@@ -3,8 +3,8 @@ import SwiftUI
 /// 管理（需老板密码）：报表、菜单（改价 / 季节限定）、报税导出、设置
 struct AdminScreen: View {
     @EnvironmentObject private var store: AppStore
-    @State private var unlocked = false
-    @State private var tab: AdminTab = .reports
+    @State private var unlocked = ScreenshotMode.isActive
+    @State private var tab: AdminTab = ScreenshotMode.isPage("menu") ? .menu : .reports
 
     enum AdminTab: String, CaseIterable, Identifiable {
         case reports, menu, export, settings

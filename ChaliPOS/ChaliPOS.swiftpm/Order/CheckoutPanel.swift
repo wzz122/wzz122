@@ -24,7 +24,8 @@ struct CheckoutPanel: View {
 
     init(isDelivery: Bool, onClose: @escaping () -> Void) {
         self.onClose = onClose
-        _step = State(initialValue: isDelivery ? .platform : .choose)
+        _step = State(initialValue: ScreenshotMode.isPage("checkout") ? .cash : (isDelivery ? .platform : .choose))
+        _received = State(initialValue: ScreenshotMode.isPage("checkout") ? 5000 : 0)
     }
 
     private var cart: Cart { store.cart }

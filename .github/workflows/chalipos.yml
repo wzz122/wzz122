@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     container: swift:6.0-noble
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: swift test
         working-directory: ChaliPOS/CoreTests
         run: swift test
@@ -25,7 +25,7 @@ jobs:
     name: iPad App 类型检查（iOS SDK）
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Xcode
         run: xcodebuild -version
       - name: 用 iOS 模拟器 SDK 检查全部源码
@@ -42,3 +42,51 @@ jobs:
           xcodebuild -list
           xcodebuild -scheme ChaliPOS -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath "$RUNNER_TEMP/dd" CODE_SIGNING_ALLOWED=NO build | tail -60
+
+  # 手动运行（Actions → ChaliPOS → Run workflow）：在 iPad 模拟器里截取各页面，提交到 ChaliPOS/screenshots/
+  screenshots:
+    name: iPad 模拟器截图
+    if: github.event_name == 'workflow_dispatch'
+    needs: ios-typecheck
+    runs-on: macos-15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: 构建（模拟器）
+        working-directory: ChaliPOS/ChaliPOS.swiftpm
+        run: |
+          set -o pipefail
+          xcodebuild -scheme ChaliPOS -configuration Release -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/dd" CODE_SIGNING_ALLOWED=NO build | tail -5
+      - name: 启动模拟器并截图
+        run: |
+          set -euo pipefail
+          UDID=$(xcrun simctl list devices available -j | python3 -c '
+          import json, sys
+          devices = [d for runtime in json.load(sys.stdin)["devices"].values() for d in runtime if d["name"].startswith("iPad")]
+          preferred = [d for d in devices if "iPad Air 11" in d["name"]] or [d for d in devices if "iPad Air" in d["name"]] or devices
+          print(preferred[-1]["udid"])')
+          xcrun simctl list devices | grep "$UDID"
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b > /dev/null
+          xcrun simctl status_bar "$UDID" override --time "15:30" --batteryState charged --batteryLevel 100 || true
+          APP="$RUNNER_TEMP/dd/Build/Products/Release-iphonesimulator/ChaliPOS.app"
+          xcrun simctl install "$UDID" "$APP"
+          mkdir -p ChaliPOS/screenshots
+          for page in order options checkout orders soldout close reports menu; do
+            xcrun simctl terminate "$UDID" com.wzz122.ChaliPOS 2>/dev/null || true
+            xcrun simctl launch "$UDID" com.wzz122.ChaliPOS -screenshot "$page"
+            sleep 8
+            xcrun simctl io "$UDID" screenshot "$RUNNER_TEMP/$page.png"
+            sips -g pixelWidth -g pixelHeight "$RUNNER_TEMP/$page.png" | tail -2
+            sips -Z 1600 -s format jpeg -s formatOptions 72 "$RUNNER_TEMP/$page.png" --out "ChaliPOS/screenshots/$page.jpg" > /dev/null
+          done
+          ls -la ChaliPOS/screenshots
+      - name: 提交截图
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ChaliPOS/screenshots
+          git commit -m "Update ChaliPOS screenshots" || exit 0
+          git push

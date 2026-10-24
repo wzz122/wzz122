@@ -40,7 +40,7 @@ struct DailyCloseScreen: View {
             counts = close.cashCounts
             note = close.note
         } else {
-            counts = [:]
+            counts = ScreenshotMode.isActive ? ScreenshotMode.cashCounts(for: expected) : [:]
             note = ""
         }
     }
