@@ -364,7 +364,7 @@ struct CheckoutPanel: View {
                         .font(.system(size: 40, weight: .heavy, design: .rounded))
                         .foregroundColor(Theme.green)
                 }
-                Text(labelsSent ? "标签已发送到打印机（\(order.cupCount) 张）" : "没有自动打印标签（可在「管理 → 设置」开启）")
+                Text(labelStatus(order))
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
                 Spacer(minLength: 0)
@@ -383,12 +383,19 @@ struct CheckoutPanel: View {
         }
     }
 
+    private func labelStatus(_ order: Order) -> String {
+        if labelsSent { return "标签已发送到打印机（\(order.cupCount) 张）" }
+        if store.settings.labelPrinterURL == nil { return "还没选标签打印机（管理 → 设置 → 打印），可以先点「补打标签」" }
+        return "自动打印标签已关闭（管理 → 设置 → 打印）"
+    }
+
     private func complete(payment: PaymentMethod, cashReceived: Int? = nil, platformRef: String? = nil) {
         guard let order = store.placeOrder(payment: payment, cashReceived: cashReceived, platformRef: platformRef) else { return }
         refFocused = false
         completed = order
         step = .done
-        if store.settings.autoPrintLabels {
+        // 没选标签打印机时不自动弹打印面板，避免每单都被打断（可以点「补打标签」）
+        if store.settings.autoPrintLabels && store.settings.labelPrinterURL != nil {
             PrintService.printLabels(for: order, store: store)
             labelsSent = true
         }

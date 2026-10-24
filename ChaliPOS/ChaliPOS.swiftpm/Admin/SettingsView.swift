@@ -73,7 +73,7 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    Toggle("结账后自动打印出杯标签", isOn: $draft.autoPrintLabels)
+                    Toggle("结账后自动打印出杯标签（需先选标签打印机）", isOn: $draft.autoPrintLabels)
                     printerRow("标签打印机", url: draft.labelPrinterURL) { url in
                         draft.labelPrinterURL = url
                     }

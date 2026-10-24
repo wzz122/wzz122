@@ -29,7 +29,7 @@ let package = Package(
                 .landscapeRight,
                 .landscapeLeft,
                 .portrait,
-                .portraitUpsideDown
+                .portraitUpsideDown(.when(deviceFamilies: [.pad]))
             ]
         )
     ],
