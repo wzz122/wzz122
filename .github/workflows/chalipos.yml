@@ -43,10 +43,11 @@ jobs:
           xcodebuild -scheme ChaliPOS -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath "$RUNNER_TEMP/dd" CODE_SIGNING_ALLOWED=NO build | tail -60
 
-  # 手动运行（Actions → ChaliPOS → Run workflow）：在 iPad 模拟器里截取各页面，提交到 ChaliPOS/screenshots/
+  # 手动运行（Actions → ChaliPOS → Run workflow），或提交信息里带 [screenshots]：
+  # 在 iPad 模拟器里截取各页面，提交到 ChaliPOS/screenshots/
   screenshots:
     name: iPad 模拟器截图
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[screenshots]'))
     needs: ios-typecheck
     runs-on: macos-15
     permissions:
