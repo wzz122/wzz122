@@ -6,6 +6,20 @@
 对应设计文档里的 **第 0 期 Demo** 全部内容，加上 **第 1 期里不需要联网的部分**（现金结账、楽天收款后点「已收款」、外卖手动录入、售罄、日结、报表、报税 CSV、老板权限）。
 Supabase 同步、钱箱、菜单屏网页、支付自动联动还没做，见文末「下一步」。
 
+## 截图
+
+在 iPad 模拟器里用示例订单截取（`screenshots/`，由 GitHub Actions 生成）：
+
+| 点单 | 规格弹层 |
+|---|---|
+| ![点单](screenshots/order.jpg) | ![规格弹层](screenshots/options.jpg) |
+| **现金结账** | **订单 / 出杯标签** |
+| ![现金结账](screenshots/checkout.jpg) | ![订单](screenshots/orders.jpg) |
+| **售罄管理** | **日结** |
+| ![售罄](screenshots/soldout.jpg) | ![日结](screenshots/close.jpg) |
+| **报表（老板）** | **菜单编辑（老板）** |
+| ![报表](screenshots/reports.jpg) | ![菜单](screenshots/menu.jpg) |
+
 ## 装到 iPad 上
 
 `ChaliPOS.swiftpm` 是一个 App 包，iPad 上的 Swift Playgrounds 和 Mac 上的 Xcode 都能直接打开。
@@ -132,4 +146,6 @@ swift test
 
 13 个测试覆盖：菜单规则、价格和外卖价、内税计算、店内用换算、购物车合并 / 修改 / 加小料、营业日切换、报表汇总和常点组合、出杯标签、报税 CSV、日结现金差额、本地存储读写和旧文件兼容。
 
-GitHub Actions（`.github/workflows/chalipos.yml`）会在 Linux 上跑这些测试，并在 macOS 上用 iOS SDK 检查整个 App 能否编译。
+GitHub Actions（`.github/workflows/chalipos.yml`）会在 Linux 上跑这些测试，并在 macOS 上用 iOS SDK 检查、构建整个 App。
+
+更新截图：在 Actions 页面手动运行 ChaliPOS（Run workflow），或在提交信息里写 `[screenshots]`。截图模式（启动参数 `-screenshot <页面>`）使用临时目录和示例订单，不会碰到真实数据，平时启动不生效。

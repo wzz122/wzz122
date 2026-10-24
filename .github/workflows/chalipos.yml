@@ -79,9 +79,14 @@ jobs:
           # 转成横屏（通过 Simulator 菜单；没有辅助功能权限时保持竖屏）
           open -a Simulator --args -CurrentDeviceUDID "$UDID"
           sleep 15
-          osascript -e 'tell application "Simulator" to activate' \
-            -e 'tell application "System Events" to tell process "Simulator" to click menu item "Rotate Left" of menu "Device" of menu bar 1' \
-            || echo "::warning::无法旋转模拟器，截图保持竖屏"
+          ROTATE=""
+          if osascript -e 'tell application "Simulator" to activate' \
+            -e 'tell application "System Events" to tell process "Simulator" to click menu item "Rotate Left" of menu "Device" of menu bar 1'; then
+            # simctl 截的是竖向画面，横屏时要转回来
+            ROTATE="-r 270"
+          else
+            echo "::warning::无法旋转模拟器，截图保持竖屏"
+          fi
           sleep 3
           mkdir -p ChaliPOS/screenshots
           for page in order options checkout orders soldout close reports menu; do
@@ -90,7 +95,7 @@ jobs:
             sleep 8
             xcrun simctl io "$UDID" screenshot "$RUNNER_TEMP/$page.png"
             sips -g pixelWidth -g pixelHeight "$RUNNER_TEMP/$page.png" | tail -2
-            sips -Z 1600 -s format jpeg -s formatOptions 72 "$RUNNER_TEMP/$page.png" --out "ChaliPOS/screenshots/$page.jpg" > /dev/null
+            sips $ROTATE -Z 1600 -s format jpeg -s formatOptions 72 "$RUNNER_TEMP/$page.png" --out "ChaliPOS/screenshots/$page.jpg" > /dev/null
           done
           ls -la ChaliPOS/screenshots
       - name: 提交截图

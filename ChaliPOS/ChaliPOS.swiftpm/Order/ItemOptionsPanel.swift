@@ -35,7 +35,7 @@ struct ItemOptionsPanel: View {
             header
             Divider()
             ScrollView {
-                VStack(alignment: .leading, spacing: 22) {
+                VStack(alignment: .leading, spacing: 16) {
                     if item.availableSizes.count > 1 {
                         optionRow("规格") {
                             ForEach(item.availableSizes) { option in
@@ -69,7 +69,8 @@ struct ItemOptionsPanel: View {
                     }
                     toppingSection
                 }
-                .padding(22)
+                .padding(.horizontal, 22)
+                .padding(.vertical, 16)
             }
             Divider()
             footer
@@ -109,7 +110,7 @@ struct ItemOptionsPanel: View {
             .buttonStyle(.plain)
         }
         .padding(.horizontal, 22)
-        .padding(.vertical, 18)
+        .padding(.vertical, 12)
     }
 
     @ViewBuilder
@@ -154,7 +155,7 @@ struct ItemOptionsPanel: View {
                 Spacer(minLength: 0)
             }
             .padding(.horizontal, 10)
-            .frame(height: 58)
+            .frame(height: 52)
             .foregroundColor(isOn ? .white : Theme.ink)
             .background(
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
@@ -193,7 +194,7 @@ struct ItemOptionsPanel: View {
             }
         }
         .padding(.horizontal, 22)
-        .padding(.vertical, 16)
+        .padding(.vertical, 12)
     }
 
     private func optionRow<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {

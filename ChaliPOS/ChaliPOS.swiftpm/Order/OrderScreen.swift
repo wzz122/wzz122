@@ -51,7 +51,7 @@ struct OrderScreen: View {
                 ModalBackdrop { options = nil }
                 ItemOptionsPanel(context: context) { options = nil }
                     .id(context.id)
-                    .padding(24)
+                    .padding(16)
                     .transition(.scale(scale: 0.96).combined(with: .opacity))
             }
 
