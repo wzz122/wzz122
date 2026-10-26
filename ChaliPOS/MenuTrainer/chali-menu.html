@@ -1,0 +1,898 @@
+<title>茶里茶里 菜单通</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap&text=%E8%8C%B6%E9%87%8C%E8%8F%9C%E5%8D%95%E9%80%9A">
+<style>
+  /* 布局：顶部固定的店名 + 四个页签；内容是菜单屏同款的「片假名在上、中文在下、价格靠右」的行 */
+  :root {
+    --bg: #EAF3EF;
+    --panel: #FFFFFF;
+    --panel-2: #F4F9F7;
+    --ink: #16302A;
+    --muted: #5A716A;
+    --line: #D3E3DD;
+    --teal: #1C8C76;
+    --teal-ink: #FFFFFF;
+    --teal-soft: #D2ECE5;
+    --good: #23885A;
+    --good-soft: #DDF2E6;
+    --bad: #C2443A;
+    --bad-soft: #F9E1DE;
+    --c-milk: #8B5E3C;
+    --c-fruit: #D06A26;
+    --c-lemon: #A68100;
+    --c-special: #1C8C76;
+    --c-season: #CF4F76;
+    --font-brush: "Ma Shan Zheng", "Kaiti SC", "STKaiti", "KaiTi", serif;
+    --font-ui: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+    --r: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1917; --panel: #15231F; --panel-2: #1A2B27; --ink: #E3EFEB; --muted: #93A9A2; --line: #27403A;
+      --teal: #3FB59C; --teal-ink: #062019; --teal-soft: #1C3A33;
+      --good: #4CC28A; --good-soft: #17352A; --bad: #EE7B70; --bad-soft: #3A1E1B;
+      --c-milk: #C9936B; --c-fruit: #EF9558; --c-lemon: #D8B436; --c-special: #3FB59C; --c-season: #EC86A4;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1917; --panel: #15231F; --panel-2: #1A2B27; --ink: #E3EFEB; --muted: #93A9A2; --line: #27403A;
+    --teal: #3FB59C; --teal-ink: #062019; --teal-soft: #1C3A33;
+    --good: #4CC28A; --good-soft: #17352A; --bad: #EE7B70; --bad-soft: #3A1E1B;
+    --c-milk: #C9936B; --c-fruit: #EF9558; --c-lemon: #D8B436; --c-special: #3FB59C; --c-season: #EC86A4;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+    z-index: 10; background: var(--bg);
+  }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+  .wrap {
+    max-width: 920px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .ja { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans CJK JP", "Yu Gothic", var(--font-ui); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* 顶部 */
+  .top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .top .wrap { padding-block: 10px; display: flex; flex-direction: column; gap: 10px; }
+  .brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .brand h1 { margin: 0; font-family: var(--font-brush); font-weight: 400; font-size: 30px; line-height: 1; color: var(--teal); letter-spacing: 1px; }
+  .brand .sub { color: var(--muted); font-size: 13px; }
+  .brand .score { margin-left: auto; font-size: 13px; color: var(--muted); }
+  .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 4px; }
+  .tabs button { border: 0; background: transparent; border-radius: 9px; padding: 8px 4px; font-weight: 700; font-size: 14px; color: var(--muted); }
+  .tabs button[aria-selected="true"] { background: var(--teal); color: var(--teal-ink); }
+
+  main .wrap { padding-block: 16px 40px; display: flex; flex-direction: column; gap: 16px; }
+  h2 { margin: 0; font-size: 18px; text-wrap: balance; }
+  h3 { margin: 0; font-size: 15px; text-wrap: balance; }
+  .muted { color: var(--muted); }
+  .small { font-size: 13px; }
+
+  /* 速查 */
+  .search { display: flex; gap: 8px; }
+  .search input {
+    flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 11px 14px;
+    border-radius: 12px; border: 1.5px solid var(--line); background: var(--panel); color: var(--ink);
+  }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1.5px solid var(--line); background: var(--panel); border-radius: 999px;
+    padding: 5px 12px; font-size: 13px; font-weight: 700;
+  }
+  .chip .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--cat); }
+  .chip[aria-pressed="true"] { background: var(--cat, var(--teal)); border-color: var(--cat, var(--teal)); color: var(--panel); }
+  .chip[aria-pressed="true"] .dot { background: var(--panel); }
+
+  .cat-block { background: var(--panel); border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); }
+  .cat-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--cat); color: var(--panel); flex-wrap: wrap; }
+  .cat-head h3 { font-size: 18px; }
+  .cat-head .ja { font-size: 12px; opacity: 0.9; }
+  .cat-head .facts { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }
+  .fact { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.22); }
+  .cat-note { padding: 8px 14px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--line); background: var(--panel-2); }
+  .cat-cols { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .cat-cols.two { grid-template-columns: 1fr 1fr; } .cat-cols.two .col + .col { border-left: 1px solid var(--line); } }
+  .col-label { padding: 6px 14px 0; font-size: 11px; letter-spacing: 1px; color: var(--muted); font-weight: 700; }
+
+  .row { display: grid; grid-template-columns: 22px 1fr auto auto; align-items: center; gap: 10px; padding: 9px 14px; border-top: 1px solid var(--line); }
+  .col .row:first-of-type { border-top: 0; }
+  .row .pos { font-size: 12px; color: var(--muted); font-weight: 700; text-align: center; }
+  .row .names { min-width: 0; }
+  .row .jp { font-size: 12px; color: var(--muted); line-height: 1.3; overflow-wrap: anywhere; }
+  .row .cn { font-size: 17px; font-weight: 800; line-height: 1.3; }
+  .row .price { text-align: right; font-weight: 700; font-size: 14px; white-space: nowrap; }
+  .row .price small { color: var(--muted); font-weight: 600; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 0 6px; border-radius: 6px; margin-left: 6px; vertical-align: 2px; }
+  .tag.warn { background: var(--bad-soft); color: var(--bad); }
+  .tag.cat { color: var(--panel); background: var(--cat); }
+  .speak { border: 0; background: var(--teal-soft); color: var(--teal); width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; flex: 0 0 auto; }
+  .speak svg { width: 17px; height: 17px; }
+  .no-speech .speak { display: none; }
+  .empty { padding: 28px; text-align: center; color: var(--muted); background: var(--panel); border-radius: var(--r); border: 1px dashed var(--line); }
+
+  /* 练习 */
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+  .mode {
+    text-align: left; border: 1.5px solid var(--line); background: var(--panel); border-radius: 12px; padding: 10px 12px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .mode b { font-size: 15px; }
+  .mode span { font-size: 12px; color: var(--muted); }
+  .mode[aria-pressed="true"] { border-color: var(--teal); background: var(--teal-soft); }
+  @media (max-width: 560px) {
+    .modes { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .mode { padding: 8px 6px; align-items: center; text-align: center; }
+    .mode b { font-size: 13px; }
+    .mode span { display: none; }
+  }
+  .scope { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .scope select { font: inherit; padding: 6px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--panel); color: var(--ink); }
+
+  .quiz-card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 18px 16px; display: flex; flex-direction: column; gap: 14px; }
+  .quiz-meta { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); }
+  .bar { height: 6px; border-radius: 999px; background: var(--panel-2); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--teal); width: 0; transition: width 0.25s; }
+  .prompt { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 0; }
+  .prompt .label { font-size: 13px; color: var(--muted); font-weight: 700; }
+  .prompt .big { font-size: 28px; font-weight: 800; line-height: 1.25; text-wrap: balance; overflow-wrap: anywhere; }
+  .prompt .big.ja { font-size: 24px; }
+  .prompt .speak { width: 46px; height: 46px; }
+  .prompt .speak svg { width: 22px; height: 22px; }
+  .answers { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .answers.cats { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .answer {
+    border: 2px solid var(--line); background: var(--panel); border-radius: 12px; padding: 12px 10px;
+    font-weight: 800; font-size: 16px; line-height: 1.3; min-height: 56px; overflow-wrap: anywhere;
+  }
+  .answer.ja { font-size: 14px; font-weight: 700; }
+  .answers.cats .answer { border-color: var(--cat); color: var(--cat); }
+  .answer.right { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+  .answer.wrong { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
+  .answer:disabled { cursor: default; }
+  .feedback { border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+  .feedback.ok { background: var(--good-soft); }
+  .feedback.ng { background: var(--bad-soft); }
+  .feedback .verdict { font-weight: 800; }
+  .feedback.ok .verdict { color: var(--good); }
+  .feedback.ng .verdict { color: var(--bad); }
+  .feedback .card-line { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+  .feedback .hint { font-size: 13px; color: var(--muted); }
+  .primary {
+    border: 0; background: var(--teal); color: var(--teal-ink); border-radius: 12px; padding: 13px 18px;
+    font-weight: 800; font-size: 16px;
+  }
+  .ghost { border: 1.5px solid var(--line); background: var(--panel); border-radius: 12px; padding: 10px 16px; font-weight: 700; }
+  .result-big { font-size: 40px; font-weight: 800; text-align: center; }
+  .missed { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .missed .row { grid-template-columns: 1fr auto auto; }
+  .missed .row:first-child { border-top: 0; }
+
+  /* 记忆法 */
+  .steps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; counter-reset: step; }
+  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
+  .steps li::before {
+    counter-increment: step; content: counter(step);
+    width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--cat); color: var(--panel); font-weight: 800; font-size: 14px;
+  }
+  .steps .rule { font-weight: 800; }
+  .steps .members { font-size: 13px; color: var(--muted); }
+  .check { font-size: 12px; font-weight: 700; color: var(--good); }
+  .check.bad { color: var(--bad); }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+  thead th { border-top: 0; background: var(--panel-2); font-size: 12px; color: var(--muted); letter-spacing: 0.5px; }
+  td .who { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  td .who span { white-space: nowrap; }
+  .catname { font-weight: 800; color: var(--cat); white-space: nowrap; }
+  .grid2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 760px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+
+  /* 常用日语 */
+  .phrase { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+  .phrase:first-of-type { border-top: 0; }
+  .phrase .jpline { font-size: 16px; font-weight: 700; }
+  .phrase .cnline { font-size: 13px; color: var(--muted); }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { display: inline-flex; flex-direction: column; align-items: center; padding: 6px 10px; border-radius: 10px; background: var(--panel-2); border: 1px solid var(--line); min-width: 64px; }
+  .pill b { font-size: 15px; }
+  .pill span { font-size: 11px; color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1>茶里菜单通</h1>
+      <span class="sub">48 款饮品 · 中文 / 日本語 / 分类 / 价格</span>
+      <span class="score num" id="headerScore"></span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="页面">
+      <button role="tab" id="tab-lookup" data-view="lookup" aria-selected="true">速查</button>
+      <button role="tab" id="tab-quiz" data-view="quiz" aria-selected="false">练习</button>
+      <button role="tab" id="tab-tips" data-view="tips" aria-selected="false">记忆法</button>
+      <button role="tab" id="tab-words" data-view="words" aria-selected="false">常用日语</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section id="view-lookup" role="tabpanel" aria-labelledby="tab-lookup">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="search">
+          <input id="q" type="search" placeholder="搜中文或日文，例如：桃、ピーチ、ぴーち、生打椰" autocomplete="off" aria-label="搜索饮品">
+        </div>
+        <div class="chips" id="catFilter"></div>
+        <div id="lookupList" style="display:flex;flex-direction:column;gap:14px"></div>
+      </div>
+    </section>
+
+    <section id="view-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="panel">
+          <h2>选一种练习</h2>
+          <div class="modes" id="modes"></div>
+          <div class="scope">
+            <label for="scope" class="small muted">范围</label>
+            <select id="scope"></select>
+            <span class="small muted" id="modeStat"></span>
+          </div>
+        </div>
+        <div id="quizArea"></div>
+      </div>
+    </section>
+
+    <section id="view-tips" role="tabpanel" aria-labelledby="tab-tips" hidden>
+      <div style="display:flex;flex-direction:column;gap:16px" id="tipsArea"></div>
+    </section>
+
+    <section id="view-words" role="tabpanel" aria-labelledby="tab-words" hidden>
+      <div style="display:flex;flex-direction:column;gap:16px" id="wordsArea"></div>
+    </section>
+  </div>
+</main>
+
+<script>
+"use strict";
+
+// ---------------------------------------------------------------------------
+// 菜单数据（按店里菜单屏，2026 年 10 月版）
+// col / row：菜单屏上的位置（左列 / 右列，从上往下第几个）
+// ---------------------------------------------------------------------------
+const CATS = [
+  { id: "milk", cn: "珍珠奶茶", jp: "タピオカミルクティー", color: "var(--c-milk)",
+    facts: ["M / L", "冷热都可以", "M580–680 · L680–780"], note: "这一类全部都带珍珠；只有这一类能做 HOT。", cols: 1 },
+  { id: "fruit", cn: "鲜果时光", jp: "フルーツティー", color: "var(--c-fruit)",
+    facts: ["只有 L", "只能冷饮", "780 / 850"], note: "左列是「芝士・欧蕾」，右列是「生打椰・甘露」和果茶。", cols: 2 },
+  { id: "lemon", cn: "清爽爆柠茶", jp: "レモンティー", color: "var(--c-lemon)",
+    facts: ["只有 L", "只能冷饮", "全部 640"], note: "4 款都叫「レモン〜ティー」，价格都一样。", cols: 2 },
+  { id: "special", cn: "茶里“特”饮", jp: "オリジナル", color: "var(--c-special)",
+    facts: ["只有 M", "只能冷饮", "680 / 780"], note: "日文多是「〜スムージー」；中文多是「〜优酪冰」。", cols: 2 },
+  { id: "season", cn: "季节限定", jp: "季節限定", color: "var(--c-season)",
+    facts: ["只有 L", "只能冷饮", "全部 850"], note: "这一季是芭乐（グアバ）和百香果（パッション）。", cols: 2 },
+];
+const CAT = Object.fromEntries(CATS.map((c) => [c.id, c]));
+
+// [id, 分类, 中文, 日文, M价, L价, 列, 行, 备注]
+const RAW = [
+  ["oolong-milk", "milk", "乌龙烤鲜奶", "ウーロンミルクティー", 580, 680, 1, 1],
+  ["assam", "milk", "阿萨姆奶茶", "アッサムミルクティー", 580, 680, 1, 2],
+  ["siji-naiqing", "milk", "四季奶青", "シキシュンミルクティー", 580, 680, 1, 3],
+  ["moxiang", "milk", "茉香奶绿", "ジャスミングリーンミルクティー", 580, 680, 1, 4],
+  ["oreo-milk", "milk", "奥利奥奶茶", "オレオミルクティー", 620, 720, 1, 5],
+  ["trio", "milk", "奶茶三兄弟", "ミックスミルクティー", null, 780, 1, 6],
+  ["peach-oolong", "milk", "白桃乌龙奶茶", "ピーチウーロンミルクティー", 620, 720, 1, 7],
+  ["lychee-oolong", "milk", "荔枝乌龙奶茶", "ライチウーロンミルクティー", 620, 720, 1, 8],
+  ["osmanthus-oolong", "milk", "桂花乌龙奶茶", "桂花ウーロンミルクティー", 620, 720, 1, 9],
+  ["black-rice", "milk", "血糯米奶茶", "紫米ミルクティー", 680, 780, 1, 10],
+
+  ["kiwi-cheese", "fruit", "奇异之旅", "キウイチーズティー", null, 780, 1, 1],
+  ["dragon-cheese", "fruit", "粉红先生", "ドラゴンフルーツチーズティー", null, 850, 1, 2],
+  ["cherry-cheese", "fruit", "多肉车厘子", "チェリーチーズティー", null, 850, 1, 3],
+  ["grape-cheese", "fruit", "多肉葡萄", "グレープチーズティー", null, 780, 1, 4],
+  ["straw-cheese", "fruit", "草莓芝士", "ストロベリーチーズティー", null, 780, 1, 5],
+  ["straw-ole", "fruit", "草莓欧蕾", "ストロベリーチーズオーレ", null, 780, 1, 6],
+  ["peach-cheese", "fruit", "桃之夭夭", "ピーチチーズティー", null, 780, 1, 7],
+  ["peach-ole", "fruit", "蜜桃欧蕾", "ピーチチーズオーレ", null, 780, 1, 8],
+  ["mango-cheese", "fruit", "芒芒果海", "マンゴーチーズ", null, 780, 1, 9],
+  ["longan-cheese", "fruit", "芝芝龙眼", "ロンガンチーズティー", null, 780, 1, 10],
+  ["longan-coco", "fruit", "龙眼生打椰", "ロンガンココナツミルク", null, 850, 2, 1],
+  ["yangzhi", "fruit", "杨枝甘露", "ヨンジーガムロ", null, 850, 2, 2],
+  ["peach-coco", "fruit", "椰椰桃桃甘露", "ピーチココナツミルク", null, 850, 2, 3],
+  ["dragon-coco", "fruit", "火龙生打椰", "ドラゴンココナツミルク", null, 850, 2, 4],
+  ["grape-coco", "fruit", "巨峰生打椰", "グレープココナツミルク", null, 850, 2, 5],
+  ["kiwi-coco", "fruit", "奇异生打椰", "キウイココナツミルク", null, 850, 2, 6],
+  ["ume-salt", "fruit", "青梅老盐茶", "青梅塩ティー", null, 780, 2, 7],
+  ["ume-lychee", "fruit", "青梅荔枝泡泡", "青梅ライチソーダ", null, 780, 2, 8],
+  ["peach-sijichun", "fruit", "蜜桃四季春", "ピーチシキシュンティー", null, 780, 2, 9],
+  ["grape-tea", "fruit", "葡萄多多", "爽快グレープティー", null, 780, 2, 10],
+
+  ["lemon-oolong", "lemon", "柠檬搞乌龙", "レモンウーロンティー", null, 640, 1, 1],
+  ["lemon-black", "lemon", "茶里柠檬红", "レモンブラックティー", null, 640, 1, 2],
+  ["lemon-sijiqing", "lemon", "爆柠四季青", "レモンシキシュンティー", null, 640, 2, 1],
+  ["lemon-green", "lemon", "整颗爆柠绿", "レモンジャスミングリーンティー", null, 640, 2, 2],
+
+  ["durian-mango", "special", "榴莲芒芒", "ドリアンマンゴー", 780, null, 1, 1, "菜单上的中文名被售罄贴纸挡住，请在店里确认"],
+  ["salt-osmanthus", "special", "老盐桂花牛乳茶", "塩桂花ミルク", 680, null, 1, 2],
+  ["coco-redbean", "special", "椰冻冻红豆沙", "あずきスムージー", 680, null, 1, 3],
+  ["avocado-yogurt", "special", "牛油优酪冰", "アボカドスムージー", 780, null, 2, 1],
+  ["berry-yogurt", "special", "莓莓优酪冰", "ストロベリースムージー", 780, null, 2, 2],
+  ["mango-yogurt", "special", "多芒优酪冰", "マンゴースムージー", 780, null, 2, 3],
+
+  ["guava-grape", "season", "粉芭葡奶", "グアバグレープミルク", null, 850, 1, 1],
+  ["guava-lemon", "season", "粉芭柠檬", "グアバレモンティー", null, 850, 1, 2],
+  ["lychee-guava", "season", "荔荔粉芭撞奶", "ライチグアバミルク", null, 850, 1, 3],
+  ["guava-cheese", "season", "芝芝粉芭", "グアバチーズティー", null, 850, 1, 4],
+  ["passion-tea", "season", "酸Q百香果", "パッションフルーツティー", null, 850, 2, 1],
+  ["passion-milk", "season", "奇异百香双打奶", "パッションフルーツミルク", null, 850, 2, 2],
+  ["grape-sago", "season", "青提茉莉奶露", "グレープサゴミルクティー", null, 850, 2, 3],
+  ["guava-mango-sago", "season", "芭乐多芒奶露", "グアバマンゴーサゴミルクティー", null, 850, 2, 4],
+];
+const ITEMS = RAW.map(([id, cat, cn, jp, m, l, col, row, note]) => ({ id, cat, cn, jp, m, l, col, row, note: note || "" }));
+const BY_ID = Object.fromEntries(ITEMS.map((i) => [i.id, i]));
+
+const TOPPINGS = [
+  ["芝士奶盖", "チーズフォーム", 120], ["椰子冻", "ココナッツプリン", 100], ["珍珠", "タピオカ", 70], ["布丁", "プリン", 70],
+  ["椰果", "ナタデココ", 70], ["红豆", "あずき", 70], ["西米露", "ミニタピオカ", 70], ["奥利奥", "オレオ", 70],
+];
+const SWEET = ["120%", "100%", "70%", "50%", "30%", "0%"];
+const TEMPS = [["HOT", "HOT（热）"], ["普通", "普通冰"], ["氷少なめ", "少冰"], ["常温", "常温"], ["氷なし", "去冰"]];
+
+// ---------------------------------------------------------------------------
+// 记忆规则：听日文名按顺序判断分类（页面会用菜单数据自动核对每条规则）
+// ---------------------------------------------------------------------------
+const JP_RULES = [
+  { cat: "season", test: /グアバ|パッション|サゴ/, rule: "有「グアバ」「パッション」「サゴ」", say: "→ 季节限定" },
+  { cat: "special", test: /スムージー|ドリアン|塩桂花/, rule: "有「スムージー」「ドリアン」「塩桂花」", say: "→ 茶里特饮（只有 M）" },
+  { cat: "lemon", test: /^レモン/, rule: "以「レモン」开头", say: "→ 清爽爆柠茶（640）" },
+  { cat: "milk", test: /ミルクティー/, rule: "有「ミルクティー」", say: "→ 珍珠奶茶（M / L）" },
+  { cat: "fruit", test: /./, rule: "剩下的（チーズ、ココナツミルク、ソーダ、〜ティー）", say: "→ 鲜果时光（只有 L）" },
+];
+const CN_RULES = [
+  { cat: "season", test: /粉芭|百香|奶露/, rule: "有「粉芭」「百香」「奶露」", say: "→ 季节限定" },
+  { cat: "special", test: /优酪冰|红豆沙|牛乳茶|榴莲/, rule: "有「优酪冰」「红豆沙」「牛乳茶」「榴莲」", say: "→ 茶里特饮" },
+  { cat: "lemon", test: /柠/, rule: "有「柠」", say: "→ 清爽爆柠茶" },
+  { cat: "milk", test: /奶茶|奶青|奶绿|烤鲜奶/, rule: "有「奶茶」「奶青」「奶绿」「烤鲜奶」", say: "→ 珍珠奶茶" },
+  { cat: "fruit", test: /./, rule: "剩下的（芝士、欧蕾、生打椰、甘露、泡泡…）", say: "→ 鲜果时光" },
+];
+function classify(rules, text) { return rules.find((r) => r.test.test(text)); }
+
+// 容易混的字：同一个字出现在不同分类里
+const CONFUSE = [
+  ["桃", /桃/], ["葡萄 · 巨峰 · 青提", /葡|巨峰|青提/], ["荔枝", /荔/], ["芒果", /芒/], ["奇异", /奇异/],
+  ["四季", /四季/], ["乌龙", /乌龙/], ["桂花", /桂花/], ["芝芝 · 芝士", /芝/], ["柠檬", /柠/],
+  ["莓", /莓/], ["椰", /椰/], ["茉莉 · 茉香", /茉/],
+];
+
+// ---------------------------------------------------------------------------
+// 小工具
+// ---------------------------------------------------------------------------
+const $ = (sel) => document.querySelector(sel);
+function h(tag, attrs, ...children) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v === null || v === undefined || v === false) continue;
+    if (k === "class") el.className = v;
+    else if (k === "style") el.setAttribute("style", v);
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of children.flat(Infinity)) {
+    if (c === null || c === undefined || c === false) continue;
+    el.append(c.nodeType ? c : document.createTextNode(String(c)));
+  }
+  return el;
+}
+const yen = (n) => "¥" + n;
+function priceText(i) {
+  if (i.m && i.l) return `M ${yen(i.m)} / L ${yen(i.l)}`;
+  if (i.l) return `只有 L ${yen(i.l)}`;
+  return `只有 M ${yen(i.m)}`;
+}
+function posText(i) {
+  const c = CAT[i.cat];
+  return c.cols === 1 ? `第 ${i.row} 个` : `${i.col === 1 ? "左" : "右"}列第 ${i.row} 个`;
+}
+function catStyle(id) { return `--cat:${CAT[id].color}`; }
+function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+function toKatakana(s) { return s.replace(/[ぁ-ゖ]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) + 0x60)); }
+function norm(s) { return toKatakana(s.toLowerCase()).replace(/[\s・·\-ー]/g, ""); }
+
+const SPEAKER_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+
+// 日语发音（浏览器自带的语音）
+const canSpeak = typeof window.speechSynthesis !== "undefined" && typeof window.SpeechSynthesisUtterance !== "undefined";
+let jaVoice = null;
+function pickVoice() {
+  if (!canSpeak) return;
+  const voices = speechSynthesis.getVoices();
+  jaVoice = voices.find((v) => v.lang === "ja-JP" && /Kyoko|O-ren|Google/.test(v.name)) || voices.find((v) => v.lang && v.lang.startsWith("ja")) || null;
+}
+if (canSpeak) { pickVoice(); speechSynthesis.addEventListener?.("voiceschanged", pickVoice); }
+function say(text) {
+  if (!canSpeak) return;
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "ja-JP";
+    if (jaVoice) u.voice = jaVoice;
+    u.rate = 0.9;
+    speechSynthesis.speak(u);
+  } catch (e) { /* 没有日语语音时不出声 */ }
+}
+function speakButton(text, label) {
+  const b = h("button", { class: "speak", type: "button", "aria-label": label || "播放日语：" + text, onclick: (e) => { e.stopPropagation(); say(text); } });
+  b.innerHTML = SPEAKER_ICON;
+  return b;
+}
+if (!canSpeak) document.documentElement.classList.add("no-speech");
+
+// 学习记录（只存在这台设备的浏览器里）
+const STORE_KEY = "chali-menu-trainer-v1";
+let progress = {};
+try { progress = JSON.parse(localStorage.getItem(STORE_KEY) || "{}") || {}; } catch (e) { progress = {}; }
+function saveProgress() { try { localStorage.setItem(STORE_KEY, JSON.stringify(progress)); } catch (e) { /* 存不了就只在这次有效 */ } }
+function rec(id) { return (progress[id] ||= { box: {}, right: 0, wrong: 0 }); }
+
+// ---------------------------------------------------------------------------
+// 页签
+// ---------------------------------------------------------------------------
+const VIEWS = ["lookup", "quiz", "tips", "words"];
+function showView(view) {
+  if (!VIEWS.includes(view)) view = "lookup";
+  for (const v of VIEWS) {
+    $("#view-" + v).hidden = v !== view;
+    $("#tab-" + v).setAttribute("aria-selected", String(v === view));
+  }
+  try { localStorage.setItem(STORE_KEY + "-view", view); } catch (e) { }
+  if (view === "quiz" && !quiz) startQuiz();
+  window.scrollTo({ top: 0 });
+}
+document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showView(b.dataset.view)));
+
+// ---------------------------------------------------------------------------
+// 速查
+// ---------------------------------------------------------------------------
+let filterCat = "all";
+function renderFilter() {
+  const box = $("#catFilter");
+  box.replaceChildren(
+    h("button", { class: "chip", type: "button", "aria-pressed": String(filterCat === "all"), onclick: () => { filterCat = "all"; renderFilter(); renderLookup(); } }, "全部"),
+    ...CATS.map((c) => h("button", {
+      class: "chip", type: "button", style: catStyle(c.id), "aria-pressed": String(filterCat === c.id),
+      onclick: () => { filterCat = c.id; renderFilter(); renderLookup(); },
+    }, h("span", { class: "dot" }), c.cn)),
+  );
+}
+
+function itemRow(i, opts = {}) {
+  return h("div", { class: "row", style: catStyle(i.cat) },
+    opts.noPos ? null : h("span", { class: "pos num", title: posText(i) }, i.row),
+    h("div", { class: "names" },
+      h("div", { class: "jp ja", lang: "ja" }, i.jp),
+      h("div", { class: "cn" }, i.cn,
+        opts.showCat ? h("span", { class: "tag cat", style: catStyle(i.cat) }, CAT[i.cat].cn) : null,
+        i.note ? h("span", { class: "tag warn" }, "待确认") : null),
+      opts.showCat ? h("div", { class: "jp" }, posText(i)) : null,
+    ),
+    h("div", { class: "price num" }, i.m && i.l ? [h("small", {}, "M "), i.m, h("small", {}, "  L "), i.l] : [h("small", {}, i.l ? "L " : "M "), i.l || i.m]),
+    speakButton(i.jp),
+  );
+}
+
+function renderLookup() {
+  const q = norm($("#q").value.trim());
+  const list = $("#lookupList");
+  list.replaceChildren();
+  if (q) {
+    const hits = ITEMS.filter((i) => (filterCat === "all" || i.cat === filterCat) &&
+      (norm(i.cn).includes(q) || norm(i.jp).includes(q) || norm(CAT[i.cat].cn).includes(q) || norm(CAT[i.cat].jp).includes(q)));
+    if (!hits.length) { list.append(h("div", { class: "empty" }, "没有找到。试试只输一个字，例如「桃」或「ピーチ」。")); return; }
+    list.append(h("div", { class: "small muted" }, `找到 ${hits.length} 款`));
+    list.append(h("div", { class: "cat-block" }, h("div", { class: "cat-cols" }, h("div", { class: "col" }, hits.map((i) => itemRow(i, { showCat: true, noPos: true }))))));
+    return;
+  }
+  for (const c of CATS) {
+    if (filterCat !== "all" && filterCat !== c.id) continue;
+    const items = ITEMS.filter((i) => i.cat === c.id);
+    const cols = c.cols === 2 ? [1, 2].map((n) => items.filter((i) => i.col === n)) : [items];
+    list.append(h("div", { class: "cat-block", style: catStyle(c.id) },
+      h("div", { class: "cat-head" },
+        h("h3", {}, c.cn), h("span", { class: "ja", lang: "ja" }, c.jp),
+        h("div", { class: "facts" }, c.facts.map((f) => h("span", { class: "fact" }, f)))),
+      h("div", { class: "cat-note" }, c.note),
+      h("div", { class: "cat-cols" + (c.cols === 2 ? " two" : "") },
+        cols.map((colItems, idx) => h("div", { class: "col" },
+          c.cols === 2 ? h("div", { class: "col-label" }, idx === 0 ? "菜单屏左列" : "菜单屏右列") : null,
+          colItems.map((i) => itemRow(i))))),
+    ));
+  }
+}
+$("#q").addEventListener("input", renderLookup);
+
+// ---------------------------------------------------------------------------
+// 练习
+// ---------------------------------------------------------------------------
+const MODES = [
+  { id: "where", name: "在哪个分类", desc: "看名字，选它在哪一类" },
+  { id: "j2c", name: "日文 → 中文", desc: "顾客说的日文，对应哪款" },
+  { id: "c2j", name: "中文 → 日文", desc: "中文名的日文叫法" },
+  { id: "ear", name: "听日语", desc: "听发音，选中文名", speech: true },
+  { id: "price", name: "价格", desc: "多少钱、有哪些杯型" },
+];
+const SESSION = 12;
+let mode = "where";
+let scope = "all";
+let quiz = null;
+
+function renderModes() {
+  $("#modes").replaceChildren(...MODES.filter((m) => !m.speech || canSpeak).map((m) =>
+    h("button", { class: "mode", type: "button", "aria-pressed": String(mode === m.id), onclick: () => { mode = m.id; renderModes(); startQuiz(); } },
+      h("b", {}, m.name), h("span", {}, m.desc))));
+  const sel = $("#scope");
+  if (!sel.options.length) {
+    sel.append(h("option", { value: "all" }, "全部 48 款"));
+    for (const c of CATS) sel.append(h("option", { value: c.id }, `只练 ${c.cn}（${ITEMS.filter((i) => i.cat === c.id).length} 款）`));
+    sel.addEventListener("change", () => { scope = sel.value; startQuiz(); });
+  }
+  const pool = poolFor(mode);
+  const learned = pool.filter((i) => (rec(i.id).box[mode] || 0) >= 2).length;
+  $("#modeStat").textContent = `这一项已掌握 ${learned} / ${pool.length}`;
+  updateHeaderScore();
+}
+
+function poolFor(m) {
+  return ITEMS.filter((i) => (scope === "all" || i.cat === scope) && !((m === "j2c" || m === "c2j" || m === "ear") && i.note));
+}
+
+// 越不熟出现得越多；答错的几题之后再出一次
+function pickItem(pool, recent) {
+  const weights = pool.map((i) => {
+    if (recent.includes(i.id)) return 0;
+    const box = rec(i.id).box[mode];
+    return box === undefined ? 4 : Math.max(1, 5 - box * 1.5);
+  });
+  const total = weights.reduce((a, b) => a + b, 0);
+  if (total <= 0) return pool[Math.floor(Math.random() * pool.length)];
+  let r = Math.random() * total;
+  for (let k = 0; k < pool.length; k++) { r -= weights[k]; if (r <= 0) return pool[k]; }
+  return pool[pool.length - 1];
+}
+
+function distractors(target, count, key) {
+  const similar = ITEMS.filter((i) => i.id !== target.id && i[key] !== target[key] &&
+    CONFUSE.some(([, re]) => re.test(target.cn) && re.test(i.cn)));
+  const sameCat = ITEMS.filter((i) => i.id !== target.id && i.cat === target.cat);
+  const rest = ITEMS.filter((i) => i.id !== target.id);
+  const picked = [];
+  for (const group of [shuffle(similar), shuffle(sameCat), shuffle(rest)]) {
+    for (const i of group) {
+      if (picked.length >= count) break;
+      if (i.note && key !== "price") continue;
+      const value = key === "price" ? priceText(i) : i[key];
+      if (value === (key === "price" ? priceText(target) : target[key])) continue;
+      if (picked.some((p) => (key === "price" ? priceText(p) : p[key]) === value)) continue;
+      picked.push(i);
+    }
+  }
+  return picked;
+}
+
+function makeQuestion(item) {
+  const q = { item, mode };
+  if (mode === "where") {
+    q.showJp = Math.random() < 0.5;
+    q.options = CATS.map((c) => ({ key: c.id, label: c.cn, cat: c.id }));
+    q.answer = item.cat;
+  } else if (mode === "price") {
+    const opts = [item, ...distractors(item, 3, "price")];
+    q.options = shuffle(opts).map((i) => ({ key: priceText(i), label: priceText(i) }));
+    q.answer = priceText(item);
+  } else {
+    const key = mode === "c2j" ? "jp" : "cn";
+    const opts = [item, ...distractors(item, 3, key)];
+    q.options = shuffle(opts).map((i) => ({ key: i[key], label: i[key], ja: key === "jp" }));
+    q.answer = item[key];
+  }
+  return q;
+}
+
+function startQuiz() {
+  const pool = poolFor(mode);
+  quiz = { pool, index: 0, score: 0, recent: [], missed: [], retry: [], q: null, answered: false };
+  nextQuestion();
+  renderModes();
+}
+
+function nextQuestion() {
+  if (quiz.index >= SESSION) { renderResult(); return; }
+  let item = null;
+  const due = quiz.retry.findIndex((r) => r.at <= quiz.index);
+  if (due >= 0) item = BY_ID[quiz.retry.splice(due, 1)[0].id];
+  if (!item) item = pickItem(quiz.pool, quiz.recent);
+  quiz.recent = [item.id, ...quiz.recent].slice(0, Math.min(4, quiz.pool.length - 1));
+  quiz.q = makeQuestion(item);
+  quiz.answered = false;
+  renderQuestion();
+  if (mode === "ear") setTimeout(() => say(item.jp), 250);
+}
+
+function renderQuestion() {
+  const { q } = quiz;
+  const i = q.item;
+  let label, big;
+  if (mode === "where") {
+    label = q.showJp ? "顾客说（日文）" : "中文名";
+    big = h("div", { class: "big" + (q.showJp ? " ja" : ""), lang: q.showJp ? "ja" : "zh" }, q.showJp ? i.jp : i.cn);
+  } else if (mode === "j2c") {
+    label = "日文名 → 选中文";
+    big = h("div", { class: "big ja", lang: "ja" }, i.jp);
+  } else if (mode === "c2j") {
+    label = "中文名 → 选日文";
+    big = h("div", { class: "big" }, i.cn);
+  } else if (mode === "ear") {
+    label = "听日语 → 选中文";
+    big = h("div", { class: "big muted" }, "？");
+  } else {
+    label = "这款的价格";
+    big = h("div", { class: "big" }, i.cn, h("div", { class: "small muted ja", lang: "ja" }, i.jp));
+  }
+  const showSpeaker = mode === "ear" || mode === "j2c" || (mode === "where" && q.showJp);
+  const area = $("#quizArea");
+  area.replaceChildren(h("div", { class: "quiz-card" },
+    h("div", { class: "quiz-meta num" },
+      h("span", {}, `第 ${quiz.index + 1} / ${SESSION} 题`),
+      h("span", {}, `答对 ${quiz.score}`)),
+    h("div", { class: "bar" }, h("i", { style: `width:${(quiz.index / SESSION) * 100}%` })),
+    h("div", { class: "prompt" },
+      h("div", { class: "label" }, label),
+      big,
+      showSpeaker ? speakButton(i.jp, "再听一次") : null),
+    h("div", { class: "answers" + (mode === "where" ? " cats" : "") },
+      q.options.map((o) => h("button", {
+        class: "answer" + (o.ja ? " ja" : ""), type: "button", lang: o.ja ? "ja" : null,
+        style: o.cat ? catStyle(o.cat) : null, "data-key": o.key,
+        onclick: () => answer(o.key),
+      }, o.label))),
+    h("div", { id: "feedback" }),
+  ));
+}
+
+function ruleHint(item) {
+  const jr = classify(JP_RULES, item.jp);
+  const cr = classify(CN_RULES, item.cn);
+  return `日文：${jr.rule} ${jr.say}　中文：${cr.rule} ${cr.say}`;
+}
+
+function answer(key) {
+  if (quiz.answered) return;
+  quiz.answered = true;
+  const { q } = quiz;
+  const ok = key === q.answer;
+  const r = rec(q.item.id);
+  const box = r.box[mode] || 0;
+  if (ok) { quiz.score++; r.right++; r.box[mode] = Math.min(4, box + 1); }
+  else {
+    r.wrong++; r.box[mode] = 0;
+    quiz.missed.push(q.item.id);
+    quiz.retry.push({ id: q.item.id, at: quiz.index + 3 });
+  }
+  saveProgress();
+  document.querySelectorAll(".answer").forEach((b) => {
+    b.disabled = true;
+    if (b.dataset.key === q.answer) b.classList.add("right");
+    else if (b.dataset.key === key) b.classList.add("wrong");
+  });
+  const i = q.item;
+  const fb = $("#feedback");
+  fb.replaceChildren(h("div", { class: "feedback " + (ok ? "ok" : "ng") },
+    h("div", { class: "verdict" }, ok ? "答对了" : "答错了，正确答案在绿色那一格"),
+    h("div", { class: "card-line" },
+      h("b", {}, i.cn), h("span", { class: "ja", lang: "ja" }, i.jp), canSpeak ? speakButton(i.jp) : null),
+    h("div", { class: "card-line small" },
+      h("span", { class: "tag cat", style: catStyle(i.cat) + ";margin-left:0" }, CAT[i.cat].cn),
+      h("span", {}, posText(i)), h("span", { class: "num" }, priceText(i))),
+    mode === "where" || !ok ? h("div", { class: "hint" }, ruleHint(i)) : null,
+  ), h("button", { class: "primary", type: "button", style: "width:100%;margin-top:10px", onclick: () => { quiz.index++; nextQuestion(); } },
+    quiz.index + 1 >= SESSION ? "看结果" : "下一题"));
+  updateHeaderScore();
+}
+
+function renderResult() {
+  const missed = [...new Set(quiz.missed)].map((id) => BY_ID[id]);
+  $("#quizArea").replaceChildren(h("div", { class: "quiz-card" },
+    h("div", { class: "prompt" }, h("div", { class: "label" }, MODES.find((m) => m.id === mode).name + " · 这一组"),
+      h("div", { class: "result-big num" }, `${quiz.score} / ${SESSION}`)),
+    missed.length ? [h("h3", {}, "这次答错的"), h("div", { class: "missed" }, missed.map((i) => itemRow(i, { showCat: true, noPos: true })))]
+      : h("div", { class: "muted", style: "text-align:center" }, "全对。换一种练习，或者换个范围。"),
+    h("button", { class: "primary", type: "button", onclick: startQuiz }, "再来一组"),
+  ));
+  renderModes();
+}
+
+function updateHeaderScore() {
+  const learned = ITEMS.filter((i) => (rec(i.id).box.where || 0) >= 2).length;
+  $("#headerScore").textContent = `分类已记住 ${learned} / ${ITEMS.length}`;
+}
+
+// ---------------------------------------------------------------------------
+// 记忆法
+// ---------------------------------------------------------------------------
+function ruleBlock(title, rules, field, intro) {
+  const left = ITEMS.slice();
+  let allOk = true;
+  const lis = rules.map((r) => {
+    const members = left.filter((i) => r.test.test(i[field]));
+    for (const m of members) left.splice(left.indexOf(m), 1);
+    const wrong = members.filter((m) => m.cat !== r.cat);
+    if (wrong.length) allOk = false;
+    return h("li", { style: catStyle(r.cat) },
+      h("div", {},
+        h("div", {}, h("span", { class: "rule" }, r.rule + " "), h("span", { class: "catname", style: catStyle(r.cat) }, r.say)),
+        h("div", { class: "members" + (field === "jp" ? " ja" : "") }, members.map((m) => m[field]).join("、")),
+        wrong.length ? h("div", { class: "check bad" }, "例外：" + wrong.map((w) => `${w[field]}（${CAT[w.cat].cn}）`).join("、")) : null));
+  });
+  return h("div", { class: "panel" },
+    h("h2", {}, title),
+    h("div", { class: "small muted" }, intro),
+    h("ol", { class: "steps" }, lis),
+    h("div", { class: "check" + (allOk ? "" : " bad") }, allOk ? `已用菜单核对：48 款全部符合` : "有例外，见上面红字"),
+  );
+}
+
+function renderTips() {
+  const area = $("#tipsArea");
+  const confuse = CONFUSE.map(([label, re]) => {
+    const items = ITEMS.filter((i) => re.test(i.cn));
+    const cats = [...new Set(items.map((i) => i.cat))];
+    return { label, items, cats };
+  }).filter((g) => g.cats.length >= 2);
+
+  area.replaceChildren(
+    h("div", { class: "grid2" },
+      ruleBlock("听日文名，按顺序判断", JP_RULES, "jp", "顾客说日文名时，从上往下对，第一条对上的就是分类。"),
+      ruleBlock("看中文名，按顺序判断", CN_RULES, "cn", "在收银系统里找中文名时，从上往下对。"),
+    ),
+    h("div", { class: "panel" },
+      h("h2", {}, "容易混的字"),
+      h("div", { class: "small muted" }, "同一个字出现在不同分类里，最容易找错地方。"),
+      h("div", { class: "table-wrap" }, h("table", {},
+        h("thead", {}, h("tr", {}, h("th", {}, "字"), h("th", {}, "在哪个分类"))),
+        h("tbody", {}, confuse.map((g) => h("tr", {},
+          h("td", {}, h("b", {}, g.label)),
+          h("td", {}, h("div", { class: "who" }, g.cats.map((c) =>
+            h("span", {}, h("span", { class: "catname", style: catStyle(c) }, CAT[c].cn + "："),
+              g.items.filter((i) => i.cat === c).map((i) => i.cn).join("、")))))))),
+      )),
+    ),
+    h("div", { class: "panel" },
+      h("h2", {}, "价格规律"),
+      h("div", { class: "table-wrap" }, h("table", {},
+        h("thead", {}, h("tr", {}, h("th", {}, "分类"), h("th", {}, "杯型"), h("th", {}, "价格"), h("th", {}, "哪些"))),
+        h("tbody", {},
+          priceRows().map((r) => h("tr", {},
+            h("td", {}, h("span", { class: "catname", style: catStyle(r.cat) }, CAT[r.cat].cn)),
+            h("td", {}, r.size), h("td", { class: "num" }, r.price), h("td", {}, r.names)))),
+      )),
+      h("div", { class: "small muted" }, "只有珍珠奶茶有 M 和 L、能做 HOT；鲜果、爆柠、季节限定只有 L；特饮只有 M。"),
+    ),
+  );
+}
+
+function priceRows() {
+  const groups = new Map();
+  for (const i of ITEMS) {
+    const key = i.cat + "|" + priceText(i);
+    if (!groups.has(key)) groups.set(key, { cat: i.cat, size: i.m && i.l ? "M / L" : i.l ? "只有 L" : "只有 M", price: i.m && i.l ? `${i.m} / ${i.l}` : String(i.l || i.m), items: [] });
+    groups.get(key).items.push(i);
+  }
+  const list = [...groups.values()];
+  return list.map((g) => {
+    const sameCat = list.filter((x) => x.cat === g.cat);
+    const total = sameCat.reduce((n, x) => n + x.items.length, 0);
+    const largest = sameCat.every((x) => x.items.length <= g.items.length);
+    let names = g.items.map((i) => i.cn).join("、");
+    if (g.items.length === total && total > 4) names = `全部 ${total} 款`;
+    else if (largest && g.items.length > 6) names = `其余 ${g.items.length} 款`;
+    return { ...g, names };
+  });
+}
+
+// ---------------------------------------------------------------------------
+// 常用日语
+// ---------------------------------------------------------------------------
+const CUSTOMER = [
+  ["Lサイズで / Mサイズで", "要大杯 / 中杯"],
+  ["甘さ控えめで", "少甜一点（问一下要 70% 还是 50%）"],
+  ["甘さ半分で", "半糖 = 50%"],
+  ["甘さなしで / 無糖で", "不要糖 = 0%"],
+  ["甘めで", "多甜 = 120%"],
+  ["氷少なめで", "少冰"],
+  ["氷なしで", "去冰"],
+  ["ホットで / 温かいのを", "要热的（只有珍珠奶茶可以）"],
+  ["タピオカ抜きで", "不要珍珠"],
+  ["チーズフォーム追加で", "加芝士奶盖 +120"],
+  ["店内で", "店内用（税 10%）"],
+  ["持ち帰りで / テイクアウトで", "外带（税 8%）"],
+  ["おすすめは何ですか？", "推荐什么？"],
+  ["ストローいらないです", "不要吸管"],
+];
+const STAFF = [
+  ["いらっしゃいませ。ご注文はお決まりですか？", "欢迎光临，决定好点什么了吗？"],
+  ["サイズはMとLがございます", "有 M 和 L 两种杯型"],
+  ["こちらはLサイズのみです", "这款只有 L"],
+  ["こちらはアイスのみです", "这款只能冷饮"],
+  ["甘さはどうなさいますか？", "甜度要多少？"],
+  ["氷の量はいかがなさいますか？", "冰量要怎样？"],
+  ["トッピングはいかがですか？", "要加小料吗？"],
+  ["店内でお召し上がりですか？お持ち帰りですか？", "店内用还是外带？"],
+  ["お会計、780円になります", "一共 780 日元"],
+  ["番号でお呼びします。少々お待ちください", "叫号取餐，请稍等"],
+  ["申し訳ございません、本日売り切れです", "不好意思，今天卖完了"],
+];
+
+function phraseList(title, rows, sub) {
+  return h("div", { class: "panel" }, h("h2", {}, title), sub ? h("div", { class: "small muted" }, sub) : null,
+    h("div", {}, rows.map(([ja, cn]) => h("div", { class: "phrase" },
+      h("div", { style: "min-width:0" }, h("div", { class: "jpline ja", lang: "ja" }, ja), h("div", { class: "cnline" }, cn)),
+      speakButton(ja.split(" / ")[0])))));
+}
+
+function renderWords() {
+  $("#wordsArea").replaceChildren(
+    h("div", { class: "grid2" },
+      phraseList("顾客常说", CUSTOMER, "听到这些就知道怎么选"),
+      phraseList("店员常说", STAFF, "点单时可以直接用"),
+    ),
+    h("div", { class: "panel" },
+      h("h2", {}, "小料（精选小料）"),
+      h("div", { class: "pills" }, TOPPINGS.map(([cn, ja, p]) => h("button", { class: "pill", type: "button", onclick: () => say(ja), "aria-label": `${cn}，${ja}，加 ${p} 日元` },
+        h("b", {}, cn), h("span", { class: "ja", lang: "ja" }, ja), h("span", { class: "num" }, "+" + p)))),
+      h("h2", { style: "margin-top:6px" }, "甜度"),
+      h("div", { class: "pills" }, SWEET.map((s) => h("span", { class: "pill" }, h("b", { class: "num" }, s)))),
+      h("h2", { style: "margin-top:6px" }, "温度"),
+      h("div", { class: "pills" }, TEMPS.map(([ja, cn]) => h("button", { class: "pill", type: "button", onclick: () => say(ja), "aria-label": `${cn}，${ja}` },
+        h("b", { class: "ja", lang: "ja" }, ja), h("span", {}, cn)))),
+    ),
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 启动
+// ---------------------------------------------------------------------------
+renderFilter();
+renderLookup();
+renderModes();
+renderTips();
+renderWords();
+updateHeaderScore();
+let startView = (location.hash || "").replace("#", "");
+if (!VIEWS.includes(startView)) { try { startView = localStorage.getItem(STORE_KEY + "-view") || "lookup"; } catch (e) { startView = "lookup"; } }
+showView(startView);
+</script>

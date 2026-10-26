@@ -149,6 +149,8 @@ ChaliPOS/
 │   ├── QROrder/             扫码单页面、二维码海报、Supabase 接口
 │   └── UI/                  颜色和通用组件
 ├── QROrder/                 扫码点单：数据库 SQL、顾客手机页面、测试
+├── MenuTrainer/             背菜单网页（48 款中日文名、分类、价格、练习）
+├── CLAUDE.md                给 Claude Code 的项目背景、命令和待办
 └── CoreTests/               Model 层单元测试（Sources/ChaliCore 链接到 App 的 Model）
 ```
 
