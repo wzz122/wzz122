@@ -34,6 +34,14 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   const soldOut = page.locator('.item.soldout');
   check('售罄饮品不能点', (await soldOut.count()) === 1 && (await soldOut.first().isDisabled()));
 
+  // 「はじめての方へ」
+  await page.click('.faqbtn');
+  await page.waitForSelector('.sheet.show .faq');
+  check('常见问题 7 条', (await page.locator('.sheet .faq li').count()) === 7 && (await page.textContent('.sheet .faq')).includes('タピオカ入り'));
+  await page.screenshot({ path: shots + '/0-faq.png' });
+  await page.click('.sheet .close');
+  await page.waitForTimeout(300);
+
   const oolong = page.locator('.item', { has: page.locator('.name', { hasText: /^ウーロンミルクティー$/ }) });
   check('真实菜单 48 款', (await page.locator('.item').count()) === 48);
   check('珍珠奶茶显示「タピオカ入り」', (await oolong.textContent()).includes('タピオカ入り'), await oolong.textContent());

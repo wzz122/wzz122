@@ -49,6 +49,9 @@
   .sub { margin-top: 4px; font-size: 13px; color: var(--muted); }
   .seat { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 6px; background: var(--green-soft); color: var(--green); font-weight: 700; }
 
+  .faqbtn { display: block; width: calc(100% - 32px); margin: 10px 16px 0; border: 1.5px dashed var(--green); background: var(--green-soft); color: var(--green); border-radius: 12px; padding: 9px 12px; font-weight: 800; font-size: 14px; text-align: left; }
+  .faq { margin: 14px 0 0; padding-left: 22px; }
+  .faq li { margin-bottom: 10px; font-size: 16px; line-height: 1.5; }
   .notice { margin: 12px 16px 0; padding: 12px 14px; border-radius: 12px; font-size: 14px; }
   .notice.warn { background: #FDECEA; color: var(--danger); font-weight: 700; }
   .notice.info { background: var(--green-soft); color: var(--green); }
@@ -231,6 +234,8 @@ const T = {
     newOrder: "新しく注文する",
     reason: "理由",
     included: "入り",
+    faqBtn: "はじめての方へ（よくある質問）",
+    faq: ["タピオカミルクティーは全部タピオカ入りです（追加しなくて大丈夫）", "ホットにできるのはタピオカミルクティーだけです", "甘さ：100% が標準、120% は甘め、0% は砂糖なし", "氷：普通・少なめ・なし（ミルクティーは常温もできます）", "サイズ：ミルクティーは M と L、ほかのドリンクは 1 サイズです", "トッピングはいくつでも追加できます（別料金）", "注文したら、レジで注文番号を伝えてお支払いください"],
     errors: {
       not_accepting: "ただいまモバイルオーダーを停止しています。レジでご注文ください。",
       sold_out: "売り切れの商品があります。カートを確認してください。",
@@ -270,6 +275,8 @@ const T = {
     newOrder: "再点一单",
     reason: "原因",
     included: "含",
+    faqBtn: "第一次来？常见问题",
+    faq: ["珍珠奶茶全部含珍珠，不用另加", "只有珍珠奶茶可以做热的", "甜度：100% 是标准，120% 更甜，0% 不加糖", "冰量：普通冰、少冰、去冰（奶茶还可以常温）", "大小：奶茶有 M 和 L，其他饮品只有一种", "小料可以加好几种，另外算钱", "下单后到柜台报单号付款"],
     errors: {
       not_accepting: "现在暂停扫码点单，请到柜台点单。",
       sold_out: "有饮品刚刚售罄，请检查购物车。",
@@ -309,6 +316,8 @@ const T = {
     newOrder: "Order again",
     reason: "Reason",
     included: "with",
+    faqBtn: "First time? FAQ",
+    faq: ["All bubble milk teas already come with tapioca pearls", "Only bubble milk teas can be served hot", "Sweetness: 100% is standard, 120% is sweeter, 0% has no sugar", "Ice: regular, less or none (milk teas can also be room temperature)", "Size: milk teas come in M or L; other drinks have one size", "You can add as many toppings as you like (extra charge)", "After ordering, tell your order number at the counter and pay there"],
     errors: {
       not_accepting: "Mobile ordering is paused right now. Please order at the counter.",
       sold_out: "Something just sold out. Please check your cart.",
@@ -485,6 +494,7 @@ function renderMenu() {
     h("button", { class: state.dining === "takeOut" ? "on" : "", onclick: () => setDining("takeOut") }, t("takeOut"), h("small", {}, t("takeOutTax"))),
     h("button", { class: state.dining === "eatIn" ? "on" : "", onclick: () => setDining("eatIn") }, t("eatIn"), h("small", {}, t("eatInTax"))),
   ));
+  frag.append(h("button", { class: "faqbtn", onclick: openFaq }, "？ " + t("faqBtn")));
 
   const cats = state.menu.categories.filter((c) => state.menu.items.some((i) => i.categoryID === c.id));
   frag.append(h("nav", { class: "cats" }, cats.map((c) =>
@@ -582,6 +592,18 @@ function openItem(item) {
     );
   };
   draw();
+  showSheet();
+}
+
+// 「第一次来？」：把店员常被问的基本问题先写清楚
+function openFaq() {
+  fill(document.getElementById("sheet"),
+    h("div", { class: "head" },
+      h("div", {}, h("h3", {}, t("faqBtn"))),
+      h("button", { class: "close", "aria-label": "close", onclick: closeSheet }, "✕"),
+    ),
+    h("ol", { class: "faq" }, t("faq").map((x) => h("li", {}, x))),
+  );
   showSheet();
 }
 

@@ -84,8 +84,8 @@ const unring = (page) => page.evaluate(() => window.__unring());
   await tctx.addInitScript(helpers);
   const tablet = await tctx.newPage();
   await tablet.goto(SITE + 'staff.html#k=' + KEY);
-  await tablet.click('.overlay .big');
   await tablet.waitForSelector('.col.received .list');
+  await tablet.click('header h1');   // 打开提示音（底部的提示条会消失）
   await sleep(1500);
 
   // 手机：先是锁屏一样的画面
@@ -123,6 +123,11 @@ const unring = (page) => page.evaluate(() => window.__unring());
   await tap(phone.locator('.lang button', { hasText: '中文' }), 1500);
   await tap(phone.locator('nav.cats button', { hasText: '鲜果时光' }), 1500);
   await tap(phone.locator('nav.cats button', { hasText: '珍珠奶茶' }), 1000);
+
+  // 「第一次来？」常见问题
+  mark('faq');
+  await tap(phone.locator('.faqbtn'), 4200);
+  await tap(phone.locator('.sheet .close'), 700);
 
   // ④ 选规格：茉香奶绿 L 少冰 70% +布丁
   mark('pick');
@@ -201,6 +206,16 @@ const unring = (page) => page.evaluate(() => window.__unring());
   await tablet.locator('.card[data-q="Q2"]').waitFor({ timeout: 10000 });
   mark('ding2');
   await sleep(5200);
+
+  // 客人当面用外语说名字 → 查饮品
+  mark('lookup');
+  await tap(tablet.locator('header .tool', { hasText: '查饮品' }), 600);
+  await tablet.locator('#lookupQ').pressSequentially('まんご', { delay: 300 });
+  await sleep(2600);
+  await tablet.locator('#lookupQ').fill('');
+  await tablet.locator('#lookupQ').pressSequentially('pomelo', { delay: 220 });
+  await sleep(2600);
+  await tap(tablet.locator('.panel .x'), 700);
 
   // ⑫ 售罄
   mark('soldout');

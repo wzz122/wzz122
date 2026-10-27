@@ -88,6 +88,7 @@
   .ln .qty { font-size: 19px; font-weight: 900; color: var(--danger); }
   .ln .amt { margin-left: auto; font-weight: 700; color: var(--muted); font-size: 14px; }
   .ln .jp { font-size: 12px; color: var(--muted); }
+  .ln .cat { font-size: 12px; font-weight: 800; border: 1.5px solid currentColor; border-radius: 6px; padding: 0 6px; }
   .opts { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
   .opt { font-size: 13px; font-weight: 700; padding: 1px 8px; border-radius: 6px; background: var(--bg); color: var(--muted); }
   .opt.chg { background: #FFF1C2; color: #7A5B00; }
@@ -110,6 +111,7 @@
     background: var(--orange); color: #fff; font-size: 22px; font-weight: 900; padding: 14px 26px; border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   }
+  .mute { position: fixed; left: 12px; bottom: 12px; z-index: 45; border: 0; border-radius: 999px; background: #FFF1C2; color: #7A5B00; padding: 10px 18px; font-weight: 800; font-size: 15px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15); }
   .banner { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 40; background: var(--danger); color: #fff; padding: 10px 14px; border-radius: 12px; font-weight: 800; text-align: center; }
 
   .overlay { position: fixed; inset: 0; z-index: 60; background: rgba(20, 30, 24, 0.72); display: grid; place-items: center; padding: 20px; }
@@ -135,6 +137,15 @@
   .st { font-weight: 800; white-space: nowrap; }
   .st.cancelled { color: var(--danger); }
 
+  .search { width: 100%; font-size: 22px !important; padding: 13px 16px !important; }
+  .hits { margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+  .hit { border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; border-left: 6px solid var(--c, var(--green)); }
+  .hit .zh { font-size: 22px; font-weight: 900; }
+  .hit .jp { font-size: 15px; font-weight: 700; margin-top: 2px; }
+  .hit .en { font-size: 14px; color: var(--muted); }
+  .hit .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .hit .meta span { font-size: 13px; font-weight: 800; padding: 1px 8px; border-radius: 6px; background: var(--bg); }
+  .hit .meta .sold { background: #FDECEA; color: var(--danger); }
   @media (max-width: 900px) {
     header { height: auto; flex-wrap: wrap; padding: 10px 12px; }
     .board { height: auto; grid-template-columns: 1fr; }
@@ -179,7 +190,7 @@ const POLL_MS = 3000;
 const FULL_MS = 30000;
 
 const state = {
-  phase: KEY ? "start" : "setup",   // setup：填密钥  start：点一下开始（打开声音）  board：接单
+  phase: KEY ? "board" : "setup",   // setup：填密钥  board：接单
   setupError: "",
   orders: new Map(),
   since: null,
@@ -189,7 +200,8 @@ const state = {
   soldOut: new Set(),
   online: true,
   fresh: new Map(),          // 订单 id → 第一次看到的时间（新单闪 60 秒）
-  sheet: null,               // "soldout" | "history"
+  sheet: null,               // "soldout" | "history" | "lookup"
+  q: "",                     // 查饮品的搜索词
   soldDraft: null,
   busy: new Set(),
   toast: "",
@@ -312,13 +324,22 @@ function startPolling() {
 // ---------------------------------------------------------------------------
 // 提示音（第一次点屏幕之后才能出声）和屏幕常亮
 // ---------------------------------------------------------------------------
+// iPad 的 Safari 要等店员点过一次屏幕才能出声；没点之前底部一直提示
 let audio = null;
+let soundOn = false;
 function unlockAudio() {
   try {
     audio = audio || new (window.AudioContext || window.webkitAudioContext)();
-    if (audio.state === "suspended") audio.resume();
+    const done = () => { const on = audio.state === "running"; if (on !== soundOn) { soundOn = on; render(); } };
+    if (audio.state === "suspended") audio.resume().then(done, done);
+    else done();
   } catch (e) { audio = null; }
 }
+document.addEventListener("pointerdown", () => {
+  if (state.phase !== "board") return;
+  if (!soundOn) unlockAudio();
+  if (!wakeLock) keepAwake();
+}, true);
 function ding() {
   if (!audio) return;
   const t0 = audio.currentTime + 0.02;
@@ -337,7 +358,12 @@ function ding() {
 }
 let wakeLock = null;
 async function keepAwake() {
-  try { if (navigator.wakeLock && document.visibilityState === "visible") wakeLock = await navigator.wakeLock.request("screen"); } catch (e) { /* 不支持就算了 */ }
+  try {
+    if (navigator.wakeLock && document.visibilityState === "visible") {
+      wakeLock = await navigator.wakeLock.request("screen");
+      wakeLock.addEventListener("release", () => { wakeLock = null; });
+    }
+  } catch (e) { /* 不支持就算了 */ }
 }
 document.addEventListener("visibilitychange", () => { if (state.phase === "board") keepAwake(); });
 
@@ -414,7 +440,10 @@ async function connect(store, key) {
     await staffRpc("chali_staff_orders", { p_since: new Date().toISOString() });
     localStorage.setItem(LS_KEY, KEY);
     localStorage.setItem(LS_STORE, STORE);
-    state.phase = "start";
+    state.phase = "board";
+    unlockAudio();
+    begin();
+    return;
   } catch (e) {
     state.setupError = e.message === "unauthorized" ? "门店 ID 或密钥不对。" : "连不上服务器，请检查网络。";
   }
@@ -432,10 +461,8 @@ function logout(message) {
 }
 
 async function begin() {
-  unlockAudio();
-  keepAwake();
-  state.phase = "board";
   render();
+  keepAwake();
   try { await loadStore(); } catch (e) { state.online = false; }
   startPolling();
 }
@@ -446,7 +473,9 @@ async function begin() {
 function render() {
   const app = document.getElementById("app");
   const scrolls = [...app.querySelectorAll(".list, .panel")].map((el) => el.scrollTop);
+  const typing = document.activeElement && document.activeElement.id === "lookupQ";
   draw(app);
+  if (typing) { const el = document.getElementById("lookupQ"); el.focus(); el.setSelectionRange(el.value.length, el.value.length); }
   [...app.querySelectorAll(".list, .panel")].forEach((el, i) => { if (scrolls[i]) el.scrollTop = scrolls[i]; });
 }
 
@@ -454,9 +483,10 @@ function draw(app) {
   app.replaceChildren();
   if (state.phase === "setup") { app.append(renderSetup()); return; }
   app.append(renderHeader(), renderBoard());
-  if (state.phase === "start") app.append(renderStart());
+  if (!soundOn) app.append(h("button", { class: "mute", onclick: unlockAudio }, "🔇 提示音还没打开 · 点一下屏幕任意地方"));
   if (state.sheet === "soldout") app.append(renderSoldOut());
   if (state.sheet === "history") app.append(renderHistory());
+  if (state.sheet === "lookup") app.append(renderLookup());
   if (state.toast) app.append(h("div", { class: "toast", role: "status" }, state.toast));
   if (state.error) app.append(h("div", { class: "banner", onclick: () => { state.error = ""; render(); } }, state.error));
   else if (!state.online) app.append(h("div", { class: "banner" }, "网络断开，正在重连…（顾客这时下的单，连上后会出现）"));
@@ -473,14 +503,6 @@ function renderSetup() {
     h("label", {}, "门店密钥", keyInput = h("input", { type: "password", autocapitalize: "off", autocomplete: "off" })),
     state.setupError ? h("div", { class: "err" }, state.setupError) : null,
     h("button", { class: "big", onclick: () => connect(storeInput.value, keyInput.value) }, "连接"),
-  ));
-}
-
-function renderStart() {
-  return h("div", { class: "overlay" }, h("div", { class: "panel", style: "text-align:center" },
-    h("h3", {}, "扫码接单屏"),
-    h("p", {}, "点一下开始。来新单时会「叮咚」响，屏幕保持常亮。"),
-    h("button", { class: "big", onclick: begin }, "开始"),
   ));
 }
 
@@ -501,6 +523,7 @@ function renderHeader() {
     h("span", { class: "stats" }, "今日扫码 ", h("b", {}, done.length + " 单"), " · ", h("b", {}, yen(done.reduce((s, o) => s + o.total, 0)))),
     h("button", { class: "tool", onclick: () => { state.soldDraft = new Set(state.soldOut); state.sheet = "soldout"; render(); } },
       "售罄" + (state.soldOut.size ? "（" + state.soldOut.size + "）" : "")),
+    h("button", { class: "tool", onclick: openLookup }, "🔍 查饮品"),
     h("button", { class: "tool", onclick: () => { state.sheet = "history"; render(); } }, "今日记录"),
     h("button", { class: "tool", onclick: () => window.open("poster.html", "_blank") }, "二维码"),
     h("span", { class: "conn " + (state.online ? "ok" : "bad") }, state.online ? "● 已连接" : "✕ 断开"),
@@ -556,6 +579,7 @@ function renderCard(o) {
 // 和默认不一样的选项标黄，店员一眼能看到要特别做的
 function renderLine(l) {
   const item = MENU_BASE.items.find((i) => i.id === l.itemID);
+  const cat = item && MENU_BASE.categories.find((c) => c.id === item.categoryID);
   const opts = [];
   const sizes = item ? Object.keys(item.prices).length : 2;
   opts.push(h("span", { class: "opt" + (l.temp !== "normalIce" ? " chg" : "") }, TEMP[l.temp] || l.temp));
@@ -563,6 +587,7 @@ function renderLine(l) {
   for (const tp of l.toppings) opts.push(h("span", { class: "opt tp" }, "+" + tp.name + "（" + tp.nameJP + "）"));
   return h("div", { class: "ln" },
     h("div", { class: "main" },
+      cat ? h("span", { class: "cat", style: "color:#" + cat.colorHex }, cat.name) : null,
       h("span", { class: "nm" }, l.name),
       sizes > 1 ? h("span", { class: "sz" }, l.size) : h("span", { class: "sz", style: "color:var(--muted)" }, l.size),
       l.quantity > 1 ? h("span", { class: "qty" }, "×" + l.quantity) : null,
@@ -589,6 +614,72 @@ function renderSoldOut() {
       ]),
       h("button", { class: "big", onclick: saveSoldOut }, "保存（" + state.soldDraft.size + " 款售罄）"),
     ));
+}
+
+// ---------------------------------------------------------------------------
+// 查饮品：客人用日文、英文、中文说名字，店员输入几个字就能找到（平假名、片假名、全角半角都行）
+// ---------------------------------------------------------------------------
+function norm(text) {
+  return String(text || "").normalize("NFKC").toLowerCase()
+    .replace(/[ぁ-ゖ]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) + 0x60))
+    .replace(/[\s・·\-ー'’.,、。()（）「」“”"]/g, "");
+}
+function lookup(query) {
+  const words = String(query).trim().split(/\s+/).map(norm).filter(Boolean);
+  if (!words.length) return [];
+  const cat = (id) => MENU_BASE.categories.find((c) => c.id === id) || {};
+  const pool = MENU_BASE.items.map((i) => ({ kind: "item", x: i, c: cat(i.categoryID) }))
+    .concat(MENU_BASE.toppings.map((t) => ({ kind: "topping", x: t, c: { name: "小料", nameJP: "トッピング", nameEN: "Topping", colorHex: "6B746F" } })));
+  return pool.filter((p) => {
+    const hay = [p.x.name, p.x.nameJP, p.x.nameEN, p.c.name, p.c.nameJP, p.c.nameEN].map(norm).join("|");
+    return words.every((w) => hay.includes(w));
+  });
+}
+function openLookup() {
+  state.sheet = "lookup";
+  state.q = "";
+  render();
+  const el = document.getElementById("lookupQ");
+  if (el) el.focus();
+}
+function renderHit(p) {
+  const x = p.x;
+  const meta = [];
+  meta.push(h("span", { style: "color:#" + p.c.colorHex }, p.c.name));
+  if (p.kind === "item") {
+    meta.push(h("span", {}, Object.entries(x.prices).map(([k, v]) => k.toUpperCase() + " " + yen(v)).join(" / ")));
+    if ((x.includedToppingIDs || []).length) meta.push(h("span", {}, "含珍珠"));
+    if (x.allowedTemps.includes("hot")) meta.push(h("span", {}, "可做热"));
+    if (x.allowedTemps.length === 1) meta.push(h("span", {}, "不调冰"));
+    if (state.soldOut.has(x.id)) meta.push(h("span", { class: "sold" }, "今天售罄"));
+  } else {
+    meta.push(h("span", {}, "+" + yen(x.price)));
+  }
+  return h("div", { class: "hit", style: "--c:#" + p.c.colorHex },
+    h("div", { class: "zh" }, x.name),
+    h("div", { class: "jp" }, x.nameJP),
+    h("div", { class: "en" }, x.nameEN),
+    h("div", { class: "meta" }, meta));
+}
+function renderLookup() {
+  const close = () => { state.sheet = null; render(); };
+  const box = h("div", { class: "hits" });
+  const show = () => {
+    const hits = lookup(state.q);
+    box.replaceChildren(...(state.q.trim()
+      ? (hits.length ? hits.map(renderHit) : [h("div", { class: "empty" }, "没找到。试试少打几个字，比如「マンゴー」「mango」「芒」")])
+      : [h("div", { class: "empty" }, "客人说的名字打几个字就行：日文（平假名也可以）、英文、中文都能搜")]));
+  };
+  const input = h("input", {
+    id: "lookupQ", class: "search", type: "search", value: state.q, placeholder: "例：マンゴー / mango / 芒果 / タピオカ",
+    autocomplete: "off", autocapitalize: "off", spellcheck: "false",
+    oninput: (e) => { state.q = e.target.value; show(); },
+  });
+  show();
+  return h("div", { class: "overlay", onclick: (e) => { if (e.target === e.currentTarget) close(); } },
+    h("div", { class: "panel wide" },
+      h("div", { class: "phead" }, h("h3", {}, "查饮品"), h("button", { class: "x", onclick: close }, "✕")),
+      input, box));
 }
 
 function renderHistory() {
@@ -618,13 +709,13 @@ window.addEventListener("hashchange", () => {
   STORE = localStorage.getItem(LS_STORE) || STORE;
   KEY = localStorage.getItem(LS_KEY);
   state.setupError = "";
-  state.phase = "start";
-  render();
+  state.phase = "board";
+  begin();
 });
 
 // 每 20 秒刷新一次「几分钟前」
 setInterval(() => { if (state.phase === "board" && !state.sheet) render(); }, 20000);
-render();
+if (state.phase === "board") begin(); else render();
 </script>
 </body>
 </html>

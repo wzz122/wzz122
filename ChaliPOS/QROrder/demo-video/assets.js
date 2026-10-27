@@ -83,7 +83,7 @@ const SLIDES = {
     <h1 style="position:absolute;left:150px;top:100px">建议：先试一周</h1>
     <div style="position:absolute;left:150px;top:240px;width:880px">
       ${[
-        ['柜台和每张桌子贴上二维码', '打印好的海报，带桌号'],
+        ['柜台、桌子、排队的地方贴上二维码', '排队时就能先点好；桌上的带桌号'],
         ['柜台放一台平板，开着接单屏', '来单会响，屏幕常亮'],
         ['一周后看「今日记录」', '多少人扫码点单、店员忙不忙得过来'],
       ].map(([t, s], i) => `<div style="display:flex;gap:28px;align-items:flex-start;margin-bottom:46px">

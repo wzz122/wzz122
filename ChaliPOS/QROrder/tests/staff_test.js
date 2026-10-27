@@ -35,10 +35,12 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
 
   // 用 #k= 一次设置好，地址栏里的密钥马上去掉
   await tablet.goto(PAGE + 'staff.html#k=' + KEY);
-  await tablet.waitForSelector('.overlay .big');
-  check('地址栏不留密钥', !(await tablet.evaluate(() => location.href)).includes(KEY));
-  await tablet.click('.overlay .big');
   await tablet.waitForSelector('.col.received .list');
+  check('地址栏不留密钥', !(await tablet.evaluate(() => location.href)).includes(KEY));
+  check('打开就显示看板，提示打开声音', (await tablet.locator('.mute').count()) === 1);
+  await tablet.click('header h1');
+  await tablet.waitForFunction(() => !document.querySelector('.mute'), null, { timeout: 5000 });
+  check('点一下屏幕后提示音打开', true);
   await tablet.waitForTimeout(800);
   const pill = async () => (await tablet.textContent('header .pill')).trim();
   if (!(await pill()).includes('接单中')) { await tablet.click('header .pill'); await tablet.waitForTimeout(800); }
@@ -118,6 +120,25 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   check('今日记录里有这单', (await tablet.textContent('.panel table')).includes(q) && (await tablet.textContent('.panel table')).includes('已取走'));
   await tablet.click('.panel .x');
 
+  // 查饮品：平假名、英文、中文都能找
+  await tablet.click('header .tool:has-text("查饮品")');
+  await tablet.waitForSelector('#lookupQ');
+  check('查饮品输入框自动获得焦点', await tablet.evaluate(() => document.activeElement && document.activeElement.id === 'lookupQ'));
+  const hits = async (q) => { await tablet.fill('#lookupQ', q); await tablet.waitForTimeout(150); return tablet.locator('.hit .zh').allTextContents(); };
+  let found = await hits('まんごー');
+  check('平假名「まんごー」找到芒果类', found.includes('多芒优酪冰') && found.includes('芒芒果海') && found.includes('芭乐多芒奶露'), found.join(','));
+  found = await hits('mango smoothie');
+  check('英文「mango smoothie」只找到多芒优酪冰', found.length === 1 && found[0] === '多芒优酪冰', found.join(','));
+  found = await hits('ヨンジー');
+  check('片假名「ヨンジー」找到杨枝甘露', found.length === 1 && found[0] === '杨枝甘露', found.join(','));
+  found = await hits('ﾀﾋﾟｵｶ');
+  check('半角「ﾀﾋﾟｵｶ」找到小料珍珠', found.includes('珍珠'), found.join(','));
+  found = await hits('桂花');
+  check('中文「桂花」', found.includes('桂花乌龙奶茶') && found.includes('老盐桂花牛乳茶'), found.join(','));
+  await tablet.fill('#lookupQ', 'マンゴー');
+  await tablet.screenshot({ path: shots + '/s7-lookup.png' });
+  await tablet.click('.panel .x');
+
   // 取消（带原因）→ 顾客看到原因
   const placed = await publicRpc('chali_place_order', { p_store: 'chalichali-01', p_dining: 'takeOut', p_items: [{ itemID: 'assam', size: 'M', temp: 'hot', sweetness: 100, toppingIDs: [] }] });
   const q2 = 'Q' + placed.number;
@@ -164,7 +185,6 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   // 密钥被换掉 → 回到设置页
   await tablet.evaluate(() => localStorage.setItem('chali-staff-key', 'changed'));
   await tablet.reload();
-  await tablet.click('.overlay .big');
   await tablet.waitForSelector('.panel input[type=password]', { timeout: 8000 });
   check('密钥失效回到设置页', (await tablet.textContent('.err')).includes('密钥'));
 
