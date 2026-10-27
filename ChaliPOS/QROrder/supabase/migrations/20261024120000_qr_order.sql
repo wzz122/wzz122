@@ -279,6 +279,7 @@ begin
         'id', v_topping_id,
         'name', v_topping ->> 'name',
         'nameJP', v_topping ->> 'nameJP',
+        'nameEN', v_topping ->> 'nameEN',
         'price', v_price
       ));
     end loop;
@@ -292,6 +293,7 @@ begin
       'itemID', v_item ->> 'id',
       'name', v_item ->> 'name',
       'nameJP', v_item ->> 'nameJP',
+      'nameEN', v_item ->> 'nameEN',
       'size', v_size,
       'temp', v_temp,
       'sweetness', v_sweet,

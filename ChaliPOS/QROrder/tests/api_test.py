@@ -32,36 +32,36 @@ r = rpc("chali_staff_orders", p_store=STORE, p_key="wrong")
 check("错误密钥不能看订单", r[0] >= 400 and "unauthorized" in err(r), r)
 
 # 未发布菜单前不能下单
-item = {"itemID": "oolong-roast-milk", "size": "L", "temp": "lessIce", "sweetness": 50, "toppingIDs": ["pearl"], "quantity": 2}
+item = {"itemID": "oolong-milk", "size": "L", "temp": "lessIce", "sweetness": 50, "toppingIDs": ["pearl"], "quantity": 2}
 r = rpc("chali_place_order", p_store=STORE, p_dining="takeOut", p_items=[item])
 check("未发布菜单时拒绝下单", "not_accepting" in err(r), r)
 
 r = rpc("chali_staff_publish_menu", p_store=STORE, p_key=KEY, p_menu=MENU, p_accepting=True)
 check("发布菜单", r[0] == 200 and r[1]["ok"], r)
 r = rpc("chali_get_menu", p_store=STORE)
-check("顾客读菜单", r[0] == 200 and r[1]["accepting"] and len(r[1]["menu"]["items"]) == 13, r)
+check("顾客读菜单", r[0] == 200 and r[1]["accepting"] and len(r[1]["menu"]["items"]) == 48, r)
 
 # 正常下单：乌龙烤鲜奶 L 少冰 50% +珍珠 ×2 = 750×2；奇异之旅 L = 780
 r = rpc("chali_place_order", p_store=STORE, p_dining="takeOut", p_seat=" T3 ", p_note="少一点珍珠",
-        p_items=[item, {"itemID": "kiwi-trip", "size": "L", "temp": "normalIce", "sweetness": 100, "toppingIDs": []}])
+        p_items=[item, {"itemID": "kiwi-cheese", "size": "L", "temp": "normalIce", "sweetness": 100, "toppingIDs": []}])
 check("正常下单", r[0] == 200 and r[1]["number"] == 1 and r[1]["total"] == 2280, r)
 order1 = r[1]["id"]
 r = rpc("chali_place_order", p_store=STORE, p_dining="eatIn",
-        p_items=[{"itemID": "salt-osmanthus-milk", "size": "M", "temp": "noIce", "sweetness": 30, "toppingIDs": ["cheese", "cheese"], "quantity": 1, "unitPrice": 1}])
+        p_items=[{"itemID": "salt-osmanthus", "size": "M", "temp": "noIce", "sweetness": 30, "toppingIDs": ["cheese", "cheese"], "quantity": 1, "unitPrice": 1}])
 check("单号递增、忽略顾客传来的价格、重复小料只算一次", r[0] == 200 and r[1]["number"] == 2 and r[1]["total"] == 800, r)
 order2 = r[1]["id"]
 
 # 各种非法请求
 bad = [
-    ("售罄饮品", {"itemID": "strawberry", "size": "L", "temp": "normalIce", "sweetness": 100}, "sold_out"),
+    ("售罄饮品", {"itemID": "straw-cheese", "size": "L", "temp": "normalIce", "sweetness": 100}, "sold_out"),
     ("下架饮品", {"itemID": "durian-milk", "size": "M", "temp": "normalIce", "sweetness": 100}, "item_not_found"),
     ("不存在的饮品", {"itemID": "nope", "size": "L", "temp": "normalIce", "sweetness": 100}, "item_not_found"),
-    ("鲜果不能做热的", {"itemID": "kiwi-trip", "size": "L", "temp": "hot", "sweetness": 100}, "bad_temp"),
-    ("没有的规格", {"itemID": "kiwi-trip", "size": "M", "temp": "normalIce", "sweetness": 100}, "bad_size"),
-    ("非法甜度", {"itemID": "kiwi-trip", "size": "L", "temp": "normalIce", "sweetness": 55}, "bad_sweetness"),
-    ("不存在的小料", {"itemID": "kiwi-trip", "size": "L", "temp": "normalIce", "sweetness": 100, "toppingIDs": ["gold"]}, "bad_topping"),
-    ("数量 0", {"itemID": "kiwi-trip", "size": "L", "temp": "normalIce", "sweetness": 100, "quantity": 0}, "bad_quantity"),
-    ("数量太多", {"itemID": "kiwi-trip", "size": "L", "temp": "normalIce", "sweetness": 100, "quantity": 21}, "bad_quantity"),
+    ("鲜果不能做热的", {"itemID": "kiwi-cheese", "size": "L", "temp": "hot", "sweetness": 100}, "bad_temp"),
+    ("没有的规格", {"itemID": "kiwi-cheese", "size": "M", "temp": "normalIce", "sweetness": 100}, "bad_size"),
+    ("非法甜度", {"itemID": "kiwi-cheese", "size": "L", "temp": "normalIce", "sweetness": 55}, "bad_sweetness"),
+    ("不存在的小料", {"itemID": "kiwi-cheese", "size": "L", "temp": "normalIce", "sweetness": 100, "toppingIDs": ["gold"]}, "bad_topping"),
+    ("数量 0", {"itemID": "kiwi-cheese", "size": "L", "temp": "normalIce", "sweetness": 100, "quantity": 0}, "bad_quantity"),
+    ("数量太多", {"itemID": "kiwi-cheese", "size": "L", "temp": "normalIce", "sweetness": 100, "quantity": 21}, "bad_quantity"),
 ]
 for name, it, code in bad:
     r = rpc("chali_place_order", p_store=STORE, p_dining="takeOut", p_items=[it])
@@ -78,14 +78,14 @@ check("不存在的门店", "store_not_found" in err(r), r)
 # 店内用按税率换算（菜单设置 convertByTaxRate）
 conv = dict(MENU, eatInPricing="convertByTaxRate")
 rpc("chali_staff_publish_menu", p_store=STORE, p_key=KEY, p_menu=conv, p_accepting=True)
-r = rpc("chali_place_order", p_store=STORE, p_dining="eatIn", p_items=[{"itemID": "oolong-roast-milk", "size": "L", "temp": "lessIce", "sweetness": 50, "toppingIDs": ["pearl"]}])
+r = rpc("chali_place_order", p_store=STORE, p_dining="eatIn", p_items=[{"itemID": "oolong-milk", "size": "L", "temp": "lessIce", "sweetness": 50, "toppingIDs": ["pearl"]}])
 check("店内用按 110/108 换算（680→693，珍珠 70→71）", r[0] == 200 and r[1]["total"] == 764, r)
 order3 = r[1]["id"]
 
 # 昨天的售罄不再生效
 stale = dict(MENU, businessDay="2000-01-01")
 rpc("chali_staff_publish_menu", p_store=STORE, p_key=KEY, p_menu=stale, p_accepting=True)
-r = rpc("chali_place_order", p_store=STORE, p_dining="takeOut", p_items=[{"itemID": "strawberry", "size": "L", "temp": "normalIce", "sweetness": 100}])
+r = rpc("chali_place_order", p_store=STORE, p_dining="takeOut", p_items=[{"itemID": "straw-cheese", "size": "L", "temp": "normalIce", "sweetness": 100}])
 check("昨天标的售罄今天自动恢复", r[0] == 200, r)
 rpc("chali_staff_publish_menu", p_store=STORE, p_key=KEY, p_menu=MENU, p_accepting=True)
 
@@ -98,6 +98,9 @@ rpc("chali_staff_publish_menu", p_store=STORE, p_key=KEY, p_menu=MENU, p_accepti
 # 顾客查看状态
 r = rpc("chali_order_status", p_order=order1)
 check("顾客查看状态", r[0] == 200 and r[1]["status"] == "received" and r[1]["seat"] == "T3" and r[1]["note"] == "少一点珍珠" and r[1]["storeName"] == "茶里茶里", r)
+line0 = r[1]["lines"][0]
+check("订单里存了中日英名字", line0["name"] == "乌龙烤鲜奶" and line0["nameJP"] == "ウーロンミルクティー" and line0["nameEN"] == "Roasted Oolong Milk Tea"
+      and line0["toppings"][0]["nameEN"] == "Tapioca pearls", line0)
 r = rpc("chali_order_status", p_order="00000000-0000-0000-0000-000000000000")
 check("不存在的订单返回空", r[0] == 200 and r[1] is None, r)
 

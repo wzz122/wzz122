@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2E7D4F">
+<meta name="robots" content="noindex">
+<title>茶里茶里 扫码接单屏</title>
+<style>
+  :root {
+    --green: #2E7D4F;
+    --green-soft: #E3F1E7;
+    --orange: #E07B39;
+    --orange-soft: #FCEBDD;
+    --blue: #2F6FB3;
+    --blue-soft: #E2ECF7;
+    --ink: #1F2A24;
+    --muted: #6B746F;
+    --bg: #EEF1EE;
+    --card: #FFFFFF;
+    --line: rgba(0, 0, 0, 0.1);
+    --danger: #C62828;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans SC", "Noto Sans JP", sans-serif;
+    font-size: 16px; line-height: 1.4;
+  }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  .hidden { display: none !important; }
+
+  header {
+    height: 64px; display: flex; align-items: center; gap: 10px; padding: 0 16px;
+    background: var(--card); border-bottom: 1px solid var(--line);
+  }
+  header h1 { margin: 0; font-size: 20px; color: var(--green); font-weight: 900; white-space: nowrap; }
+  header h1 small { color: var(--muted); font-size: 13px; font-weight: 700; margin-left: 6px; }
+  .grow { flex: 1; }
+  .pill {
+    border: 0; border-radius: 999px; padding: 8px 14px; font-weight: 800; font-size: 15px; white-space: nowrap;
+  }
+  .pill.on { background: var(--green); color: #fff; }
+  .pill.off { background: #FDECEA; color: var(--danger); }
+  .tool { border: 1.5px solid var(--line); background: var(--card); border-radius: 12px; padding: 7px 12px; font-weight: 700; font-size: 14px; white-space: nowrap; }
+  .stats { font-size: 14px; color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .stats b { color: var(--ink); }
+  .conn { font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .conn.ok { color: var(--green); }
+  .conn.bad { color: var(--danger); }
+
+  .board {
+    height: calc(100vh - 64px); display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 12px; padding: 12px;
+  }
+  .col { display: flex; flex-direction: column; min-height: 0; background: rgba(255, 255, 255, 0.45); border-radius: 16px; }
+  .col h2 {
+    margin: 0; padding: 10px 14px; font-size: 16px; border-radius: 16px 16px 0 0; color: #fff;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .col h2 small { font-size: 12px; font-weight: 600; opacity: 0.9; }
+  .col h2 .n { margin-left: auto; background: rgba(255, 255, 255, 0.25); border-radius: 999px; padding: 0 10px; }
+  .col.received h2 { background: var(--orange); }
+  .col.accepted h2 { background: var(--green); }
+  .col.ready h2 { background: var(--blue); }
+  .list { flex: 1; overflow-y: auto; padding: 10px; }
+  .empty { color: var(--muted); text-align: center; padding: 30px 10px; font-size: 14px; }
+
+  .card {
+    background: var(--card); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); border: 2px solid transparent;
+  }
+  .card.fresh { border-color: var(--orange); animation: glow 1.2s ease-in-out infinite alternate; }
+  @keyframes glow { from { box-shadow: 0 0 0 0 rgba(224, 123, 57, 0.15); } to { box-shadow: 0 0 0 8px rgba(224, 123, 57, 0.28); } }
+  .top { display: flex; align-items: center; gap: 8px; }
+  .qno { font-size: 30px; font-weight: 900; letter-spacing: 0.5px; }
+  .new { background: var(--orange); color: #fff; font-size: 12px; font-weight: 900; border-radius: 6px; padding: 1px 7px; }
+  .tag { font-size: 13px; font-weight: 800; border-radius: 6px; padding: 2px 8px; background: var(--bg); }
+  .tag.in { background: var(--blue-soft); color: var(--blue); }
+  .tag.out { background: var(--green-soft); color: var(--green); }
+  .time { margin-left: auto; text-align: right; font-size: 13px; color: var(--muted); font-weight: 700; }
+  .lines { margin-top: 6px; }
+  .ln { padding: 8px 0; border-top: 1px dashed var(--line); }
+  .ln .main { display: flex; align-items: baseline; gap: 8px; }
+  .ln .nm { font-size: 19px; font-weight: 900; }
+  .ln .sz { font-size: 15px; font-weight: 900; color: var(--green); }
+  .ln .qty { font-size: 19px; font-weight: 900; color: var(--danger); }
+  .ln .amt { margin-left: auto; font-weight: 700; color: var(--muted); font-size: 14px; }
+  .ln .jp { font-size: 12px; color: var(--muted); }
+  .opts { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+  .opt { font-size: 13px; font-weight: 700; padding: 1px 8px; border-radius: 6px; background: var(--bg); color: var(--muted); }
+  .opt.chg { background: #FFF1C2; color: #7A5B00; }
+  .opt.tp { background: var(--orange-soft); color: #9A4A14; }
+  .note { margin-top: 6px; padding: 6px 10px; border-radius: 8px; background: #FFF1C2; font-weight: 700; font-size: 14px; }
+  .sum { display: flex; align-items: baseline; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .sum b { font-size: 22px; }
+  .sum span { color: var(--muted); font-size: 13px; font-weight: 700; }
+  .acts { display: flex; gap: 8px; margin-top: 10px; }
+  .go { flex: 1; border: 0; border-radius: 12px; padding: 13px 10px; font-size: 17px; font-weight: 900; color: #fff; }
+  .received .go { background: var(--orange); }
+  .accepted .go { background: var(--green); }
+  .ready .go { background: var(--blue); }
+  .go:disabled { opacity: 0.5; }
+  .minor { border: 1.5px solid var(--line); background: var(--card); border-radius: 12px; padding: 10px 12px; font-weight: 700; font-size: 14px; color: var(--muted); }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 6px; text-align: center; }
+
+  .toast {
+    position: fixed; top: 76px; left: 50%; transform: translateX(-50%); z-index: 50;
+    background: var(--orange); color: #fff; font-size: 22px; font-weight: 900; padding: 14px 26px; border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+  .banner { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 40; background: var(--danger); color: #fff; padding: 10px 14px; border-radius: 12px; font-weight: 800; text-align: center; }
+
+  .overlay { position: fixed; inset: 0; z-index: 60; background: rgba(20, 30, 24, 0.72); display: grid; place-items: center; padding: 20px; }
+  .panel { background: var(--card); border-radius: 22px; padding: 26px; width: min(560px, 100%); max-height: 88vh; overflow-y: auto; }
+  .panel.wide { width: min(980px, 100%); }
+  .panel h3 { margin: 0 0 6px; font-size: 22px; }
+  .panel p { margin: 6px 0; color: var(--muted); }
+  .panel label { display: block; margin-top: 14px; font-weight: 800; font-size: 14px; }
+  .panel input { width: 100%; margin-top: 6px; border: 1.5px solid var(--line); border-radius: 12px; padding: 11px 12px; font: inherit; }
+  .big { width: 100%; margin-top: 18px; border: 0; border-radius: 14px; padding: 15px; background: var(--green); color: #fff; font-size: 19px; font-weight: 900; }
+  .err { color: var(--danger); font-weight: 800; margin-top: 10px; }
+  .phead { display: flex; align-items: center; gap: 10px; }
+  .phead .x { margin-left: auto; border: 0; background: var(--bg); width: 40px; height: 40px; border-radius: 50%; font-size: 18px; font-weight: 800; }
+  .cat { margin-top: 14px; font-weight: 900; }
+  .so { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .so button { border: 1.5px solid var(--line); background: var(--card); border-radius: 12px; padding: 8px 12px; font-weight: 800; font-size: 15px; text-align: left; }
+  .so button small { display: block; font-size: 11px; color: var(--muted); font-weight: 600; }
+  .so button.out { background: #FDECEA; border-color: var(--danger); color: var(--danger); }
+  .so button.out small { color: var(--danger); }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px; }
+  td, th { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-size: 12px; }
+  .st { font-weight: 800; white-space: nowrap; }
+  .st.cancelled { color: var(--danger); }
+
+  @media (max-width: 900px) {
+    header { height: auto; flex-wrap: wrap; padding: 10px 12px; }
+    .board { height: auto; grid-template-columns: 1fr; }
+    .list { overflow: visible; }
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="config.js"></script>
+<script src="menu.js"></script>
+<script>
+"use strict";
+
+// ---------------------------------------------------------------------------
+// 设置
+//   第一次打开：staff.html#k=门店密钥（可加 &s=门店ID），密钥存在这台平板上，地址栏里的密钥会马上去掉
+// ---------------------------------------------------------------------------
+const CONFIG = window.CHALI_CONFIG || {};
+const MENU_BASE = window.CHALI_MENU;
+const REST = (CONFIG.restUrl || (CONFIG.supabaseUrl || "").replace(/\/+$/, "") + "/rest/v1").replace(/\/+$/, "");
+const LS_KEY = "chali-staff-key";
+const LS_STORE = "chali-staff-store";
+
+function readHash() {
+  const p = new URLSearchParams(location.hash.slice(1));
+  if (!p.get("k")) return false;
+  localStorage.setItem(LS_KEY, p.get("k"));
+  if (p.get("s")) localStorage.setItem(LS_STORE, p.get("s"));
+  history.replaceState(null, "", location.pathname + location.search);
+  return true;
+}
+readHash();
+
+let STORE = localStorage.getItem(LS_STORE) || CONFIG.defaultStore || "chalichali-01";
+let KEY = localStorage.getItem(LS_KEY) || "";
+
+const TEMP = { hot: "HOT", normalIce: "普通冰", lessIce: "少冰", roomTemp: "常温", noIce: "去冰" };
+const STATUS = { received: "待付款", accepted: "制作中", ready: "可取餐", completed: "已取走", cancelled: "已取消" };
+const POLL_MS = 3000;
+const FULL_MS = 30000;
+
+const state = {
+  phase: KEY ? "start" : "setup",   // setup：填密钥  start：点一下开始（打开声音）  board：接单
+  setupError: "",
+  orders: new Map(),
+  since: null,
+  loaded: false,
+  accepting: false,
+  today: "",
+  soldOut: new Set(),
+  online: true,
+  fresh: new Map(),          // 订单 id → 第一次看到的时间（新单闪 60 秒）
+  sheet: null,               // "soldout" | "history"
+  soldDraft: null,
+  busy: new Set(),
+  toast: "",
+  error: "",
+};
+
+const yen = (n) => "¥" + Number(n).toLocaleString("ja-JP");
+const pad2 = (n) => String(n).padStart(2, "0");
+
+function h(tag, attrs, ...children) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v === null || v === undefined || v === false) continue;
+    if (k === "class") el.className = v;
+    else if (k === "style") el.setAttribute("style", v);
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of children.flat(Infinity)) {
+    if (c === null || c === undefined || c === false) continue;
+    el.append(c.nodeType ? c : document.createTextNode(String(c)));
+  }
+  return el;
+}
+
+// ---------------------------------------------------------------------------
+// 接口
+// ---------------------------------------------------------------------------
+async function rpc(fn, args) {
+  const headers = { "Content-Type": "application/json", apikey: CONFIG.anonKey || "" };
+  if ((CONFIG.anonKey || "").startsWith("eyJ")) headers.Authorization = "Bearer " + CONFIG.anonKey;
+  let res;
+  try {
+    res = await fetch(REST + "/rpc/" + fn, { method: "POST", headers, body: JSON.stringify(args) });
+  } catch (e) {
+    throw new Error("network");
+  }
+  const body = await res.json().catch(() => null);
+  if (!res.ok) throw new Error((body && body.message) || "error");
+  return body;
+}
+const staffRpc = (fn, args) => rpc(fn, { p_store: STORE, p_key: KEY, ...args });
+
+// 菜单版本：menu.js 改了以后，接单中的平板会自动重新发布
+function hashText(s) {
+  let x = 5381;
+  for (let i = 0; i < s.length; i++) x = ((x * 33) ^ s.charCodeAt(i)) >>> 0;
+  return x.toString(36);
+}
+const MENU_VERSION = hashText(JSON.stringify(MENU_BASE));
+
+function buildMenu() {
+  return {
+    ...MENU_BASE,
+    version: MENU_VERSION,
+    businessDay: state.today,
+    items: MENU_BASE.items.map((i) => ({ ...i, soldOut: state.soldOut.has(i.id) })),
+  };
+}
+
+async function publish(accepting) {
+  const r = await staffRpc("chali_staff_publish_menu", { p_menu: buildMenu(), p_accepting: accepting });
+  state.accepting = accepting;
+  if (r && r.businessDay) state.today = r.businessDay;
+}
+
+async function loadStore() {
+  const data = await rpc("chali_get_menu", { p_store: STORE });
+  if (!data) throw new Error("store_not_found");
+  state.today = data.businessDay;
+  state.accepting = !!data.accepting;
+  const m = data.menu;
+  state.soldOut = new Set(m && m.businessDay === state.today ? m.items.filter((i) => i.soldOut).map((i) => i.id) : []);
+  // 接单中但服务器上的菜单不是这一版（menu.js 改过）→ 重新发布
+  if (state.accepting && (!m || m.version !== MENU_VERSION)) await publish(true);
+}
+
+// ---------------------------------------------------------------------------
+// 拉订单：每 3 秒拉一次有变化的，每 30 秒全部重拉一次
+// ---------------------------------------------------------------------------
+let pollTimer = null;
+let lastFull = 0;
+let lastSig = "";
+async function poll() {
+  const full = !state.loaded || Date.now() - lastFull > FULL_MS;
+  try {
+    // 全部重拉时顺便更新营业日、接单状态（别的设备可能改过；过了凌晨换新的一天）
+    if (full && state.loaded) await loadStore().catch(() => {});
+    // 往前多取 10 秒，防止刚好在上次拉取时还没提交的单漏掉
+    const since = full || !state.since ? null : new Date(Date.parse(state.since) - 10000).toISOString();
+    const list = await staffRpc("chali_staff_orders", { p_since: since });
+    const before = state.orders;
+    if (full) { state.orders = new Map(); lastFull = Date.now(); }
+    const added = [];
+    for (const o of list) {
+      if (state.loaded && !before.has(o.id) && o.status === "received") added.push(o);
+      const local = before.get(o.id);
+      // 自己刚改的状态以服务器为准，但正在提交的那张先不覆盖
+      state.orders.set(o.id, state.busy.has(o.id) && local ? local : o);
+      if (!state.since || Date.parse(o.updatedAt) > Date.parse(state.since)) state.since = o.updatedAt;
+    }
+    if (full) for (const [id, o] of before) if (!state.orders.has(id) && state.busy.has(id)) state.orders.set(id, o);
+    state.loaded = true;
+    state.online = true;
+    if (added.length) announce(added);
+  } catch (e) {
+    if (e.message === "unauthorized") return logout("门店密钥不对或已更换，请重新输入。");
+    state.online = false;
+  }
+  // 没有变化就不重画（不然列表滚动位置和新单闪烁会被打断）
+  const sig = [state.online, state.accepting, state.today, [...state.orders.values()].map((o) => o.id + o.status + o.updatedAt).join()].join("|");
+  if (sig !== lastSig) { lastSig = sig; render(); }
+}
+function startPolling() {
+  if (pollTimer) return;
+  poll();
+  pollTimer = setInterval(poll, POLL_MS);
+}
+
+// ---------------------------------------------------------------------------
+// 提示音（第一次点屏幕之后才能出声）和屏幕常亮
+// ---------------------------------------------------------------------------
+let audio = null;
+function unlockAudio() {
+  try {
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    if (audio.state === "suspended") audio.resume();
+  } catch (e) { audio = null; }
+}
+function ding() {
+  if (!audio) return;
+  const t0 = audio.currentTime + 0.02;
+  [[1318.5, 0, 0.18], [1046.5, 0.2, 0.45]].forEach(([f, at, len]) => {
+    const o = audio.createOscillator();
+    const g = audio.createGain();
+    o.type = "sine";
+    o.frequency.value = f;
+    g.gain.setValueAtTime(0.0001, t0 + at);
+    g.gain.exponentialRampToValueAtTime(0.5, t0 + at + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + at + len);
+    o.connect(g).connect(audio.destination);
+    o.start(t0 + at);
+    o.stop(t0 + at + len + 0.05);
+  });
+}
+let wakeLock = null;
+async function keepAwake() {
+  try { if (navigator.wakeLock && document.visibilityState === "visible") wakeLock = await navigator.wakeLock.request("screen"); } catch (e) { /* 不支持就算了 */ }
+}
+document.addEventListener("visibilitychange", () => { if (state.phase === "board") keepAwake(); });
+
+let toastTimer = null;
+function announce(list) {
+  const now = Date.now();
+  for (const o of list) state.fresh.set(o.id, now);
+  const cups = list.reduce((s, o) => s + o.cupCount, 0);
+  state.toast = "🔔 新扫码单 " + list.map((o) => "Q" + o.number).join("、") + "（" + cups + " 杯）";
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { state.toast = ""; render(); }, 5000);
+  ding();
+}
+
+// ---------------------------------------------------------------------------
+// 动作
+// ---------------------------------------------------------------------------
+async function setStatus(o, status, reason) {
+  if (state.busy.has(o.id)) return;
+  const before = o.status;
+  state.busy.add(o.id);
+  state.fresh.delete(o.id);
+  o.status = status;
+  render();
+  try {
+    const r = await staffRpc("chali_staff_update_order", { p_order: o.id, p_status: status, p_reason: reason || null });
+    state.orders.set(o.id, r);
+    state.error = "";
+  } catch (e) {
+    o.status = before;
+    state.error = e.message === "network" ? "网络不通，刚才的操作没有成功，请再点一次。" : "操作失败：" + e.message;
+  }
+  state.busy.delete(o.id);
+  render();
+}
+
+function cancelOrder(o) {
+  const reason = prompt("取消 Q" + o.number + "？\n可以写原因（顾客手机上会看到），不写也行。", "");
+  if (reason === null) return;
+  setStatus(o, "cancelled", reason);
+}
+
+async function toggleAccepting() {
+  const next = !state.accepting;
+  if (!next && !confirm("暂停扫码点单？\n顾客页面会显示「请到柜台点单」。")) return;
+  try {
+    await publish(next);
+    state.error = "";
+  } catch (e) {
+    state.error = "切换失败，请检查网络后再试。";
+  }
+  render();
+}
+
+async function saveSoldOut() {
+  const prev = state.soldOut;
+  state.soldOut = new Set(state.soldDraft);
+  try {
+    await publish(state.accepting);
+    state.sheet = null;
+    state.error = "";
+  } catch (e) {
+    state.soldOut = prev;
+    state.error = "售罄没有保存成功，请再试一次。";
+  }
+  render();
+}
+
+async function connect(store, key) {
+  STORE = store.trim() || STORE;
+  KEY = key.trim();
+  state.setupError = "";
+  try {
+    await staffRpc("chali_staff_orders", { p_since: new Date().toISOString() });
+    localStorage.setItem(LS_KEY, KEY);
+    localStorage.setItem(LS_STORE, STORE);
+    state.phase = "start";
+  } catch (e) {
+    state.setupError = e.message === "unauthorized" ? "门店 ID 或密钥不对。" : "连不上服务器，请检查网络。";
+  }
+  render();
+}
+
+function logout(message) {
+  localStorage.removeItem(LS_KEY);
+  KEY = "";
+  state.phase = "setup";
+  state.setupError = message || "";
+  clearInterval(pollTimer);
+  pollTimer = null;
+  render();
+}
+
+async function begin() {
+  unlockAudio();
+  keepAwake();
+  state.phase = "board";
+  render();
+  try { await loadStore(); } catch (e) { state.online = false; }
+  startPolling();
+}
+
+// ---------------------------------------------------------------------------
+// 页面
+// ---------------------------------------------------------------------------
+function render() {
+  const app = document.getElementById("app");
+  const scrolls = [...app.querySelectorAll(".list, .panel")].map((el) => el.scrollTop);
+  draw(app);
+  [...app.querySelectorAll(".list, .panel")].forEach((el, i) => { if (scrolls[i]) el.scrollTop = scrolls[i]; });
+}
+
+function draw(app) {
+  app.replaceChildren();
+  if (state.phase === "setup") { app.append(renderSetup()); return; }
+  app.append(renderHeader(), renderBoard());
+  if (state.phase === "start") app.append(renderStart());
+  if (state.sheet === "soldout") app.append(renderSoldOut());
+  if (state.sheet === "history") app.append(renderHistory());
+  if (state.toast) app.append(h("div", { class: "toast", role: "status" }, state.toast));
+  if (state.error) app.append(h("div", { class: "banner", onclick: () => { state.error = ""; render(); } }, state.error));
+  else if (!state.online) app.append(h("div", { class: "banner" }, "网络断开，正在重连…（顾客这时下的单，连上后会出现）"));
+  const waiting = active("received").length;
+  document.title = (waiting ? "(" + waiting + ") " : "") + "茶里茶里 扫码接单屏";
+}
+
+function renderSetup() {
+  let storeInput, keyInput;
+  return h("div", { class: "overlay" }, h("div", { class: "panel" },
+    h("h3", {}, "扫码接单屏 · 第一次设置"),
+    h("p", {}, "输入门店 ID 和门店密钥。密钥只保存在这台平板上。"),
+    h("label", {}, "门店 ID", storeInput = h("input", { value: STORE, autocapitalize: "off", autocomplete: "off" })),
+    h("label", {}, "门店密钥", keyInput = h("input", { type: "password", autocapitalize: "off", autocomplete: "off" })),
+    state.setupError ? h("div", { class: "err" }, state.setupError) : null,
+    h("button", { class: "big", onclick: () => connect(storeInput.value, keyInput.value) }, "连接"),
+  ));
+}
+
+function renderStart() {
+  return h("div", { class: "overlay" }, h("div", { class: "panel", style: "text-align:center" },
+    h("h3", {}, "扫码接单屏"),
+    h("p", {}, "点一下开始。来新单时会「叮咚」响，屏幕保持常亮。"),
+    h("button", { class: "big", onclick: begin }, "开始"),
+  ));
+}
+
+function todayOrders() {
+  return [...state.orders.values()].filter((o) => o.businessDay === state.today);
+}
+function active(status) {
+  return [...state.orders.values()].filter((o) => o.status === status).sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+}
+
+function renderHeader() {
+  const done = todayOrders().filter((o) => o.status !== "cancelled");
+  return h("header", {},
+    h("h1", {}, MENU_BASE.storeName, h("small", {}, "扫码接单屏")),
+    h("button", { class: "pill " + (state.accepting ? "on" : "off"), onclick: toggleAccepting },
+      state.accepting ? "● 接单中" : "○ 已暂停 · 点这里开始接单"),
+    h("span", { class: "grow" }),
+    h("span", { class: "stats" }, "今日扫码 ", h("b", {}, done.length + " 单"), " · ", h("b", {}, yen(done.reduce((s, o) => s + o.total, 0)))),
+    h("button", { class: "tool", onclick: () => { state.soldDraft = new Set(state.soldOut); state.sheet = "soldout"; render(); } },
+      "售罄" + (state.soldOut.size ? "（" + state.soldOut.size + "）" : "")),
+    h("button", { class: "tool", onclick: () => { state.sheet = "history"; render(); } }, "今日记录"),
+    h("button", { class: "tool", onclick: () => window.open("poster.html", "_blank") }, "二维码"),
+    h("span", { class: "conn " + (state.online ? "ok" : "bad") }, state.online ? "● 已连接" : "✕ 断开"),
+  );
+}
+
+function renderBoard() {
+  const cols = [
+    ["received", "① 新订单", "顾客来柜台报单号 → 录入收银、收款"],
+    ["accepted", "② 制作中", "做好后点「做好了」，顾客手机会提示"],
+    ["ready", "③ 可取餐", "顾客取走后点一下"],
+  ];
+  return h("main", { class: "board" }, cols.map(([status, title, sub]) => {
+    const list = active(status);
+    return h("section", { class: "col " + status },
+      h("h2", {}, title, h("small", {}, sub), h("span", { class: "n" }, String(list.length))),
+      h("div", { class: "list" }, list.length ? list.map(renderCard) : h("div", { class: "empty" }, state.loaded ? "暂时没有" : "加载中…")),
+    );
+  }));
+}
+
+function ago(iso) {
+  const d = new Date(iso);
+  const min = Math.max(0, Math.floor((Date.now() - d.getTime()) / 60000));
+  return pad2(d.getHours()) + ":" + pad2(d.getMinutes()) + (min < 1 ? " · 刚刚" : " · " + min + " 分钟前");
+}
+
+function renderCard(o) {
+  const fresh = state.fresh.has(o.id) && Date.now() - state.fresh.get(o.id) < 60000;
+  const busy = state.busy.has(o.id);
+  const go = { received: "已录入收银 · 已收款", accepted: "做好了（通知顾客）", ready: "顾客已取走" }[o.status];
+  const next = { received: "accepted", accepted: "ready", ready: "completed" }[o.status];
+  const back = { accepted: "received", ready: "accepted" }[o.status];
+  return h("div", { class: "card" + (fresh ? " fresh" : ""), "data-q": "Q" + o.number },
+    h("div", { class: "top" },
+      h("span", { class: "qno" }, "Q" + o.number),
+      fresh ? h("span", { class: "new" }, "NEW") : null,
+      h("span", { class: "tag " + (o.dining === "eatIn" ? "in" : "out") }, o.dining === "eatIn" ? "店内" : "外带"),
+      o.seat ? h("span", { class: "tag" }, "桌 " + o.seat) : null,
+      h("span", { class: "time" }, ago(o.createdAt)),
+    ),
+    h("div", { class: "lines" }, o.lines.map(renderLine)),
+    o.note ? h("div", { class: "note" }, "备注：" + o.note) : null,
+    h("div", { class: "sum" }, h("b", {}, yen(o.total)), h("span", {}, o.cupCount + " 杯 · 含税")),
+    h("div", { class: "acts" },
+      back ? h("button", { class: "minor", disabled: busy, onclick: () => setStatus(o, back) }, "↩ 退回") : null,
+      h("button", { class: "go", disabled: busy, onclick: () => setStatus(o, next) }, go),
+      o.status === "received" ? h("button", { class: "minor", disabled: busy, onclick: () => cancelOrder(o) }, "取消") : null,
+    ),
+  );
+}
+
+// 和默认不一样的选项标黄，店员一眼能看到要特别做的
+function renderLine(l) {
+  const item = MENU_BASE.items.find((i) => i.id === l.itemID);
+  const opts = [];
+  const sizes = item ? Object.keys(item.prices).length : 2;
+  opts.push(h("span", { class: "opt" + (l.temp !== "normalIce" ? " chg" : "") }, TEMP[l.temp] || l.temp));
+  opts.push(h("span", { class: "opt" + (l.sweetness !== 100 ? " chg" : "") }, "甜度 " + l.sweetness + "%"));
+  for (const tp of l.toppings) opts.push(h("span", { class: "opt tp" }, "+" + tp.name + "（" + tp.nameJP + "）"));
+  return h("div", { class: "ln" },
+    h("div", { class: "main" },
+      h("span", { class: "nm" }, l.name),
+      sizes > 1 ? h("span", { class: "sz" }, l.size) : h("span", { class: "sz", style: "color:var(--muted)" }, l.size),
+      l.quantity > 1 ? h("span", { class: "qty" }, "×" + l.quantity) : null,
+      h("span", { class: "amt" }, yen(l.unitPrice * l.quantity)),
+    ),
+    h("div", { class: "jp" }, l.nameJP),
+    h("div", { class: "opts" }, opts),
+  );
+}
+
+function renderSoldOut() {
+  const close = () => { state.sheet = null; render(); };
+  return h("div", { class: "overlay", onclick: (e) => { if (e.target === e.currentTarget) close(); } },
+    h("div", { class: "panel wide" },
+      h("div", { class: "phead" }, h("h3", {}, "售罄设置"), h("button", { class: "x", onclick: close }, "✕")),
+      h("p", {}, "点一下标为售罄（红色），再点一下取消。保存后顾客页面马上显示「售罄」。第二天自动恢复。"),
+      MENU_BASE.categories.map((c) => [
+        h("div", { class: "cat", style: "color:#" + c.colorHex }, c.name + "  " + c.nameJP),
+        h("div", { class: "so" }, MENU_BASE.items.filter((i) => i.categoryID === c.id).map((i) =>
+          h("button", {
+            class: state.soldDraft.has(i.id) ? "out" : "",
+            onclick: () => { state.soldDraft.has(i.id) ? state.soldDraft.delete(i.id) : state.soldDraft.add(i.id); render(); },
+          }, i.name, h("small", {}, state.soldDraft.has(i.id) ? "售罄" : i.nameJP)))),
+      ]),
+      h("button", { class: "big", onclick: saveSoldOut }, "保存（" + state.soldDraft.size + " 款售罄）"),
+    ));
+}
+
+function renderHistory() {
+  const close = () => { state.sheet = null; render(); };
+  const list = todayOrders().sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  const ok = list.filter((o) => o.status !== "cancelled");
+  return h("div", { class: "overlay", onclick: (e) => { if (e.target === e.currentTarget) close(); } },
+    h("div", { class: "panel wide" },
+      h("div", { class: "phead" }, h("h3", {}, "今日扫码记录（" + state.today + "）"), h("button", { class: "x", onclick: close }, "✕")),
+      h("p", {}, ok.length + " 单 · " + ok.reduce((s, o) => s + o.cupCount, 0) + " 杯 · " + yen(ok.reduce((s, o) => s + o.total, 0)) + "（不含已取消）"),
+      list.length ? h("table", {},
+        h("tr", {}, h("th", {}, "单号"), h("th", {}, "时间"), h("th", {}, "内容"), h("th", {}, "金额"), h("th", {}, "状态")),
+        list.map((o) => h("tr", {},
+          h("td", {}, h("b", {}, "Q" + o.number)),
+          h("td", {}, ago(o.createdAt).split(" · ")[0]),
+          h("td", {}, o.lines.map((l) => l.name + " " + l.size + (l.quantity > 1 ? "×" + l.quantity : "")).join("、")),
+          h("td", {}, yen(o.total)),
+          h("td", { class: "st " + o.status }, STATUS[o.status] + (o.cancelReason ? "（" + o.cancelReason + "）" : "")),
+        )),
+      ) : h("div", { class: "empty" }, "今天还没有扫码单"),
+    ));
+}
+
+// 设置页开着的时候又打开了带 #k= 的链接（同一个页面只改了 #，不会重新加载）
+window.addEventListener("hashchange", () => {
+  if (!readHash() || state.phase !== "setup") return;
+  STORE = localStorage.getItem(LS_STORE) || STORE;
+  KEY = localStorage.getItem(LS_KEY);
+  state.setupError = "";
+  state.phase = "start";
+  render();
+});
+
+// 每 20 秒刷新一次「几分钟前」
+setInterval(() => { if (state.phase === "board" && !state.sheet) render(); }, 20000);
+render();
+</script>
+</body>
+</html>

@@ -19,7 +19,8 @@ async function publicRpc(fn, args) {
 function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + name + (cond ? '' : '  -> ' + detail)); if (!cond) process.exitCode = 1; }
 
 (async () => {
-  const browser = await chromium.launch();
+  // 本机用缓存的浏览器时设 PW_EXE；CI 里用 playwright 自带的
+  const browser = await chromium.launch(process.env.PW_EXE ? { executablePath: process.env.PW_EXE } : {});
   const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, locale: 'ja-JP' });
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -33,12 +34,16 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   const soldOut = page.locator('.item.soldout');
   check('售罄饮品不能点', (await soldOut.count()) === 1 && (await soldOut.first().isDisabled()));
 
+  const oolong = page.locator('.item', { has: page.locator('.name', { hasText: /^ウーロンミルクティー$/ }) });
+  check('真实菜单 48 款', (await page.locator('.item').count()) === 48);
+  check('珍珠奶茶显示「タピオカ入り」', (await oolong.textContent()).includes('タピオカ入り'), await oolong.textContent());
+
   // 乌龙烤鲜奶 L 少冰 50% +珍珠 ×2
-  await page.locator('.item', { hasText: '焙煎ウーロンミルク' }).click();
+  await oolong.click();
   await page.waitForSelector('.sheet.show');
   await page.locator('.sheet .chip', { hasText: '氷少なめ' }).click();
   await page.locator('.sheet .chip', { hasText: '50%' }).click();
-  await page.locator('.sheet .chip', { hasText: 'タピオカ' }).click();
+  await page.locator('.sheet .chip', { hasText: /^タピオカ/ }).click();
   await page.locator('.sheet .qty button', { hasText: '+' }).click();
   await page.waitForTimeout(300);
   await page.evaluate(() => { document.getElementById('sheet').scrollTop = 0; });
@@ -48,7 +53,7 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   await page.waitForTimeout(300);
 
   // 奇异之旅：只有 L、不能做热的
-  await page.locator('.item', { hasText: 'キウイトリップ' }).click();
+  await page.locator('.item', { hasText: 'キウイチーズティー' }).click();
   await page.waitForSelector('.sheet.show');
   check('鲜果不显示 HOT', (await page.locator('.sheet .chip', { hasText: 'ホット' }).count()) === 0);
   check('只有一个规格时不显示规格行', !(await page.textContent('.sheet')).includes('サイズ'));
@@ -60,7 +65,7 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   await page.click('#cartbar button');
   await page.waitForSelector('.sheet.show');
   const cartText = await page.textContent('.sheet');
-  check('购物车显示两行和合计', cartText.includes('焙煎ウーロンミルク') && cartText.includes('キウイトリップ') && cartText.includes('¥2,280') && !/null|\[object/.test(cartText), cartText);
+  check('购物车显示两行和合计', cartText.includes('ウーロンミルクティー') && cartText.includes('キウイチーズティー') && cartText.includes('¥2,280') && !/null|\[object/.test(cartText), cartText);
   await page.evaluate(() => { document.getElementById('sheet').scrollTop = 0; });
   await page.fill('.sheet textarea', '氷は別でお願いします');
   await page.screenshot({ path: shots + '/3-cart.png' });
@@ -92,11 +97,24 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   await page.click('.lang button:nth-child(2)');
   check('切换中文', (await page.textContent('.status .msg')).includes('做好了'));
   await page.screenshot({ path: shots + '/6-ready-zh.png' });
+  await page.click('.lang button:nth-child(3)');
+  check('切换英文（状态页）', (await page.textContent('.status .msg')).includes('Ready') && (await page.textContent('.status')).includes('Roasted Oolong Milk Tea'), await page.textContent('.status'));
+  await page.click('.lang button:nth-child(2)');
 
   // 再点一单 → 回到菜单（中文）
   await page.click('.status .secondary');
   await page.waitForSelector('.item');
   await page.screenshot({ path: shots + '/7-menu-zh.png' });
+  check('中文菜单显示「含珍珠」', (await page.textContent('.item >> nth=0')).includes('含珍珠'));
+  await page.click('.lang button:nth-child(3)');
+  check('英文菜单', (await page.textContent('#app')).includes('Roasted Oolong Milk Tea') && (await page.textContent('#app')).includes('with Tapioca pearls'));
+  // 冰沙只能普通冰，不显示温度行
+  await page.locator('.item', { hasText: 'Mango Smoothie' }).click();
+  await page.waitForSelector('.sheet.show');
+  check('冰沙不显示温度行', !(await page.textContent('.sheet')).includes('Temperature'), await page.textContent('.sheet'));
+  await page.screenshot({ path: shots + '/7b-smoothie-en.png' });
+  await page.click('.sheet .close');
+  await page.click('.lang button:nth-child(2)');
 
   // 暂停接单
   const menu = JSON.parse(fs.readFileSync(path.join(__dirname, 'published_menu.json'), 'utf8'));

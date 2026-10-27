@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="data:,">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#2E7D4F">
 <title>茶里茶里 モバイルオーダー</title>
@@ -87,6 +88,7 @@
   .item .alt { font-size: 12px; color: var(--muted); }
   .item .price { font-size: 14px; font-weight: 700; margin-top: 4px; }
   .item .hot { color: var(--orange); font-size: 12px; font-weight: 700; margin-left: 6px; }
+  .inc { color: #8B5E3C; background: #F3EAE2; font-size: 12px; font-weight: 700; margin-left: 6px; padding: 1px 7px; border-radius: 6px; }
   .item .plus {
     flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%;
     background: var(--green-soft); color: var(--green); font-size: 24px; font-weight: 700;
@@ -228,6 +230,7 @@ const T = {
     stepReceived: "注文", stepAccepted: "お支払い・製作中", stepReady: "できあがり",
     newOrder: "新しく注文する",
     reason: "理由",
+    included: "入り",
     errors: {
       not_accepting: "ただいまモバイルオーダーを停止しています。レジでご注文ください。",
       sold_out: "売り切れの商品があります。カートを確認してください。",
@@ -266,6 +269,7 @@ const T = {
     stepReceived: "下单", stepAccepted: "付款・制作中", stepReady: "可取餐",
     newOrder: "再点一单",
     reason: "原因",
+    included: "含",
     errors: {
       not_accepting: "现在暂停扫码点单，请到柜台点单。",
       sold_out: "有饮品刚刚售罄，请检查购物车。",
@@ -275,14 +279,59 @@ const T = {
       store: "找不到这家店，请重新扫码。",
     },
   },
+  en: {
+    sub: "Mobile order · Pay at the counter",
+    seat: "Table",
+    takeOut: "Take out", takeOutTax: "8% tax",
+    eatIn: "Eat in", eatInTax: "10% tax",
+    closed: "Mobile ordering is paused right now. Please order at the counter.",
+    soldOut: "Sold out",
+    hot: "Hot OK",
+    size: "Size", temp: "Temperature / ice", sweet: "Sweetness", toppings: "Toppings (any)", qty: "Quantity",
+    add: "Add to cart",
+    viewCart: "View cart",
+    cart: "Your order",
+    note: "Requests (optional)",
+    notePh: "e.g. No straw, please",
+    order: "Place order",
+    payNote: "After ordering, tell the staff your order number at the counter and pay. We start making it after payment.",
+    remove: "Remove",
+    total: "Total (tax incl.)",
+    empty: "Your cart is empty",
+    yourNo: "Order number",
+    pickupNo: "Pickup number",
+    received: "Show this number at the counter and pay there.",
+    accepted: "Thank you! We are making your drinks now.",
+    ready: "Ready! Please pick it up at the counter.",
+    cancelled: "Sorry, this order was cancelled.",
+    completed: "Thank you for coming!",
+    stepReceived: "Ordered", stepAccepted: "Paid · Making", stepReady: "Ready",
+    newOrder: "Order again",
+    reason: "Reason",
+    included: "with",
+    errors: {
+      not_accepting: "Mobile ordering is paused right now. Please order at the counter.",
+      sold_out: "Something just sold out. Please check your cart.",
+      busy: "We are very busy. Please try again in a moment.",
+      network: "Connection failed. Please try again.",
+      default: "We could not take this order. Please order at the counter.",
+      store: "Shop not found. Please scan the QR code again.",
+    },
+  },
 };
 
 const TEMP = {
   ja: { hot: "ホット", normalIce: "氷普通", lessIce: "氷少なめ", roomTemp: "常温", noIce: "氷なし" },
   zh: { hot: "HOT", normalIce: "普通冰", lessIce: "少冰", roomTemp: "常温", noIce: "去冰" },
+  en: { hot: "Hot", normalIce: "Regular ice", lessIce: "Less ice", roomTemp: "Room temp", noIce: "No ice" },
 };
 
-let lang = localStorage.getItem("chali-lang") || ((navigator.language || "").startsWith("zh") ? "zh" : "ja");
+function guessLang() {
+  const l = (navigator.language || "").toLowerCase();
+  return l.startsWith("zh") ? "zh" : l.startsWith("ja") ? "ja" : "en";
+}
+let lang = localStorage.getItem("chali-lang") || guessLang();
+if (!T[lang]) lang = "ja";
 let state = {
   loading: true,
   storeName: "茶里茶里",
@@ -300,8 +349,16 @@ let state = {
 
 const t = (key) => T[lang][key];
 const yen = (n) => "¥" + Number(n).toLocaleString("ja-JP");
-const nameOf = (x) => (lang === "ja" ? x.nameJP || x.name : x.name || x.nameJP);
+// 顾客语言的名字；副标题用日文（中文、英文顾客跟店员说日文名也能对上），日文顾客副标题用中文
+const nameOf = (x) => (lang === "ja" ? x.nameJP || x.name : lang === "en" ? x.nameEN || x.nameJP || x.name : x.name || x.nameJP);
 const altOf = (x) => (lang === "ja" ? x.name : x.nameJP);
+// 标配小料，例如「タピオカ入り」「含珍珠」「with Tapioca pearls」
+function includedText(item) {
+  const names = (item.includedToppingIDs || []).map((id) => toppingById(id)).filter(Boolean).map(nameOf);
+  if (!names.length) return null;
+  const list = names.join(lang === "en" ? ", " : "・");
+  return lang === "ja" ? list + t("included") : t("included") + (lang === "en" ? " " : "") + list;
+}
 
 // 安全地创建元素（菜单名称都用 textContent，不拼 HTML）
 function h(tag, attrs, ...children) {
@@ -386,7 +443,7 @@ function optionText(line) {
 // 页面
 // ---------------------------------------------------------------------------
 function render() {
-  document.documentElement.lang = lang === "ja" ? "ja" : "zh-CN";
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
   const app = document.getElementById("app");
   app.replaceChildren();
   app.append(renderHeader());
@@ -409,6 +466,7 @@ function renderHeader() {
       h("div", { class: "lang" },
         h("button", { class: lang === "ja" ? "on" : "", onclick: () => setLang("ja") }, "日本語"),
         h("button", { class: lang === "zh" ? "on" : "", onclick: () => setLang("zh") }, "中文"),
+        h("button", { class: lang === "en" ? "on" : "", onclick: () => setLang("en") }, "EN"),
       ),
     ),
     h("div", { class: "sub" }, t("sub"), SEAT ? h("span", { class: "seat" }, t("seat") + " " + SEAT) : null),
@@ -459,7 +517,9 @@ function renderItem(item, cat) {
     h("div", { class: "names" },
       h("div", { class: "name" }, nameOf(item)),
       h("div", { class: "alt" }, altOf(item)),
-      h("div", { class: "price" }, prices, item.allowedTemps.includes("hot") ? h("span", { class: "hot" }, t("hot")) : null),
+      h("div", { class: "price" }, prices,
+        includedText(item) ? h("span", { class: "inc" }, includedText(item)) : null,
+        item.allowedTemps.includes("hot") ? h("span", { class: "hot" }, t("hot")) : null),
     ),
     soldOut ? h("span", { class: "stamp" }, t("soldOut")) : h("span", { class: "plus" }, "+"),
   );
@@ -495,15 +555,16 @@ function openItem(item) {
     const sizes = sizesOf(item);
     fill(sheet,
       h("div", { class: "head" },
-        h("div", {}, h("h3", {}, nameOf(item)), h("div", { class: "alt" }, altOf(item))),
+        h("div", {}, h("h3", {}, nameOf(item)), h("div", { class: "alt" }, altOf(item),
+          includedText(item) ? h("span", { class: "inc" }, includedText(item)) : null)),
         h("button", { class: "close", "aria-label": "close", onclick: closeSheet }, "✕"),
       ),
       sizes.length > 1 ? group(t("size"), sizes.map((s) =>
         chip(s, draft.size === s, () => { draft.size = s; draw(); }, yen(basePrice(item, s))))) : null,
-      group(t("temp"), item.allowedTemps.map((tp) =>
-        chip((TEMP[lang] || TEMP.ja)[tp], draft.temp === tp, () => { draft.temp = tp; draw(); }, null, tp === "hot"))),
-      group(t("sweet"), item.allowedSweetness.map((sw) =>
-        chip(sw + "%", draft.sweetness === sw, () => { draft.sweetness = sw; draw(); }))),
+      item.allowedTemps.length > 1 ? group(t("temp"), item.allowedTemps.map((tp) =>
+        chip((TEMP[lang] || TEMP.ja)[tp], draft.temp === tp, () => { draft.temp = tp; draw(); }, null, tp === "hot"))) : null,
+      item.allowedSweetness.length > 1 ? group(t("sweet"), item.allowedSweetness.map((sw) =>
+        chip(sw + "%", draft.sweetness === sw, () => { draft.sweetness = sw; draw(); }))) : null,
       toppings.length ? group(t("toppings"), toppings.map((tp) =>
         chip(nameOf(tp), draft.toppingIDs.includes(tp.id), () => {
           draft.toppingIDs = draft.toppingIDs.includes(tp.id)
@@ -632,9 +693,9 @@ function renderStatus() {
     h("div", { class: "card lines" },
       o.lines.map((l) => h("div", { class: "line" },
         h("div", { class: "names" },
-          h("div", { class: "name" }, (lang === "ja" ? l.nameJP || l.name : l.name) + (l.quantity > 1 ? " ×" + l.quantity : "")),
+          h("div", { class: "name" }, nameOf(l) + (l.quantity > 1 ? " ×" + l.quantity : "")),
           h("div", { class: "opts" }, [l.size, (TEMP[lang] || TEMP.ja)[l.temp], l.sweetness + "%"]
-            .concat(l.toppings.map((tp) => "+" + (lang === "ja" ? tp.nameJP || tp.name : tp.name))).join("・")),
+            .concat(l.toppings.map((tp) => "+" + nameOf(tp))).join("・")),
         ),
         h("div", { class: "amt" }, yen(l.unitPrice * l.quantity)),
       )),
@@ -687,7 +748,7 @@ async function loadMenu() {
     state.error = errorText(e.message);
   }
   state.loading = false;
-  document.title = state.storeName + " " + (lang === "ja" ? "モバイルオーダー" : "扫码点单");
+  document.title = state.storeName + " " + ({ ja: "モバイルオーダー", zh: "扫码点单", en: "Mobile Order" })[lang];
   render();
 }
 

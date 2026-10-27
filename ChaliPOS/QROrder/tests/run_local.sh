@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # 在本机用 Docker 起 Postgres + PostgREST（和 Supabase 用的同一套 REST 层），
 # 执行迁移 SQL，然后跑数据库函数测试和顾客页面测试。
-#   需要：docker、python3、node（顾客页面测试还需要 playwright）
+#   需要：docker、python3、node（页面测试还需要 playwright）
+#   测试菜单由 web/menu.js（真实菜单）生成
 #   用法：./run_local.sh            全部测试
 #         SKIP_WEB=1 ./run_local.sh  只测数据库
 set -euo pipefail
@@ -29,6 +30,7 @@ docker run -d --name chali-test-db --network chali-test -e POSTGRES_PASSWORD=pg 
 for _ in $(seq 1 60); do docker exec chali-test-db pg_isready -U postgres >/dev/null 2>&1 && break; sleep 1; done
 sleep 2
 
+node gen_menu.js
 echo "== 执行迁移（执行两次，确认可以重复执行）"
 docker exec -i chali-test-db psql -U postgres -v ON_ERROR_STOP=1 -q < roles.sql
 for _ in 1 2; do
@@ -52,11 +54,13 @@ echo "PASS anon 不能读表、不能建店"
 if [ "${SKIP_WEB:-}" != "1" ]; then
   echo "== 顾客页面"
   mkdir -p "$WORK/site"
-  cp ../web/index.html "$WORK/site/"
+  cp -R ../web/. "$WORK/site/"
   printf 'window.CHALI_CONFIG = { restUrl: "%s", anonKey: "local-test", defaultStore: "chalichali-01" };\n' "$CHALI_REST" > "$WORK/site/config.js"
-  (cd "$WORK/site" && python3 -m http.server 8080 >/dev/null 2>&1) &
+  (cd "$WORK/site" && exec python3 -m http.server 8080 >/dev/null 2>&1) &
   HTTP_PID=$!
   sleep 1
   node web_test.js "${SHOTS_DIR:-$WORK/shots}"
+  echo "== 接单屏（平板）+ 顾客手机"
+  node staff_test.js "${SHOTS_DIR:-$WORK/shots}"
 fi
 echo "== 全部通过"

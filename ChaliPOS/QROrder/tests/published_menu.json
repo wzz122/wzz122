@@ -1,1 +1,1967 @@
-{"businessDay":"2026-10-24","categories":[{"colorHex":"8B5E3C","id":"milktea","name":"珍珠奶茶","nameJP":"タピオカミルクティー"},{"colorHex":"E07B39","id":"fruit","name":"鲜果时光","nameJP":"フレッシュフルーツ"},{"colorHex":"B8A000","id":"lemon","name":"清爽爆柠茶","nameJP":"レモンティー"},{"colorHex":"2E7D4F","id":"special","name":"茶里特饮","nameJP":"チャリスペシャル"},{"colorHex":"D94F7A","id":"seasonal","name":"季节限定","nameJP":"季節限定"}],"eatInPricing":"sameTaxIncluded","items":[{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["hot","normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"milktea","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"pearl-milktea","name":"珍珠奶茶","nameJP":"タピオカミルクティー","prices":{"l":680,"m":580},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["hot","normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"milktea","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"oolong-roast-milk","name":"乌龙烤鲜奶","nameJP":"焙煎ウーロンミルク","prices":{"l":680,"m":580},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["hot","normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"milktea","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"brown-sugar-pearl-milk","name":"黑糖珍珠鲜奶","nameJP":"黒糖タピオカミルク","prices":{"l":780,"m":680},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["hot","normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"milktea","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"milktea-trio","name":"奶茶三兄弟","nameJP":"ミルクティー三兄弟","prices":{"l":780},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"fruit","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"kiwi-trip","name":"奇异之旅","nameJP":"キウイトリップ","prices":{"l":780},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"fruit","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"strawberry","name":"多肉莓子","nameJP":"ごろごろイチゴ","prices":{"l":850},"soldOut":true},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"fruit","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"mango-pomelo","name":"杨枝甘露","nameJP":"楊枝甘露","prices":{"l":850},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"lemon","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"lemon-oolong","name":"柠檬搞乌龙","nameJP":"レモンウーロン","prices":{"l":640},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"lemon","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"whole-lemon-green","name":"整颗爆柠绿","nameJP":"まるごとレモン緑茶","prices":{"l":640},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"special","defaultSize":"M","defaultSweetness":100,"defaultTemp":"normalIce","id":"salt-osmanthus-milk","name":"老盐桂花牛乳茶","nameJP":"塩キンモクセイミルクティー","prices":{"m":680},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"special","defaultSize":"M","defaultSweetness":100,"defaultTemp":"normalIce","id":"yogurt-ice","name":"优酪冰","nameJP":"ヨーグルトスムージー","prices":{"m":780},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"seasonal","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"pink-guava-grape","name":"粉芭葡奶","nameJP":"ピンクグァバ＆グレープミルク","prices":{"l":850},"soldOut":false},{"allowedSweetness":[120,100,70,50,30,0],"allowedTemps":["normalIce","lessIce","roomTemp","noIce"],"allowedToppingIDs":["cheese","coconutJelly","pearl","pudding","nata","redBean","sago","oreo"],"categoryID":"seasonal","defaultSize":"L","defaultSweetness":100,"defaultTemp":"normalIce","id":"passion-q","name":"酸Q百香果","nameJP":"パッションフルーツQQ","prices":{"l":850},"soldOut":false}],"storeName":"茶里茶里","storeNameJP":"茶里茶里","toppings":[{"id":"cheese","name":"芝士奶盖","nameJP":"チーズフォーム","price":120},{"id":"coconutJelly","name":"椰子冻","nameJP":"ココナッツゼリー","price":100},{"id":"pearl","name":"珍珠","nameJP":"タピオカ","price":70},{"id":"pudding","name":"布丁","nameJP":"プリン","price":70},{"id":"nata","name":"椰果","nameJP":"ナタデココ","price":70},{"id":"redBean","name":"红豆","nameJP":"あずき","price":70},{"id":"sago","name":"西米露","nameJP":"サゴ","price":70},{"id":"oreo","name":"奥利奥","nameJP":"オレオ","price":70}]}
+{
+ "storeName": "茶里茶里",
+ "eatInPricing": "sameTaxIncluded",
+ "categories": [
+  {
+   "id": "milk",
+   "name": "珍珠奶茶",
+   "nameJP": "タピオカミルクティー",
+   "nameEN": "Bubble Milk Tea",
+   "colorHex": "8B5E3C"
+  },
+  {
+   "id": "fruit",
+   "name": "鲜果时光",
+   "nameJP": "フルーツティー",
+   "nameEN": "Fruit Tea",
+   "colorHex": "E07B39"
+  },
+  {
+   "id": "lemon",
+   "name": "清爽爆柠茶",
+   "nameJP": "レモンティー",
+   "nameEN": "Lemon Tea",
+   "colorHex": "A68A00"
+  },
+  {
+   "id": "special",
+   "name": "茶里特饮",
+   "nameJP": "オリジナル",
+   "nameEN": "Chali Originals",
+   "colorHex": "2E7D4F"
+  },
+  {
+   "id": "season",
+   "name": "季节限定",
+   "nameJP": "季節限定",
+   "nameEN": "Seasonal",
+   "colorHex": "D94F7A"
+  }
+ ],
+ "toppings": [
+  {
+   "id": "cheese",
+   "name": "芝士奶盖",
+   "nameJP": "チーズフォーム",
+   "nameEN": "Cheese foam",
+   "price": 120
+  },
+  {
+   "id": "coconutPudding",
+   "name": "椰子冻",
+   "nameJP": "ココナッツプリン",
+   "nameEN": "Coconut pudding",
+   "price": 100
+  },
+  {
+   "id": "pearl",
+   "name": "珍珠",
+   "nameJP": "タピオカ",
+   "nameEN": "Tapioca pearls",
+   "price": 70
+  },
+  {
+   "id": "pudding",
+   "name": "布丁",
+   "nameJP": "プリン",
+   "nameEN": "Pudding",
+   "price": 70
+  },
+  {
+   "id": "nata",
+   "name": "椰果",
+   "nameJP": "ナタデココ",
+   "nameEN": "Nata de coco",
+   "price": 70
+  },
+  {
+   "id": "redBean",
+   "name": "红豆",
+   "nameJP": "あずき",
+   "nameEN": "Red bean",
+   "price": 70
+  },
+  {
+   "id": "sago",
+   "name": "西米露",
+   "nameJP": "ミニタピオカ",
+   "nameEN": "Mini tapioca",
+   "price": 70
+  },
+  {
+   "id": "oreo",
+   "name": "奥利奥",
+   "nameJP": "オレオ",
+   "nameEN": "Oreo",
+   "price": 70
+  }
+ ],
+ "items": [
+  {
+   "id": "oolong-milk",
+   "categoryID": "milk",
+   "name": "乌龙烤鲜奶",
+   "nameJP": "ウーロンミルクティー",
+   "nameEN": "Roasted Oolong Milk Tea",
+   "prices": {
+    "m": 580,
+    "l": 680
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "assam",
+   "categoryID": "milk",
+   "name": "阿萨姆奶茶",
+   "nameJP": "アッサムミルクティー",
+   "nameEN": "Assam Milk Tea",
+   "prices": {
+    "m": 580,
+    "l": 680
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "siji-naiqing",
+   "categoryID": "milk",
+   "name": "四季奶青",
+   "nameJP": "シキシュンミルクティー",
+   "nameEN": "Four Seasons Milk Tea",
+   "prices": {
+    "m": 580,
+    "l": 680
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "moxiang",
+   "categoryID": "milk",
+   "name": "茉香奶绿",
+   "nameJP": "ジャスミングリーンミルクティー",
+   "nameEN": "Jasmine Green Milk Tea",
+   "prices": {
+    "m": 580,
+    "l": 680
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "oreo-milk",
+   "categoryID": "milk",
+   "name": "奥利奥奶茶",
+   "nameJP": "オレオミルクティー",
+   "nameEN": "Oreo Milk Tea",
+   "prices": {
+    "m": 620,
+    "l": 720
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "trio",
+   "categoryID": "milk",
+   "name": "奶茶三兄弟",
+   "nameJP": "ミックスミルクティー",
+   "nameEN": "Milk Tea Trio",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "peach-oolong",
+   "categoryID": "milk",
+   "name": "白桃乌龙奶茶",
+   "nameJP": "ピーチウーロンミルクティー",
+   "nameEN": "Peach Oolong Milk Tea",
+   "prices": {
+    "m": 620,
+    "l": 720
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "lychee-oolong",
+   "categoryID": "milk",
+   "name": "荔枝乌龙奶茶",
+   "nameJP": "ライチウーロンミルクティー",
+   "nameEN": "Lychee Oolong Milk Tea",
+   "prices": {
+    "m": 620,
+    "l": 720
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "osmanthus-oolong",
+   "categoryID": "milk",
+   "name": "桂花乌龙奶茶",
+   "nameJP": "桂花ウーロンミルクティー",
+   "nameEN": "Osmanthus Oolong Milk Tea",
+   "prices": {
+    "m": 620,
+    "l": 720
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "black-rice",
+   "categoryID": "milk",
+   "name": "血糯米奶茶",
+   "nameJP": "紫米ミルクティー",
+   "nameEN": "Purple Rice Milk Tea",
+   "prices": {
+    "m": 680,
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "hot",
+    "normalIce",
+    "lessIce",
+    "roomTemp",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [
+    "pearl"
+   ],
+   "soldOut": false
+  },
+  {
+   "id": "kiwi-cheese",
+   "categoryID": "fruit",
+   "name": "奇异之旅",
+   "nameJP": "キウイチーズティー",
+   "nameEN": "Kiwi Cheese Tea",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "dragon-cheese",
+   "categoryID": "fruit",
+   "name": "粉红先生",
+   "nameJP": "ドラゴンフルーツチーズティー",
+   "nameEN": "Dragon Fruit Cheese Tea",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "cherry-cheese",
+   "categoryID": "fruit",
+   "name": "多肉车厘子",
+   "nameJP": "チェリーチーズティー",
+   "nameEN": "Cherry Cheese Tea",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "grape-cheese",
+   "categoryID": "fruit",
+   "name": "多肉葡萄",
+   "nameJP": "グレープチーズティー",
+   "nameEN": "Grape Cheese Tea",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "straw-cheese",
+   "categoryID": "fruit",
+   "name": "草莓芝士",
+   "nameJP": "ストロベリーチーズティー",
+   "nameEN": "Strawberry Cheese Tea",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": true
+  },
+  {
+   "id": "straw-ole",
+   "categoryID": "fruit",
+   "name": "草莓欧蕾",
+   "nameJP": "ストロベリーチーズオーレ",
+   "nameEN": "Strawberry Cheese au Lait",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "peach-cheese",
+   "categoryID": "fruit",
+   "name": "桃之夭夭",
+   "nameJP": "ピーチチーズティー",
+   "nameEN": "Peach Cheese Tea",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "peach-ole",
+   "categoryID": "fruit",
+   "name": "蜜桃欧蕾",
+   "nameJP": "ピーチチーズオーレ",
+   "nameEN": "Peach Cheese au Lait",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "mango-cheese",
+   "categoryID": "fruit",
+   "name": "芒芒果海",
+   "nameJP": "マンゴーチーズ",
+   "nameEN": "Mango Cheese",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "longan-cheese",
+   "categoryID": "fruit",
+   "name": "芝芝龙眼",
+   "nameJP": "ロンガンチーズティー",
+   "nameEN": "Longan Cheese Tea",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "longan-coco",
+   "categoryID": "fruit",
+   "name": "龙眼生打椰",
+   "nameJP": "ロンガンココナツミルク",
+   "nameEN": "Longan Coconut Milk",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "yangzhi",
+   "categoryID": "fruit",
+   "name": "杨枝甘露",
+   "nameJP": "ヨンジーガムロ",
+   "nameEN": "Mango Pomelo Sago",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "peach-coco",
+   "categoryID": "fruit",
+   "name": "椰椰桃桃甘露",
+   "nameJP": "ピーチココナツミルク",
+   "nameEN": "Peach Coconut Milk",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "dragon-coco",
+   "categoryID": "fruit",
+   "name": "火龙生打椰",
+   "nameJP": "ドラゴンココナツミルク",
+   "nameEN": "Dragon Fruit Coconut Milk",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "grape-coco",
+   "categoryID": "fruit",
+   "name": "巨峰生打椰",
+   "nameJP": "グレープココナツミルク",
+   "nameEN": "Kyoho Grape Coconut Milk",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "kiwi-coco",
+   "categoryID": "fruit",
+   "name": "奇异生打椰",
+   "nameJP": "キウイココナツミルク",
+   "nameEN": "Kiwi Coconut Milk",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "ume-salt",
+   "categoryID": "fruit",
+   "name": "青梅老盐茶",
+   "nameJP": "青梅塩ティー",
+   "nameEN": "Green Plum Salted Tea",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "ume-lychee",
+   "categoryID": "fruit",
+   "name": "青梅荔枝泡泡",
+   "nameJP": "青梅ライチソーダ",
+   "nameEN": "Green Plum Lychee Soda",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "peach-sijichun",
+   "categoryID": "fruit",
+   "name": "蜜桃四季春",
+   "nameJP": "ピーチシキシュンティー",
+   "nameEN": "Peach Four Seasons Tea",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "grape-tea",
+   "categoryID": "fruit",
+   "name": "葡萄多多",
+   "nameJP": "爽快グレープティー",
+   "nameEN": "Grape Tea",
+   "prices": {
+    "l": 780
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "lemon-oolong",
+   "categoryID": "lemon",
+   "name": "柠檬搞乌龙",
+   "nameJP": "レモンウーロンティー",
+   "nameEN": "Lemon Oolong Tea",
+   "prices": {
+    "l": 640
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "lemon-black",
+   "categoryID": "lemon",
+   "name": "茶里柠檬红",
+   "nameJP": "レモンブラックティー",
+   "nameEN": "Lemon Black Tea",
+   "prices": {
+    "l": 640
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "lemon-sijiqing",
+   "categoryID": "lemon",
+   "name": "爆柠四季青",
+   "nameJP": "レモンシキシュンティー",
+   "nameEN": "Lemon Four Seasons Tea",
+   "prices": {
+    "l": 640
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "lemon-green",
+   "categoryID": "lemon",
+   "name": "整颗爆柠绿",
+   "nameJP": "レモンジャスミングリーンティー",
+   "nameEN": "Lemon Jasmine Green Tea",
+   "prices": {
+    "l": 640
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "durian-mango",
+   "categoryID": "special",
+   "name": "榴莲芒芒",
+   "nameJP": "ドリアンマンゴー",
+   "nameEN": "Durian Mango",
+   "prices": {
+    "m": 780
+   },
+   "defaultSize": "M",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "salt-osmanthus",
+   "categoryID": "special",
+   "name": "老盐桂花牛乳茶",
+   "nameJP": "塩桂花ミルク",
+   "nameEN": "Salted Osmanthus Milk",
+   "prices": {
+    "m": 680
+   },
+   "defaultSize": "M",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "coco-redbean",
+   "categoryID": "special",
+   "name": "椰冻冻红豆沙",
+   "nameJP": "あずきスムージー",
+   "nameEN": "Red Bean Smoothie",
+   "prices": {
+    "m": 680
+   },
+   "defaultSize": "M",
+   "allowedTemps": [
+    "normalIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "avocado-yogurt",
+   "categoryID": "special",
+   "name": "牛油优酪冰",
+   "nameJP": "アボカドスムージー",
+   "nameEN": "Avocado Smoothie",
+   "prices": {
+    "m": 780
+   },
+   "defaultSize": "M",
+   "allowedTemps": [
+    "normalIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "berry-yogurt",
+   "categoryID": "special",
+   "name": "莓莓优酪冰",
+   "nameJP": "ストロベリースムージー",
+   "nameEN": "Strawberry Smoothie",
+   "prices": {
+    "m": 780
+   },
+   "defaultSize": "M",
+   "allowedTemps": [
+    "normalIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "mango-yogurt",
+   "categoryID": "special",
+   "name": "多芒优酪冰",
+   "nameJP": "マンゴースムージー",
+   "nameEN": "Mango Smoothie",
+   "prices": {
+    "m": 780
+   },
+   "defaultSize": "M",
+   "allowedTemps": [
+    "normalIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "guava-grape",
+   "categoryID": "season",
+   "name": "粉芭葡奶",
+   "nameJP": "グアバグレープミルク",
+   "nameEN": "Guava Grape Milk",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "guava-lemon",
+   "categoryID": "season",
+   "name": "粉芭柠檬",
+   "nameJP": "グアバレモンティー",
+   "nameEN": "Guava Lemon Tea",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "lychee-guava",
+   "categoryID": "season",
+   "name": "荔荔粉芭撞奶",
+   "nameJP": "ライチグアバミルク",
+   "nameEN": "Lychee Guava Milk",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "guava-cheese",
+   "categoryID": "season",
+   "name": "芝芝粉芭",
+   "nameJP": "グアバチーズティー",
+   "nameEN": "Guava Cheese Tea",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "passion-tea",
+   "categoryID": "season",
+   "name": "酸Q百香果",
+   "nameJP": "パッションフルーツティー",
+   "nameEN": "Passion Fruit Tea",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "passion-milk",
+   "categoryID": "season",
+   "name": "奇异百香双打奶",
+   "nameJP": "パッションフルーツミルク",
+   "nameEN": "Passion Fruit Milk",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "grape-sago",
+   "categoryID": "season",
+   "name": "青提茉莉奶露",
+   "nameJP": "グレープサゴミルクティー",
+   "nameEN": "Grape Sago Milk Tea",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  },
+  {
+   "id": "guava-mango-sago",
+   "categoryID": "season",
+   "name": "芭乐多芒奶露",
+   "nameJP": "グアバマンゴーサゴミルクティー",
+   "nameEN": "Guava Mango Sago Milk Tea",
+   "prices": {
+    "l": 850
+   },
+   "defaultSize": "L",
+   "allowedTemps": [
+    "normalIce",
+    "lessIce",
+    "noIce"
+   ],
+   "defaultTemp": "normalIce",
+   "allowedSweetness": [
+    120,
+    100,
+    70,
+    50,
+    30,
+    0
+   ],
+   "defaultSweetness": 100,
+   "allowedToppingIDs": [
+    "cheese",
+    "coconutPudding",
+    "pearl",
+    "pudding",
+    "nata",
+    "redBean",
+    "sago",
+    "oreo"
+   ],
+   "includedToppingIDs": [],
+   "soldOut": false
+  }
+ ],
+ "businessDay": "2026-10-27"
+}
