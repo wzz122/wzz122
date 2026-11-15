@@ -91,6 +91,7 @@
   .item .alt { font-size: 12px; color: var(--muted); }
   .item .price { font-size: 14px; font-weight: 700; margin-top: 4px; }
   .item .hot { color: var(--orange); font-size: 12px; font-weight: 700; margin-left: 6px; }
+  .fixed-note { margin-top: 16px; padding: 10px 12px; border-radius: 12px; background: var(--bg); color: var(--muted); font-size: 13px; line-height: 1.5; }
   .inc { white-space: nowrap; color: #8B5E3C; background: #F3EAE2; font-size: 12px; font-weight: 700; margin-left: 6px; padding: 1px 7px; border-radius: 6px; }
   .item .plus {
     flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%;
@@ -213,6 +214,7 @@ const T = {
     soldOut: "売切",
     hot: "HOT可",
     size: "サイズ", temp: "温度・氷", sweet: "甘さ", toppings: "トッピング（複数可）", qty: "数量",
+    fixedIce: "スムージーのため、氷の量は変更できません。", fixedSweet: "この商品は甘さの調整ができません。",
     add: "カートに入れる",
     viewCart: "カートを見る",
     cart: "ご注文内容",
@@ -254,6 +256,7 @@ const T = {
     soldOut: "售罄",
     hot: "可做热",
     size: "规格", temp: "温度・冰量", sweet: "甜度", toppings: "小料（可多选）", qty: "数量",
+    fixedIce: "这款是冰沙，不能调冰量。", fixedSweet: "这款不能调甜度。",
     add: "加入购物车",
     viewCart: "查看购物车",
     cart: "我的订单",
@@ -295,6 +298,7 @@ const T = {
     soldOut: "Sold out",
     hot: "Hot OK",
     size: "Size", temp: "Temperature / ice", sweet: "Sweetness", toppings: "Toppings (any)", qty: "Quantity",
+    fixedIce: "This is a blended smoothie, so the ice level can't be changed.", fixedSweet: "Sweetness can't be adjusted for this drink.",
     add: "Add to cart",
     viewCart: "View cart",
     cart: "Your order",
@@ -439,13 +443,29 @@ function isSoldOut(item) { return item.soldOut && state.menu.businessDay === sta
 function sizesOf(item) { return ["M", "L"].filter((s) => item.prices[s.toLowerCase()] != null); }
 function cartTotal() { return state.cart.reduce((s, l) => s + unitPrice(l) * l.quantity, 0); }
 function cartCount() { return state.cart.reduce((s, l) => s + l.quantity, 0); }
+// 「L・氷少なめ・50%」。不能选冰量 / 甜度的饮品不写那一项。
+function specParts(size, temp, sweetness, fixedTemp, fixedSweetness) {
+  const parts = [size];
+  if (!fixedTemp) parts.push((TEMP[lang] || TEMP.ja)[temp]);
+  if (!fixedSweetness) parts.push(sweetness + "%");
+  return parts;
+}
 function optionText(line) {
-  const parts = [line.size, (TEMP[lang] || TEMP.ja)[line.temp], line.sweetness + "%"];
+  const item = itemById(line.itemID);
+  const parts = specParts(line.size, line.temp, line.sweetness,
+    !!item && item.allowedTemps.length === 1, !!item && item.allowedSweetness.length === 1);
   for (const id of line.toppingIDs) {
     const tp = toppingById(id);
     if (tp) parts.push("+" + nameOf(tp));
   }
   return parts.join("・");
+}
+// 规格弹层里说明哪些不能调，顾客不用再问店员
+function fixedNotes(item) {
+  const notes = [];
+  if (item.allowedTemps.length === 1) notes.push(t("fixedIce"));
+  if (item.allowedSweetness.length === 1) notes.push(t("fixedSweet"));
+  return notes;
 }
 
 // ---------------------------------------------------------------------------
@@ -575,6 +595,7 @@ function openItem(item) {
         chip((TEMP[lang] || TEMP.ja)[tp], draft.temp === tp, () => { draft.temp = tp; draw(); }, null, tp === "hot"))) : null,
       item.allowedSweetness.length > 1 ? group(t("sweet"), item.allowedSweetness.map((sw) =>
         chip(sw + "%", draft.sweetness === sw, () => { draft.sweetness = sw; draw(); }))) : null,
+      fixedNotes(item).length ? h("div", { class: "fixed-note" }, fixedNotes(item).map((n) => h("div", {}, n))) : null,
       toppings.length ? group(t("toppings"), toppings.map((tp) =>
         chip(nameOf(tp), draft.toppingIDs.includes(tp.id), () => {
           draft.toppingIDs = draft.toppingIDs.includes(tp.id)
@@ -716,7 +737,7 @@ function renderStatus() {
       o.lines.map((l) => h("div", { class: "line" },
         h("div", { class: "names" },
           h("div", { class: "name" }, nameOf(l) + (l.quantity > 1 ? " ×" + l.quantity : "")),
-          h("div", { class: "opts" }, [l.size, (TEMP[lang] || TEMP.ja)[l.temp], l.sweetness + "%"]
+          h("div", { class: "opts" }, specParts(l.size, l.temp, l.sweetness, l.fixedTemp, l.fixedSweetness)
             .concat(l.toppings.map((tp) => "+" + nameOf(tp))).join("・")),
         ),
         h("div", { class: "amt" }, yen(l.unitPrice * l.quantity)),

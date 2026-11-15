@@ -297,6 +297,9 @@ begin
       'size', v_size,
       'temp', v_temp,
       'sweetness', v_sweet,
+      -- 只有一个选项 = 这款不能选冰量 / 甜度，显示订单时不写
+      'fixedTemp', jsonb_array_length(v_item -> 'allowedTemps') = 1,
+      'fixedSweetness', jsonb_array_length(v_item -> 'allowedSweetness') = 1,
       'toppings', v_picks,
       'basePrice', v_base,
       'unitPrice', v_unit,

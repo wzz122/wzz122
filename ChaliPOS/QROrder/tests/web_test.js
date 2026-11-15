@@ -116,13 +116,53 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   check('中文菜单显示「含珍珠」', (await page.textContent('.item >> nth=0')).includes('含珍珠'));
   await page.click('.lang button:nth-child(3)');
   check('英文菜单', (await page.textContent('#app')).includes('Roasted Oolong Milk Tea') && (await page.textContent('#app')).includes('with Tapioca pearls'));
-  // 冰沙只能普通冰，不显示温度行
+  // 冰沙不能选冰量：不显示温度行，说明原因；甜度照常能选
   await page.locator('.item', { hasText: 'Mango Smoothie' }).click();
   await page.waitForSelector('.sheet.show');
-  check('冰沙不显示温度行', !(await page.textContent('.sheet')).includes('Temperature'), await page.textContent('.sheet'));
+  let sheetText = await page.textContent('.sheet');
+  check('冰沙不显示温度行', !sheetText.includes('Temperature') && !sheetText.includes('No ice') && !sheetText.includes('Regular ice'), sheetText);
+  check('冰沙说明不能调冰量、甜度能选', sheetText.includes("ice level can't be changed") && sheetText.includes('Sweetness') && sheetText.includes('50%'), sheetText);
   await page.screenshot({ path: shots + '/7b-smoothie-en.png' });
   await page.click('.sheet .close');
   await page.click('.lang button:nth-child(2)');
+  for (const name of ['椰冻冻红豆沙', '牛油优酪冰', '莓莓优酪冰', '多芒优酪冰']) {
+    await page.locator('.item', { hasText: name }).click();
+    await page.waitForSelector('.sheet.show');
+    sheetText = await page.textContent('.sheet');
+    check(`${name}：没有冰量选项`, !sheetText.includes('冰量') || sheetText.includes('不能调冰量'), sheetText);
+    check(`${name}：没有「去冰 / 少冰 / 普通冰」`, !/去冰|少冰|普通冰/.test(sheetText), sheetText);
+    if (name !== '多芒优酪冰') await page.click('.sheet .close');
+  }
+  await page.locator('.sheet .chip', { hasText: '70%' }).click();
+  await page.click('.sheet .primary');
+  await page.waitForTimeout(200);
+
+  // 杨枝甘露不能调甜度：不显示甜度行，说明原因；冰量照常能选
+  await page.locator('.item', { hasText: '杨枝甘露' }).click();
+  await page.waitForSelector('.sheet.show');
+  sheetText = await page.textContent('.sheet');
+  check('杨枝甘露不显示甜度行', !sheetText.includes('%') && sheetText.includes('不能调甜度'), sheetText);
+  check('杨枝甘露冰量能选', sheetText.includes('少冰') && sheetText.includes('去冰'), sheetText);
+  await page.screenshot({ path: shots + '/7c-yangzhi-zh.png' });
+  await page.locator('.sheet .chip', { hasText: '少冰' }).click();
+  await page.click('.sheet .primary');
+  await page.waitForTimeout(200);
+
+  // 购物车里也不写不能选的那一项
+  await page.click('#cartbar button');
+  await page.waitForSelector('.sheet.show');
+  const cartLines = await page.locator('.sheet .line .opts').allTextContents();
+  check('购物车：冰沙不写冰量', cartLines[0] === 'M・70%', cartLines.join(' | '));
+  check('购物车：杨枝甘露不写甜度', cartLines[1] === 'L・少冰', cartLines.join(' | '));
+  await page.screenshot({ path: shots + '/7d-cart-fixed.png' });
+  // 下单 → 状态页也不写；再回到菜单
+  await page.click('.sheet .primary');
+  await page.waitForSelector('.status .num');
+  const statusLines = await page.locator('.status .line .opts').allTextContents();
+  check('状态页：冰沙不写冰量、杨枝甘露不写甜度', statusLines[0] === 'M・70%' && statusLines[1] === 'L・少冰', statusLines.join(' | '));
+  await page.screenshot({ path: shots + '/7e-status-fixed.png' });
+  await page.click('.status .secondary');
+  await page.waitForSelector('.item');
 
   // 暂停接单
   const menu = JSON.parse(fs.readFileSync(path.join(__dirname, 'published_menu.json'), 'utf8'));

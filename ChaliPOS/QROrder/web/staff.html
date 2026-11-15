@@ -92,6 +92,7 @@
   .opts { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
   .opt { font-size: 13px; font-weight: 700; padding: 1px 8px; border-radius: 6px; background: var(--bg); color: var(--muted); }
   .opt.chg { background: #FFF1C2; color: #7A5B00; }
+  .opt.fixed { background: transparent; border: 1px dashed var(--line); font-weight: 600; }
   .opt.tp { background: var(--orange-soft); color: #9A4A14; }
   .note { margin-top: 6px; padding: 6px 10px; border-radius: 8px; background: #FFF1C2; font-weight: 700; font-size: 14px; }
   .sum { display: flex; align-items: baseline; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
@@ -582,8 +583,13 @@ function renderLine(l) {
   const cat = item && MENU_BASE.categories.find((c) => c.id === item.categoryID);
   const opts = [];
   const sizes = item ? Object.keys(item.prices).length : 2;
-  opts.push(h("span", { class: "opt" + (l.temp !== "normalIce" ? " chg" : "") }, TEMP[l.temp] || l.temp));
-  opts.push(h("span", { class: "opt" + (l.sweetness !== 100 ? " chg" : "") }, "甜度 " + l.sweetness + "%"));
+  // 不能选冰量 / 甜度的饮品（冰沙、杨枝甘露）：不写冰量和甜度，只提示不用选
+  const fixedTemp = l.fixedTemp || (item && item.allowedTemps.length === 1);
+  const fixedSweetness = l.fixedSweetness || (item && item.allowedSweetness.length === 1);
+  opts.push(fixedTemp ? h("span", { class: "opt fixed" }, "不选冰量")
+    : h("span", { class: "opt" + (l.temp !== "normalIce" ? " chg" : "") }, TEMP[l.temp] || l.temp));
+  opts.push(fixedSweetness ? h("span", { class: "opt fixed" }, "不选甜度")
+    : h("span", { class: "opt" + (l.sweetness !== 100 ? " chg" : "") }, "甜度 " + l.sweetness + "%"));
   for (const tp of l.toppings) opts.push(h("span", { class: "opt tp" }, "+" + tp.name + "（" + tp.nameJP + "）"));
   return h("div", { class: "ln" },
     h("div", { class: "main" },
@@ -650,7 +656,8 @@ function renderHit(p) {
     meta.push(h("span", {}, Object.entries(x.prices).map(([k, v]) => k.toUpperCase() + " " + yen(v)).join(" / ")));
     if ((x.includedToppingIDs || []).length) meta.push(h("span", {}, "含珍珠"));
     if (x.allowedTemps.includes("hot")) meta.push(h("span", {}, "可做热"));
-    if (x.allowedTemps.length === 1) meta.push(h("span", {}, "不调冰"));
+    if (x.allowedTemps.length === 1) meta.push(h("span", {}, "不能选冰量"));
+    if (x.allowedSweetness.length === 1) meta.push(h("span", {}, "不能调甜度"));
     if (state.soldOut.has(x.id)) meta.push(h("span", { class: "sold" }, "今天售罄"));
   } else {
     meta.push(h("span", {}, "+" + yen(x.price)));

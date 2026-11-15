@@ -139,6 +139,32 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   await tablet.screenshot({ path: shots + '/s7-lookup.png' });
   await tablet.click('.panel .x');
 
+  // 冰沙不选冰量、杨枝甘露不选甜度：卡片上不写冰量 / 甜度
+  const fixed = await publicRpc('chali_place_order', { p_store: 'chalichali-01', p_dining: 'takeOut', p_items: [
+    { itemID: 'mango-yogurt', size: 'M', temp: 'normalIce', sweetness: 70, toppingIDs: [] },
+    { itemID: 'yangzhi', size: 'L', temp: 'lessIce', sweetness: 100, toppingIDs: [] }] });
+  const qf = 'Q' + fixed.number;
+  await tablet.locator(`.card[data-q="${qf}"]`).waitFor({ timeout: 8000 });
+  const smoothieLine = await tablet.locator(`.card[data-q="${qf}"] .ln`, { hasText: '多芒优酪冰' }).textContent();
+  const yangzhiLine = await tablet.locator(`.card[data-q="${qf}"] .ln`, { hasText: '杨枝甘露' }).textContent();
+  check('冰沙卡片：不选冰量，甜度照常', smoothieLine.includes('不选冰量') && !smoothieLine.includes('普通冰') && smoothieLine.includes('甜度 70%'), smoothieLine);
+  check('杨枝甘露卡片：不选甜度，冰量照常', yangzhiLine.includes('不选甜度') && !yangzhiLine.includes('甜度 100%') && yangzhiLine.includes('少冰'), yangzhiLine);
+  await tablet.screenshot({ path: shots + '/s7b-fixed.png' });
+  promptAnswer = '测试';
+  await tablet.locator(`.card[data-q="${qf}"] .minor:has-text("取消")`).click();
+  await tablet.waitForFunction((qq) => !document.querySelector(`.card[data-q="${qq}"]`), qf);
+
+  // 查饮品里也标出来
+  await tablet.click('header .tool:has-text("查饮品")');
+  await tablet.waitForSelector('#lookupQ');
+  await tablet.fill('#lookupQ', '杨枝甘露');
+  await tablet.waitForTimeout(150);
+  check('查饮品：杨枝甘露标「不能调甜度」', (await tablet.textContent('.hit')).includes('不能调甜度'), await tablet.textContent('.hit'));
+  await tablet.fill('#lookupQ', '红豆沙');
+  await tablet.waitForTimeout(150);
+  check('查饮品：冰沙标「不能选冰量」', (await tablet.textContent('.hit')).includes('不能选冰量'), await tablet.textContent('.hit'));
+  await tablet.click('.panel .x');
+
   // 取消（带原因）→ 顾客看到原因
   const placed = await publicRpc('chali_place_order', { p_store: 'chalichali-01', p_dining: 'takeOut', p_items: [{ itemID: 'assam', size: 'M', temp: 'hot', sweetness: 100, toppingIDs: [] }] });
   const q2 = 'Q' + placed.number;

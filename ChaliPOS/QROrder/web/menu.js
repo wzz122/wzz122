@@ -2,10 +2,12 @@
 // 接单屏（staff.html）开始接单时把这份菜单发布到服务器，顾客页面从服务器读。
 // 改菜单只改这个文件；价格以服务器按这份菜单重新计算为准。
 //
+// 店员确认过的规则（2026-11-15）：
+//   - 冰沙不能选冰量（顾客页面不显示冰量这一行）：见下面的 NO_ICE_CHOICE
+//   - 杨枝甘露不能调甜度（不显示甜度这一行）：见下面的 FIXED_SWEETNESS
 // 还没在店里确认的规则（先按常见做法设置）：
 //   - 只有珍珠奶茶能做 HOT，其他只能冷饮（菜单屏上写的）
-//   - 冰沙（スムージー）不能调冰量
-//   - 所有饮品都能调甜度、都能加任意小料
+//   - 其他饮品都能调甜度、都能加任意小料
 //   - 榴莲那款的中文名被售罄贴纸挡住，暂写「榴莲芒芒」
 (function () {
   "use strict";
@@ -85,6 +87,11 @@
     ["guava-mango-sago", "season", "芭乐多芒奶露", "グアバマンゴーサゴミルクティー", "Guava Mango Sago Milk Tea", null, 850],
   ];
 
+  // 不能选冰量的饮品（冰沙）。要加一款，把它的 id 写进来。
+  const NO_ICE_CHOICE = ["coco-redbean", "avocado-yogurt", "berry-yogurt", "mango-yogurt"];
+  // 不能调甜度的饮品。要加一款，把它的 id 写进来。
+  const FIXED_SWEETNESS = ["yangzhi"];
+
   const ALL_TEMPS = ["hot", "normalIce", "lessIce", "roomTemp", "noIce"];
   const COLD_TEMPS = ["normalIce", "lessIce", "noIce"];
   const SWEETNESS = [120, 100, 70, 50, 30, 0];
@@ -93,13 +100,15 @@
     const prices = {};
     if (m != null) prices.m = m;
     if (l != null) prices.l = l;
-    const smoothie = nameJP.includes("スムージー");
+    // 只剩一个选项 = 不能选：顾客页面不显示那一行，订单上也不写冰量 / 甜度
+    const noIceChoice = NO_ICE_CHOICE.includes(id);
+    const fixedSweetness = FIXED_SWEETNESS.includes(id);
     return {
       id, categoryID, name, nameJP, nameEN, prices,
       defaultSize: l != null ? "L" : "M",
-      allowedTemps: categoryID === "milk" ? ALL_TEMPS : smoothie ? ["normalIce"] : COLD_TEMPS,
+      allowedTemps: noIceChoice ? ["normalIce"] : categoryID === "milk" ? ALL_TEMPS : COLD_TEMPS,
       defaultTemp: "normalIce",
-      allowedSweetness: SWEETNESS,
+      allowedSweetness: fixedSweetness ? [100] : SWEETNESS,
       defaultSweetness: 100,
       allowedToppingIDs: TOPPINGS.map((t) => t.id),
       // 标配小料（含在价格里，只用来显示）
@@ -107,6 +116,10 @@
       soldOut: false,
     };
   });
+
+  for (const id of NO_ICE_CHOICE.concat(FIXED_SWEETNESS)) {
+    if (!items.some((i) => i.id === id)) throw new Error("menu.js: 找不到饮品 " + id);
+  }
 
   window.CHALI_MENU = {
     storeName: "茶里茶里",

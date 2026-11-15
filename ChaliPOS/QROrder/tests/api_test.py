@@ -51,6 +51,17 @@ r = rpc("chali_place_order", p_store=STORE, p_dining="eatIn",
 check("单号递增、忽略顾客传来的价格、重复小料只算一次", r[0] == 200 and r[1]["number"] == 2 and r[1]["total"] == 800, r)
 order2 = r[1]["id"]
 
+# 冰沙不能选冰量、杨枝甘露不能调甜度：订单行里记下来，显示时不写冰量 / 甜度
+r = rpc("chali_place_order", p_store=STORE, p_dining="takeOut", p_items=[
+    {"itemID": "mango-yogurt", "size": "M", "temp": "normalIce", "sweetness": 50, "toppingIDs": []},
+    {"itemID": "yangzhi", "size": "L", "temp": "lessIce", "sweetness": 100, "toppingIDs": []},
+    {"itemID": "kiwi-cheese", "size": "L", "temp": "noIce", "sweetness": 30, "toppingIDs": []}])
+fixed_order = r[1].get("id") if r[0] == 200 else None
+r = rpc("chali_order_status", p_order=fixed_order)
+fl = {l["itemID"]: (l.get("fixedTemp"), l.get("fixedSweetness")) for l in (r[1] or {}).get("lines", [])}
+check("订单行标出不能选冰量 / 甜度", fl == {"mango-yogurt": (True, False), "yangzhi": (False, True), "kiwi-cheese": (False, False)}, fl)
+rpc("chali_staff_update_order", p_store=STORE, p_key=KEY, p_order=fixed_order, p_status="cancelled", p_reason="test")
+
 # 各种非法请求
 bad = [
     ("售罄饮品", {"itemID": "straw-cheese", "size": "L", "temp": "normalIce", "sweetness": 100}, "sold_out"),
@@ -60,6 +71,9 @@ bad = [
     ("没有的规格", {"itemID": "kiwi-cheese", "size": "M", "temp": "normalIce", "sweetness": 100}, "bad_size"),
     ("非法甜度", {"itemID": "kiwi-cheese", "size": "L", "temp": "normalIce", "sweetness": 55}, "bad_sweetness"),
     ("不存在的小料", {"itemID": "kiwi-cheese", "size": "L", "temp": "normalIce", "sweetness": 100, "toppingIDs": ["gold"]}, "bad_topping"),
+    ("冰沙去冰", {"itemID": "mango-yogurt", "size": "M", "temp": "noIce", "sweetness": 100}, "bad_temp"),
+    ("冰沙少冰", {"itemID": "coco-redbean", "size": "M", "temp": "lessIce", "sweetness": 100}, "bad_temp"),
+    ("杨枝甘露调甜度", {"itemID": "yangzhi", "size": "L", "temp": "normalIce", "sweetness": 50}, "bad_sweetness"),
     ("数量 0", {"itemID": "kiwi-cheese", "size": "L", "temp": "normalIce", "sweetness": 100, "quantity": 0}, "bad_quantity"),
     ("数量太多", {"itemID": "kiwi-cheese", "size": "L", "temp": "normalIce", "sweetness": 100, "quantity": 21}, "bad_quantity"),
 ]
@@ -106,7 +120,7 @@ check("不存在的订单返回空", r[0] == 200 and r[1] is None, r)
 
 # 店员：接单（取餐号 041）→ 做好 → 取消另一单
 r = rpc("chali_staff_orders", p_store=STORE, p_key=KEY)
-check("店员拉取订单", r[0] == 200 and len(r[1]) == 4, (r[0], len(r[1]) if isinstance(r[1], list) else r))
+check("店员拉取订单", r[0] == 200 and len(r[1]) == 5, (r[0], len(r[1]) if isinstance(r[1], list) else r))
 since = max(o["updatedAt"] for o in r[1])
 r = rpc("chali_staff_update_order", p_store=STORE, p_key=KEY, p_order=order1, p_status="accepted", p_pickup_number=41)
 check("接单", r[0] == 200 and r[1]["status"] == "accepted" and r[1]["pickupNumber"] == 41, r)

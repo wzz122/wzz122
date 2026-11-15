@@ -961,12 +961,7 @@
    ],
    "defaultTemp": "normalIce",
    "allowedSweetness": [
-    120,
-    100,
-    70,
-    50,
-    30,
-    0
+    100
    ],
    "defaultSweetness": 100,
    "allowedToppingIDs": [
