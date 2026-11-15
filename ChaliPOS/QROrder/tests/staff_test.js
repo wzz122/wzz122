@@ -46,7 +46,7 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   if (!(await pill()).includes('接单中')) { await tablet.click('header .pill'); await tablet.waitForTimeout(800); }
   check('接单中', (await pill()).includes('接单中'), await pill());
   const served = await publicRpc('chali_get_menu', { p_store: 'chalichali-01' });
-  check('平板发布了 menu.js 这一版菜单', served.menu.version && served.menu.items.length === 48 && served.accepting, JSON.stringify(served.menu.version));
+  check('平板发布了 menu.js 这一版菜单', served.menu.version && served.menu.items.length === 46 && served.accepting, JSON.stringify(served.menu.version));
   await tablet.screenshot({ path: shots + '/s1-empty.png' });
 
   // 顾客手机（中文）点单：茉香奶绿 L 少冰 70% +布丁，杨枝甘露 ×2

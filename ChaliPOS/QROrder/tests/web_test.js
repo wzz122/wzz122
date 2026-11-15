@@ -43,7 +43,8 @@ function check(name, cond, detail) { console.log((cond ? 'PASS ' : 'FAIL ') + na
   await page.waitForTimeout(300);
 
   const oolong = page.locator('.item', { has: page.locator('.name', { hasText: /^ウーロンミルクティー$/ }) });
-  check('真实菜单 48 款', (await page.locator('.item').count()) === 48);
+  check('真实菜单 46 款', (await page.locator('.item').count()) === 46);
+  check('已下架的两款不在菜单里', !/车厘子|榴莲|チェリー|ドリアン/.test(await page.textContent('#app')));
   check('珍珠奶茶显示「タピオカ入り」', (await oolong.textContent()).includes('タピオカ入り'), await oolong.textContent());
 
   // 乌龙烤鲜奶 L 少冰 50% +珍珠 ×2

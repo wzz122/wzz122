@@ -39,7 +39,7 @@ check("未发布菜单时拒绝下单", "not_accepting" in err(r), r)
 r = rpc("chali_staff_publish_menu", p_store=STORE, p_key=KEY, p_menu=MENU, p_accepting=True)
 check("发布菜单", r[0] == 200 and r[1]["ok"], r)
 r = rpc("chali_get_menu", p_store=STORE)
-check("顾客读菜单", r[0] == 200 and r[1]["accepting"] and len(r[1]["menu"]["items"]) == 48, r)
+check("顾客读菜单", r[0] == 200 and r[1]["accepting"] and len(r[1]["menu"]["items"]) == 46, r)
 
 # 正常下单：乌龙烤鲜奶 L 少冰 50% +珍珠 ×2 = 750×2；奇异之旅 L = 780
 r = rpc("chali_place_order", p_store=STORE, p_dining="takeOut", p_seat=" T3 ", p_note="少一点珍珠",

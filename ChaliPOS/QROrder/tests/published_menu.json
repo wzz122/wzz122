@@ -603,44 +603,6 @@
    "soldOut": false
   },
   {
-   "id": "cherry-cheese",
-   "categoryID": "fruit",
-   "name": "多肉车厘子",
-   "nameJP": "チェリーチーズティー",
-   "nameEN": "Cherry Cheese Tea",
-   "prices": {
-    "l": 850
-   },
-   "defaultSize": "L",
-   "allowedTemps": [
-    "normalIce",
-    "lessIce",
-    "noIce"
-   ],
-   "defaultTemp": "normalIce",
-   "allowedSweetness": [
-    120,
-    100,
-    70,
-    50,
-    30,
-    0
-   ],
-   "defaultSweetness": 100,
-   "allowedToppingIDs": [
-    "cheese",
-    "coconutPudding",
-    "pearl",
-    "pudding",
-    "nata",
-    "redBean",
-    "sago",
-    "oreo"
-   ],
-   "includedToppingIDs": [],
-   "soldOut": false
-  },
-  {
    "id": "grape-cheese",
    "categoryID": "fruit",
    "name": "多肉葡萄",
@@ -1405,44 +1367,6 @@
     "l": 640
    },
    "defaultSize": "L",
-   "allowedTemps": [
-    "normalIce",
-    "lessIce",
-    "noIce"
-   ],
-   "defaultTemp": "normalIce",
-   "allowedSweetness": [
-    120,
-    100,
-    70,
-    50,
-    30,
-    0
-   ],
-   "defaultSweetness": 100,
-   "allowedToppingIDs": [
-    "cheese",
-    "coconutPudding",
-    "pearl",
-    "pudding",
-    "nata",
-    "redBean",
-    "sago",
-    "oreo"
-   ],
-   "includedToppingIDs": [],
-   "soldOut": false
-  },
-  {
-   "id": "durian-mango",
-   "categoryID": "special",
-   "name": "榴莲芒芒",
-   "nameJP": "ドリアンマンゴー",
-   "nameEN": "Durian Mango",
-   "prices": {
-    "m": 780
-   },
-   "defaultSize": "M",
    "allowedTemps": [
     "normalIce",
     "lessIce",

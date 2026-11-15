@@ -1,4 +1,4 @@
-// 茶里茶里 菜单（按店里菜单屏 2026 年 10 月版录入，和 MenuTrainer/chali-menu.html 的 RAW 一致）
+// 茶里茶里 菜单（按店里菜单屏 2026 年 10 月版录入，去掉已下架的 2 款，共 46 款）
 // 接单屏（staff.html）开始接单时把这份菜单发布到服务器，顾客页面从服务器读。
 // 改菜单只改这个文件；价格以服务器按这份菜单重新计算为准。
 //
@@ -8,7 +8,8 @@
 // 还没在店里确认的规则（先按常见做法设置）：
 //   - 只有珍珠奶茶能做 HOT，其他只能冷饮（菜单屏上写的）
 //   - 其他饮品都能调甜度、都能加任意小料
-//   - 榴莲那款的中文名被售罄贴纸挡住，暂写「榴莲芒芒」
+// 已下架（店里不做了，2026-11-15）：多肉车厘子（チェリーチーズティー）、榴莲芒芒（ドリアンマンゴー）。
+// 菜单屏上还印着这两款，但这里不再列出。
 (function () {
   "use strict";
 
@@ -46,7 +47,6 @@
 
     ["kiwi-cheese", "fruit", "奇异之旅", "キウイチーズティー", "Kiwi Cheese Tea", null, 780],
     ["dragon-cheese", "fruit", "粉红先生", "ドラゴンフルーツチーズティー", "Dragon Fruit Cheese Tea", null, 850],
-    ["cherry-cheese", "fruit", "多肉车厘子", "チェリーチーズティー", "Cherry Cheese Tea", null, 850],
     ["grape-cheese", "fruit", "多肉葡萄", "グレープチーズティー", "Grape Cheese Tea", null, 780],
     ["straw-cheese", "fruit", "草莓芝士", "ストロベリーチーズティー", "Strawberry Cheese Tea", null, 780],
     ["straw-ole", "fruit", "草莓欧蕾", "ストロベリーチーズオーレ", "Strawberry Cheese au Lait", null, 780],
@@ -70,7 +70,6 @@
     ["lemon-sijiqing", "lemon", "爆柠四季青", "レモンシキシュンティー", "Lemon Four Seasons Tea", null, 640],
     ["lemon-green", "lemon", "整颗爆柠绿", "レモンジャスミングリーンティー", "Lemon Jasmine Green Tea", null, 640],
 
-    ["durian-mango", "special", "榴莲芒芒", "ドリアンマンゴー", "Durian Mango", 780, null],
     ["salt-osmanthus", "special", "老盐桂花牛乳茶", "塩桂花ミルク", "Salted Osmanthus Milk", 680, null],
     ["coco-redbean", "special", "椰冻冻红豆沙", "あずきスムージー", "Red Bean Smoothie", 680, null],
     ["avocado-yogurt", "special", "牛油优酪冰", "アボカドスムージー", "Avocado Smoothie", 780, null],
