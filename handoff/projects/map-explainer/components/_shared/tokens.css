@@ -1,0 +1,79 @@
+/* Motion-spec 设计变量。与 CLAUDE.md §3 和 map-runtime.js 的 TOKENS 保持同步。 */
+:root {
+  /* 配色 */
+  --paper: #F4EFE6;
+  --ink: #1E2A32;
+  --ink-soft: #5B6670;
+  --accent: #D8452F;
+  --accent-2: #F2A33A;
+  --highlight: #FFE36E;
+
+  /* 地图 */
+  --map-land: #EEE8DA;
+  --map-water: #AFCBD8;
+  --map-green: #A9BF94;
+  --map-relief: #C9B79C;
+
+  /* 线路 */
+  --line-shinkansen: #1F63B5;
+  --line-jr: #2E8B57;
+  --line-private: #7B4FB0;
+  --line-subway: #E07B24;
+  --line-tram: #C2407A;
+  --line-abandoned: #8E8E8E;
+  --line-planned: #B0B0B0;
+
+  /* 字体：渲染前换成 assets/fonts 下的本地 @font-face */
+  --font-title: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  --font-body: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", sans-serif;
+  --font-ja: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  --font-num: "Barlow Condensed", "DIN Alternate", "Oswald", sans-serif;
+
+  /* 画布 */
+  --w: 1920px;
+  --h: 1080px;
+  --safe-x: 96px;
+  --safe-y: 64px;
+  --subtitle-zone: 160px;
+}
+
+html, body {
+  margin: 0;
+  width: var(--w);
+  height: var(--h);
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.stage { position: absolute; inset: 0; overflow: hidden; }
+.map { position: absolute; inset: 0; }
+
+/* 地图上的 HTML 标注 */
+.pin { position: relative; width: 0; height: 0; }
+.pin__inner { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; }
+.pin__dot {
+  position: absolute; left: -11px; top: -11px; width: 22px; height: 22px;
+  border-radius: 50%; background: var(--accent); border: 4px solid #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25); box-sizing: border-box;
+}
+.pin__label {
+  position: absolute; left: 20px; top: -24px; white-space: nowrap;
+  font: 700 34px/1.2 var(--font-body); color: var(--ink);
+  background: rgba(244,239,230,.92); padding: 4px 14px; border-radius: 6px;
+}
+
+/* 底部说明条（避开字幕区） */
+.caption {
+  position: absolute; left: var(--safe-x); bottom: calc(var(--subtitle-zone) + 24px);
+  max-width: 1100px; font: 700 44px/1.35 var(--font-body);
+  background: var(--paper); color: var(--ink); padding: 18px 28px;
+  border-left: 8px solid var(--accent); opacity: 0;
+}
+
+.attribution {
+  position: absolute; right: 16px; bottom: 10px;
+  font: 400 16px/1 var(--font-body); color: var(--ink-soft); opacity: .8;
+}

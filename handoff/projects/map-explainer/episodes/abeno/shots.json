@@ -1,0 +1,212 @@
+{
+ "A1-路口向北推近": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5127,
+   34.646,
+   90
+  ],
+  "orbit": {
+   "headingFrom": 0,
+   "headingTo": 10,
+   "pitch": -20,
+   "pitchTo": -25,
+   "range": 950,
+   "rangeTo": 620,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "A2-路口向南拉远": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5127,
+   34.646,
+   70
+  ],
+  "orbit": {
+   "headingFrom": 182,
+   "headingTo": 172,
+   "pitch": -24,
+   "pitchTo": -18,
+   "range": 520,
+   "rangeTo": 1300,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "A3-HARUKAS近景": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5136,
+   34.6459,
+   150
+  ],
+  "orbit": {
+   "headingFrom": 300,
+   "headingTo": 322,
+   "pitch": -6,
+   "pitchTo": -14,
+   "range": 720,
+   "rangeTo": 520,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "A4-QsMall近景": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5107,
+   34.6451,
+   20
+  ],
+  "orbit": {
+   "headingFrom": 252,
+   "headingTo": 276,
+   "pitch": -30,
+   "pitchTo": -26,
+   "range": 460,
+   "rangeTo": 300,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "A5-再开发区全景推近": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5098,
+   34.6438,
+   30
+  ],
+  "orbit": {
+   "headingFrom": 40,
+   "headingTo": 56,
+   "pitch": -32,
+   "pitchTo": -38,
+   "range": 1500,
+   "rangeTo": 1100,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "A6-再开发区俯视拉远": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5098,
+   34.6438,
+   30
+  ],
+  "orbit": {
+   "headingFrom": 358,
+   "headingTo": 350,
+   "pitch": -62,
+   "pitchTo": -54,
+   "range": 900,
+   "rangeTo": 1700,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "A7-商场背后": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5088,
+   34.6447,
+   20
+  ],
+  "orbit": {
+   "headingFrom": 102,
+   "headingTo": 86,
+   "pitch": -26,
+   "pitchTo": -24,
+   "range": 430,
+   "rangeTo": 300,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "A8-结尾路口拉远": {
+  "source": "google",
+  "duration": 20,
+  "target": [
+   135.5127,
+   34.646,
+   80
+  ],
+  "orbit": {
+   "headingFrom": 186,
+   "headingTo": 178,
+   "pitch": -18,
+   "pitchTo": -24,
+   "range": 700,
+   "rangeTo": 1500,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "A9-咲洲厅舍": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.4149,
+   34.6384,
+   120
+  ],
+  "orbit": {
+   "headingFrom": 60,
+   "headingTo": 82,
+   "pitch": -14,
+   "pitchTo": -20,
+   "range": 1250,
+   "rangeTo": 820,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "A10-临空门大厦": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.2996,
+   34.4108,
+   120
+  ],
+  "orbit": {
+   "headingFrom": 238,
+   "headingTo": 256,
+   "pitch": -13,
+   "pitchTo": -18,
+   "range": 1350,
+   "rangeTo": 900,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ }
+}

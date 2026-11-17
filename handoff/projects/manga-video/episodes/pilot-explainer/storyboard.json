@@ -1,0 +1,121 @@
+{
+  "template": "explainer",
+  "title": "年收 500 万，故乡税到底能省多少？",
+  "emphasisTerms": ["会社员", "大阪市"],
+  "segments": [
+    {
+      "chapter": "年收 500 万，故乡税到底能省多少？",
+      "label": "开场",
+      "visuals": [
+        { "id": "title", "type": "chapterTitle", "data": { "no": "03", "title": "年收 500 万\n故乡税到底能省多少？", "kicker": "算一笔账", "tags": ["年收 500 万", "单身", "会社员"] } }
+      ],
+      "lines": [
+        { "speaker": "gyudon", "expression": "smile", "text": "今天就拿最常见的情况算一笔账：年收 500 万、单身的会社员。" }
+      ]
+    },
+    {
+      "chapter": "年收 500 万，故乡税到底能省多少？",
+      "label": "① 住民税",
+      "visuals": [
+        { "id": "tax", "type": "keyNumber", "data": { "label": "一年要交的住民税（约）", "value": 24, "decimals": 0, "unit": "万日元／年", "sub": "每月工资里扣约 2 万" },
+          "steps": [ { "line": 0, "word": "24 万" }, { "line": 0, "word": "每个月" } ] }
+      ],
+      "lines": [
+        { "speaker": "gyudon", "text": "先看你一年交多少住民税。这个条件下大概是 **24 万日元**，每个月工资里扣 2 万左右。" },
+        { "speaker": "gyudon", "expression": "serious", "text": "这笔钱你本来就要交给大阪市，一分都跑不掉。" }
+      ]
+    },
+    {
+      "chapter": "年收 500 万，故乡税到底能省多少？",
+      "label": "② 捐款上限",
+      "visuals": [
+        { "id": "limit", "type": "keyNumber", "data": { "label": "2026 年规则下的捐款上限（约）", "value": 5.7, "decimals": 1, "unit": "万日元", "sub": "≈ 57,000 日元" },
+          "steps": [ { "line": 0, "word": "5.7 万" }, { "line": 0, "at": "end", "offset": -0.3 } ] },
+        { "id": "cheese1", "type": "cheeseCameo", "data": { "line": 1, "side": "left" } }
+      ],
+      "lines": [
+        { "speaker": "gyudon", "text": "按 2026 年的规则，这个人能捐的上限大概是 **5.7 万日元**。" },
+        { "speaker": "cheese", "text": "那我自己要掏多少？一半？", "pauseAfter": 0.25 }
+      ]
+    },
+    {
+      "chapter": "年收 500 万，故乡税到底能省多少？",
+      "label": "③ 自己负担",
+      "visuals": [
+        { "id": "calc", "type": "calculation", "data": {
+            "terms": [ { "value": "57,000", "label": "捐款" }, { "op": "−", "value": "2,000", "label": "自己负担" } ],
+            "result": { "value": "55,000", "label": "从明年的税里扣回" }, "unit": "日元" },
+          "steps": [ { "line": 0, "offset": 0 }, { "line": 0, "word": "2,000" }, { "line": 0, "word": "剩下" } ] }
+      ],
+      "lines": [
+        { "speaker": "gyudon", "expression": "smile", "text": "只要 **2,000 日元**。捐款减去 2,000，剩下的 **5.5 万** 全部从明年的税里扣回来。" }
+      ]
+    },
+    {
+      "chapter": "年收 500 万，故乡税到底能省多少？",
+      "label": "④ 什么时候扣",
+      "visuals": [
+        { "id": "when", "type": "timeline", "data": {
+            "nodes": [ { "date": "2026 年", "label": "今年捐款" }, { "date": "2027 年 6 月", "label": "开始少扣" }, { "date": "2028 年 5 月", "label": "12 个月扣完" } ],
+            "footer": "每月住民税少扣约 4,600 日元" },
+          "steps": [ { "line": 0, "word": "One-stop" }, { "line": 0, "word": "明年" }, { "line": 0, "word": "连续" }, { "line": 0, "word": "4,600" } ] }
+      ],
+      "lines": [
+        { "speaker": "gyudon", "text": "用 One-stop 特例的话，从明年 6 月开始，每个月住民税少扣大约 **4,600 日元**，连续 12 个月。" }
+      ]
+    },
+    {
+      "chapter": "年收 500 万，故乡税到底能省多少？",
+      "label": "⑤ 换回什么",
+      "visuals": [
+        { "id": "gifts", "type": "iconGrid", "data": {
+            "title": "礼品成本 ≤ 捐款的 30%（约 17,000 日元）",
+            "items": [ { "label": "大米 10 公斤", "img": "assets/props/rice.png", "glyph": "米" }, { "label": "和牛 1 公斤", "img": "assets/props/wagyu.png", "glyph": "牛" }, { "label": "卫生纸 一大箱", "img": "assets/props/toilet-paper.png", "glyph": "纸" } ] },
+          "steps": [ { "line": 1, "word": "大米" }, { "line": 1, "word": "和牛" }, { "line": 1, "word": "卫生纸" } ] }
+      ],
+      "lines": [
+        { "speaker": "gyudon", "text": "礼品成本最高是捐款的三成，也就是 **一万七** 左右的东西。", "pauseAfter": 0.2 },
+        { "speaker": "gyudon", "expression": "smile", "text": "比如大米、和牛、卫生纸。" }
+      ]
+    },
+    {
+      "chapter": "年收 500 万，故乡税到底能省多少？",
+      "label": "⑥ 算总账",
+      "visuals": [
+        { "id": "ledger", "type": "table", "data": {
+            "columns": ["项目", "金额（日元）"],
+            "rows": [ ["今年先付出去的捐款", "57,000"], ["明年少交的税", "−55,000"], ["自己实际负担", "2,000"], ["拿到的礼品（成本价）", "约 17,000"] ],
+            "highlight": [2, 3], "callout": "约 8.5 倍" },
+          "steps": [ { "line": 0, "offset": -0.2 }, { "line": 0, "offset": 0.25 }, { "line": 0, "offset": 0.7 }, { "line": 0, "offset": 1.15 }, { "line": 0, "word": "2,000" }, { "line": 0, "word": "八倍多" } ] }
+      ],
+      "lines": [
+        { "speaker": "gyudon", "expression": "smile", "text": "算总账：花 **2,000**，换回一万七左右的东西，**八倍多**。" }
+      ]
+    },
+    {
+      "chapter": "年收 500 万，故乡税到底能省多少？",
+      "label": "⑦ 用 vs 不用",
+      "visuals": [
+        { "id": "vs", "type": "compare", "data": {
+            "left": { "title": "用故乡税", "tone": "good", "items": ["自己负担 2,000 日元", "换回约 17,000 日元的礼品", "5.5 万的税改交给你选的地方"] },
+            "right": { "title": "不用故乡税", "tone": "bad", "items": ["住民税 24 万照交大阪市", "什么都拿不到"] },
+            "highlight": { "left": [1], "right": [1] } },
+          "steps": [ { "line": 0, "offset": -0.25 }, { "line": 0, "word": "24 万" }, { "line": 0, "word": "什么都" } ] }
+      ],
+      "lines": [
+        { "speaker": "gyudon", "expression": "serious", "text": "不用的话，24 万照样交给大阪市，你**什么都拿不到**。" }
+      ]
+    },
+    {
+      "chapter": "年收 500 万，故乡税到底能省多少？",
+      "label": "⑧ 注意",
+      "visuals": [
+        { "id": "warn", "type": "warningBox", "data": { "level": "red", "title": "注意：先垫钱，后抵税", "text": "钱是先垫出去的，明年 6 月起分 12 个月抵回来", "sub": "手头紧的人，别一口气捐到顶" },
+          "steps": [ { "line": 0, "word": "这是" } ] }
+      ],
+      "lines": [
+        { "speaker": "gyudon", "expression": "serious", "text": "最后提醒一句：这是**先垫钱、后抵税**，手头紧的人别一口气捐到顶。" }
+      ]
+    }
+  ]
+}

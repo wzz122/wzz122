@@ -1,0 +1,42 @@
+{
+ "title": "Invoice 登记号，小老板到底办不办？",
+ "emphasisTerms": ["Invoice", "登记号", "销项税额", "进项税额", "进项抵扣", "免税事业者", "两成特例", "三成特例", "简易课税", "公平交易委员会", "七成", "五成", "三成", "两成", "30 万", "27 万", "6 万", "9 万", "15 万", "21 万", "1000 万", "办还是不办", "先问客户", "整整多一倍"],
+ "bgm": ["配乐-N2-欢快.mp3", "配乐-N1-欢快.mp3"],
+ "timing": { "gapSame": 0.42, "gapSwap": 0.5 },
+ "cueAlign": "phrase",
+ "sfxPolicy": "explicit",
+ "holdAfter": { "s03_l02": 1.2, "s01_l15": 0.6, "s06_l09": 0.8 },
+ "segments": [
+  { "visuals": [ { "type": "scene", "scene": "cold", "enter": "0" } ] },
+  { "chapterCard": { "no": "税", "kicker": "牛丼老师的税务课", "title": "Invoice 登记号\n小老板办不办", "tags": ["2026 年 10 月起", "在日华人"] },
+    "cast": [ { "at": { "at": "segStart" }, "pose": null } ],
+    "visuals": [
+    { "type": "scene", "scene": "mail", "enter": "0" },
+    { "type": "scene", "scene": "flower", "enter": "3" }
+  ] },
+  { "chapterCard": { "no": "01", "kicker": "先搞懂", "title": "小生意的优待" },
+    "visuals": [ { "type": "scene", "scene": "exempt", "enter": "0" } ] },
+  { "chapterCard": { "no": "02", "kicker": "Invoice", "title": "带号的账单" },
+    "visuals": [
+    { "type": "scene", "scene": "inv", "enter": "0" },
+    { "type": "scene", "scene": "adco", "enter": "5" },
+    { "type": "scene", "scene": "choice", "enter": "10" }
+  ] },
+  { "chapterCard": { "no": "03", "kicker": "算账 ①", "title": "不办：客户亏多少" },
+    "visuals": [ { "type": "scene", "scene": "nobuy", "enter": "0" } ] },
+  { "chapterCard": { "no": "04", "kicker": "算账 ②", "title": "办了：你交多少" },
+    "visuals": [
+    { "type": "scene", "scene": "reg", "enter": "0" },
+    { "type": "scene", "scene": "kani", "enter": "10" }
+  ] },
+  { "chapterCard": { "no": "05", "kicker": "结果", "title": "两边放在一起比" },
+    "visuals": [ { "type": "scene", "scene": "cmp", "enter": "0" } ] },
+  { "chapterCard": { "no": "06", "kicker": "怎么办", "title": "三步做决定" },
+    "visuals": [
+    { "type": "scene", "scene": "steps", "enter": "0" },
+    { "type": "scene", "scene": "undo", "enter": "13" }
+  ] },
+  { "chapterCard": { "no": "07", "kicker": "总结", "title": "三句话收尾" },
+    "visuals": [ { "type": "scene", "scene": "sum", "enter": "0" } ] }
+ ]
+}

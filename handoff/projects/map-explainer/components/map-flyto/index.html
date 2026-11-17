@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>map-flyto · 地图镜头飞行</title>
+<!-- 定版渲染前把 maplibre-gl@5 锁成具体版本号 -->
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<link rel="stylesheet" href="../_shared/tokens.css">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="../_shared/map-runtime.js"></script>
+</head>
+<!--
+  用法：
+    预览   直接打开（循环播放）
+    渲染   index.html?render  → await __ready; for 每帧 await __seek(frame / 30)
+    参数   改下方 CONFIG，或 <body data-config='{"keyframes":[...]}'>，或 ?config=<urlencoded JSON>
+-->
+<body>
+<div class="stage" id="stage">
+  <div class="map" id="map"></div>
+  <div class="caption" id="caption"></div>
+</div>
+<script>
+const CONFIG = MapRuntime.loadConfig({
+  duration: 10,
+  style: 'positron',                          // positron | liberty | bright | 自定义样式 URL
+  labelFields: ['name:zh-Hans', 'name:zh', 'name'],
+  hideLayers: ['^poi', 'housenumber'],
+  tint: true,
+  hillshade: { enabled: false, opacity: 0.45 }, // 国土地理院陰影起伏図（仅日本）
+  showAttribution: true,
+
+  // 相机关键帧：t=到达时间(s)，dur=移动时长（缺省=与前一帧间隔），arc=中途拉远级数
+  keyframes: [
+    { t: 0,   center: [138.25, 36.2],      zoom: 4.6, bearing: 0,   pitch: 0 },
+    { t: 4,   center: [139.7671, 35.6812], zoom: 12,  bearing: -12, pitch: 40, dur: 3.5, arc: 1.5 },
+    { t: 9,   center: [135.4959, 34.7025], zoom: 12,  bearing: 0,   pitch: 30, dur: 4.5, arc: 3 },
+  ],
+
+  // 地点标注：at=出现时间，out=消失时间（可省略）
+  pins: [
+    { at: 3.6, out: 5.2, lngLat: [139.7671, 35.6812], text: '东京站' },
+    { at: 8.6,           lngLat: [135.4959, 34.7025], text: '大阪站' },
+  ],
+
+  caption: { at: 0.4, out: 3.4, text: '从东京到大阪，铁路为什么这样走？' },
+});
+
+const { TOKENS } = MapRuntime;
+const stage = document.getElementById('stage');
+const map = MapRuntime.createMap('map', { style: CONFIG.style, camera: CONFIG.keyframes[0] });
+const tl = gsap.timeline({ paused: true });
+
+const ready = MapRuntime.mapReady(map).then(() => {
+  MapRuntime.setLabelLanguage(map, CONFIG.labelFields);
+  MapRuntime.hideLayers(map, CONFIG.hideLayers);
+  if (CONFIG.tint) MapRuntime.tintBasemap(map);
+  if (CONFIG.hillshade.enabled) MapRuntime.addGsiHillshade(map, CONFIG.hillshade);
+});
+
+// Marker 可以在样式加载前添加，tween 同步建好，__seek 才能立刻注册
+for (const p of CONFIG.pins) {
+  const el = MapRuntime.makePin(map, p);
+  gsap.set(el, { scale: 0, opacity: 0 });
+  tl.to(el, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(2)' }, p.at);
+  if (p.out != null) tl.to(el, { scale: 0.6, opacity: 0, duration: 0.3, ease: 'power2.in' }, p.out);
+}
+
+const cap = document.getElementById('caption');
+if (CONFIG.caption && CONFIG.caption.text) {
+  cap.textContent = CONFIG.caption.text;
+  gsap.set(cap, { opacity: 0, x: -40 });
+  tl.to(cap, { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out' }, CONFIG.caption.at);
+  if (CONFIG.caption.out != null) tl.to(cap, { opacity: 0, x: -20, duration: 0.35, ease: 'power2.in' }, CONFIG.caption.out);
+}
+
+if (CONFIG.showAttribution) {
+  MapRuntime.addAttribution(stage, [MapRuntime.ATTRIBUTION.ofm, CONFIG.hillshade.enabled && MapRuntime.ATTRIBUTION.gsi]);
+}
+
+function apply(t) {
+  map.jumpTo(MapRuntime.cameraAt(CONFIG.keyframes, t));
+}
+
+MapRuntime.installSeek({ timeline: tl, maps: [map], apply, ready, duration: CONFIG.duration });
+</script>
+</body>
+</html>

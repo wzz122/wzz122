@@ -1,0 +1,173 @@
+{
+ "G1-USJ全园": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.432,
+   34.6665,
+   44
+  ],
+  "orbit": {
+   "headingFrom": 285,
+   "headingTo": 325,
+   "pitch": -30,
+   "range": 2000,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G3-哈利波特": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.4316,
+   34.6687,
+   72
+  ],
+  "orbit": {
+   "headingFrom": 195,
+   "headingTo": 240,
+   "pitch": -26,
+   "range": 430,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G2-任天堂世界": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.4301,
+   34.6686,
+   50
+  ],
+  "orbit": {
+   "headingFrom": 320,
+   "headingTo": 5,
+   "pitch": -32,
+   "range": 420,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G7-USJ到梦洲": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.411,
+   34.66,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 350,
+   "headingTo": 20,
+   "pitch": -36,
+   "range": 6500,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": false,
+  "logoOnly": true
+ },
+ "G8-魔法王国": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   -81.5812,
+   28.4185,
+   4
+  ],
+  "orbit": {
+   "headingFrom": 340,
+   "headingTo": 20,
+   "pitch": -30,
+   "range": 900,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": false,
+  "logoOnly": true
+ },
+ "G9-东京迪士尼": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   139.8806,
+   35.6328,
+   44
+  ],
+  "orbit": {
+   "headingFrom": 130,
+   "headingTo": 175,
+   "pitch": -30,
+   "range": 900,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": false,
+  "logoOnly": true
+ },
+ "G10-奥兰多环球": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   -81.4695,
+   28.4742,
+   3
+  ],
+  "orbit": {
+   "headingFrom": 20,
+   "headingTo": 60,
+   "pitch": -32,
+   "range": 1800,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": false,
+  "logoOnly": true
+ },
+ "G11-好莱坞环球": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   -118.3534,
+   34.1375,
+   185
+  ],
+  "orbit": {
+   "headingFrom": 20,
+   "headingTo": 60,
+   "pitch": -34,
+   "range": 1100,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": false,
+  "logoOnly": true
+ },
+ "G5-北侧旧址": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.4298,
+   34.6702,
+   44
+  ],
+  "orbit": {
+   "headingFrom": 160,
+   "headingTo": 205,
+   "pitch": -34,
+   "range": 850,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ }
+}

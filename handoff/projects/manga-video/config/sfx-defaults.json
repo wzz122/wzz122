@@ -1,0 +1,16 @@
+{
+  "_说明": "自动音效：分镜里出现这些动作时，自动在那一刻放对应的效果音。文件放 assets/sfx/，可以不写扩展名（自动找 .mp3/.wav/.m4a）。文件不存在就安静跳过。想关掉某一项，把值改成 null。",
+  "volume": 0.7,
+  "enter": { "slideIn": "sfx/whoosh", "pop": "sfx/pop" },
+  "propAppear": { "pop": "sfx/pop", "slideUp": "sfx/whoosh", "fade": null },
+  "fx": {
+    "shake": "sfx/impact",
+    "exclaim": "sfx/exclaim",
+    "question": "sfx/question",
+    "sweat": "sfx/sweat",
+    "sparkle": "sfx/sparkle",
+    "angry": "sfx/angry"
+  },
+  "transition": { "slide": "sfx/whoosh", "fade": null },
+  "titleCard": "sfx/title"
+}

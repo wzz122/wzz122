@@ -1,0 +1,59 @@
+{
+ "G1-备后落合": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   133.1483,
+   35.0011,
+   400
+  ],
+  "orbit": {
+   "headingFrom": 330,
+   "headingTo": 20,
+   "pitch": -30,
+   "range": 900,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G2-东城站": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   133.2738,
+   34.9015,
+   300
+  ],
+  "orbit": {
+   "headingFrom": 200,
+   "headingTo": 240,
+   "pitch": -32,
+   "range": 900,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G3-道后山站": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   133.1782,
+   35.0109,
+   610
+  ],
+  "orbit": {
+   "headingFrom": 40,
+   "headingTo": 80,
+   "pitch": -28,
+   "range": 1100,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ }
+}

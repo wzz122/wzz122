@@ -1,0 +1,42 @@
+{
+ "title": "银行和信用金库到底差在哪？贷款、理财前必看",
+ "emphasisTerms": ["信用金库", "银行法", "信用金库法", "股份公司", "株式会社", "非营利", "协同组织", "股东", "营业区域", "出资金", "存款保险", "一千万", "十二万", "0.4%", "1.25%", "网络银行", "竣工检查合格证", "永住", "投资信托", "外币保险", "NISA", "负责人"],
+ "bgm": ["配乐-N2-欢快.mp3", "配乐-N1-欢快.mp3"],
+ "timing": { "gapSame": 0.42, "gapSwap": 0.5 },
+ "cueAlign": "phrase",
+ "sfxPolicy": "explicit",
+ "segments": [
+  { "visuals": [
+    { "type": "scene", "scene": "open", "enter": "0:贷款的话" },
+    { "type": "chapterTitle", "enter": { "line": 0, "offset": 0 }, "data": { "no": "钱", "kicker": "牛丼老师的理财课", "title": "银行和信用金库\n到底差在哪", "tags": ["贷款、理财前必看", "在日华人"] } }
+  ] },
+  { "chapterCard": { "no": "01", "kicker": "本质", "title": "为谁赚钱" },
+    "visuals": [
+    { "type": "scene", "scene": "who", "enter": "0" },
+    { "type": "scene", "scene": "area", "enter": "9:还有一个" },
+    { "type": "scene", "scene": "analogy", "enter": "14" }
+  ] },
+  { "chapterCard": { "no": "02", "kicker": "会员", "title": "我们外国人\n能用吗" },
+    "visuals": [
+    { "type": "scene", "scene": "member", "enter": "0" },
+    { "type": "scene", "scene": "shusshi", "enter": "5:入会要交" },
+    { "type": "scene", "scene": "hoken", "enter": "12" }
+  ] },
+  { "chapterCard": { "no": "03", "kicker": "贷款", "title": "利息看报价\n商量看信金" },
+    "visuals": [
+    { "type": "scene", "scene": "rate", "enter": "0" },
+    { "type": "scene", "scene": "listen", "enter": "14" },
+    { "type": "scene", "scene": "kensa", "enter": "17" },
+    { "type": "scene", "scene": "gaikoku", "enter": "27" },
+    { "type": "scene", "scene": "tsukiai", "enter": "32" }
+  ] },
+  { "chapterCard": { "no": "04", "kicker": "理财", "title": "窗口推荐的东西\n先别签" },
+    "visuals": [
+    { "type": "scene", "scene": "madoguchi", "enter": "0" },
+    { "type": "scene", "scene": "cost", "enter": "9" },
+    { "type": "scene", "scene": "bundle", "enter": "13" },
+    { "type": "scene", "scene": "line", "enter": "16" }
+  ] },
+  { "visuals": [ { "type": "scene", "scene": "outro", "enter": "0" } ] }
+ ]
+}

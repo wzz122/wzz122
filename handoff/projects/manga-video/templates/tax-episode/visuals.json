@@ -1,0 +1,14 @@
+{
+ "title": "<题目>",
+ "emphasisTerms": [],
+ "timing": { "gapSame": 0.42, "gapSwap": 0.5 },
+ "cueAlign": "phrase",
+ "sfxPolicy": "explicit",
+ "segments": [
+  {
+   "visuals": [
+    { "type": "scene", "scene": "calc", "enter": "0" }
+   ]
+  }
+ ]
+}

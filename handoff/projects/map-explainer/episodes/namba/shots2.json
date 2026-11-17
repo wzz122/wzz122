@@ -1,0 +1,222 @@
+{
+ "H1-难波全景推近": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5018,
+   34.666,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 350,
+   "headingTo": 2,
+   "pitch": -30,
+   "pitchTo": -36,
+   "range": 2200,
+   "rangeTo": 1500,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "H2-难波全景拉远": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5025,
+   34.666,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 10,
+   "headingTo": 0,
+   "pitch": -40,
+   "pitchTo": -28,
+   "range": 900,
+   "rangeTo": 2200,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "H3-戎桥近景": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5013,
+   34.6689,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 75,
+   "headingTo": 88,
+   "pitch": -30,
+   "pitchTo": -30,
+   "range": 420,
+   "rangeTo": 240,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "H4-千日前路口推近": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5031,
+   34.666,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 215,
+   "headingTo": 228,
+   "pitch": -34,
+   "pitchTo": -34,
+   "range": 520,
+   "rangeTo": 260,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "H5-千日前路口低角度": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5031,
+   34.666,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 300,
+   "headingTo": 312,
+   "pitch": -22,
+   "pitchTo": -22,
+   "range": 380,
+   "rangeTo": 320,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "H6-千日前路口拉远": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5031,
+   34.666,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 240,
+   "headingTo": 228,
+   "pitch": -45,
+   "pitchTo": -32,
+   "range": 260,
+   "rangeTo": 700,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "H7-千日前沿街到花月": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5031,
+   34.6662,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 352,
+   "headingTo": 356,
+   "pitch": -35,
+   "pitchTo": -35,
+   "range": 450,
+   "rangeTo": 450,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true,
+  "targetTo": [
+   135.5034,
+   34.6643,
+   40
+  ]
+ },
+ "H8-岛之内全景推近": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5055,
+   34.6715,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 350,
+   "headingTo": 5,
+   "pitch": -34,
+   "pitchTo": -38,
+   "range": 1000,
+   "rangeTo": 550,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "H9-岛之内街区近景": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5062,
+   34.6708,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 30,
+   "headingTo": 42,
+   "pitch": -32,
+   "pitchTo": -32,
+   "range": 450,
+   "rangeTo": 280,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "H10-东横堀川沿河": {
+  "source": "google",
+  "duration": 18,
+  "target": [
+   135.5086,
+   34.6692,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 340,
+   "headingTo": 340,
+   "pitch": -35,
+   "pitchTo": -35,
+   "range": 500,
+   "rangeTo": 500,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true,
+  "targetTo": [
+   135.5086,
+   34.6738,
+   40
+  ]
+ }
+}

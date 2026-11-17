@@ -1,0 +1,130 @@
+# 永久读音词典（配音脚本每次自动带上）。四列用 Tab 分开：词	读音	范围	备注
+# 范围：通用 = 文本里出现就自动钉；看语境 = 同一写法可能有两种读法，预检会列出来，由本期「配音/读音.tsv」确认后才钉。
+# 读音：每个字一个 (拼音+声调数字)，5 = 轻声。「一」「不」写变调后的调（一贯 yi2、不算数 bu2），三声连读写原调（处理 chu3 li3）。
+# 每次发现读错都加进来（读音预检.py --入库），同一个错不再出第二次。种子来自 2026-11 以前各期手写的 --tone。
+# ── 日本地名、人名、专名
+町	(ding1)	通用	日本地名一律读丁
+上町	(shang4)(ding1)	通用
+长町	(chang2)(ding1)	通用
+大国町	(da4)(guo2)(ding1)	通用
+市町	(shi4)(ding1)	通用
+小町	(xiao3)(ding1)	通用
+广川町	(guang3)(chuan1)(ding1)	通用
+周参见町	(zhou1)(can1)(jian4)(ding1)	通用
+周参见	(zhou1)(can1)(jian4)	通用
+丁目	(ding1)(mu4)	通用
+畷	(zhui4)	通用
+埼	(qi2)	通用
+咲	(xiao4)	通用
+坪	(ping2)	通用
+田尻	(tian2)(kao1)	通用
+田野畑	(tian2)(ye3)(tian2)	通用
+难波	(nan2)(bo1)	通用
+大坂	(da4)(ban3)	通用
+阪和	(ban3)(he2)	通用
+纪州	(ji4)(zhou1)	通用
+纪势	(ji4)(shi4)	通用
+纪伊	(ji4)(yi1)	通用
+相模	(xiang1)(mo2)	通用
+常磐	(chang2)(pan2)	通用
+龟山	(gui1)(shan1)	通用
+那智	(na4)(zhi4)	通用
+见老津	(jian4)(lao3)(jin1)	通用
+落合	(luo4)(he2)	通用
+胜浦	(sheng4)(pu3)	通用
+神代	(shen2)(dai4)	通用
+白良滨	(bai2)(liang2)(bin1)	通用
+白滨	(bai2)(bin1)	通用
+比婆	(bi3)(po2)	通用
+新见	(xin1)(jian4)	通用
+帝释	(di4)(shi4)	通用
+惠美	(hui4)(mei3)	通用
+界筋	(jie4)(jin1)	通用
+丰穰	(feng1)(rang2)	通用
+盆舞	(pen2)(wu3)	通用
+车掌	(che1)(zhang3)	通用
+调书	(diao4)(shu1)	通用
+推计	(tui1)(ji4)	通用
+量贩	(liang4)(fan4)	通用
+和村	(he2)(cun1)	看语境	311 海岸线：地名里的「和村」
+# ── 重
+重建	(chong2)(jian4)	通用
+重新	(chong2)(xin1)	通用
+重绕	(chong2)(rao4)	通用
+重合	(chong2)(he2)	通用
+重画	(chong2)(hua4)	通用
+有多重	(you3)(duo1)(zhong4)	通用
+多重	(duo1)(zhong4)	看语境	「有多重」读 zhong4；「多重身份」读 chong2
+# ── 还 / 得
+还钱	(huan2)(qian2)	通用
+还清	(huan2)(qing1)	通用
+还完	(huan2)(wan2)	通用
+还债	(huan2)(zhai4)	通用
+还差	(hai2)(cha4)	通用
+还了	(huan2)(le5)	看语境	「把钱还了」huan2；「还了得」hai2
+还得	(hai2)(dei3)	看语境	「还得去」dei3；「还得到」de2
+都得	(dou1)(dei3)	看语境	「都得去」dei3；「都得到」de2
+就得	(jiu4)(dei3)	看语境	「就得去」dei3；「就得到」de2
+得有人	(dei3)(you3)(ren2)	看语境
+得往回倒	(dei3)(wang3)(hui2)(dao4)	通用
+幸得	(xing4)(de2)	通用
+刹得住	(sha1)(de5)(zhu4)	通用
+# ── 当 / 差 / 空 / 调 / 倒 / 量 / 干
+当成	(dang4)(cheng2)	通用
+别当真	(bie2)(dang4)(zhen1)	通用
+当了几年	(dang1)(le5)(ji3)(nian2)	通用
+空当	(kong4)(dang1)	通用
+时间差	(shi2)(jian1)(cha1)	通用
+差不多	(cha4)(bu4)(duo1)	通用
+差一点点	(cha4)(yi4)(dian3)(dian3)	通用
+差的	(cha4)(de5)	看语境	「质量差的」cha4；「相差的」cha1
+空出来	(kong4)(chu1)(lai2)	通用
+空车厢	(kong1)(che1)(xiang1)	通用
+空着	(kong4)(zhe5)	看语境	「位子空着」kong4；「空着手」kong1
+调查	(diao4)(cha2)	通用
+调子	(diao4)(zi5)	通用
+调头	(diao4)(tou2)	通用
+倒推	(dao4)(tui1)	通用
+倒贴	(dao4)(tie1)	通用
+翻倒	(fan1)(dao3)	通用
+倒数	(dao4)(shu3)	看语境	「倒数第二」shu3；数学的「倒数」shu4
+量级	(liang4)(ji2)	通用
+量出来	(liang2)(chu1)(lai2)	通用
+干线	(gan4)(xian4)	通用
+干的活	(gan4)(de5)(huo2)	通用
+干得	(gan4)(de5)	通用
+# ── 其他多音字
+处理	(chu3)(li3)	通用
+浅处	(qian3)(chu4)	通用
+应力	(ying4)(li4)	通用
+中选	(zhong4)(xuan3)	通用
+校舍	(xiao4)(she4)	通用
+长周期	(chang2)(zhou1)(qi1)	通用
+短周期	(duan3)(zhou1)(qi1)	通用
+长假	(chang2)(jia4)	通用
+藏进	(cang2)(jin4)	通用
+将近	(jiang1)(jin4)	通用
+折返	(zhe2)(fan3)	通用
+划成	(hua4)(cheng2)	通用
+新划	(xin1)(hua4)	通用
+供餐	(gong1)(can1)	通用
+贮存	(zhu4)(cun2)	通用
+骨架	(gu3)(jia4)	通用
+窟窿	(ku1)(long5)	通用
+防潮堤	(fang2)(chao2)(di1)	通用
+鸬鹚	(lu2)(ci2)	通用
+老幺	(lao3)(yao1)	通用
+包圆	(bao1)(yuan2)	通用
+咯噔	(ge1)(deng1)	通用
+咔吱	(ka1)(zhi1)	通用
+黑着	(hei1)(zhe5)	通用
+打着	(da3)(zhe5)	通用
+挨了	(ai2)(le5)	通用
+磕	(ke1)	通用
+撑	(cheng1)	通用
+钻	(zuan1)	看语境	「钻进去」zuan1；「钻石」zuan4
+晃	(huang4)	看语境	「摇晃」huang4；「晃眼」huang3
+# ── 一 / 不（写变调后的调）
+一贯	(yi2)(guan4)	通用
+一起盛	(yi4)(qi3)(sheng4)	通用
+不算数	(bu2)(suan4)(shu4)	通用

@@ -1,0 +1,67 @@
+{
+  "_说明": "角色表。id 用在分镜里；name 显示在字幕前；color 是字幕名牌颜色；voice.minimax.voiceId 填 MiniMax 音色；voice.say 是没有 API Key 时用的 Mac 自带语音占位。素材放在 assets/characters/<id>/。",
+  "characters": {
+    "gyudon": {
+      "name": "牛丼老师",
+      "color": "#E8743B",
+      "defaultExpression": "calm",
+      "expressions": {
+        "calm": "平静",
+        "smug": "得意"
+      },
+      "voice": {
+        "minimax": {
+          "voiceId": "Chinese (Mandarin)_Reliable_Executive",
+          "voiceIdIsPlaceholder": true,
+          "speed": 1.05,
+          "pitch": 0,
+          "vol": 1
+        },
+        "say": { "voice": "Tingting", "pitchShift": 0.74, "rate": 190 }
+      },
+      "placeholder": { "body": "#2F3E66", "skin": "#F3D2B3", "hair": "#222222", "glasses": "round", "tie": "#1F2D55" }
+    },
+    "cheese": {
+      "name": "芝士",
+      "color": "#F2B705",
+      "defaultExpression": "normal",
+      "expressions": {
+        "normal": "普通",
+        "speechless": "无语",
+        "panic": "慌张",
+        "surprised": "吃惊"
+      },
+      "voice": {
+        "minimax": {
+          "voiceId": "Chinese (Mandarin)_Pure-hearted_Boy",
+          "voiceIdIsPlaceholder": true,
+          "speed": 1.1,
+          "pitch": 0,
+          "vol": 1
+        },
+        "say": { "voice": "Tingting", "pitchShift": 0.86, "rate": 205 }
+      },
+      "placeholder": { "body": "#7FA7D9", "skin": "#F6DCC4", "hair": "#2B2B2B", "glasses": "thick", "badge": true }
+    },
+    "tanaka": {
+      "name": "田中",
+      "color": "#4FB286",
+      "defaultExpression": "happy",
+      "expressions": {
+        "happy": "开心",
+        "smug": "得意"
+      },
+      "voice": {
+        "minimax": {
+          "voiceId": "Japanese_OptimisticYouth",
+          "voiceIdIsPlaceholder": true,
+          "speed": 1.05,
+          "pitch": 0,
+          "vol": 1
+        },
+        "say": { "voice": "Kyoko", "pitchShift": 0.8, "rate": 200 }
+      },
+      "placeholder": { "body": "#5DAA7E", "skin": "#F3D0AE", "hair": "#5A3B22", "glasses": "none" }
+    }
+  }
+}

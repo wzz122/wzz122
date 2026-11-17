@@ -1,0 +1,3778 @@
+[
+  {
+    "path": "handoff/projects/manga-video/.gitignore",
+    "source": "/Users/wzz122/video-projects/manga-video/.gitignore",
+    "bytes": 568,
+    "sha256": "3ac9b6dd30dc5085af60a9b12b7bb595282ad4b8789ac0cbb9072e5dce2d60ff",
+    "source_mtime": "2026-10-29T12:28:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/README.md",
+    "source": "/Users/wzz122/video-projects/manga-video/README.md",
+    "bytes": 6230,
+    "sha256": "a6487f501f7830702cfda7be07ba6a6fd35faac6ca9ff05d6c7ee9aba1989a8f",
+    "source_mtime": "2026-10-28T00:05:52+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/eslint.config.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/eslint.config.mjs",
+    "bytes": 79,
+    "sha256": "7f2ca640409fd597965bedf929073b9a74f143643e1711150c4cac3b6ec5c80d",
+    "source_mtime": "2026-10-16T17:09:20+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/package-lock.json",
+    "source": "/Users/wzz122/video-projects/manga-video/package-lock.json",
+    "bytes": 165740,
+    "sha256": "d475d57736bf67cee542edc21a1be9cbecd0d808687081a5434c64c2c9b96311",
+    "source_mtime": "2026-10-27T16:16:28+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/package.json",
+    "source": "/Users/wzz122/video-projects/manga-video/package.json",
+    "bytes": 1214,
+    "sha256": "0e6fc73e0b75d4be679075ac80c7c45169c8f64411a3fb47527236dd13a61ce4",
+    "source_mtime": "2026-10-27T16:16:28+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/remotion.config.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/remotion.config.ts",
+    "bytes": 371,
+    "sha256": "af5ce97f98b2c91a7891f2bef4801f7dc700843f010fd81e1566d9eebf6f5ad1",
+    "source_mtime": "2026-10-16T17:09:20+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/tsconfig.json",
+    "source": "/Users/wzz122/video-projects/manga-video/tsconfig.json",
+    "bytes": 470,
+    "sha256": "7f40fd6f3906baf2fc4d5b4e03c2fec22fe2888e28e2e3aab982e392a500d927",
+    "source_mtime": "2026-10-27T16:25:56+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/config/characters.json",
+    "source": "/Users/wzz122/video-projects/manga-video/config/characters.json",
+    "bytes": 2134,
+    "sha256": "00b1ce6b4f59dad3cefc2ed9eec0b1911ff31d9c1c1f49030e9e26685d9ad1a9",
+    "source_mtime": "2026-10-27T16:12:38+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/config/lexicon.json",
+    "source": "/Users/wzz122/video-projects/manga-video/config/lexicon.json",
+    "bytes": 1108,
+    "sha256": "50e81ed22bde9e9613ad4721366c29679025cc3473121d129f55108cffedc661",
+    "source_mtime": "2026-10-27T16:21:13+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/config/minimax-voices.json",
+    "source": "/Users/wzz122/video-projects/manga-video/config/minimax-voices.json",
+    "bytes": 354,
+    "sha256": "cebd332275353e25f719b0640cbe75fd331db1710607161dcdca9b43bcc40dab",
+    "source_mtime": "2026-10-28T12:01:09+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/config/pron-overrides.json",
+    "source": "/Users/wzz122/video-projects/manga-video/config/pron-overrides.json",
+    "bytes": 7481,
+    "sha256": "3d886c0f613abebf492dd5d8018c067d05eade2946036cf95df383ce8fa16ee8",
+    "source_mtime": "2026-11-15T12:40:00+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/config/pronunciation.yaml",
+    "source": "/Users/wzz122/video-projects/manga-video/config/pronunciation.yaml",
+    "bytes": 1110,
+    "sha256": "81dbab827b0edca47c525be5de003fefcea0e64cb719063d955d67b8bcaacca4",
+    "source_mtime": "2026-10-27T16:17:07+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/config/sfx-defaults.json",
+    "source": "/Users/wzz122/video-projects/manga-video/config/sfx-defaults.json",
+    "bytes": 684,
+    "sha256": "49e7f6240e1881428e1a54d19d464ff9599b7f2555695e99a8c8d3e0745648c8",
+    "source_mtime": "2026-10-27T16:19:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/CODEX-visual-review-2026-10-27.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/CODEX-visual-review-2026-10-27.md",
+    "bytes": 24020,
+    "sha256": "9a79cbc3e94a1d012a20339eec73ce8ded17647ef7be27d1eef8c09cd2f8000e",
+    "source_mtime": "2026-10-27T22:47:37+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/HANDOFF-explainer-for-codex.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/HANDOFF-explainer-for-codex.md",
+    "bytes": 7803,
+    "sha256": "db7b0448fcce6ffe6dbf695dc3f75987ec942261b08a2021d7c3da57783ba1ba",
+    "source_mtime": "2026-10-27T22:29:36+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/ai-capability-report.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/ai-capability-report.md",
+    "bytes": 8848,
+    "sha256": "044f1df4f536e6f20e127ae9216d35e9783d34f38fae2bbe9529d9d95dfd643d",
+    "source_mtime": "2026-10-27T16:30:24+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/asset-prompts-explainer.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/asset-prompts-explainer.md",
+    "bytes": 3112,
+    "sha256": "d5a590110b2bd20d8f9cac7e1e0c3f769be7c1197523e23b2c66701430f0efb9",
+    "source_mtime": "2026-10-27T16:32:56+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/asset-prompts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/asset-prompts.md",
+    "bytes": 18656,
+    "sha256": "57f14bd85a8a8e4b52345e954e879919de8ab2d06b03ce36bb88084c5865c42e",
+    "source_mtime": "2026-10-27T16:33:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/explainer-schema.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/explainer-schema.md",
+    "bytes": 6703,
+    "sha256": "a315bcae6e722d218d2dca49c5cf563035e397d01c1f08d854722a8076eb5903",
+    "source_mtime": "2026-10-27T16:30:24+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/fudosan-line.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/fudosan-line.md",
+    "bytes": 2757,
+    "sha256": "e54a8ca6bc3214027c2620de5bead7ba8923fbef4198cfcb67093a6e32c79aa0",
+    "source_mtime": "2026-11-05T18:09:01+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/storyboard-schema.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/storyboard-schema.md",
+    "bytes": 15343,
+    "sha256": "4164f43f14035a6d4e09aebc1431f463aff6db0de6634e843270c002323048b4",
+    "source_mtime": "2026-10-28T00:05:52+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/character-redesign-2026-10-27/prompts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/character-redesign-2026-10-27/prompts.md",
+    "bytes": 3877,
+    "sha256": "0c3d30204315ae817eac2ceba7b043f05e195db27fea9099235ab3e8e1cf1755",
+    "source_mtime": "2026-10-27T22:51:19+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/character-redesign-2026-10-27/说明.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/character-redesign-2026-10-27/说明.md",
+    "bytes": 1129,
+    "sha256": "6d1ad0d007492034730dc46276f2b28b6b8ab8fcf0d359011fbbbaf79861588e",
+    "source_mtime": "2026-10-27T22:51:53+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/character-redesign-2026-10-27/原版趣味微立体-v7/prompts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/character-redesign-2026-10-27/原版趣味微立体-v7/prompts.md",
+    "bytes": 4869,
+    "sha256": "660efb154daacfa9e0443a050da203b0a1484ab4e86f688f07ec72bffe7cbf4c",
+    "source_mtime": "2026-10-27T23:50:50+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/character-redesign-2026-10-27/圆润老师与猫-v4/prompts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/character-redesign-2026-10-27/圆润老师与猫-v4/prompts.md",
+    "bytes": 1745,
+    "sha256": "ca4929d8c98a4cce90fb637b87a69c414359e3df23ba39a497376c9de3b09264",
+    "source_mtime": "2026-10-27T23:12:31+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/character-redesign-2026-10-27/柔和双人-v6/prompts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/character-redesign-2026-10-27/柔和双人-v6/prompts.md",
+    "bytes": 2832,
+    "sha256": "56c31471a53f9f8599757840e9b0ef14fb259e0d619d0c7f998940a9994fe19e",
+    "source_mtime": "2026-10-27T23:46:24+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/character-redesign-2026-10-27/橘猫老师与学生-v5/prompts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/character-redesign-2026-10-27/橘猫老师与学生-v5/prompts.md",
+    "bytes": 3863,
+    "sha256": "772e3d6cb6d96546ff30f4cecef12079d5d97412e5fda036b178cf0bd27601d6",
+    "source_mtime": "2026-10-27T23:37:12+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/character-redesign-2026-10-27/漫画头像-v3/prompts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/character-redesign-2026-10-27/漫画头像-v3/prompts.md",
+    "bytes": 4534,
+    "sha256": "b4b24f243112e55cf5f41acb54c927d8984b5eca6224019aef509a07a7c89537",
+    "source_mtime": "2026-10-27T23:04:20+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/docs/character-redesign-2026-10-27/漫画头像-v3/说明.md",
+    "source": "/Users/wzz122/video-projects/manga-video/docs/character-redesign-2026-10-27/漫画头像-v3/说明.md",
+    "bytes": 946,
+    "sha256": "d5550ad14a6f6a9aa1eeb04658f0dbc38ca93388c7d78a57c24f44d6b84f6f7d",
+    "source_mtime": "2026-10-27T23:05:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/bank-shinkin/QC.md",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/bank-shinkin/QC.md",
+    "bytes": 5327,
+    "sha256": "28b94570da9eccc47f95d54f2942be50073af6033fc2faeb019d07ed0227a105",
+    "source_mtime": "2026-11-06T21:20:56+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/bank-shinkin/facts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/bank-shinkin/facts.md",
+    "bytes": 5025,
+    "sha256": "88ddbf61c2feca04702d01710b80fa86e1d2cc66aaa21c75befb33875ed5d2c5",
+    "source_mtime": "2026-11-06T21:03:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/bank-shinkin/lines.txt",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/bank-shinkin/lines.txt",
+    "bytes": 14838,
+    "sha256": "fb38e09461a42a22fb72650279c4f27a3cb19b7115f0fe3ccd9e08096c510f8f",
+    "source_mtime": "2026-11-06T20:51:39+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/bank-shinkin/scenes.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/bank-shinkin/scenes.mjs",
+    "bytes": 51936,
+    "sha256": "a060c18d66857cf54cc53e73910d6aa024a544cb044ac1450a87d33e23e3d90b",
+    "source_mtime": "2026-11-06T21:09:20+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/bank-shinkin/script.json",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/bank-shinkin/script.json",
+    "bytes": 28100,
+    "sha256": "7c19431cce9a48bd7c03965ef3681dbc8c85c397568abab41510ff2a92691d03",
+    "source_mtime": "2026-11-06T20:51:39+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/bank-shinkin/states.md",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/bank-shinkin/states.md",
+    "bytes": 12398,
+    "sha256": "9e0c392754e5358d4b96ca392452f34fe6934a43505356f0163917ae821fdee6",
+    "source_mtime": "2026-11-06T21:03:00+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/bank-shinkin/visuals.json",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/bank-shinkin/visuals.json",
+    "bytes": 2351,
+    "sha256": "89a5826ee68a3988d2c55ecfa1867fae2c87a34c41b5745d0369d9cc577c4b60",
+    "source_mtime": "2026-11-06T20:54:31+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/invoice-2026b/QC.md",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/invoice-2026b/QC.md",
+    "bytes": 5731,
+    "sha256": "0fad7b708cd7a4c0affc772497247e2b388c255e9ef1137e845b73f12ddf0d3e",
+    "source_mtime": "2026-11-16T00:37:34+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/invoice-2026b/facts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/invoice-2026b/facts.md",
+    "bytes": 4922,
+    "sha256": "110686ed016dd21b10428917ab97a20787326705b9531619742cec43528157a4",
+    "source_mtime": "2026-11-16T00:24:46+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/invoice-2026b/lines.txt",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/invoice-2026b/lines.txt",
+    "bytes": 12162,
+    "sha256": "823b99d74cdb3135e1fdc3d1eba0cb17f19cdfa65453e5e06c8b139ab1dd4d2a",
+    "source_mtime": "2026-11-16T00:17:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/invoice-2026b/pron.json",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/invoice-2026b/pron.json",
+    "bytes": 3,
+    "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "source_mtime": "2026-11-15T23:58:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/invoice-2026b/scenes.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/invoice-2026b/scenes.mjs",
+    "bytes": 49432,
+    "sha256": "36980235b01fcede1f624393ccb84aa851691d5bad857406cea135bb174d86e5",
+    "source_mtime": "2026-11-16T00:22:54+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/invoice-2026b/script.json",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/invoice-2026b/script.json",
+    "bytes": 22384,
+    "sha256": "97f186afbaeee429791b07ebaab54e4f66cef25cdf241a17e9d03e10959044e6",
+    "source_mtime": "2026-11-16T01:07:36+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/invoice-2026b/states.md",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/invoice-2026b/states.md",
+    "bytes": 16186,
+    "sha256": "1b57b901701a34ecbc599f36c1ab512c60fc8817b6a9e379faca2509d240ea8b",
+    "source_mtime": "2026-11-16T00:24:22+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/invoice-2026b/visuals.json",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/invoice-2026b/visuals.json",
+    "bytes": 2473,
+    "sha256": "736a7d786e58161731cbb1ed474ceae477d38c817de670eb2c99a1ae859a2376",
+    "source_mtime": "2026-11-16T00:11:35+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/invoice-2026b/voice-review.md",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/invoice-2026b/voice-review.md",
+    "bytes": 6351,
+    "sha256": "e98a43257e0dea472248b56cb87397e58389cc33a79a691fe4292264bb436be7",
+    "source_mtime": "2026-11-16T00:20:52+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/pilot/storyboard.json",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/pilot/storyboard.json",
+    "bytes": 4783,
+    "sha256": "1b2b3e1c08dea87a59a57ff7eff0e558bc8d6b2f738136bde97081ff02f3b1ca",
+    "source_mtime": "2026-10-27T16:19:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/episodes/pilot-explainer/storyboard.json",
+    "source": "/Users/wzz122/video-projects/manga-video/episodes/pilot-explainer/storyboard.json",
+    "bytes": 7071,
+    "sha256": "067c0411d3623cbe72ceef510be82c180babec06e30a69d31699496ae9fab7a5",
+    "source_mtime": "2026-10-27T16:12:50+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/learning/2026-10-29-両学長-税务图解/QC.md",
+    "source": "/Users/wzz122/video-projects/manga-video/learning/2026-10-29-両学長-税务图解/QC.md",
+    "bytes": 11571,
+    "sha256": "457751770689768c6d320c132b9c17e83d46a990d59d77397a07ee4fe70b6366",
+    "source_mtime": "2026-10-29T12:01:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/learning/2026-10-29-両学長-税务图解/README.md",
+    "source": "/Users/wzz122/video-projects/manga-video/learning/2026-10-29-両学長-税务图解/README.md",
+    "bytes": 1965,
+    "sha256": "1e3436edb5b50144004bebb544d6c86a71fd9818255995857a12a0469e8c70c2",
+    "source_mtime": "2026-10-29T12:01:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/learning/2026-10-29-両学長-税务图解/分镜状态模板.md",
+    "source": "/Users/wzz122/video-projects/manga-video/learning/2026-10-29-両学長-税务图解/分镜状态模板.md",
+    "bytes": 11140,
+    "sha256": "b95a32c2c171a8448c54d145c06aea2fef4aae40e32e0ee1b4d28866cf84b437",
+    "source_mtime": "2026-10-29T12:01:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/learning/2026-10-29-両学長-税务图解/学习结论.md",
+    "source": "/Users/wzz122/video-projects/manga-video/learning/2026-10-29-両学長-税务图解/学习结论.md",
+    "bytes": 13947,
+    "sha256": "feb04181925d9d1c396b0fc8793f403d0b09bf3e1addd7df24009840a31ff8d2",
+    "source_mtime": "2026-10-29T12:01:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/learning/2026-10-29-両学長-税务图解/工作流-vNext.md",
+    "source": "/Users/wzz122/video-projects/manga-video/learning/2026-10-29-両学長-税务图解/工作流-vNext.md",
+    "bytes": 5839,
+    "sha256": "c5eafa5c24cc14ab51540f10183b12b854c8d429ad094f3344924049f53794f6",
+    "source_mtime": "2026-10-29T12:01:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/learning/2026-10-29-両学長-税务图解/工作流差距与改动.md",
+    "source": "/Users/wzz122/video-projects/manga-video/learning/2026-10-29-両学長-税务图解/工作流差距与改动.md",
+    "bytes": 11873,
+    "sha256": "bcb55340a3af67bdbc563f709bcd10bc1c686ad678d5482ae12cb3f2185e2679",
+    "source_mtime": "2026-10-29T12:01:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/build-episode.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/build-episode.mjs",
+    "bytes": 24761,
+    "sha256": "56e9de787075562282becc814b8fc40f24c045f628d240c19404523ef66f07d0",
+    "source_mtime": "2026-11-15T12:20:50+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/build-explainer.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/build-explainer.mjs",
+    "bytes": 12698,
+    "sha256": "5d842704fb6ce0873c2d9963ffd9dfd556335fdcc8ac65f73906bf3e7f941257",
+    "source_mtime": "2026-10-27T16:32:56+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/dub-audit.py",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/dub-audit.py",
+    "bytes": 1787,
+    "sha256": "969a7a6b8d00f323ae65d04a0ed00f5a34cf486dbcf8345e2730b28d3ef7f673",
+    "source_mtime": "2026-10-29T21:57:46+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/dub-episode.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/dub-episode.mjs",
+    "bytes": 12560,
+    "sha256": "014d0016320f49a68425a39cdd2ef83b9a30e16772c834fdfdfbd44108a171bc",
+    "source_mtime": "2026-10-29T22:49:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/lint-episode.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/lint-episode.mjs",
+    "bytes": 9332,
+    "sha256": "7ea7fc2d3fe6c76b4164c0c4f5cbc18bb3de33e7fb5dbab365b885d44a5996a3",
+    "source_mtime": "2026-11-05T14:23:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/new-episode.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/new-episode.mjs",
+    "bytes": 1858,
+    "sha256": "e28be52a6c036379e8dad049d42aa189e758393ffc4e00ccc1c3ec5f31c4a19e",
+    "source_mtime": "2026-11-05T00:57:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/pron-verify.py",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/pron-verify.py",
+    "bytes": 6689,
+    "sha256": "cbf415049937915ccf39efbe20be3361143bc2ecc748be353fb94fd5e2db75a2",
+    "source_mtime": "2026-11-11T23:59:41+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/pron.py",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/pron.py",
+    "bytes": 3890,
+    "sha256": "7012e82d6b6d027ea4e9ad06dded0c4f1bb6eac96de5a59238afee938b14e8d7",
+    "source_mtime": "2026-11-11T22:58:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/render.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/render.mjs",
+    "bytes": 1531,
+    "sha256": "42f94c5d0a52ab9f642e45b5877c28e4f0c61772a3052585fe852c86449595a1",
+    "source_mtime": "2026-10-27T16:17:33+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/review-states.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/review-states.mjs",
+    "bytes": 4933,
+    "sha256": "23188f062691201ad3146f35d8791568b307f0f13e4e0400f28bf5a74c4df6aa",
+    "source_mtime": "2026-11-05T14:23:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/sfx.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/sfx.mjs",
+    "bytes": 1306,
+    "sha256": "36af1482ff974912a629336e17542323c97147ad703f6dcd91cf991bbd2d9922",
+    "source_mtime": "2026-10-27T16:11:47+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/stills.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/stills.mjs",
+    "bytes": 909,
+    "sha256": "21cdcd28cf7c725ee3907884dd68241859b5f73692fff9a794d876ff54a9d7e4",
+    "source_mtime": "2026-11-11T23:29:58+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/subtitles.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/subtitles.mjs",
+    "bytes": 3058,
+    "sha256": "95d9ee8d60379310f73dcec9f1d0d19c2b6fee8cca8803b7597f37126d8b9896",
+    "source_mtime": "2026-11-09T02:17:58+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/tts-episode.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/tts-episode.mjs",
+    "bytes": 6922,
+    "sha256": "2e39e647c55f818195b4e6cac6db453c99146bf313e68a31ac6137cc500669f6",
+    "source_mtime": "2026-11-16T01:07:36+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/tts-reroll.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/tts-reroll.mjs",
+    "bytes": 6700,
+    "sha256": "886d697650eb59481395eaff22477f8b2ae6e502f65ffdd5996b558b65b36af6",
+    "source_mtime": "2026-11-16T00:25:23+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/voice-review.py",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/voice-review.py",
+    "bytes": 7900,
+    "sha256": "a52a200c4525ed04ea0b79da4ed6f59b8cec501ed132c81f1921d922a674ced7",
+    "source_mtime": "2026-11-15T23:40:58+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/materials/grid.py",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/materials/grid.py",
+    "bytes": 463,
+    "sha256": "d02156d7b2793d00f5e2d9221c978f01fa7aead2650e79c09ee7656fa442c8e6",
+    "source_mtime": "2026-10-29T15:09:40+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/pipeline/materials/pdf-page.swift",
+    "source": "/Users/wzz122/video-projects/manga-video/pipeline/materials/pdf-page.swift",
+    "bytes": 1332,
+    "sha256": "30913060d21497bdcea54d009266ec996da1e946bd4bd7ad5964d0da13536b17",
+    "source_mtime": "2026-10-28T12:40:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/analyze.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/analyze.ts",
+    "bytes": 18456,
+    "sha256": "4ce93cba64caa7bb814b74354a2f4817bba2c90e19332004177a54969caafb28",
+    "source_mtime": "2026-10-27T16:34:34+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/link-public.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/link-public.ts",
+    "bytes": 1364,
+    "sha256": "b3262d06f90e68436aad352bec2b9be9960ad55bbc7778742843fd8806367586",
+    "source_mtime": "2026-10-27T16:23:47+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/placeholders.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/placeholders.ts",
+    "bytes": 13055,
+    "sha256": "d32037c1d1a550d7238b05283ccf38eedbcca04acb4593cf1a8a0598a59f666b",
+    "source_mtime": "2026-10-27T16:32:24+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/render.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/render.ts",
+    "bytes": 2294,
+    "sha256": "7e6cf4126069800c6a7a4d9e3e364a89546b6b8ac5a3e9162c2b2625d94bc195",
+    "source_mtime": "2026-10-27T16:25:55+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/tts.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/tts.ts",
+    "bytes": 3782,
+    "sha256": "34d3fb0128c5e742e01e272f86511e0eee002ede79aa6d15f76b077b316dea0d",
+    "source_mtime": "2026-10-27T16:18:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/voices.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/voices.ts",
+    "bytes": 1618,
+    "sha256": "f1f3a41731ce8387a51ef0c54cb0f9dcde13e0aa6e0fad4bfd90a8af2116adf7",
+    "source_mtime": "2026-10-27T16:35:22+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/lib/audio.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/lib/audio.ts",
+    "bytes": 1781,
+    "sha256": "c94394e0f058480e74a242726364a30e460cc8e2dec83133f942baddc48c8526",
+    "source_mtime": "2026-10-27T16:17:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/lib/env.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/lib/env.ts",
+    "bytes": 1121,
+    "sha256": "d0887d69d046365944a94d2beb34e7fe0dd20e434795a2510ebb70bd7c8fc7b6",
+    "source_mtime": "2026-10-27T16:17:07+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/lib/minimax.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/lib/minimax.ts",
+    "bytes": 4681,
+    "sha256": "7fadcb3ac165df50b0a8bbe116f3ab32756b41cc1557953f93fdd641613ada92",
+    "source_mtime": "2026-10-27T16:18:12+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/lib/mouth.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/lib/mouth.ts",
+    "bytes": 4227,
+    "sha256": "9fdb4793f54a08d7cd1b75701f5f9cbe6585d08778fce2839ba1c98e49b5f27c",
+    "source_mtime": "2026-10-27T16:23:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/lib/paths.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/lib/paths.ts",
+    "bytes": 2139,
+    "sha256": "dca7887dda73d52f74ec6b17005124cc213b3e0546b349f5b3364e4d57a35179",
+    "source_mtime": "2026-10-27T16:17:07+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/lib/placeholder-manifest.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/lib/placeholder-manifest.ts",
+    "bytes": 2191,
+    "sha256": "499559edd14d38e9a874664dc9574ad1ea8be117edb6ce7face113fca4792ffe",
+    "source_mtime": "2026-10-27T16:32:24+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/lib/pronunciation.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/lib/pronunciation.ts",
+    "bytes": 1216,
+    "sha256": "475e576912b062a6071f32fc906d9757479155449aa0e653c408c0d4bec0c405",
+    "source_mtime": "2026-10-27T16:17:07+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/lib/storyboard.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/lib/storyboard.ts",
+    "bytes": 5590,
+    "sha256": "f92769f1b324a53814f306d872169ae9347d224ff56016a04b56bfb39d21ee35",
+    "source_mtime": "2026-10-27T16:18:34+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/scripts/lib/tts.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/scripts/lib/tts.ts",
+    "bytes": 4727,
+    "sha256": "56b784132309449aae9e10766ba2d308c1f5dfc09a05f53afeaa2d005078a830",
+    "source_mtime": "2026-10-27T16:18:12+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/Root.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/Root.tsx",
+    "bytes": 862,
+    "sha256": "2b86a56d30e39d60ce50f145bd7b9b23675aebe7ab94ecac7c013970e810138a",
+    "source_mtime": "2026-10-27T16:26:13+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/index.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/index.ts",
+    "bytes": 109,
+    "sha256": "957e481dd33a29b4a55ae0e95dbf763b7e48c37c427ca4bd1275faf34bc07a74",
+    "source_mtime": "2026-10-16T17:09:20+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/AichosaCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/AichosaCover.tsx",
+    "bytes": 7823,
+    "sha256": "94ac652f87435bf0cabd6ab5c1ffad7233e2491883449df5f70bd21cc1cbaa1b",
+    "source_mtime": "2026-11-03T01:07:46+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/AoiroCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/AoiroCover.tsx",
+    "bytes": 6800,
+    "sha256": "23b36ccd3fba8dd74f3308b12a5fc3c083a3663947c5e1b1d39d84cbd45c3bfa",
+    "source_mtime": "2026-11-05T12:57:30+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/BankCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/BankCover.tsx",
+    "bytes": 6556,
+    "sha256": "c731d10abcec53a221d9428008be8a39d7af4d99cb674f43d7647499916e596a",
+    "source_mtime": "2026-11-06T20:42:34+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/FurusatoCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/FurusatoCover.tsx",
+    "bytes": 6575,
+    "sha256": "88df10f95bd2a3114de6cb41e331c1f3d1cce5df752a2b0b9f4eb765dd6b7aab",
+    "source_mtime": "2026-10-28T13:56:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/GenkaCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/GenkaCover.tsx",
+    "bytes": 6809,
+    "sha256": "0c172aaba2d8deeca6548477dcce51de287d6b46b6cff69cdf325d4fe5fe7d80",
+    "source_mtime": "2026-11-09T02:15:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/IdecoCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/IdecoCover.tsx",
+    "bytes": 7972,
+    "sha256": "6df2656cafe36d4a4a40668661d59c032bc63d61f6ee67fd27cd203c2355d1b5",
+    "source_mtime": "2026-10-29T13:46:39+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/IkkodateCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/IkkodateCover.tsx",
+    "bytes": 6559,
+    "sha256": "b161e5cc8e992b1e21c488e394fedd0825feccffe804ab397d5a93586dad5fa5",
+    "source_mtime": "2026-11-11T23:54:21+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/InvoiceBCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/InvoiceBCover.tsx",
+    "bytes": 7035,
+    "sha256": "919ab8ed98782c4d0bcae6755f1ff8a4f839fe756fd82aefc4865ab92f011f5a",
+    "source_mtime": "2026-11-16T02:20:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/InvoiceCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/InvoiceCover.tsx",
+    "bytes": 6993,
+    "sha256": "13bc8c9e9c3635b8a7eca3930c8fa155679f0dfbbf967b8b79d1a9095eb4472c",
+    "source_mtime": "2026-11-15T12:19:14+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/IryohiCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/IryohiCover.tsx",
+    "bytes": 6884,
+    "sha256": "ecb641f3bd228a3025c7e5804714f8241448c91b05b764e19769cd05ae986df9",
+    "source_mtime": "2026-11-05T00:55:50+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/JutakuCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/JutakuCover.tsx",
+    "bytes": 6530,
+    "sha256": "c2145dbd13f4542eb5d01f5291d9c934820f416bdf2663bc52283050dc43999c",
+    "source_mtime": "2026-11-10T17:21:41+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/KakuteiBCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/KakuteiBCover.tsx",
+    "bytes": 6879,
+    "sha256": "ce8079f33d0c7fe3f767b913f963c6b265583ed2430e428cbd7b3ac210b18ea2",
+    "source_mtime": "2026-11-03T08:16:01+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/KakuteiCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/KakuteiCover.tsx",
+    "bytes": 6875,
+    "sha256": "65dec6d49e2a16dd1671eaa5711365993a6e5f076f0564e1f6b456b5df5e602b",
+    "source_mtime": "2026-10-30T02:55:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/KoteiCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/KoteiCover.tsx",
+    "bytes": 6850,
+    "sha256": "3f0e7eae4b38573a8744c73d68a680c69bf12c3b9e9487f046ea05eefc741cb4",
+    "source_mtime": "2026-11-05T18:59:58+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/KyuyoCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/KyuyoCover.tsx",
+    "bytes": 7174,
+    "sha256": "7f1a8e647326c04b7e3b9b453de23e569108cdea63f72f7957efd1e0a464a1bd",
+    "source_mtime": "2026-10-30T03:54:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/NenchoCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/NenchoCover.tsx",
+    "bytes": 6824,
+    "sha256": "f19aa484ffec719135956ddef47810e6a04adc65e4478a3c2367a025552f457d",
+    "source_mtime": "2026-10-29T16:20:38+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/NisaCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/NisaCover.tsx",
+    "bytes": 7599,
+    "sha256": "24226c4bea231d1fec2fc8a9341879616614b0f606d0487ada514918fa676dc8",
+    "source_mtime": "2026-10-29T14:55:05+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/RiboCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/RiboCover.tsx",
+    "bytes": 6488,
+    "sha256": "0441fcaab878c73f46d369c7bce1237faac4a70842dedc43e880729efe3f6327",
+    "source_mtime": "2026-11-16T01:44:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/SouzokuCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/SouzokuCover.tsx",
+    "bytes": 7721,
+    "sha256": "c27dd8c3e01720107adcfcc9ca681398d34abaf0d5a49c1a5a7c00234d9c624e",
+    "source_mtime": "2026-11-10T17:22:34+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/TateuriCover.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/TateuriCover.tsx",
+    "bytes": 6560,
+    "sha256": "ecd1522d4aef0b369cc5408e7d45a32982d67fbdd5773e91d3ce6c98fe299211",
+    "source_mtime": "2026-11-15T12:24:20+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/cover/index.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/cover/index.ts",
+    "bytes": 2696,
+    "sha256": "5e3a416d7e7dbeaa88626bc4cd0eb2f7af30df649d353bdfdcb89446bd3e1378",
+    "source_mtime": "2026-11-16T01:44:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/episode/EpisodeVideo.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/episode/EpisodeVideo.tsx",
+    "bytes": 7166,
+    "sha256": "c51aac1db87aa0a87bb6561c9a79904a6d3d32a139d3fb0288feefb9d715e01e",
+    "source_mtime": "2026-11-05T00:57:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/episode/Scene.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/episode/Scene.tsx",
+    "bytes": 29779,
+    "sha256": "3e37fd59e2b12a11497eac636c73e90cad676026cd558ee96eb70f256041d5aa",
+    "source_mtime": "2026-11-16T00:02:09+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/episode/index.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/episode/index.ts",
+    "bytes": 858,
+    "sha256": "2fd0240f8a1de32ecfcf0dd3f08ff0ac17e989354ddece1de4e26d9853fbc7f3",
+    "source_mtime": "2026-10-28T02:16:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/episode/looks.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/episode/looks.tsx",
+    "bytes": 3087,
+    "sha256": "5322520dea6283c59e31b7e4bac8061ffe6e5e5720ba468951c293fed64b4cc1",
+    "source_mtime": "2026-11-05T00:57:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/CharacterArt.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/CharacterArt.tsx",
+    "bytes": 17149,
+    "sha256": "5d15b9109f9fb88c7f2569e8a5fd8687eb92270806a3f556b8a8f2146a215c87",
+    "source_mtime": "2026-11-05T11:49:31+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/Characters.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/Characters.tsx",
+    "bytes": 3424,
+    "sha256": "f6d8a0a81fe73fb4a8150b22eec7e822c9c177badb1b75302679d121d484e10a",
+    "source_mtime": "2026-10-28T02:39:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/ExplainerVideo.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/ExplainerVideo.tsx",
+    "bytes": 4822,
+    "sha256": "e3689c4d81dcc5c245ab20e7c7d9828b01ef4f5579fd0409fbe327e746b249ab",
+    "source_mtime": "2026-10-27T16:17:14+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/RobotArt.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/RobotArt.tsx",
+    "bytes": 2959,
+    "sha256": "b660a659567a0a08d54c79f7974acb1f593c258c329d1850e84251d340d81b0d",
+    "source_mtime": "2026-10-28T02:12:56+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/Root.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/Root.tsx",
+    "bytes": 1210,
+    "sha256": "4a9c72c858c49f6eaa83be6033936747069809b94b7cfbe7396c3aa5fcbd9b43",
+    "source_mtime": "2026-10-27T16:17:14+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/diagrams.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/diagrams.tsx",
+    "bytes": 24686,
+    "sha256": "18d22d3e85a4bea1178445e56483486a850f533db9d42479da8b9fc7f3099947",
+    "source_mtime": "2026-11-05T18:04:15+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/gallery.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/gallery.ts",
+    "bytes": 3272,
+    "sha256": "885359c0117baf26d1f8b8a155034483dfb79ec3e07cfdaedf63fce55e289b75",
+    "source_mtime": "2026-10-27T16:17:33+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/index.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/index.ts",
+    "bytes": 397,
+    "sha256": "1d780dd93002e88e0eae377769aba5749a461762690e7c39868afd43a3d5a608",
+    "source_mtime": "2026-10-27T16:17:14+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/theme.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/theme.ts",
+    "bytes": 1956,
+    "sha256": "306e95ec7ebb6032dace8924531978a194150dd9573b0f5b025b5731c6bfa8be",
+    "source_mtime": "2026-10-27T16:22:56+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer/types.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer/types.ts",
+    "bytes": 1094,
+    "sha256": "1c6a9bd3d1dc129f06f6cac1189b66b6d39de3f0f9d744dd7dff5b9d45a89c87",
+    "source_mtime": "2026-10-27T16:14:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer-v2/Art.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer-v2/Art.tsx",
+    "bytes": 3293,
+    "sha256": "92cc43397d40aa87e5f4a70869cebb9404674e97160ae3229aa3fdd39f475a9b",
+    "source_mtime": "2026-10-27T23:52:22+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer-v2/CharacterSheet.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer-v2/CharacterSheet.tsx",
+    "bytes": 1857,
+    "sha256": "672db279e564552e540c3849a7e92da6e26a7de52d5d6b03ee1ef6f03606de9f",
+    "source_mtime": "2026-10-28T00:52:13+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer-v2/HandRef.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer-v2/HandRef.tsx",
+    "bytes": 444,
+    "sha256": "81eb8a8b6ff9d9484d35f435664492a8cb4faec6fc043593aa4dc4939f4bc90f",
+    "source_mtime": "2026-10-28T01:27:12+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer-v2/HandTest.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer-v2/HandTest.tsx",
+    "bytes": 1033,
+    "sha256": "09753d10c21cc55a8f3e3a2152d7c06c029a72e79b46788b1f8fc1784b0aee02",
+    "source_mtime": "2026-10-28T01:17:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer-v2/OneMoneyTwoTimes.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer-v2/OneMoneyTwoTimes.tsx",
+    "bytes": 11832,
+    "sha256": "e5f59721395eab2e6a567645d4a587875fc43f2274c1d02ad31de0b79f8c26f5",
+    "source_mtime": "2026-10-28T02:13:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/explainer-v2/index.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/explainer-v2/index.ts",
+    "bytes": 1027,
+    "sha256": "dc3a9ea39191ead8e151ec172cdc0cc7d9b12d5f852f15b155a28f0eab06211d",
+    "source_mtime": "2026-10-28T01:27:12+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/manga/Character.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/manga/Character.tsx",
+    "bytes": 4000,
+    "sha256": "859767b5ddd0ef7a5397580e882d001e3c39ddc92f9b0be8e523d0df7abc9b75",
+    "source_mtime": "2026-10-27T16:24:09+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/manga/Cut.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/manga/Cut.tsx",
+    "bytes": 4358,
+    "sha256": "0bee5f3487da027072db4f85d78fd88a37d0e7b9aebbef742f61fddd9144881f",
+    "source_mtime": "2026-10-27T16:27:22+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/manga/Fx.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/manga/Fx.tsx",
+    "bytes": 5625,
+    "sha256": "1a5ca89e6236ca3de70120d1512d712371d1c9305ae420b36df8a7b1c38dbf57",
+    "source_mtime": "2026-10-27T16:27:22+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/manga/MangaEpisode.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/manga/MangaEpisode.tsx",
+    "bytes": 5508,
+    "sha256": "2a19c27bf591034e2dd38f9afa9c7d7e03076a209836850e45d38317b6fe9a12",
+    "source_mtime": "2026-10-27T16:34:34+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/manga/Subtitle.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/manga/Subtitle.tsx",
+    "bytes": 2961,
+    "sha256": "67d03a916c5aef0e6ab3c6a867acf94fe927d60d6e2393a3b818b9cf7ca0fda8",
+    "source_mtime": "2026-10-27T16:24:54+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/manga/TitleCard.tsx",
+    "source": "/Users/wzz122/video-projects/manga-video/src/manga/TitleCard.tsx",
+    "bytes": 2809,
+    "sha256": "d8593b3e4c355c75464285bb7731f89022c27eaf00a74aca925bdc0e70bba103",
+    "source_mtime": "2026-10-28T00:05:52+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/manga/fonts.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/manga/fonts.ts",
+    "bytes": 876,
+    "sha256": "b75e6aa149c4d46119b7fb2fce71ef913f727fed8d678417d2923a520403c0bc",
+    "source_mtime": "2026-10-27T16:23:47+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/manga/layout.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/manga/layout.ts",
+    "bytes": 1158,
+    "sha256": "e01920712d5bd5cf872ce24f0c18ffd714d9e99dc0eac6ec4946f079c8dd3ea8",
+    "source_mtime": "2026-10-27T16:24:09+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/src/manga/types.ts",
+    "source": "/Users/wzz122/video-projects/manga-video/src/manga/types.ts",
+    "bytes": 5111,
+    "sha256": "d17433a4783e6c8eabc0a731ec54896b4386a5e8a1c0363e5898613bb09eb85f",
+    "source_mtime": "2026-10-27T16:34:34+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/fudosan-episode/facts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/fudosan-episode/facts.md",
+    "bytes": 687,
+    "sha256": "60a92ec8c522024b7c41fde84e227ad90c09a0c772ca12dbb865e463e9eea970",
+    "source_mtime": "2026-11-05T00:57:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/fudosan-episode/lines.txt",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/fudosan-episode/lines.txt",
+    "bytes": 708,
+    "sha256": "8f53f663f9b2b01a0d27564f80fc9aafd821b44a4694fdc2d589c2843fd00724",
+    "source_mtime": "2026-11-16T00:04:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/fudosan-episode/scenes.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/fudosan-episode/scenes.mjs",
+    "bytes": 5831,
+    "sha256": "80d7a2ccce875ec9eb6f384a0186c537405219b1c641ca53d1bf78c998e6fca4",
+    "source_mtime": "2026-11-05T14:23:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/fudosan-episode/states.md",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/fudosan-episode/states.md",
+    "bytes": 920,
+    "sha256": "1ed95e81dd36d900570110bdc8772f9ba3adb1247d64f4177e76a9e19464dbfd",
+    "source_mtime": "2026-11-05T00:57:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/fudosan-episode/visuals.json",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/fudosan-episode/visuals.json",
+    "bytes": 291,
+    "sha256": "fbd3ef0bddc4a029cdf0ccd410095b722d1e11fad79d7dcac830f09cc8360024",
+    "source_mtime": "2026-11-05T00:57:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/tax-episode/facts.md",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/tax-episode/facts.md",
+    "bytes": 597,
+    "sha256": "2d107f31922d152d1e9000864456f5145221d48413a04d622e888344c509624f",
+    "source_mtime": "2026-10-29T15:10:01+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/tax-episode/lines.txt",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/tax-episode/lines.txt",
+    "bytes": 794,
+    "sha256": "e2a8dd3705be2673f2687d672b1e793e3537654bafccb80e2a426f5ac5727e5e",
+    "source_mtime": "2026-11-16T00:04:17+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/tax-episode/scenes.mjs",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/tax-episode/scenes.mjs",
+    "bytes": 5749,
+    "sha256": "e585e745d44edab7a9f5cedb4f40b746c2538a1b2e040aef6d6a92f055c46b91",
+    "source_mtime": "2026-11-05T14:23:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/tax-episode/states.md",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/tax-episode/states.md",
+    "bytes": 920,
+    "sha256": "1ed95e81dd36d900570110bdc8772f9ba3adb1247d64f4177e76a9e19464dbfd",
+    "source_mtime": "2026-10-29T11:58:51+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/manga-video/templates/tax-episode/visuals.json",
+    "source": "/Users/wzz122/video-projects/manga-video/templates/tax-episode/visuals.json",
+    "bytes": 247,
+    "sha256": "9cae1bf4aae008b673519ccff6114e695cc5d05e6d24c17e695e7910783292e3",
+    "source_mtime": "2026-10-29T11:58:51+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/.gitignore",
+    "source": "/Users/wzz122/video-projects/map-explainer/.gitignore",
+    "bytes": 59,
+    "sha256": "e2199de3e81215c5c99250abaebdb0a8d489cc5a1ad49feb6a6d34a514cf60b4",
+    "source_mtime": "2026-10-21T13:49:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/AGENTS.md",
+    "source": "/Users/wzz122/video-projects/map-explainer/AGENTS.md",
+    "bytes": 16070,
+    "sha256": "bfc7e6c4ec0afd3d0e33652e8de0efbc95f243431f65ccacaefb3cdbff3f1f90",
+    "source_mtime": "2026-10-21T16:32:29+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/CLAUDE.md",
+    "source": "/Users/wzz122/video-projects/map-explainer/CLAUDE.md",
+    "bytes": 16664,
+    "sha256": "3d7af3d77be30fdce6781fc626ecd5f2fe3708be98514bc936f6dd195e44f32f",
+    "source_mtime": "2026-10-29T01:13:28+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/README.md",
+    "source": "/Users/wzz122/video-projects/map-explainer/README.md",
+    "bytes": 4607,
+    "sha256": "71ae73742a31452763518295499d19708887b9e62f3465d7aa82c0c1a4d26c00",
+    "source_mtime": "2026-10-29T01:23:55+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/package-lock.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/package-lock.json",
+    "bytes": 657,
+    "sha256": "6204be17de6f3fd597ffc991b601f65755015e6af501e8ffa6eef7bbf235db9d",
+    "source_mtime": "2026-10-29T01:17:40+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/package.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/package.json",
+    "bytes": 195,
+    "sha256": "7d31fd9959bf8ee38d4c663e8654f134d1a1f6fee38f4a4efc0e440c8fe88304",
+    "source_mtime": "2026-10-29T01:17:40+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/_shared/map-runtime.js",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/_shared/map-runtime.js",
+    "bytes": 15030,
+    "sha256": "c712fb3daa2fb3e6e4c8dbcb6b91a6aac7e677f7a1a483b0746cda07f3d2115d",
+    "source_mtime": "2026-10-21T13:46:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/_shared/tokens.css",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/_shared/tokens.css",
+    "bytes": 2422,
+    "sha256": "6d333bec45a4ebd57066e33ea895b0c8023100dba37a4136b05a5856116e23ee",
+    "source_mtime": "2026-10-21T13:43:59+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/big-title-cover/index.html",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/big-title-cover/index.html",
+    "bytes": 6407,
+    "sha256": "b4803a1c6f6c8da83560d9a88ae206d4effc49ffcf93e25b7cf550bb0254a757",
+    "source_mtime": "2026-10-21T13:46:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/chapter-card/index.html",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/chapter-card/index.html",
+    "bytes": 4657,
+    "sha256": "f9e6acbcde9b1d4da3831795f2fd532b9679a4b9e7d630c281844f1c96c22547",
+    "source_mtime": "2026-10-21T13:46:11+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/city-orbit/index.html",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/city-orbit/index.html",
+    "bytes": 11215,
+    "sha256": "c19f53d44b778cb1e96097f265f7a095fab7d09b9af9f0d071125844e1e22865",
+    "source_mtime": "2026-11-16T11:31:34+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/line-draw/index.html",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/line-draw/index.html",
+    "bytes": 8551,
+    "sha256": "fda1c8c24ff644165380af0bd253ed21f923f440c7bf7b7d4aa3e418cc0c0d76",
+    "source_mtime": "2026-10-21T13:44:54+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/map-flyto/index.html",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/map-flyto/index.html",
+    "bytes": 3705,
+    "sha256": "ce25b39f623ed558130be72ac055a88c5c84289f155b8a862757294435ebcb1e",
+    "source_mtime": "2026-10-21T13:44:23+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/old-vs-new/index.html",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/old-vs-new/index.html",
+    "bytes": 6744,
+    "sha256": "af6e5982a11ad0295da8b5b2f5ae881e86c63853b89bd0f5056e1ca51b241e6b",
+    "source_mtime": "2026-10-21T13:45:43+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/terrain-compare/index.html",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/terrain-compare/index.html",
+    "bytes": 5340,
+    "sha256": "3f7bbfc56b0bc65ea9a915c8e100b04c15d6ade2ec6ab52c798a18bcc8b75939",
+    "source_mtime": "2026-10-21T13:45:17+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/components/terrain-orbit/index.html",
+    "source": "/Users/wzz122/video-projects/map-explainer/components/terrain-orbit/index.html",
+    "bytes": 8039,
+    "sha256": "42edfb49aa4e5c764862ad032a909004eabf4192711c0625e5583736d694d4aa",
+    "source_mtime": "2026-11-06T19:52:33+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/_template/credits.md",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/_template/credits.md",
+    "bytes": 3030,
+    "sha256": "c670a9f7ef6cc5be38cc0212d1b85a412160da532829a055fcc817d9a511e019",
+    "source_mtime": "2026-10-21T13:49:24+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/_template/script.md",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/_template/script.md",
+    "bytes": 2784,
+    "sha256": "7dd793f4983fbd29863af05bac50e088bd6327e815b5d777318aef3d22ac3cce",
+    "source_mtime": "2026-10-21T13:49:29+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/_template/shot-list.md",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/_template/shot-list.md",
+    "bytes": 1255,
+    "sha256": "03f62725848b02c1dd08ab1b24316457e9136de14e61d2f0a054898fee3d6954",
+    "source_mtime": "2026-10-21T13:49:10+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/abeno/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/abeno/shots.json",
+    "bytes": 3337,
+    "sha256": "b33bc578dce5341012e0fbc50d41c55fbf372beaccb481444623f90db791062b",
+    "source_mtime": "2026-11-17T01:48:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/abeno/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/abeno/渲染.sh",
+    "bytes": 386,
+    "sha256": "b496c31c4658f295c24202fe60ba0e98964c62acb8b9e3e7a739e15b7ab2d9a2",
+    "source_mtime": "2026-11-17T01:48:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/geibi/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/geibi/shots.json",
+    "bytes": 873,
+    "sha256": "b30d24b6694ea85babb26417b578d97ddebc6b5716a99cbea326324ea768c4bc",
+    "source_mtime": "2026-11-06T19:43:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/geibi/terrain.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/geibi/terrain.json",
+    "bytes": 14360,
+    "sha256": "bcce720bef53455a90bdd9d23e173389a3a0f4fad2e3306f93088bab43c9ac80",
+    "source_mtime": "2026-11-06T21:16:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/geibi/全部渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/geibi/全部渲染.sh",
+    "bytes": 246,
+    "sha256": "6d324405ae9763c784c7430333fa7ccb0419de389794461dfb7feeca48165349",
+    "source_mtime": "2026-11-06T20:12:01+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/geibi/地形渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/geibi/地形渲染.sh",
+    "bytes": 333,
+    "sha256": "dbff6be7e4f314c9a84e73b99419e379376c99fde8e104e8a4c2148a304176d9",
+    "source_mtime": "2026-11-06T19:43:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/geibi/地形静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/geibi/地形静帧.sh",
+    "bytes": 314,
+    "sha256": "701a92834e93403effebf4ec20ccad912a2d00da77187739310599ff2be5b70a",
+    "source_mtime": "2026-11-06T19:43:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/geibi/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/geibi/渲染.sh",
+    "bytes": 386,
+    "sha256": "6a32342d5e6a938e7a991165184fb03a5ec8388ca4eefaddba341e3ac24ff52c",
+    "source_mtime": "2026-11-06T19:43:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/geibi/静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/geibi/静帧.sh",
+    "bytes": 397,
+    "sha256": "7eb6649fc4fe89d18548a84f7369e3bf5f15d300c5a32aff54216d9f5e3981e3",
+    "source_mtime": "2026-11-06T19:43:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/shots.json",
+    "bytes": 1436,
+    "sha256": "9099ac8e45b08aa648b8cacd95cbe671042f606385d68041e6d3a35893c9574e",
+    "source_mtime": "2026-11-06T22:15:54+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/terrain.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/terrain.json",
+    "bytes": 16454,
+    "sha256": "265480db22c764fcae49dfd8e4972b41836bdd3e65cef482b8c8653c5e25c71f",
+    "source_mtime": "2026-11-06T21:37:10+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/做地形配置.py",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/做地形配置.py",
+    "bytes": 2622,
+    "sha256": "657ad288f042bd85be57d8c6db4d029b2021055df9ef4415339eff8fa5b90ea3",
+    "source_mtime": "2026-11-06T21:37:10+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/全部渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/全部渲染.sh",
+    "bytes": 299,
+    "sha256": "627b3310a8d64bea1f6b152c2ebc1e3012548aad2e8f361cb06116ab03c5941d",
+    "source_mtime": "2026-11-06T22:15:54+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/地形渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/地形渲染.sh",
+    "bytes": 333,
+    "sha256": "8cd9c3de48c6fd8c76bbb6e6b0157be9e77ac84ab66a911567dc0e20c5f82dcf",
+    "source_mtime": "2026-11-06T20:39:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/地形静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/地形静帧.sh",
+    "bytes": 314,
+    "sha256": "7c5848067765c4f23c00fbb43b3d4f25b68792e404ddbb30d7ef25aebe1960b6",
+    "source_mtime": "2026-11-06T20:39:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/排队渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/排队渲染.sh",
+    "bytes": 229,
+    "sha256": "8b883d015cdb2fea1edceff4e1656a7823023c6b4a6890b1ef53f92d220db9b3",
+    "source_mtime": "2026-11-06T22:15:54+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/排队静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/排队静帧.sh",
+    "bytes": 436,
+    "sha256": "e7f0b7b020e5b195c88b26d5e82b2e1164aebe5254aeae4b4b3e1452b7423be7",
+    "source_mtime": "2026-11-06T21:37:10+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/渲染.sh",
+    "bytes": 386,
+    "sha256": "ad537e563c4bc73fe62cc4772058c58031144221e31beb9558945a7b083f81ee",
+    "source_mtime": "2026-11-06T20:39:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/kisei/静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/kisei/静帧.sh",
+    "bytes": 397,
+    "sha256": "ff081f5857f564da4cd6b1b984d07221bb1cd15b495fe778c105bd7f58195360",
+    "source_mtime": "2026-11-06T20:39:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/namba/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/namba/shots.json",
+    "bytes": 2040,
+    "sha256": "8de9134bf8292aa1e57a94bf923d4142cd9fd8f9435f78f104e669e07ec58716",
+    "source_mtime": "2026-11-16T02:10:35+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/namba/shots2.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/namba/shots2.json",
+    "bytes": 3463,
+    "sha256": "b5d3a15c927527789678600b76b0940b1a95b0e83c17ac95294e1c4a4ee583d7",
+    "source_mtime": "2026-11-16T11:41:39+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/namba/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/namba/渲染.sh",
+    "bytes": 386,
+    "sha256": "9045226efb5e05c52f5333e6bc97facf0a2b76b354dffe07a9750bf0646632b1",
+    "source_mtime": "2026-11-16T02:10:35+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/namba/渲染2.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/namba/渲染2.sh",
+    "bytes": 387,
+    "sha256": "2160eccd092b7b272b34046a82b329a4776703dd5f4893b033bed1167c8e5af2",
+    "source_mtime": "2026-11-16T11:32:18+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/namba/静帧2.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/namba/静帧2.sh",
+    "bytes": 455,
+    "sha256": "c6a07f790e3fe769672c5a47c79ef221d813f2ab92a9a5166d1762d604e89925",
+    "source_mtime": "2026-11-16T11:38:07+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/nippombashi/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/nippombashi/shots.json",
+    "bytes": 1168,
+    "sha256": "5f1600f7dcbd8fe7d530dd361f5bfcc5854dce8cf0521ff49947dc449087986e",
+    "source_mtime": "2026-11-09T03:35:27+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/nippombashi/全部渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/nippombashi/全部渲染.sh",
+    "bytes": 201,
+    "sha256": "dd4cfef6f96313c624f7b5c13a084760b10d35bf242a04d81adadc5a30941fda",
+    "source_mtime": "2026-11-09T04:15:15+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/nippombashi/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/nippombashi/渲染.sh",
+    "bytes": 404,
+    "sha256": "d1ab2465db1e3719217d507cf4915616ee7280b30947a7d2ab3662c904762ba1",
+    "source_mtime": "2026-11-09T03:35:27+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/nippombashi/静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/nippombashi/静帧.sh",
+    "bytes": 415,
+    "sha256": "b369c660e6cfff32609630bac38eba88c0e0d1a1930f89d76a8fb0cb183754c5",
+    "source_mtime": "2026-11-09T03:35:27+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/sakishima/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/sakishima/shots.json",
+    "bytes": 2576,
+    "sha256": "525f3f89913064eab53eeeed3fffe223f1450f06cc0179f2ed69b26eec4d18ff",
+    "source_mtime": "2026-11-05T14:28:11+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/sakishima/排队.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/sakishima/排队.sh",
+    "bytes": 304,
+    "sha256": "1d691b6d21d6dc1d81f368343d1e71a4e7f270952eed7404f2c199e26ab88c46",
+    "source_mtime": "2026-11-05T14:28:11+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/sakishima/排队2.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/sakishima/排队2.sh",
+    "bytes": 214,
+    "sha256": "9f5c9ee30cd697a9a5ceb601ebfc9be919c50905cc0ea4b363fc68d95fd381f8",
+    "source_mtime": "2026-11-05T15:01:51+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/sakishima/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/sakishima/渲染.sh",
+    "bytes": 398,
+    "sha256": "4cfd5c923478dcf94e5402557bc82b73f46e4b256e53dd0d163d23020baba807",
+    "source_mtime": "2026-11-05T14:13:10+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/sakishima/静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/sakishima/静帧.sh",
+    "bytes": 411,
+    "sha256": "f029dd87677b45c6a891628ef7d336a1958f28d745b48c95b4b341a337cdd530",
+    "source_mtime": "2026-11-05T14:28:11+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/shoreline/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/shoreline/shots.json",
+    "bytes": 1747,
+    "sha256": "ec47ab9b3e5966ce805a2c13e47021b49f94570b4b931da5c486054a34b197a4",
+    "source_mtime": "2026-11-06T00:18:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/shoreline/terrain.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/shoreline/terrain.json",
+    "bytes": 5049,
+    "sha256": "7f47b0631fefa46036ab06010e870375238acbe30451c723a52905c1b726fd4e",
+    "source_mtime": "2026-11-06T00:18:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/shoreline/一批.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/shoreline/一批.sh",
+    "bytes": 106,
+    "sha256": "d406de614993adc5fc7ef483af619f8964c08d827aebed5cd454baa03f2d763a",
+    "source_mtime": "2026-11-06T00:18:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/shoreline/地形渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/shoreline/地形渲染.sh",
+    "bytes": 341,
+    "sha256": "25273bd0d50b8bcd3ba3c48e0b929d27db6e65a9a45e7e1723699e1d7d8d995c",
+    "source_mtime": "2026-11-06T00:55:15+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/shoreline/地形静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/shoreline/地形静帧.sh",
+    "bytes": 322,
+    "sha256": "3fdb6cf86a2a90442c34f11a5c26d907861ef8722c03ea047783bd5c7408cfc3",
+    "source_mtime": "2026-11-05T23:52:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/shoreline/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/shoreline/渲染.sh",
+    "bytes": 398,
+    "sha256": "e8b0c5880e1bd259eeff60558f7a8faa881876a11a0d68df8cf228bb5baf636a",
+    "source_mtime": "2026-11-05T23:47:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/shoreline/静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/shoreline/静帧.sh",
+    "bytes": 409,
+    "sha256": "ecbe4cbe486f5340fcbdcd9173d0378bc2b1a5bb7ba12d0722e36557281bbd63",
+    "source_mtime": "2026-11-05T23:47:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/tajiri/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/tajiri/shots.json",
+    "bytes": 2341,
+    "sha256": "2590220ff8e85c1c56472832485d2050a147f8d25c038d62199f26818c99ef82",
+    "source_mtime": "2026-11-01T02:31:01+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/tajiri/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/tajiri/渲染.sh",
+    "bytes": 326,
+    "sha256": "12c35b7f59186c35c52fb0ea9d318a7a154180449b038a3033296ff3a24d3c86",
+    "source_mtime": "2026-11-01T02:31:01+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/tajiri/静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/tajiri/静帧.sh",
+    "bytes": 448,
+    "sha256": "bff96e88968e2bc520525598e1688e42335161b3e78d86171243bec5fc261e72",
+    "source_mtime": "2026-11-01T02:19:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/tajiri/静帧2.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/tajiri/静帧2.sh",
+    "bytes": 434,
+    "sha256": "ea54e0b2e2ebf8f0baadb0c92f218052168be512a7acb022e4ac45bc36b6e21a",
+    "source_mtime": "2026-11-01T02:25:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/usj/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/usj/shots.json",
+    "bytes": 2629,
+    "sha256": "40b4a18694eff9864e0dd6f3828944ef9fc0749b90eeb8a8bfef35dc56e94eab",
+    "source_mtime": "2026-11-06T01:26:40+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/usj/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/usj/渲染.sh",
+    "bytes": 611,
+    "sha256": "9baef9c803c5db39f4b203cbe9cf388f93e23679669560c61832005e793a2de2",
+    "source_mtime": "2026-11-06T01:21:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/usj/渲染补.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/usj/渲染补.sh",
+    "bytes": 720,
+    "sha256": "27902a7147554f1a0a1a86613c76729b3e5b9a4b10952f189a1f42a32236993d",
+    "source_mtime": "2026-11-06T04:40:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/yubari/shots.json",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/yubari/shots.json",
+    "bytes": 1742,
+    "sha256": "c3237626e7275fdac513a8d7b1a4e99a9f35df1d3afde33dd3ab2dcf4859ee5d",
+    "source_mtime": "2026-11-06T00:18:28+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/yubari/渲染.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/yubari/渲染.sh",
+    "bytes": 437,
+    "sha256": "695265852358746846fe0c1309ec481344de306ae571187638aa3464231bc346",
+    "source_mtime": "2026-11-06T00:18:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/episodes/yubari/静帧.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/episodes/yubari/静帧.sh",
+    "bytes": 432,
+    "sha256": "ce832273673cce632358accd74f37204e193a90f13348fd567e26f9a4f809731",
+    "source_mtime": "2026-11-06T00:04:45+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/scripts/minimax_common.py",
+    "source": "/Users/wzz122/video-projects/map-explainer/scripts/minimax_common.py",
+    "bytes": 4540,
+    "sha256": "a0404dec550d2280cef04f3a33ffa8631b2520900c13e96fd15967ec71367646",
+    "source_mtime": "2026-10-21T13:46:57+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/scripts/minimax_music.py",
+    "source": "/Users/wzz122/video-projects/map-explainer/scripts/minimax_music.py",
+    "bytes": 5121,
+    "sha256": "a986b4ccad7ad8ddf062f2d95d83d3fe18a00931b27e0e1397844cb38d0dcd5d",
+    "source_mtime": "2026-10-21T13:48:07+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/scripts/minimax_tts.py",
+    "source": "/Users/wzz122/video-projects/map-explainer/scripts/minimax_tts.py",
+    "bytes": 14848,
+    "sha256": "c5cdbc2dfca77d7bef19e95b5f323c7b608c05774c1ba1fe24b1dac1aca013d8",
+    "source_mtime": "2026-10-21T13:47:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/scripts/mix.sh",
+    "source": "/Users/wzz122/video-projects/map-explainer/scripts/mix.sh",
+    "bytes": 9212,
+    "sha256": "ff0cdd1ae2cfea3df2ede13cb9839b1fbed216326dd61123ab49aa1db9785d7f",
+    "source_mtime": "2026-10-21T13:48:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/map-explainer/scripts/render_shot.mjs",
+    "source": "/Users/wzz122/video-projects/map-explainer/scripts/render_shot.mjs",
+    "bytes": 6600,
+    "sha256": "125ac79c448aaeca3068e396fdc5f92897233080226a1c88f0b1fda3906fed7b",
+    "source_mtime": "2026-10-29T13:54:16+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/AGENTS.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/AGENTS.md",
+    "bytes": 2231,
+    "sha256": "9cd7e800415265bebea7a13bedc90f30a1d3bbd4f0776bb2b87627b89c6543a4",
+    "source_mtime": "2026-10-02T16:27:46+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/说明书.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/说明书.md",
+    "bytes": 19601,
+    "sha256": "67988bbb29c27f2f6597c2eaa1ddc7d3a12b75ab3da7d019d444d94cabcd2ab1",
+    "source_mtime": "2026-10-07T02:54:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/CODEX-交接文.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/CODEX-交接文.md",
+    "bytes": 22550,
+    "sha256": "78a8805810a14ff04f7bbc4bdf9f626a2f88ed14844ecaac3d11045c6adfbac7",
+    "source_mtime": "2026-10-02T14:36:47+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/align.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/align.py",
+    "bytes": 4894,
+    "sha256": "9e5091c1748b96a7418f7e51532f146671cd53dcc78c719a3d70f3fe6837dfbf",
+    "source_mtime": "2026-10-01T04:06:37+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/align_ext.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/align_ext.py",
+    "bytes": 3967,
+    "sha256": "c24d0fee9b49663fae173205c772a144120b616ede77a8fb300120b603a1a488",
+    "source_mtime": "2026-10-02T00:20:14+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/cdp.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/cdp.mjs",
+    "bytes": 6228,
+    "sha256": "5ce152318a4befeb027da512d9c2fef8d18c69e7df8f29cd393a6f4f1f15c4c8",
+    "source_mtime": "2026-09-20T20:27:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/charts.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/charts.js",
+    "bytes": 35473,
+    "sha256": "d0b56f0ffd7f95e2d01412304565fe2c24a01df4220342e776ba1bc70d466ca2",
+    "source_mtime": "2026-10-05T18:01:40+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/clean.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/clean.py",
+    "bytes": 8410,
+    "sha256": "f7960b95917ff1397b505f99591582694be298f76ac028cfb9499c61d0331762",
+    "source_mtime": "2026-09-20T21:15:38+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/config.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/config.json",
+    "bytes": 276,
+    "sha256": "35c92e1d6efbf080557f7281f6dc28f24346e89ffefdebbc96a2ae22543eeb74",
+    "source_mtime": "2026-10-02T00:20:28+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/media.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/media.mjs",
+    "bytes": 5483,
+    "sha256": "19c79c0ca965fd01a2d7b5b98ebc0cd7e1b3b3b1e249c114271ce8b44f084a5e",
+    "source_mtime": "2026-10-03T22:02:52+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/mux.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/mux.mjs",
+    "bytes": 3604,
+    "sha256": "0a1c0a4df86b028eec94d07e681f417bf961585733b49e62b231a41829cddfad",
+    "source_mtime": "2026-10-02T00:20:41+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/parse.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/parse.mjs",
+    "bytes": 44643,
+    "sha256": "7dfd39b5c103869d91f0a1e1229a9d8d9a924f5bdd9e4c4a6044cabc66bf24c4",
+    "source_mtime": "2026-10-07T02:40:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/preview.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/preview.mjs",
+    "bytes": 14556,
+    "sha256": "fb7833d1a0518e169ec081476b4262ae921101521f3b34f446efa612d23acdae",
+    "source_mtime": "2026-10-02T01:34:28+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/render.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/render.mjs",
+    "bytes": 2808,
+    "sha256": "a244ee9f79b33bb171a5b001d069b4fc7342d0548f63d6739675289edf0974fc",
+    "source_mtime": "2026-10-02T03:13:16+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/run.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/run.mjs",
+    "bytes": 9542,
+    "sha256": "03d370161e456a8772614c2a698d030e8459e154b73d0915b2eff267302235f4",
+    "source_mtime": "2026-10-05T17:57:57+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/seedance.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/seedance.mjs",
+    "bytes": 8712,
+    "sha256": "dca56df21c3dae4544902452ffec13704e686efef94fd8656b237375c2b98c43",
+    "source_mtime": "2026-10-07T02:51:26+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/stage.css",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/stage.css",
+    "bytes": 17314,
+    "sha256": "9c5cc3fbbbc2b3266c8cad7177fcf95415811ec9b336307e7a157561a91dc23b",
+    "source_mtime": "2026-10-05T17:59:50+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/stage.html",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/stage.html",
+    "bytes": 2220,
+    "sha256": "367ac4b6e42b98370721004aea8d3548e5851e628c48a0859329f702e1dd0559",
+    "source_mtime": "2026-10-05T17:59:50+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/stage.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/stage.js",
+    "bytes": 16075,
+    "sha256": "2a737891c1dfb5b5983e62cadcb0d0903eb66c9336534205ee8ed5b1b1cf8d45",
+    "source_mtime": "2026-10-05T17:56:56+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/tts.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/tts.mjs",
+    "bytes": 5808,
+    "sha256": "4f8e2ade0fa1c8681c3f834d18c2213c4bfeca2f9cd4e61b3134893eb95b9da7",
+    "source_mtime": "2026-10-02T00:20:28+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/engine/vertical.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/engine/vertical.py",
+    "bytes": 9718,
+    "sha256": "28cd0b341e7c7cea6a7dbf74834adbd12f86625ff0c4aa4f3c80daaec39fd654",
+    "source_mtime": "2026-10-02T01:11:19+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/README.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/README.md",
+    "bytes": 34092,
+    "sha256": "8cf3283468885d5c3821a428984f29d173521f8f5521b56c3052bcaf6671117b",
+    "source_mtime": "2026-11-17T08:55:50+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/v6lib-接口说明.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/v6lib-接口说明.md",
+    "bytes": 54543,
+    "sha256": "59d72c0c20a30a19798307b1dcd81a73f5c802e9ce2fdcce9876c1b494f8a0be",
+    "source_mtime": "2026-11-07T04:46:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/v6lib.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/v6lib.py",
+    "bytes": 109473,
+    "sha256": "9fc2d63570db29d6fb474c21dfd87e0188b5d8e944fcab0687236d6fb0494d26",
+    "source_mtime": "2026-11-17T08:55:40+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/定时间轴.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/定时间轴.py",
+    "bytes": 22943,
+    "sha256": "cdd618a47d8b75aa6746b47a6604e5d0acddb63aa4c9c565c2097c854136a328",
+    "source_mtime": "2026-10-27T17:33:22+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/总装v6.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/总装v6.py",
+    "bytes": 96699,
+    "sha256": "9e234b2cafdae0ccf9c58afc9650a7da7cd79d3ae3276daf8dc4b7847e76a18e",
+    "source_mtime": "2026-11-17T08:55:40+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/新建一期.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/新建一期.py",
+    "bytes": 27256,
+    "sha256": "0c84944fd08d227d0f34980ae8adabb1e99d119432938cf37f52c8226fffd309",
+    "source_mtime": "2026-11-07T03:04:00+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/项目-示例.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/项目-示例.json",
+    "bytes": 6460,
+    "sha256": "532ac5e93ece021e128397b56f9be3b4596b7a61260cba7014e1a521032db29f",
+    "source_mtime": "2026-10-10T22:56:01+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/做纸纹.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/做纸纹.py",
+    "bytes": 4863,
+    "sha256": "f53424a625dc0e7c96fdcddd46431769969b1d8e343e6167147c0437eeb39f98",
+    "source_mtime": "2026-10-07T02:49:14+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/分段渲染.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/分段渲染.mjs",
+    "bytes": 12630,
+    "sha256": "8ad356d20b3f48cbd2c49dc62227d5838b6b7ce329f40c3094339474a997bf19",
+    "source_mtime": "2026-10-27T16:50:15+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/cdp.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/cdp.mjs",
+    "bytes": 6591,
+    "sha256": "3fbc24d04058cf09c661a28f358ca423394dd0ff7b4e484447476dad13d12102",
+    "source_mtime": "2026-10-20T14:56:17+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/charts.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/charts.js",
+    "bytes": 35473,
+    "sha256": "d0b56f0ffd7f95e2d01412304565fe2c24a01df4220342e776ba1bc70d466ca2",
+    "source_mtime": "2026-10-07T02:47:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/config.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/config.json",
+    "bytes": 273,
+    "sha256": "4c1faefd0d9b9a1791bc30c029ae26ada5fe09c70e5a1943a777f761e33e7620",
+    "source_mtime": "2026-10-07T02:47:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/fx.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/fx.js",
+    "bytes": 113483,
+    "sha256": "20a7c6d7b3895fa783d2827df1ec1f1b1624ca28c6895ca4f555dfd6394a8e5b",
+    "source_mtime": "2026-11-07T04:46:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/fxmap.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/fxmap.js",
+    "bytes": 33218,
+    "sha256": "caca0f1ed75281facd1de4e44e6b7d6ff92f94c0fd66bcd972a401f9572acfdd",
+    "source_mtime": "2026-10-28T02:26:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/stage.css",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/stage.css",
+    "bytes": 72852,
+    "sha256": "e336708bedae8dfbb767150b218f545ab384f77ea43d7df3825657ba5875b296",
+    "source_mtime": "2026-11-07T04:46:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/stage.html",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/stage.html",
+    "bytes": 2905,
+    "sha256": "c59f2931dbbc12cb9c65e3d22ce9466bc4efc55f129cddd639b28bf977dfa283",
+    "source_mtime": "2026-10-27T16:50:15+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/stage.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/stage.js",
+    "bytes": 25773,
+    "sha256": "028cef8cb9cba82abaa4d03fc1596eab4301af2200ab2040af0702f12c2d9fef",
+    "source_mtime": "2026-11-07T04:46:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/vendor/d3-path.min.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/vendor/d3-path.min.js",
+    "bytes": 2433,
+    "sha256": "28d70841c60f313c3e6411fe0831e539ed6cea51eaee951d62d88908c40619c2",
+    "source_mtime": "2026-10-11T18:50:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/vendor/d3-shape.min.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/vendor/d3-shape.min.js",
+    "bytes": 30898,
+    "sha256": "49236896e989f251dd36679ea4a879538e9ca2ece3a90a82740f953cac4a3fa5",
+    "source_mtime": "2026-10-11T18:50:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/vendor/lottie.min.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/vendor/lottie.min.js",
+    "bytes": 305543,
+    "sha256": "a0757321f974527bda3cc2593bf56cc7ffe4578421249ced6ae49ffb1c529f90",
+    "source_mtime": "2026-10-11T18:50:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/工程/engine/vendor/rough.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/工程/engine/vendor/rough.js",
+    "bytes": 27762,
+    "sha256": "6853af8619532f3939b156cd16824d2e14f31e71d3df306ad5558eeafacab194",
+    "source_mtime": "2026-10-11T18:50:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/示范/图片停留检查-v7b.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/示范/图片停留检查-v7b.py",
+    "bytes": 3402,
+    "sha256": "ffe8166b8a5b0561dd0a56830b4992f9b557381dd726abee8385166fd97d24c2",
+    "source_mtime": "2026-11-07T03:04:00+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/示范/本期工具-v7b新闻解说版式参考.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/示范/本期工具-v7b新闻解说版式参考.py",
+    "bytes": 8476,
+    "sha256": "0659079aa16fd849526141c232314bde4b4ff1b7198a4411fd1ac23bc12a8889",
+    "source_mtime": "2026-11-07T04:46:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/示范/示范-S19-原件放大镜-USJ.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/示范/示范-S19-原件放大镜-USJ.py",
+    "bytes": 3401,
+    "sha256": "353887a20f3c3e2d0a1766c79229572862ead6dd53ef873790f89793e5c8c317",
+    "source_mtime": "2026-10-07T13:56:45+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/示范/示范-S20-立体横条盖章-USJ.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/示范/示范-S20-立体横条盖章-USJ.py",
+    "bytes": 3932,
+    "sha256": "a096b202ffd08414e24448b45895a28ce39d4c25757c91544149648f0bec4f83",
+    "source_mtime": "2026-10-07T13:56:45+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/示范/示范-S37-视差计数集中线-USJ.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/示范/示范-S37-视差计数集中线-USJ.py",
+    "bytes": 2775,
+    "sha256": "8834c6b1c302724d57e419b52be4ffc0bf19652027d31520f215109b2ce5818b",
+    "source_mtime": "2026-10-07T13:56:45+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/人脸复查图.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/人脸复查图.py",
+    "bytes": 1399,
+    "sha256": "79169dbad4500ccccb3d343017be735e01895331bee0f29ea1b9db3cbefa488b",
+    "source_mtime": "2026-10-20T14:57:05+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/做实拍片段.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/做实拍片段.py",
+    "bytes": 18471,
+    "sha256": "08bdb39065ca886fe47d971f8171c54f360046407d125408744dc8c4ec578c58",
+    "source_mtime": "2026-10-20T15:00:41+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/写实拍表-示例-311.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/写实拍表-示例-311.py",
+    "bytes": 6089,
+    "sha256": "4303a320ca825e0c7fdf2243e5a4055cc3fc108277051a13b05a9833091656d3",
+    "source_mtime": "2026-10-20T14:54:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/删镜头.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/删镜头.py",
+    "bytes": 2840,
+    "sha256": "20d9ea89864d3e97e40180574cbb9011c021befa08e705547f6cc6aa6e1fbfb2",
+    "source_mtime": "2026-10-20T14:57:05+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/加喘气.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/加喘气.py",
+    "bytes": 3741,
+    "sha256": "d101c59731239273e7fe38f05c0a6af211501c6cbba258de87b2dd313d5d9f6c",
+    "source_mtime": "2026-10-20T14:57:05+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/实拍设置.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/实拍设置.py",
+    "bytes": 4052,
+    "sha256": "f03fcb05e1aed21852e088073467ddb37467bafbb05788de52b37939833dfee7",
+    "source_mtime": "2026-10-20T14:54:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/选段图.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/选段图.py",
+    "bytes": 1946,
+    "sha256": "d4b83b363d4038b704f2029f18029e774997302244ed5f6fdecec2b5de8f9080",
+    "source_mtime": "2026-10-20T14:57:05+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/工具/facecheck.swift",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/工具/facecheck.swift",
+    "bytes": 879,
+    "sha256": "b02ed2ccd7280bc617bf8154cf0910a74a454a40a3989fdff18bd0685096e901",
+    "source_mtime": "2026-10-20T14:54:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/工具/personcheck.swift",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/工具/personcheck.swift",
+    "bytes": 1962,
+    "sha256": "deab9442fd1b85fae863ad2ee94c54884d48bd9a84860ee5f8fc5ccdef387f5d",
+    "source_mtime": "2026-10-20T14:54:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/实拍/工具/yolo人检.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/实拍/工具/yolo人检.py",
+    "bytes": 1496,
+    "sha256": "a0a38ea4576ee64d70e2c9cebc747a27f000bd80a3c2360fed6c2a3d5c24fc86",
+    "source_mtime": "2026-10-20T14:55:21+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/自测/AI组件自测-2026-10-23.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/自测/AI组件自测-2026-10-23.md",
+    "bytes": 3829,
+    "sha256": "efd1548b30f076a342aed92c66f011c2391c6bf1b691651115f73c101da209a1",
+    "source_mtime": "2026-10-23T02:37:19+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/自测/动画确定性.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/自测/动画确定性.mjs",
+    "bytes": 3392,
+    "sha256": "4064f78976f40022167c4ea4554207fb2536de9715d2ceaf0707a8f2b5a92cbf",
+    "source_mtime": "2026-10-10T23:04:28+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/自测/华为期功能自测.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/自测/华为期功能自测.py",
+    "bytes": 4769,
+    "sha256": "d1f7db20155056e4b53f27465df7a66469edf90ae8e0b415b7e1224e4499fb52",
+    "source_mtime": "2026-10-10T22:57:46+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/自测/接口回归.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/自测/接口回归.py",
+    "bytes": 3866,
+    "sha256": "aa8b7258654f61aa3570a28457249efbc8681ea6498206c0dabccc5f407bfa53",
+    "source_mtime": "2026-10-10T23:11:20+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/自测/接缝回归.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/自测/接缝回归.py",
+    "bytes": 3601,
+    "sha256": "2c8971b997cdf737dcc7096ffad4249656d5b0e5d94cbb329fd11002454d1426",
+    "source_mtime": "2026-10-10T23:06:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/自测/新组件自测-2026-10-11.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/自测/新组件自测-2026-10-11.md",
+    "bytes": 1196,
+    "sha256": "0872d08d68bfeb8aaee8da32ef129898da42f4c15d6ac8b3468fbaa22d0309bc",
+    "source_mtime": "2026-10-11T19:06:57+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/地图/做底图.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/地图/做底图.py",
+    "bytes": 12772,
+    "sha256": "9028198e67fdde587c21dbe9c80c0f9fc6a0d15b49c631b276fff1f6ccc0d98e",
+    "source_mtime": "2026-10-27T16:52:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/地图/做航拍底图.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/地图/做航拍底图.py",
+    "bytes": 4828,
+    "sha256": "a78b565833a7637418a6485d213a9dc84b0d05cc78b587327d0ea4e76d9421fd",
+    "source_mtime": "2026-10-27T21:40:54+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/封面/提示词-示例-USJ-v2连续轨道.txt",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/封面/提示词-示例-USJ-v2连续轨道.txt",
+    "bytes": 2558,
+    "sha256": "2a65f40b144535f891160914731ee37993be21868bcd182896adef3f49094e19",
+    "source_mtime": "2026-10-07T13:40:50+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/封面/提示词-示例-电影感.txt",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/封面/提示词-示例-电影感.txt",
+    "bytes": 2770,
+    "sha256": "5843ff7c8f8f56c2da4caf830f510843f4d20fce21d85be319889a5453e44653",
+    "source_mtime": "2026-10-16T14:39:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/声音/做闪避对比.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/声音/做闪避对比.py",
+    "bytes": 7393,
+    "sha256": "680ef52f36f99e01e9c3fe82389258e35908d9d96abb6f698f69145513918dc9",
+    "source_mtime": "2026-10-08T13:30:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/声音/做音效-v6.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/声音/做音效-v6.py",
+    "bytes": 26520,
+    "sha256": "dc17fa928dc2eee2b24e01602c067c99ff43a483bfe0a156e2097d055f075549",
+    "source_mtime": "2026-10-07T14:10:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/声音/音效/说明.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/声音/音效/说明.md",
+    "bytes": 5513,
+    "sha256": "1b729e407d06715651a4c631bc6caab030303230380f3b2f45e548b082ccab19",
+    "source_mtime": "2026-10-07T14:10:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/声音/音效/音效清单.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/声音/音效/音效清单.json",
+    "bytes": 4588,
+    "sha256": "2d7248bd68740993be6b6963c2f4c7b3fc434402d94308bc90ec76ecc7b41817",
+    "source_mtime": "2026-10-07T13:38:31+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/质检/图片停留检查-v7b.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/质检/图片停留检查-v7b.py",
+    "bytes": 3402,
+    "sha256": "ffe8166b8a5b0561dd0a56830b4992f9b557381dd726abee8385166fd97d24c2",
+    "source_mtime": "2026-11-07T03:03:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/质检/抽帧拼图.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/质检/抽帧拼图.py",
+    "bytes": 5295,
+    "sha256": "6c8ee8331057495a72a00b9a9909aadc2730fd9be199a4fc95aa8b371db526fa",
+    "source_mtime": "2026-10-08T13:30:10+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/质检/校验测试片.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/质检/校验测试片.py",
+    "bytes": 7124,
+    "sha256": "805d0437c96429826a536c2368ada2eca83d4b7bfd0b426870611045c73f8303",
+    "source_mtime": "2026-10-08T13:30:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/质检/章节自查图.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/质检/章节自查图.py",
+    "bytes": 13037,
+    "sha256": "aff41bcbe9b524c4ca51d43fe9bfc443bdda0872506d8f813719791177dbce7a",
+    "source_mtime": "2026-10-23T02:35:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/素材/字体/LICENSE-SourceHanSans.txt",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/素材/字体/LICENSE-SourceHanSans.txt",
+    "bytes": 4463,
+    "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2",
+    "source_mtime": "2026-11-07T03:03:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/素材/字体/OFL-Oswald.txt",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/素材/字体/OFL-Oswald.txt",
+    "bytes": 4483,
+    "sha256": "0fd731a904b729a4e02eaf5e8ebd06783edd9abe400e8882760160230675b652",
+    "source_mtime": "2026-11-07T03:03:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/素材/生成/抽帧检查.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/素材/生成/抽帧检查.py",
+    "bytes": 1772,
+    "sha256": "50e10ff743bbf88583274fef60d24e88177f78a3535cf5b1d3b1f3c35a82f680",
+    "source_mtime": "2026-10-07T02:46:39+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/素材/生成/清单与报价-示例-USJ.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/素材/生成/清单与报价-示例-USJ.md",
+    "bytes": 8994,
+    "sha256": "ac1da1e5deea65200d0921c9bcd67fd9b9dbd6f41d7cde9f1cf208b84d439230",
+    "source_mtime": "2026-10-07T03:02:09+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/素材/生成/生成.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/素材/生成/生成.mjs",
+    "bytes": 7958,
+    "sha256": "aeb8243e9b61de6e4a94daf5d1741ee9361d4a02fc499ffa03fc11ff5befe5bc",
+    "source_mtime": "2026-11-06T20:29:33+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/素材/生成/选用-示例-USJ.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/素材/生成/选用-示例-USJ.json",
+    "bytes": 2489,
+    "sha256": "c8787130a76cb621fe59c74ba86198a13b382ddbf801c73c31bea94f6cbe05cb",
+    "source_mtime": "2026-10-07T03:02:09+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/模板-v6/素材/生成/镜头-示例-USJ.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/模板-v6/素材/生成/镜头-示例-USJ.json",
+    "bytes": 15252,
+    "sha256": "f6a51502f2a989df85570aec59f08d4b10856fbb3173b8153b44e38cc5a82772",
+    "source_mtime": "2026-10-07T02:56:13+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/视觉规范/图像风格与复查规范.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/视觉规范/图像风格与复查规范.md",
+    "bytes": 4925,
+    "sha256": "52ed2bac6077b02cb03cdd6ef5ff1ff2586c81e7180b9d7e524fbc32d35e980f",
+    "source_mtime": "2026-10-07T02:46:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/视觉规范/新闻解说版式规范-v7b.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/视觉规范/新闻解说版式规范-v7b.md",
+    "bytes": 3928,
+    "sha256": "958532f8d41ff259a88d244ad8b239e73484674ef0c5a38dd3fa3f5e0e8601b2",
+    "source_mtime": "2026-11-07T02:57:28+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/视觉规范/档案纸主题规范.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/视觉规范/档案纸主题规范.md",
+    "bytes": 27916,
+    "sha256": "8206f2fdf8e69578d6f6e3b255ccb01088501c7c5d09a832d9d0813af3c568a4",
+    "source_mtime": "2026-11-07T02:56:39+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/制作规范/分段制作与局部修改.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/制作规范/分段制作与局部修改.md",
+    "bytes": 4757,
+    "sha256": "929b9a034315070f855b8adab1a99b64e94bc2872b90e723d22c633255779273",
+    "source_mtime": "2026-10-02T16:22:47+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/制作规范/参考片拆解-仪式感期-2026-10-05.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/制作规范/参考片拆解-仪式感期-2026-10-05.md",
+    "bytes": 11663,
+    "sha256": "69e3798966888be91d831f3e230edffebd068de397f4ee0987e3a4141e4cdee1",
+    "source_mtime": "2026-10-05T19:03:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/制作规范/画面硬规则-2026-11-07.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/制作规范/画面硬规则-2026-11-07.md",
+    "bytes": 5325,
+    "sha256": "17eb9c437466a0403e8f1519a61da64aca39e351c980a809274c3ca9a4c4630f",
+    "source_mtime": "2026-11-07T02:57:07+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/制作说明.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/制作说明.md",
+    "bytes": 5908,
+    "sha256": "9dc25ce08aa5f7ba813d9ff7bd20b15c18602229999f3e751037c27f00e6bbdb",
+    "source_mtime": "2026-11-17T09:48:21+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/跑全片.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/跑全片.py",
+    "bytes": 65,
+    "sha256": "37e2e9dc41eacf650186a6f5b381420102c030594b4fe48b58a6cfc359a80e91",
+    "source_mtime": "2026-11-17T02:20:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/看静帧.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/看静帧.py",
+    "bytes": 987,
+    "sha256": "b4a696cebdd60fbed4cda975370be6583aa1ccc3cfe69ed5839c1267043a1170",
+    "source_mtime": "2026-11-17T02:39:23+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/手写镜头.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/手写镜头.py",
+    "bytes": 29970,
+    "sha256": "c47cc5a2f7d1014db579211041eda51d3b2418b64709988479cc41554729f775",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/v6lib.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/v6lib.py",
+    "bytes": 109473,
+    "sha256": "9fc2d63570db29d6fb474c21dfd87e0188b5d8e944fcab0687236d6fb0494d26",
+    "source_mtime": "2026-11-17T08:46:54+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/节拍表.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/节拍表.json",
+    "bytes": 12016,
+    "sha256": "b58f2ed66b435633f2a3865cbdeae854e0e8133c90293e1f161ef615d00a2e1a",
+    "source_mtime": "2026-11-17T02:33:07+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/抽段帧.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/抽段帧.py",
+    "bytes": 2175,
+    "sha256": "9e49d890e6733bb867674849600ce472bd971a326b3710c1bfaa5bbcb64bac95",
+    "source_mtime": "2026-11-17T02:20:19+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/总装v6.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/总装v6.py",
+    "bytes": 96659,
+    "sha256": "2d190df99d215255acdfb851d2e078f00c13659003dc977ead9541943b1e0db5",
+    "source_mtime": "2026-11-17T08:47:17+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/项目-封面繁体.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/项目-封面繁体.json",
+    "bytes": 550,
+    "sha256": "f8476bc8e686239db9fa641ed3a3724acff517517ddf8602a7a4abc5ec88ea76",
+    "source_mtime": "2026-11-17T02:44:43+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/跑部分.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/跑部分.py",
+    "bytes": 198,
+    "sha256": "c4ddb347bfe8eef2626e01f4b6729defdbcf4d836ff30c35e2b375853be1d476",
+    "source_mtime": "2026-11-17T02:44:20+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/项目.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/项目.json",
+    "bytes": 8028,
+    "sha256": "72241832e472508a4072dc97521e4f7d7e3797d8dc86b767ac48205dfc54466f",
+    "source_mtime": "2026-11-17T08:55:17+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头数据.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头数据.py",
+    "bytes": 17061,
+    "sha256": "b47a2fd711f1f311b8f04656a6c78d41bf9e91048ef62dd651c7e66601cc726d",
+    "source_mtime": "2026-11-17T08:48:10+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/质检-用图许可.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/质检-用图许可.json",
+    "bytes": 9251,
+    "sha256": "74166c7298d474d82b6c6bf8fd1737eecccefd081fa65439cc7485c56eaed352",
+    "source_mtime": "2026-11-17T03:38:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/v6lib-接口说明.md",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/v6lib-接口说明.md",
+    "bytes": 54543,
+    "sha256": "59d72c0c20a30a19798307b1dcd81a73f5c802e9ce2fdcce9876c1b494f8a0be",
+    "source_mtime": "2026-11-07T04:46:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/本期工具.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/本期工具.py",
+    "bytes": 21557,
+    "sha256": "5110a46c01dc6445be540bf137856344e6f7bd4f8bebbe249152e1c10fc7ad4b",
+    "source_mtime": "2026-11-17T09:56:57+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/定时间轴.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/定时间轴.py",
+    "bytes": 22943,
+    "sha256": "cdd618a47d8b75aa6746b47a6604e5d0acddb63aa4c9c565c2097c854136a328",
+    "source_mtime": "2026-10-27T17:33:22+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S01.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S01.py",
+    "bytes": 349,
+    "sha256": "c1f1f63317e6cc32c2e5c1fdf7a770040516014dbc6fe2265d871b05b497cec4",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S02.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S02.py",
+    "bytes": 311,
+    "sha256": "de0ea7950d0a10a5a513f2fd8884880a3f390736503fcabc45b22b5384e97fe1",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S03.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S03.py",
+    "bytes": 349,
+    "sha256": "8f19e6efc2c63da108abab42224238188c2b693f2e558edc76c92713c41d73a3",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S04.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S04.py",
+    "bytes": 311,
+    "sha256": "d590eee1fdb0f74f0d56064faa996ef82db07ed1cea655ea4ae885b9e596caf0",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S05.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S05.py",
+    "bytes": 349,
+    "sha256": "440b9f3d06a0ee51353861d99d6df036a9d64844b199819cc0d688fcbecb65c9",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S06.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S06.py",
+    "bytes": 349,
+    "sha256": "ad1f4975b57ce7ede028cb96d077d959c144c685f65702f76d938a98ed6d76b2",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S07.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S07.py",
+    "bytes": 349,
+    "sha256": "5c606eb43acaedd4f4a2490ff5838f552ef55b2239e032e849ca20878e2209f2",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S08.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S08.py",
+    "bytes": 349,
+    "sha256": "f1b0c4e3b7a541a6277b5d2f2e6c1101d63f95cb250124a1aad54a6cbc868ddd",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S09.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S09.py",
+    "bytes": 349,
+    "sha256": "d1ef74c8dec956aa7019dc35c887a7e4a2ba900b8577ce4ad886e2fae27489e1",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S10.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S10.py",
+    "bytes": 349,
+    "sha256": "baf632414e36fe559afb58215d923b3be5028ddce7e2ab4555dee7b6e2ce8091",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S11.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S11.py",
+    "bytes": 349,
+    "sha256": "fe751d2ebeff33f05ac4ac43f2f10e639b38c6f9ba87f71582fe9c7afe23f07c",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S12.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S12.py",
+    "bytes": 311,
+    "sha256": "e49351ece7675cfccf2e6098a19fc80e8fdd724b5ec111523ac8224acf75f594",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S13.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S13.py",
+    "bytes": 349,
+    "sha256": "b7dfc4ca97f6abbc72fec523bfd06459ce11f89c63bdd9a71a8132e2bf6f1066",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S14.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S14.py",
+    "bytes": 349,
+    "sha256": "3b5f63136093b7f9cac05325243a19527325f351bf38590659d6ab8ef7f85e92",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S15.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S15.py",
+    "bytes": 349,
+    "sha256": "e1d176f54ebf70809985a161614f6a8b5a8df205000af7f3160086c03073b167",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S16.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S16.py",
+    "bytes": 349,
+    "sha256": "762d3be3275a081049952f44a7c8e9462739e4555daca6ad8e70ab68bb932e3f",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S17.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S17.py",
+    "bytes": 349,
+    "sha256": "863c2c336a38c7d56f98dfdd304d9bbfc7e98a9538e7a37186f1911d35122931",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S18.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S18.py",
+    "bytes": 311,
+    "sha256": "b00e8187748aa093a87a5b7244ec8184946f7da01fe7edb94764e1d0325710c4",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S19.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S19.py",
+    "bytes": 311,
+    "sha256": "7a7ae798a184b64fac588452c641edf6e1ccfb171ee1ace2bd9e4edcad1be218",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S20.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S20.py",
+    "bytes": 311,
+    "sha256": "38b2bd5b298b1fb7c22b87bdd31edc6ccf927c24973f481dadc72e5001af488d",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S21.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S21.py",
+    "bytes": 311,
+    "sha256": "2ceb84dc64522339c7375b4d4da6f8b82a2bcdc0f865db8802a08f1a59ec8b7c",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S22.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S22.py",
+    "bytes": 349,
+    "sha256": "d17c65d80849ca45308371f328dee9e7a3a42424cb5333f12dfe3da1777d7a20",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S23.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S23.py",
+    "bytes": 311,
+    "sha256": "c6c4e33f5ca7ad984af49b084cfd56b70a13b3627d2b69df6aaa3de0d12b7cd3",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S24.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S24.py",
+    "bytes": 311,
+    "sha256": "4493bcacdb3280d371ba2bb037139c0bce501cca44250007c4b6caf2c6fc1427",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S25.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S25.py",
+    "bytes": 311,
+    "sha256": "01bacac552be99798ef7f4ae0fa803ebde7adf4a1aa51c47134eef8cde3943cb",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S26.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S26.py",
+    "bytes": 349,
+    "sha256": "00a663397fc5c5892d373c206d4d5f2c02c1f88183d47b758bc8494621c3fab0",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S27.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S27.py",
+    "bytes": 349,
+    "sha256": "4219963cf71fd21c63b5a6ea28ecbad0b99c01910c3807f570a965c4129df123",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S28.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S28.py",
+    "bytes": 311,
+    "sha256": "fc637efcc899c2a5acb0b8070809f289555dfb1f9b4666084e9c49650659f6fa",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S29.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S29.py",
+    "bytes": 349,
+    "sha256": "339268197d4916d57dd47a8b0ff866b5556f4ade4438c6c2707e129ad4c1dd34",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S30.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S30.py",
+    "bytes": 311,
+    "sha256": "0f0af23e6f527bba1cce377fda8100fa384f7518123971a76551cc94e410c55c",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S31.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S31.py",
+    "bytes": 349,
+    "sha256": "6edc2cb2e99c7d410d4add124cff82b1f54644b235be6829dc031916454dbeab",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S32.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S32.py",
+    "bytes": 311,
+    "sha256": "3edaad3c47ba93fd6861de9185bcfaf4db9823697b76014251f62895c6b3a1da",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S33.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S33.py",
+    "bytes": 311,
+    "sha256": "37fb0d61ac881f1f0f48ac08f9c0995a86adad2ada1f1df187b8dbefdb6e538c",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S34.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S34.py",
+    "bytes": 311,
+    "sha256": "2f4e94c494f5e1913fe63b782618058d9a8f8ca2d8b9ce433509ce85baf9d3f8",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S35.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S35.py",
+    "bytes": 349,
+    "sha256": "e181ecca5cbcdd5204f0d348934f5f43af32cfe40007a92c0542b7da2e9abd14",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S36.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S36.py",
+    "bytes": 311,
+    "sha256": "89d526010e75b5d162ea43b149630b1a5683d66aceeb7c4f98e766d0fa04fecf",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S37.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S37.py",
+    "bytes": 349,
+    "sha256": "ca770a3ef8f6d40fce84fcbcde8c4b7295e9c13fb27ae88adb74248bd385883b",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S38.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S38.py",
+    "bytes": 311,
+    "sha256": "d0876c639bbea12faa0544005138f2b795d85050b3c28a24fef5898f4fe4251c",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S39.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S39.py",
+    "bytes": 311,
+    "sha256": "9070785f04dcc779d0629d0beb78d7807c430fb16d8b3b47de08ce245c276472",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S40.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S40.py",
+    "bytes": 349,
+    "sha256": "aef9f25dbd854e9b0542f5010b9144d1d5cc2d148010ccd2f674b41ddaa58528",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S41.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S41.py",
+    "bytes": 349,
+    "sha256": "5ccadebabcd2c0a61855c787e9d3701760f34a173278eb2481f66298ec304d57",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S42.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S42.py",
+    "bytes": 311,
+    "sha256": "cb4191dbeea0fa5a65e894dd52b1d079cf5dfcebf465c14fb85f364b4eae87da",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S43.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S43.py",
+    "bytes": 349,
+    "sha256": "e2258bd137bfa71dfba8c5957f8360624380afbc094bb57255f90d001b9517ac",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S44.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S44.py",
+    "bytes": 349,
+    "sha256": "b6ad771329c47c06db081a6ad408dd5b15223f4f98f5ce3d09da736c38f00cb9",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S45.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S45.py",
+    "bytes": 349,
+    "sha256": "4afd0dd3755c4b71da7eed0f2e502d136fa64986381f1bbe08c6aa2da2384f37",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S46.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S46.py",
+    "bytes": 349,
+    "sha256": "87fe575fbdb81eb915f708aeaba3599f0e59ab671a7003d92b866561a30c4ff5",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S47.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S47.py",
+    "bytes": 311,
+    "sha256": "fbacbadc857c4e096c60a5c94175798c9ff50ce79b4287251d373b663ebec6d2",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S48.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S48.py",
+    "bytes": 311,
+    "sha256": "6ece39acc495219483c847e52967abef75530954aa267527413d2a443798989b",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S49.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S49.py",
+    "bytes": 311,
+    "sha256": "508102397863375ac205f9e68d0c7c9c2e992dcc51b24575f71ba6d589c99099",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S50.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S50.py",
+    "bytes": 349,
+    "sha256": "5a22f432ebed7c05e1179b2be15f0e5bd4b25322eb1497bacfa7f7923ae7a282",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S51.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S51.py",
+    "bytes": 349,
+    "sha256": "5333e97cbaec7cfdd9c79daf054a1ae17819f2af16e9731acd3c7396e6593c8a",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S52.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S52.py",
+    "bytes": 311,
+    "sha256": "0e427d2be1b81d76a6c095044acc9e8c64ef3f5620cfe5dd439c09504bfdeae7",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S53.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S53.py",
+    "bytes": 311,
+    "sha256": "202d22f9c063949e42685a7742efb76f094698b6a8f40bcd3a3f592a6161d149",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S54.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S54.py",
+    "bytes": 311,
+    "sha256": "3b19440a9801b553658b923ff972455d0391c3123a14c4a3a0667268cab6fc3f",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S55.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S55.py",
+    "bytes": 311,
+    "sha256": "05b35ec0fedf6faccb18219235877cc5dd4f91ffbcf2f2dd2d4cc19e2a38bbbd",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S56.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S56.py",
+    "bytes": 311,
+    "sha256": "26a762a7488d4c7fd6d6aeed427165745470cea94d848ed10f0e6f3e1a5c1ac9",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S57.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S57.py",
+    "bytes": 311,
+    "sha256": "09e3c3faaca4daae9301ea660d024dd9d59be52c4596acfef228e7517a9b5a3c",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S58.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S58.py",
+    "bytes": 311,
+    "sha256": "e9c57c675af60593e15eee571f786434f7d03eb81444054b775cfb8650638b2f",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S59.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S59.py",
+    "bytes": 349,
+    "sha256": "f8d7ca836c7f3a59ad901a6577289b9d5dd025d60ede644a0c7542e165528bf6",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S60.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S60.py",
+    "bytes": 311,
+    "sha256": "a5bb402b294f2a198790f8b3e024d8e1d78c35225225bd127ee20db063a17db3",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S61.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S61.py",
+    "bytes": 349,
+    "sha256": "e16278bff0decbf0f7cf82ee0213b1182d8011c94f3446d3fe7cf96cd7d550a5",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S62.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S62.py",
+    "bytes": 349,
+    "sha256": "8825ca4f8d4c3a3ff859d18dec36a2daae728549497682b22502c322bb2228fe",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S63.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S63.py",
+    "bytes": 311,
+    "sha256": "f3ce9f00e1c067b07f222739b85bd2ee7286c2b1b7432ad21bd4dd10982b5b90",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S64.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S64.py",
+    "bytes": 349,
+    "sha256": "074d0beb13bc559bc61d6558463f1450700bb67aebfc3edd83eef64a956f982d",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S65.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S65.py",
+    "bytes": 349,
+    "sha256": "e81152825d6aada42d616bc69d0d1d262ab91e74ec7d4ac0c200692f587f8b8c",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S66.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S66.py",
+    "bytes": 349,
+    "sha256": "2a386cd9dd02103cf005864cac10a45f4a070910967aba392911df2b19da3a2a",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S67.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S67.py",
+    "bytes": 349,
+    "sha256": "49d4c32d6339f7523ff14d3f1ae72b2a20ae49b5ede2132132079be6804fe039",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S68.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S68.py",
+    "bytes": 349,
+    "sha256": "9e3d3dc0e52996bf24dc413bfab40d70a78f7e7558c871fb5f2e29fb24d7efee",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S69.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S69.py",
+    "bytes": 349,
+    "sha256": "2e3494105cceb53b66a7ef600e321b6c494c63e12a7c36fbba9c1618c8d9a083",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S70.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S70.py",
+    "bytes": 349,
+    "sha256": "785d300269ceb6639f918551ca6484704364eefd0a2d765670cd795f379213e7",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S71.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S71.py",
+    "bytes": 349,
+    "sha256": "43086fc02a46a909acd18528245ae6459d28899d7e548c4780af2af39f459909",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S72.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S72.py",
+    "bytes": 349,
+    "sha256": "fe73f0a636b38258dfe4188b0d53e2a6e4b5e20162f9ab163082da387ae169e2",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S73.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S73.py",
+    "bytes": 349,
+    "sha256": "244d10742c2a90197ca088aadaa802e642405f38f13cad7032b07756a19e3c01",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S74.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S74.py",
+    "bytes": 311,
+    "sha256": "f68a9cd6db199734adb3047acd395f56c8b4685728f6783320cf952eb6a2963f",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S75.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S75.py",
+    "bytes": 311,
+    "sha256": "a7bbaa4430da91a1c4ab0c9ca5a6235f77a8f534c7be0d9cb70d9207c34b7bd3",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S76.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S76.py",
+    "bytes": 349,
+    "sha256": "c997f58fff78b4fc3deb0b871408a99c1a375661062fb1ffa886f5db3c8a16aa",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S77.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S77.py",
+    "bytes": 349,
+    "sha256": "c8c1ba8f6fc649606e18ff0916e999010905a7b4462e2e7dedec8378054ade04",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S78.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S78.py",
+    "bytes": 349,
+    "sha256": "6e1cb62797e2f09a8cbcec59d67051aea7e566f303769d475da92556b248b11f",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S79.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S79.py",
+    "bytes": 311,
+    "sha256": "099185128a713d5c509ff8d7e491f1fdcd0568c160ae7bcd77d591969078ae55",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S80.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S80.py",
+    "bytes": 311,
+    "sha256": "d792155bdf19e7c75777ab1966b6be8d5ed51d255e56854d8f4018e297e501b5",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S81.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S81.py",
+    "bytes": 349,
+    "sha256": "94896f77c02b4c22f0d2b48a3cf9e3c55190534b21344de831213878212b90dd",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S82.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S82.py",
+    "bytes": 311,
+    "sha256": "74d890cf13ce7224aa49b75919e545fd4fa9daee9697b3779931fb6c20ce08be",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S83.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S83.py",
+    "bytes": 311,
+    "sha256": "1ad0ac5b8b7a1ace3af2c774b18c7df8e36c9716b94ee8d7621648977b14292b",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S84.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S84.py",
+    "bytes": 311,
+    "sha256": "1cab9ff0f2f0ed9cc34b50eadc5dc547c714e6510e6463ef4c8ed5bc104bbec3",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S85.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S85.py",
+    "bytes": 349,
+    "sha256": "50e83bd458f4b3664d43dfcdce77716a744d17a110be4b8381f1126536a178bf",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S86.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S86.py",
+    "bytes": 311,
+    "sha256": "044d674a06f7bf764ec64564968902a07dea8ce4b880096031c92662ef61b68d",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S87.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/S87.py",
+    "bytes": 349,
+    "sha256": "610fc2b54472e9c28cdb1205b7549932a374d1362b0f0ec124eed50a53556a8f",
+    "source_mtime": "2026-11-17T08:49:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/_生成.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/镜头脚本/_生成.py",
+    "bytes": 1246,
+    "sha256": "cfb01d88609daa4e1bfafd9109667f42c361589f04c7cf77e7f26441c84be3f8",
+    "source_mtime": "2026-11-17T02:30:52+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/cdp.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/cdp.mjs",
+    "bytes": 6591,
+    "sha256": "3fbc24d04058cf09c661a28f358ca423394dd0ff7b4e484447476dad13d12102",
+    "source_mtime": "2026-10-20T14:56:17+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/charts.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/charts.js",
+    "bytes": 35473,
+    "sha256": "d0b56f0ffd7f95e2d01412304565fe2c24a01df4220342e776ba1bc70d466ca2",
+    "source_mtime": "2026-10-07T02:47:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/config.json",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/config.json",
+    "bytes": 273,
+    "sha256": "4c1faefd0d9b9a1791bc30c029ae26ada5fe09c70e5a1943a777f761e33e7620",
+    "source_mtime": "2026-10-07T02:47:49+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/fx.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/fx.js",
+    "bytes": 113483,
+    "sha256": "20a7c6d7b3895fa783d2827df1ec1f1b1624ca28c6895ca4f555dfd6394a8e5b",
+    "source_mtime": "2026-11-07T04:46:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/fxmap.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/fxmap.js",
+    "bytes": 33218,
+    "sha256": "caca0f1ed75281facd1de4e44e6b7d6ff92f94c0fd66bcd972a401f9572acfdd",
+    "source_mtime": "2026-10-28T02:26:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/stage.css",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/stage.css",
+    "bytes": 73049,
+    "sha256": "80e54cc97a9450a894ffd620bda6e036059f32f2ac12570636df71da37b5d109",
+    "source_mtime": "2026-11-17T02:40:51+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/stage.html",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/stage.html",
+    "bytes": 2905,
+    "sha256": "c59f2931dbbc12cb9c65e3d22ce9466bc4efc55f129cddd639b28bf977dfa283",
+    "source_mtime": "2026-10-27T16:50:15+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/stage.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/stage.js",
+    "bytes": 25773,
+    "sha256": "028cef8cb9cba82abaa4d03fc1596eab4301af2200ab2040af0702f12c2d9fef",
+    "source_mtime": "2026-11-07T04:46:06+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/vendor/d3-path.min.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/vendor/d3-path.min.js",
+    "bytes": 2433,
+    "sha256": "28d70841c60f313c3e6411fe0831e539ed6cea51eaee951d62d88908c40619c2",
+    "source_mtime": "2026-10-11T18:50:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/vendor/d3-shape.min.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/vendor/d3-shape.min.js",
+    "bytes": 30898,
+    "sha256": "49236896e989f251dd36679ea4a879538e9ca2ece3a90a82740f953cac4a3fa5",
+    "source_mtime": "2026-10-11T18:50:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/vendor/lottie.min.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/vendor/lottie.min.js",
+    "bytes": 305543,
+    "sha256": "a0757321f974527bda3cc2593bf56cc7ffe4578421249ced6ae49ffb1c529f90",
+    "source_mtime": "2026-10-11T18:50:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/vendor/rough.js",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/engine/vendor/rough.js",
+    "bytes": 27762,
+    "sha256": "6853af8619532f3939b156cd16824d2e14f31e71d3df306ad5558eeafacab194",
+    "source_mtime": "2026-10-11T18:50:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/分段渲染.mjs",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/画面v6/工程/分段渲染.mjs",
+    "bytes": 12630,
+    "sha256": "8ad356d20b3f48cbd2c49dc62227d5838b6b7ce329f40c3094339474a997bf19",
+    "source_mtime": "2026-10-27T16:50:15+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/视频工厂/样片/2026-11-17-阿倍野再开发/配音/切屏.py",
+    "source": "/Users/wzz122/Desktop/视频工厂/样片/2026-11-17-阿倍野再开发/配音/切屏.py",
+    "bytes": 5505,
+    "sha256": "0e0b6c84a6b45d65e804b8b01f1a8a4b4408be44ab4d3e2e713e166cbb42dbef",
+    "source_mtime": "2026-11-17T01:57:10+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/AGENTS.md",
+    "source": "/Users/wzz122/Desktop/写稿/AGENTS.md",
+    "bytes": 5098,
+    "sha256": "1d8bd661bb3f1f9a64cc59ea111427cd40c27dcbfe4760732b3a13d12a3c49d0",
+    "source_mtime": "2026-10-10T21:07:27+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/CLAUDE.md",
+    "source": "/Users/wzz122/Desktop/写稿/CLAUDE.md",
+    "bytes": 1978,
+    "sha256": "053f3bb9435eca79d823495b56cf0a25b46c003b1b637f7be03a9c47f141111f",
+    "source_mtime": "2026-10-12T01:37:44+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/CODEX-交接文.md",
+    "source": "/Users/wzz122/Desktop/写稿/CODEX-交接文.md",
+    "bytes": 22550,
+    "sha256": "78a8805810a14ff04f7bbc4bdf9f626a2f88ed14844ecaac3d11045c6adfbac7",
+    "source_mtime": "2026-10-02T14:38:52+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/CODEX-交接文-2026-10-02.md",
+    "source": "/Users/wzz122/Desktop/写稿/CODEX-交接文-2026-10-02.md",
+    "bytes": 19355,
+    "sha256": "4dd47ec51525318d1b601fdce1b5c2eab5c6f3a3fcee65c7497c553c12e2fe35",
+    "source_mtime": "2026-10-05T17:48:32+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/CODEX-交接文-2026-10-02-东大收尾与竖屏.md",
+    "source": "/Users/wzz122/Desktop/写稿/CODEX-交接文-2026-10-02-东大收尾与竖屏.md",
+    "bytes": 21095,
+    "sha256": "73bc835e3fdc63bce24a635a880ceea1313143e8964e469defe1ed4bc8187905",
+    "source_mtime": "2026-10-05T17:48:31+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/00-视频创作入口.md",
+    "source": "/Users/wzz122/Desktop/写稿/00-视频创作入口.md",
+    "bytes": 3640,
+    "sha256": "ca5ec02caad28259d63c762cd6c123ef05a215f4ab324fc52681a22e6aba0247",
+    "source_mtime": "2026-10-05T17:57:01+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/api配音.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/api配音.py",
+    "bytes": 15749,
+    "sha256": "32e13dc34adafdb87bcbdbd94d829ae68ffffef14a45988d803a205fe44d65f4",
+    "source_mtime": "2026-11-16T00:03:34+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/读音预检.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/读音预检.py",
+    "bytes": 3054,
+    "sha256": "541ad0841672017bf781b0e50780e3e60999b92f8207c57cfebe5a5c9ee61154",
+    "source_mtime": "2026-11-16T00:01:36+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/读音点检.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/读音点检.py",
+    "bytes": 20187,
+    "sha256": "e9ca41503c452df0328e042c38f7d4b712cd0250e2386528e64c8d47608e984d",
+    "source_mtime": "2026-11-16T01:03:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/pron_transcribe.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/pron_transcribe.py",
+    "bytes": 3578,
+    "sha256": "7ae5dc1ea568e9d5c287102699660182cdf04bc23c451e54f96fc53275462bfd",
+    "source_mtime": "2026-10-08T13:29:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/pron_lib.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/pron_lib.py",
+    "bytes": 17084,
+    "sha256": "56afa99e545c2f53c3ff43469e447823806e2a3e172d34e33746773aedc594c3",
+    "source_mtime": "2026-11-16T00:11:31+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/voice_feats.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/voice_feats.py",
+    "bytes": 1634,
+    "sha256": "bd39774e10a5fd5bd9a551d2fea04658d85b509121248583b2e15e136c5faafd",
+    "source_mtime": "2026-09-30T02:47:17+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/试听配音.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/试听配音.py",
+    "bytes": 3936,
+    "sha256": "de260b19c2f7b8f519bb8f575320e1502ca2476a02641888a147369ca598787a",
+    "source_mtime": "2026-10-20T15:13:37+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/抽帧质检.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/抽帧质检.py",
+    "bytes": 3038,
+    "sha256": "5d29bf9fe8904f353fbe0a51ff780d58fee0273d5ca635210e92310d290252c9",
+    "source_mtime": "2026-10-02T14:36:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/录屏.mjs",
+    "source": "/Users/wzz122/Desktop/写稿/工具/录屏.mjs",
+    "bytes": 13541,
+    "sha256": "2b8e6f9e95763bec0c249112e15d966c3337f519cdf5c1093c36f3c51fac0cd9",
+    "source_mtime": "2026-10-23T02:32:23+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/mshot.mjs",
+    "source": "/Users/wzz122/Desktop/写稿/工具/mshot.mjs",
+    "bytes": 5929,
+    "sha256": "e595d39ec83fa63949d8a414d23052a4280f302b06de46996b5aa21fb616d529",
+    "source_mtime": "2026-10-08T13:29:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/wshot.mjs",
+    "source": "/Users/wzz122/Desktop/写稿/工具/wshot.mjs",
+    "bytes": 6482,
+    "sha256": "fa10a2f047ba2ef38fa0db43e6d8063d0c031f032d0811e67c61f77ffc4eea1c",
+    "source_mtime": "2026-10-08T13:29:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/cover_compose.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/cover_compose.py",
+    "bytes": 2908,
+    "sha256": "48499f9d6a775ccbb620f83e5edde818cb1220032be332f8c7ceed8bd3f7b041",
+    "source_mtime": "2026-10-01T15:56:13+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/cover_people.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/cover_people.py",
+    "bytes": 4289,
+    "sha256": "0000e472cdbffb8759d255e571c6b91101d74c4423eda26eb0a3870989f67502",
+    "source_mtime": "2026-10-08T13:29:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/电影感封面.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/电影感封面.py",
+    "bytes": 13151,
+    "sha256": "6876c3523fb7317c4fc0aefd7d058d28b766a0e63b16b72cb96dcf7b2f1a7fdd",
+    "source_mtime": "2026-11-08T11:34:33+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/视频号封面.mjs",
+    "source": "/Users/wzz122/Desktop/写稿/工具/视频号封面.mjs",
+    "bytes": 13081,
+    "sha256": "e0eb3d7f582bf7304c7a85f146d486c18930968c3bac554248992229b5a871bc",
+    "source_mtime": "2026-10-08T13:29:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/格子纸封面.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/格子纸封面.py",
+    "bytes": 31197,
+    "sha256": "14df5a4af7c3f5f39cf7a84f95323424cb4957a0743261b48db9724adc5392d6",
+    "source_mtime": "2026-10-09T12:14:15+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/稿件检查.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/稿件检查.py",
+    "bytes": 4376,
+    "sha256": "29aa1372ce4064dfb7e7234e0fbb4b2f7c7a2a064ce6cede3ebca189a03d9df5",
+    "source_mtime": "2026-10-20T15:07:16+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/素材盘点.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/素材盘点.py",
+    "bytes": 10053,
+    "sha256": "05699daafe874ca1556b5eb6978be65b798236e0ab6e2011c2b7f23c3d7438c2",
+    "source_mtime": "2026-10-20T15:10:42+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/reframe.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/reframe.py",
+    "bytes": 2549,
+    "sha256": "8bd15524d861588733c3e286b51faab6d18fc7b239c639310b0103cd49de2e35",
+    "source_mtime": "2026-10-01T04:05:19+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/本地配乐.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/本地配乐.py",
+    "bytes": 3645,
+    "sha256": "66140c7f6b9e0615443bd4fdbc0d336a1c223cd0c2e3950ea2c23ca08a347426",
+    "source_mtime": "2026-10-20T15:12:30+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/改稿.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/改稿.py",
+    "bytes": 23269,
+    "sha256": "639073225f42d2ba73dbcaf751122478005a90e27b09b91eecbed5c847d217f1",
+    "source_mtime": "2026-10-12T02:36:02+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/README.md",
+    "source": "/Users/wzz122/Desktop/写稿/工具/README.md",
+    "bytes": 11852,
+    "sha256": "fc02de1a93c0ad0876f6174ec4719c10a28955c89acd2b0c1f22affcc580d451",
+    "source_mtime": "2026-11-16T01:04:29+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/读音词典.tsv",
+    "source": "/Users/wzz122/Desktop/写稿/工具/读音词典.tsv",
+    "bytes": 4848,
+    "sha256": "577c02c50d721621a60931341da05f00a866aaad09c1f606751647901f1ffa6e",
+    "source_mtime": "2026-11-16T00:00:14+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/sync_check.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/sync_check.py",
+    "bytes": 2562,
+    "sha256": "8a99b06bb3c779cfc1e1b3daa1bd3da3c39a526726a318f5f94e40698c9e556b",
+    "source_mtime": "2026-10-08T13:29:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/现地素材分镜.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/现地素材分镜.py",
+    "bytes": 9825,
+    "sha256": "e5e58ad8ab7eccb3c1bd9e3dd96e7afeb90abcccda558c701c5ab7c05d2eccd3",
+    "source_mtime": "2026-10-28T15:05:03+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/vcard.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/vcard.py",
+    "bytes": 8487,
+    "sha256": "8f117ae13aebb39745632714e27dcae0a220571293b20b16bb759814e90cfd09",
+    "source_mtime": "2026-10-05T02:57:25+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/稿件网页.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/稿件网页.py",
+    "bytes": 3804,
+    "sha256": "7cbbc75af81815120711b6a84d49d25986ac646189628c6f36c999472feec4cd",
+    "source_mtime": "2026-10-02T01:12:51+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工具/谷歌文档回读.py",
+    "source": "/Users/wzz122/Desktop/写稿/工具/谷歌文档回读.py",
+    "bytes": 1400,
+    "sha256": "bf5558bc981a6b07b757d9250a8ac8dbb9b37144a8429ed43e5172817d208df6",
+    "source_mtime": "2026-10-02T02:58:45+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工作流/单期制作工作流.md",
+    "source": "/Users/wzz122/Desktop/写稿/工作流/单期制作工作流.md",
+    "bytes": 21339,
+    "sha256": "14d185a06bef7d3f09114787428ff7139af20e19628bf2ddc2afa277312e95e2",
+    "source_mtime": "2026-11-07T02:58:59+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工作流/AI视频工厂流程.md",
+    "source": "/Users/wzz122/Desktop/写稿/工作流/AI视频工厂流程.md",
+    "bytes": 14778,
+    "sha256": "fc76d0a7990935dd1c70d38a62aa979305d8f20c29a2a027ca7c51ecded78203",
+    "source_mtime": "2026-11-07T02:58:59+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工作流/从主题到方向包.md",
+    "source": "/Users/wzz122/Desktop/写稿/工作流/从主题到方向包.md",
+    "bytes": 3400,
+    "sha256": "ebf7e4c126885a0388705b68c42140bf5bbdd2ffa7685d046df8aea32b748165",
+    "source_mtime": "2026-10-06T15:44:56+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工作流/分段制作与局部修改.md",
+    "source": "/Users/wzz122/Desktop/写稿/工作流/分段制作与局部修改.md",
+    "bytes": 4757,
+    "sha256": "929b9a034315070f855b8adab1a99b64e94bc2872b90e723d22c633255779273",
+    "source_mtime": "2026-10-02T16:22:47+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工作流/协作方式.md",
+    "source": "/Users/wzz122/Desktop/写稿/工作流/协作方式.md",
+    "bytes": 3709,
+    "sha256": "75a2685cc5d51d882deb168740888d817c85bedea958fbf4c3669ece922b5b0b",
+    "source_mtime": "2026-10-10T21:07:27+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工作流/图像风格与复查规范.md",
+    "source": "/Users/wzz122/Desktop/写稿/工作流/图像风格与复查规范.md",
+    "bytes": 4925,
+    "sha256": "52ed2bac6077b02cb03cdd6ef5ff1ff2586c81e7180b9d7e524fbc32d35e980f",
+    "source_mtime": "2026-10-07T02:46:08+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工作流/配乐生成与验收.md",
+    "source": "/Users/wzz122/Desktop/写稿/工作流/配乐生成与验收.md",
+    "bytes": 1144,
+    "sha256": "828271d461618857f1ddcef7b12ead471b26ac8dccb5e547978eef390d9d9603",
+    "source_mtime": "2026-10-02T22:55:48+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/工作流/2026-10-07-今日新规速览-配乐音效总装质检.md",
+    "source": "/Users/wzz122/Desktop/写稿/工作流/2026-10-07-今日新规速览-配乐音效总装质检.md",
+    "bytes": 9157,
+    "sha256": "e090715bdb1b55c987f2605efce8a7331d6b5f16b9f460c73add93d22ac84b2b",
+    "source_mtime": "2026-11-07T02:58:59+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/成稿/2026-11-17-阿倍野再开发-v1.md",
+    "source": "/Users/wzz122/Desktop/写稿/成稿/2026-11-17-阿倍野再开发-v1.md",
+    "bytes": 17311,
+    "sha256": "8008a3bb599b80b0f64f1ec565de9745e38d2a0af9a0ffc6d1886adbe7b3412d",
+    "source_mtime": "2026-11-17T01:57:10+09:00",
+    "executable": false
+  },
+  {
+    "path": "handoff/projects/video-factory/写稿/资料/2026-11-阿倍野再开发/00-事实核对.md",
+    "source": "/Users/wzz122/Desktop/写稿/资料/2026-11-阿倍野再开发/00-事实核对.md",
+    "bytes": 5911,
+    "sha256": "d7914f93eae4cce22846c7e2860a14c7948f0d92332bb445e5a7b7937e1d444d",
+    "source_mtime": "2026-11-17T02:45:50+09:00",
+    "executable": false
+  }
+]

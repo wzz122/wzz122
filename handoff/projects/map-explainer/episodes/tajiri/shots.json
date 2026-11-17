@@ -1,0 +1,149 @@
+{
+ "G1-关空全岛": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.239,
+   34.433,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 285,
+   "headingTo": 318,
+   "pitch": -27,
+   "range": 9500,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true
+ },
+ "G2-第一航站楼": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.2442,
+   34.4343,
+   48
+  ],
+  "orbit": {
+   "headingFrom": 330,
+   "headingTo": 8,
+   "pitch": -38,
+   "range": 1300,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true
+ },
+ "G3-吉见里站": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.2895,
+   34.3915,
+   45
+  ],
+  "orbit": {
+   "headingFrom": 15,
+   "headingTo": 50,
+   "pitch": -40,
+   "range": 1100,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true
+ },
+ "G4-临空城": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.2985,
+   34.411,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 295,
+   "headingTo": 328,
+   "pitch": -32,
+   "range": 2200,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true
+ },
+ "G5-海岸远景": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.26,
+   34.412,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 272,
+   "headingTo": 300,
+   "pitch": -24,
+   "range": 14000,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true
+ },
+ "D2-第一航站楼-地理院": {
+  "source": "plateau",
+  "duration": 14,
+  "target": [
+   135.2442,
+   34.4343,
+   0
+  ],
+  "orbit": {
+   "headingFrom": 330,
+   "headingTo": 8,
+   "pitch": -38,
+   "range": 1300,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "tilesets": [],
+  "attribution": "航空写真：国土地理院"
+ },
+ "D3-吉见里站-地理院": {
+  "source": "plateau",
+  "duration": 14,
+  "target": [
+   135.2895,
+   34.3915,
+   0
+  ],
+  "orbit": {
+   "headingFrom": 15,
+   "headingTo": 50,
+   "pitch": -40,
+   "range": 1100,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "tilesets": [],
+  "attribution": "航空写真：国土地理院"
+ },
+ "D4-临空城-地理院": {
+  "source": "plateau",
+  "duration": 14,
+  "target": [
+   135.2985,
+   34.411,
+   0
+  ],
+  "orbit": {
+   "headingFrom": 295,
+   "headingTo": 328,
+   "pitch": -32,
+   "range": 2200,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "tilesets": [],
+  "attribution": "航空写真：国土地理院"
+ }
+}

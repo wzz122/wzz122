@@ -1,0 +1,135 @@
+{
+ "G1-难波全景": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.5018,
+   34.666,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 340,
+   "headingTo": 20,
+   "pitch": -32,
+   "range": 1700,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G2-道顿堀戎桥": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.5013,
+   34.6689,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 60,
+   "headingTo": 110,
+   "pitch": -34,
+   "range": 480,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G3-千日前路口": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.5031,
+   34.666,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 200,
+   "headingTo": 250,
+   "pitch": -38,
+   "range": 420,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G4-千日前到花月": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.5033,
+   34.665,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 330,
+   "headingTo": 15,
+   "pitch": -36,
+   "range": 600,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G5-难波公园": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.502,
+   34.6615,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 150,
+   "headingTo": 200,
+   "pitch": -36,
+   "range": 650,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G6-高岛屋车站": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.5013,
+   34.665,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 0,
+   "headingTo": 40,
+   "pitch": -34,
+   "range": 520,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G7-法善寺": {
+  "source": "google",
+  "duration": 14,
+  "target": [
+   135.5023,
+   34.668,
+   40
+  ],
+  "orbit": {
+   "headingFrom": 100,
+   "headingTo": 140,
+   "pitch": -42,
+   "range": 320,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ }
+}

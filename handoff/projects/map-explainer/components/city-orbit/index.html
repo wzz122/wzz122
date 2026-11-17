@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>city-orbit — 三维城市环绕（PLATEAU + 国土地理院航拍）</title>
+<!--
+  城市楼房立体环绕镜头：相机锁定一个地面目标，沿圆弧慢慢绕，近楼和远楼有真实视差。
+  数据全免费、所有平台可用：
+    楼房：国交省 PLATEAU 3D 都市模型（3D Tiles，带航拍贴图的 LOD2）
+    地面：国土地理院 シームレス空中写真
+  不是 Google Earth 的照片级实景三维；要 Google 那种效果走 Earth Studio（见技能 05）。
+  接口同其他组件：window.__ready / __seek(t) / __duration；?render 进逐帧模式。
+-->
+<script src="https://cdn.jsdelivr.net/npm/cesium@1.121.0/Build/Cesium/Cesium.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/cesium@1.121.0/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #1b1f22; }
+  #globe { position: absolute; inset: 0; }
+  .cesium-viewer-bottom, .cesium-widget-credits { display: none !important; }
+  #labels { position: absolute; inset: 0; pointer-events: none; font-family: "Songti SC", "Hiragino Mincho ProN", serif; }
+  .pin { position: absolute; transform: translate(-50%, -100%); color: #fff; font-size: 34px; font-weight: 700;
+         text-shadow: 0 2px 6px rgba(0,0,0,.75); white-space: nowrap; opacity: 0; }
+  .pin::after { content: ""; display: block; width: 2px; height: 46px; margin: 6px auto 0; background: rgba(255,255,255,.85); }
+  body.google .cesium-viewer-bottom { display: block !important; }
+  body.google .cesium-widget-credits { display: block !important; }
+  body.google .cesium-credit-expand-link { display: none !important; }
+  body.logoonly .cesium-credit-logoContainer, body.logoonly #attr { display: none !important; }
+  #attr { position: absolute; right: 22px; bottom: 16px; color: rgba(255,255,255,.88); font: 500 17px/1.4 "Hiragino Sans", sans-serif;
+          text-shadow: 0 1px 3px rgba(0,0,0,.8); text-align: right; }
+</style>
+</head>
+<body>
+<div id="globe"></div>
+<div id="labels"></div>
+<div id="attr"></div>
+<script>
+const CONFIG = {
+  duration: 12,
+  // 楼房来源：'plateau'（免费、所有平台）或 'google'（Google 照片级实景三维，只能发油管；
+  // 密钥由 render_shot.mjs 从 ~/.config/google-maps/api_key.txt 提供，每次打开页面算 1 次根请求，免费额度每月 1,000 次）
+  source: 'plateau',
+  // 相机锁定的地面目标（经度, 纬度, 离地米数）
+  target: [135.4968, 34.7020, 0],
+  // 环绕：heading 是相机朝向（0=朝北，顺时针增大）。从上方看相机位置也跟着顺时针走。
+  orbit: { headingFrom: 10, headingTo: 45, pitch: -45, range: 1100, ease: 'sine.inOut' },
+  // 3D Tiles 楼房（PLATEAU 高度是椭球高，含大地水准面约 37 m，要整体下移才贴地）
+  tilesets: [
+    { url: 'https://assets.cms.plateau.reearth.io/assets/92/1459fa-4102-4cfe-a56f-6fe5c7764178/27100_osaka-shi_city_2025_citygml_1_op_bldg_3dtiles_27127_kita-ku_lod2/tileset.json',
+      sse: 2, drop: 37.5 },
+  ],
+  // PLATEAU 多数楼没有贴图（只有新楼带照片），统一染成暖灰「城市模型」色；带贴图的楼也会被乘上这层色
+  buildingColor: '#DCD4C6',
+  shadows: false,   // 开了会让背光面很黑、屋顶出条纹，默认关
+  imagery: 'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg',
+  imageryMaxLevel: 18,
+  // 固定时间 = 固定太阳位置，逐帧光影一致（UTC 03:00 = 日本正午）
+  sunTime: '2026-10-29T03:30:00Z',
+  places: [ { name: '大阪站', at: [135.4959, 34.7025, 40], show: 0.8 } ],
+  attribution: '3D都市モデル：PLATEAU（国土交通省）／航空写真：国土地理院',
+  mapFilter: 'none',
+};
+
+// ?config= 深合并
+(function mergeConfig() {
+  const q = new URLSearchParams(location.search).get('config');
+  if (!q) return;
+  const merge = (a, b) => { for (const k in b) { if (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k])) a[k] = merge(a[k] || {}, b[k]); else a[k] = b[k]; } return a; };
+  merge(CONFIG, JSON.parse(q));
+})();
+const RENDER = new URLSearchParams(location.search).has('render');
+
+const ease = {
+  linear: (u) => u,
+  'sine.inOut': (u) => -(Math.cos(Math.PI * u) - 1) / 2,
+};
+const clamp01 = (u) => Math.max(0, Math.min(1, u));
+
+Cesium.Ion.defaultAccessToken = '';
+const viewer = new Cesium.Viewer('globe', {
+  baseLayer: new Cesium.ImageryLayer(new Cesium.UrlTemplateImageryProvider({
+    url: CONFIG.imagery, maximumLevel: CONFIG.imageryMaxLevel, credit: '',
+  })),
+  terrainProvider: new Cesium.EllipsoidTerrainProvider(),
+  baseLayerPicker: false, geocoder: false, homeButton: false, sceneModePicker: false, navigationHelpButton: false,
+  animation: false, timeline: false, fullscreenButton: false, infoBox: false, selectionIndicator: false,
+  shouldAnimate: false, requestRenderMode: false,
+  contextOptions: { webgl: { preserveDrawingBuffer: true } },
+});
+const scene = viewer.scene;
+viewer.resolutionScale = 1;
+scene.globe.maximumScreenSpaceError = 1.5;
+scene.globe.baseColor = Cesium.Color.fromCssColorString(CONFIG.baseColor || '#1E3C46');   // 航拍没有瓦片的远海用这个色      // 地面航拍更清楚
+scene.globe.tileCacheSize = 400;
+scene.globe.preloadSiblings = true;
+scene.fog.enabled = true;
+scene.fog.density = 0.00012;
+scene.skyAtmosphere.show = true;
+scene.globe.enableLighting = false;
+viewer.shadows = !!CONFIG.shadows;
+scene.shadowMap.softShadows = true;
+scene.shadowMap.size = 4096;
+scene.shadowMap.darkness = 0.45;
+scene.postProcessStages.fxaa.enabled = true;
+viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(CONFIG.sunTime);
+scene.screenSpaceCameraController.enableInputs = !RENDER;
+document.getElementById('attr').textContent = CONFIG.attribution;
+if (CONFIG.logoOnly) document.body.classList.add('logoonly');   // 2026-11-05：底部不放小字，只留 Google 标志
+
+const tilesets = [];
+const targetCart = Cesium.Cartesian3.fromDegrees(...CONFIG.target);
+
+function cameraAt(t) {
+  const o = CONFIG.orbit;
+  const u = (ease[o.ease] || ease.linear)(clamp01(t / CONFIG.duration));
+  const heading = o.headingFrom + (o.headingTo - o.headingFrom) * u;
+  // 2026-11-16：可选 pitchTo / rangeTo（推近、拉远、压低视角），不写就和以前一样只绕
+  const pitch = o.pitch + ((o.pitchTo ?? o.pitch) - o.pitch) * u;
+  // 距离按比例变化（对数插值），推近时前后速度看起来一致
+  const range = o.range * Math.pow((o.rangeTo ?? o.range) / o.range, u);
+  return new Cesium.HeadingPitchRange(Cesium.Math.toRadians(heading), Cesium.Math.toRadians(pitch), range);
+}
+function applyCamera(t) {
+  let tc = targetCart;
+  if (CONFIG.targetTo) {   // 可选：目标点从 target 滑到 targetTo（沿街平移）
+    const o = CONFIG.orbit, u = (ease[o.ease] || ease.linear)(clamp01(t / CONFIG.duration));
+    const a = CONFIG.target, b = CONFIG.targetTo;
+    tc = Cesium.Cartesian3.fromDegrees(a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u, a[2] + ((b[2] ?? a[2]) - a[2]) * u);
+  }
+  viewer.camera.lookAt(tc, cameraAt(t));
+}
+
+// 地名：网页叠层，屏幕固定大小，每帧按三维坐标投影
+const pinEls = CONFIG.places.map((p) => {
+  const el = document.createElement('div'); el.className = 'pin'; el.textContent = p.name;
+  document.getElementById('labels').appendChild(el);
+  return { p, el, pos: Cesium.Cartesian3.fromDegrees(...p.at) };
+});
+let curT = 0;
+function placePins() {
+  for (const { p, el, pos } of pinEls) {
+    const xy = Cesium.SceneTransforms.worldToWindowCoordinates(scene, pos);
+    if (!xy) { el.style.opacity = 0; continue; }
+    el.style.left = xy.x + 'px'; el.style.top = xy.y + 'px';
+    el.style.opacity = clamp01((curT - p.show) / 0.35);
+  }
+}
+scene.postRender.addEventListener(placePins);
+
+// Google 模式：把折叠在「Data attribution」里的数据来源展开成右下角常驻文字（Google 规定全程可见）
+function googleAttribution() {
+  if (CONFIG.source !== 'google') return;
+  const f = viewer.creditDisplay._currentFrameCredits;
+  if (!f) return;
+  const texts = [];
+  for (const arr of [f.screenCredits, f.lightboxCredits]) {
+    for (const v of (arr?.values || [])) {
+      const c = v.credit ?? v;
+      const t = (c.html || '').replace(/<[^>]*>/g, '').trim();
+      if (t && !/^google$/i.test(t) && !texts.includes(t)) texts.push(t);
+    }
+  }
+  document.getElementById('attr').textContent = texts.join('　');
+}
+scene.postRender.addEventListener(googleAttribution);
+
+function nextFrame() { return new Promise((ok) => { const h = scene.postRender.addEventListener(() => { h(); ok(); }); scene.requestRender(); }); }
+async function waitLoaded(timeoutMs = CONFIG.source === "google" ? 90000 : 30000) {
+  const t0 = performance.now();
+  let stable = 0;
+  while (performance.now() - t0 < timeoutMs) {
+    await nextFrame();
+    const ok = scene.globe.tilesLoaded && tilesets.every((ts) => ts.tilesLoaded);
+    stable = ok ? stable + 1 : 0;
+    if (stable >= 3) return true;
+  }
+  console.warn('等瓦片超时', { globe: scene.globe.tilesLoaded, tiles: tilesets.map((ts) => ts.tilesLoaded) });
+  return false;
+}
+
+window.__duration = CONFIG.duration;
+window.__seek = async (t) => {
+  curT = t;
+  applyCamera(t);
+  await waitLoaded();
+  placePins();
+  await nextFrame();
+};
+
+window.__ready = (async () => {
+  if (CONFIG.source === 'google') {
+    // Google 实景三维自带地面和楼，不要地球底图，否则会和它的地面打架
+    Cesium.GoogleMaps.defaultApiKey = (await (await fetch('/__secret/google-maps-key')).text()).trim();
+    const ts = await Cesium.createGooglePhotorealistic3DTileset(undefined, { maximumScreenSpaceError: CONFIG.googleSse ?? 4 });
+    // underlay：保留地理院航拍地球垫在下面（椭球面，比 Google 地面低约 40 米，不打架），把 Google 瓦片之间的裂缝填上，不漏黑底
+    scene.globe.show = !!CONFIG.underlay;
+    scene.primitives.add(ts);
+    tilesets.push(ts);
+    document.body.classList.add('google');
+    document.getElementById('attr').textContent = '';   // 用 Google 自带的署名（Cesium 显示在左下）
+  }
+  for (const cfg of (CONFIG.source === 'google' ? [] : CONFIG.tilesets)) {
+    const ts = await Cesium.Cesium3DTileset.fromUrl(cfg.url, { maximumScreenSpaceError: cfg.sse ?? 4, skipLevelOfDetail: false });
+    if (cfg.drop) {
+      // 沿目标点地面法线整体下移
+      const n = Cesium.Ellipsoid.WGS84.geodeticSurfaceNormal(targetCart, new Cesium.Cartesian3());
+      ts.modelMatrix = Cesium.Matrix4.fromTranslation(Cesium.Cartesian3.multiplyByScalar(n, -cfg.drop, n));
+    }
+    if (CONFIG.buildingColor) ts.style = new Cesium.Cesium3DTileStyle({ color: `color('${CONFIG.buildingColor}')` });
+    scene.primitives.add(ts);
+    tilesets.push(ts);
+  }
+  applyCamera(0);
+  await waitLoaded(60000);
+  await document.fonts.ready;
+})();
+
+// 预览：循环播放
+if (!RENDER) {
+  window.__ready.then(() => {
+    const start = performance.now();
+    scene.preRender.addEventListener(() => {
+      curT = ((performance.now() - start) / 1000) % CONFIG.duration;
+      applyCamera(curT);
+    });
+  });
+}
+</script>
+</body>
+</html>

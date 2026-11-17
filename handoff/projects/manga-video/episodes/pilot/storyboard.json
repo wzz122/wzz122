@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "episode": {
+    "id": "pilot",
+    "title": "故乡税：2,000 日元换一箱螃蟹？（冷开场试作）",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "defaultPause": 0.25,
+    "bgm": [
+      { "file": "bgm/daily_comedy", "fromCut": "c01", "toCut": "c06", "volume": 0.28 }
+    ]
+  },
+  "cuts": [
+    {
+      "id": "c01",
+      "note": "办公室。田中炫耀螃蟹，芝士无语",
+      "background": "office",
+      "camera": { "type": "zoomIn", "strength": 0.06 },
+      "characters": [
+        { "id": "tanaka", "expression": "happy", "position": "left" },
+        { "id": "cheese", "expression": "speechless", "position": "right" }
+      ],
+      "props": [
+        { "image": "crab_box", "x": 0.42, "y": 0.6, "size": 0.2, "appear": "pop", "atLine": 0, "offset": 0.3 }
+      ],
+      "lines": [
+        {
+          "speaker": "tanaka",
+          "lang": "ja",
+          "text": "見て見て、今年もカニ届いた！",
+          "subtitleZh": "快看快看，今年的螃蟹也到了！",
+          "expression": "happy"
+        },
+        {
+          "speaker": "cheese",
+          "lang": "zh",
+          "text": "又是螃蟹……上周是和牛，上上周是大米。你家是开超市的吗？",
+          "expression": "speechless"
+        }
+      ]
+    },
+    {
+      "id": "c02",
+      "note": "田中特写，得意",
+      "background": "office",
+      "shot": "closeUp",
+      "camera": { "type": "zoomIn", "strength": 0.04 },
+      "characters": [
+        { "id": "tanaka", "expression": "smug", "position": "center" }
+      ],
+      "lines": [
+        {
+          "speaker": "tanaka",
+          "lang": "ja",
+          "text": "ふるさと納税だよ。実質2,000円！",
+          "subtitleZh": "是故乡税啦。实际只花 2,000 日元！",
+          "expression": "smug",
+          "fx": "sparkle"
+        }
+      ]
+    },
+    {
+      "id": "c03",
+      "note": "芝士特写，慌张的心声",
+      "background": "office",
+      "shot": "closeUp",
+      "camera": { "type": "zoomIn", "strength": 0.12 },
+      "characters": [
+        { "id": "cheese", "expression": "panic", "position": "center" }
+      ],
+      "lines": [
+        {
+          "speaker": "cheese",
+          "lang": "zh",
+          "kind": "thought",
+          "text": "两千日元？税我也交得一样多啊……为什么只有我什么都没有？",
+          "expression": "panic",
+          "fx": "sweat"
+        }
+      ]
+    },
+    {
+      "id": "c04",
+      "note": "教室。牛丼老师滑入登场",
+      "background": "classroom",
+      "transition": "fade",
+      "camera": { "type": "static" },
+      "characters": [
+        { "id": "gyudon", "expression": "calm", "position": "center", "enter": "slideIn" }
+      ],
+      "lines": [
+        {
+          "speaker": "gyudon",
+          "lang": "zh",
+          "text": "因为你没用故乡税。",
+          "expression": "calm"
+        }
+      ]
+    },
+    {
+      "id": "c05",
+      "note": "两人同框，芝士吓一跳",
+      "background": "classroom",
+      "camera": { "type": "static" },
+      "characters": [
+        { "id": "cheese", "expression": "surprised", "position": "left" },
+        { "id": "gyudon", "expression": "calm", "position": "right" }
+      ],
+      "lines": [
+        {
+          "speaker": "cheese",
+          "lang": "zh",
+          "text": "牛丼老师！？你什么时候在的？",
+          "expression": "surprised",
+          "fx": ["shake", "exclaim"]
+        }
+      ]
+    },
+    {
+      "id": "c06",
+      "note": "牛丼老师特写，抛出本期问题",
+      "background": "classroom",
+      "shot": "closeUp",
+      "camera": { "type": "zoomIn", "strength": 0.05 },
+      "characters": [
+        { "id": "gyudon", "expression": "smug", "position": "center" }
+      ],
+      "props": [
+        { "image": "rice", "x": 0.2, "y": 0.4, "size": 0.17, "appear": "pop", "atText": "十公斤大米" },
+        { "image": "wagyu", "x": 0.8, "y": 0.4, "size": 0.17, "appear": "pop", "atText": "一公斤和牛" }
+      ],
+      "lines": [
+        {
+          "speaker": "gyudon",
+          "lang": "zh",
+          "text": "同样年收 500 万，人家每年花 2,000 日元，拿回十公斤大米、一公斤和牛。今天就把这笔账算给你看。",
+          "ttsText": "同样年收五百万，人家每年花两千日元，拿回十公斤大米、一公斤和牛。今天就把这笔账算给你看。",
+          "expression": "smug",
+          "pauseAfter": 0.5
+        }
+      ]
+    },
+    {
+      "id": "c07",
+      "note": "标题卡",
+      "duration": 3.2,
+      "titleCard": {
+        "text": "故乡税：",
+        "sub": "2,000 日元换一箱螃蟹？",
+        "animation": "pop"
+      }
+    }
+  ]
+}

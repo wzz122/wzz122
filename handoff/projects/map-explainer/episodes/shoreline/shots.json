@@ -1,0 +1,116 @@
+{
+ "G1-中浜小学": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   140.9172,
+   37.916,
+   44
+  ],
+  "orbit": {
+   "headingFrom": 300,
+   "headingTo": 340,
+   "pitch": -34,
+   "range": 520,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G2-请户小学": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   141.0347,
+   37.4752,
+   44
+  ],
+  "orbit": {
+   "headingFrom": 40,
+   "headingTo": 80,
+   "pitch": -34,
+   "range": 520,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G4-第一核电站": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   141.0325,
+   37.4214,
+   50
+  ],
+  "orbit": {
+   "headingFrom": 250,
+   "headingTo": 290,
+   "pitch": -30,
+   "range": 2200,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G5-普代水门": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   141.8958,
+   40.0126,
+   48
+  ],
+  "orbit": {
+   "headingFrom": 200,
+   "headingTo": 240,
+   "pitch": -30,
+   "range": 650,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G6-鸬鹚巢断崖": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   141.959,
+   39.889,
+   120
+  ],
+  "orbit": {
+   "headingFrom": 300,
+   "headingTo": 340,
+   "pitch": -24,
+   "range": 1500,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G7-松岛湾": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   141.08,
+   38.355,
+   10
+  ],
+  "orbit": {
+   "headingFrom": 300,
+   "headingTo": 335,
+   "pitch": -26,
+   "range": 5200,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ }
+}

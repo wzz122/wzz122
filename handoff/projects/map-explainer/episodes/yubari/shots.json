@@ -1,0 +1,116 @@
+{
+ "G1-河谷全景": {
+  "source": "google",
+  "duration": 15,
+  "underlay": true,
+  "logoOnly": true,
+  "places": [],
+  "target": [
+   141.9745,
+   43.0575,
+   300
+  ],
+  "orbit": {
+   "headingFrom": 195,
+   "headingTo": 235,
+   "pitch": -30,
+   "range": 2600,
+   "ease": "sine.inOut"
+  }
+ },
+ "G2-大坝湖": {
+  "source": "google",
+  "duration": 15,
+  "underlay": true,
+  "logoOnly": true,
+  "places": [],
+  "target": [
+   142.085,
+   43.03,
+   390
+  ],
+  "orbit": {
+   "headingFrom": 100,
+   "headingTo": 130,
+   "pitch": -24,
+   "range": 2600,
+   "ease": "sine.inOut"
+  }
+ },
+ "G3-酒店滑雪场": {
+  "source": "google",
+  "duration": 15,
+  "underlay": true,
+  "logoOnly": true,
+  "places": [],
+  "target": [
+   141.97,
+   43.05,
+   310
+  ],
+  "orbit": {
+   "headingFrom": 40,
+   "headingTo": 75,
+   "pitch": -28,
+   "range": 800,
+   "ease": "sine.inOut"
+  }
+ },
+ "G4-清水泽": {
+  "source": "google",
+  "duration": 15,
+  "underlay": true,
+  "logoOnly": true,
+  "places": [],
+  "target": [
+   142.0075,
+   42.996,
+   240
+  ],
+  "orbit": {
+   "headingFrom": 255,
+   "headingTo": 290,
+   "pitch": -32,
+   "range": 1000,
+   "ease": "sine.inOut"
+  }
+ },
+ "G5-市役所": {
+  "source": "google",
+  "duration": 15,
+  "underlay": true,
+  "logoOnly": true,
+  "places": [],
+  "target": [
+   141.9736,
+   43.0564,
+   290
+  ],
+  "orbit": {
+   "headingFrom": 295,
+   "headingTo": 330,
+   "pitch": -34,
+   "range": 650,
+   "ease": "sine.inOut"
+  }
+ },
+ "G6-博物馆矿谷": {
+  "source": "google",
+  "duration": 15,
+  "underlay": true,
+  "logoOnly": true,
+  "places": [],
+  "target": [
+   141.988,
+   43.068,
+   360
+  ],
+  "orbit": {
+   "headingFrom": 170,
+   "headingTo": 205,
+   "pitch": -30,
+   "range": 800,
+   "ease": "sine.inOut"
+  }
+ }
+}

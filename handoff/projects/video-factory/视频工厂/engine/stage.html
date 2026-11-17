@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>视频舞台</title>
+<link rel="stylesheet" href="stage.css">
+</head>
+<body>
+  <div id="viewport">
+    <div id="wall"></div>
+  </div>
+  <div id="sub"></div>
+
+  <!-- 纸张噪点（纯 SVG 生成，不依赖任何图片文件） -->
+  <svg id="grain" width="1920" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <filter id="n" x="0" y="0" width="1920" height="1080" filterUnits="userSpaceOnUse"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/></filter>
+    <rect x="0" y="0" width="1920" height="1080" filter="url(#n)" opacity="0.5"/>
+  </svg>
+
+  <!-- 笔墨滤镜：ink-rough = 笔画边缘毛一点；seal-worn = 印章边缘残缺 + 印面掉色斑点 -->
+  <svg width="0" height="0" style="position:absolute" xmlns="http://www.w3.org/2000/svg"><defs>
+    <filter id="ink-rough" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="seal-worn" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="11" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.24" numOctaves="3" seed="23" result="n2"/>
+      <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  18 0 0 0 -12.4" result="holes"/>
+      <feComposite in="d" in2="holes" operator="out"/>
+    </filter>
+  </defs></svg>
+
+  <script src="charts.js"></script>
+  <script src="stage.js"></script>
+  <script src="../.work/timeline.js"></script>
+  <script>
+    // 双击本文件即可在浏览器里预览（自动播放）
+    if (window.__DATA) {
+      window.__load(window.__DATA);
+      if (!navigator.webdriver) setTimeout(window.__preview, 400);
+    }
+  </script>
+</body>
+</html>

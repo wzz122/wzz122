@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>line-draw · 线路绘制</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<link rel="stylesheet" href="../_shared/tokens.css">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="../_shared/map-runtime.js"></script>
+<style>
+  .legend {
+    position: absolute; left: var(--safe-x); top: var(--safe-y);
+    display: flex; flex-direction: column; gap: 12px;
+    background: rgba(244,239,230,.94); padding: 20px 26px; border-radius: 8px;
+  }
+  .legend__item { display: flex; align-items: center; gap: 14px; font: 700 30px/1 var(--font-body); opacity: 0; }
+  .legend__swatch { width: 48px; height: 8px; border-radius: 4px; }
+  .legend__swatch.is-dashed { background-image: repeating-linear-gradient(90deg, currentColor 0 10px, transparent 10px 18px) !important; }
+  .station { position: relative; width: 0; height: 0; }
+  .station__inner { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  .station__dot { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 4px solid var(--ink); box-sizing: border-box; }
+  .station__label { position: absolute; left: 16px; top: -18px; white-space: nowrap; font: 700 28px/1.2 var(--font-body); color: var(--ink); text-shadow: 0 0 6px var(--paper), 0 0 6px var(--paper), 0 0 6px var(--paper); }
+</style>
+</head>
+<!--
+  线路数据：coords 直接写坐标，或 geojson 指向本期 assets/ 下的 GeoJSON（取第一个 LineString/MultiLineString）。
+  GeoJSON 的来源和许可要写进 credits.md（OSM 导出 = ODbL，需署名）。
+-->
+<body>
+<div class="stage" id="stage">
+  <div class="map" id="map"></div>
+  <div class="legend" id="legend"></div>
+</div>
+<script>
+const CONFIG = MapRuntime.loadConfig({
+  duration: 9,
+  style: 'positron',
+  labelFields: ['name:zh-Hans', 'name:zh', 'name'],
+  hideLayers: ['^poi', 'housenumber'],
+  tint: true,
+  showAttribution: true,
+
+  // 相机：'fit' = 按所有线路自动取景；或填一组 keyframes（同 map-flyto）
+  camera: 'fit',
+  fitPadding: 140,
+  keyframes: null,
+
+  // type 决定默认颜色/线型：shinkansen | jr | private | subway | tram | abandoned | planned | hero
+  lines: [
+    {
+      id: 'tokaido', name: '东海道线（示意）', type: 'jr', width: 7,
+      start: 0.8, duration: 4.5, ease: 'power1.inOut',
+      // 示意坐标，非真实线形；正式使用请换成核实过的 GeoJSON
+      coords: [[139.7671, 35.6812], [139.7387, 35.6285], [139.6223, 35.4658], [139.1553, 35.2564], [139.0779, 35.1037], [138.3890, 34.9719]],
+      geojson: null,
+      stations: [
+        { name: '东京', lngLat: [139.7671, 35.6812] },
+        { name: '横滨', lngLat: [139.6223, 35.4658] },
+        { name: '小田原', lngLat: [139.1553, 35.2564] },
+        { name: '静冈', lngLat: [138.3890, 34.9719] },
+      ],
+    },
+    {
+      id: 'old-route', name: '旧线（示意）', type: 'abandoned', width: 5,
+      start: 5.6, duration: 2.0,
+      coords: [[139.1553, 35.2564], [139.05, 35.33], [138.93, 35.30], [138.86, 35.12], [138.3890, 34.9719]],
+      stations: [],
+    },
+  ],
+  headDot: true, // 线头圆点
+});
+
+const { TOKENS } = MapRuntime;
+const stage = document.getElementById('stage');
+const firstCam = CONFIG.keyframes ? CONFIG.keyframes[0] : { center: CONFIG.lines[0].coords?.[0] || [139.7, 35.6], zoom: 8 };
+const map = MapRuntime.createMap('map', { style: CONFIG.style, camera: firstCam });
+const tl = gsap.timeline({ paused: true });
+const legend = document.getElementById('legend');
+
+async function loadCoords(line) {
+  if (line.coords) return line.coords;
+  const gj = await (await fetch(line.geojson)).json();
+  const feats = gj.type === 'FeatureCollection' ? gj.features : [gj];
+  const g = feats.map((f) => f.geometry || f).find((x) => /LineString/.test(x.type));
+  return g.type === 'LineString' ? g.coordinates : g.coordinates.flat();
+}
+
+// 图例和车站的 DOM 在加载前同步建好
+const state = CONFIG.lines.map((line) => {
+  const color = line.color || TOKENS.lines[line.type] || TOKENS.accent;
+  const item = document.createElement('div');
+  item.className = 'legend__item';
+  item.innerHTML = `<span class="legend__swatch" style="background:${color};color:${color}"></span><span></span>`;
+  item.lastChild.textContent = line.name;
+  if (TOKENS.dash[line.type]) item.firstChild.classList.add('is-dashed');
+  legend.appendChild(item);
+  tl.to(item, { opacity: 1, duration: 0.4, ease: 'power3.out' }, line.start);
+  return { line, color, measure: null, stations: [] };
+});
+
+let camera = null; // fit 模式下 load 后计算
+
+const ready = MapRuntime.mapReady(map).then(async () => {
+  MapRuntime.setLabelLanguage(map, CONFIG.labelFields);
+  MapRuntime.hideLayers(map, CONFIG.hideLayers);
+  if (CONFIG.tint) MapRuntime.tintBasemap(map);
+
+  const bounds = new maplibregl.LngLatBounds();
+  for (const s of state) {
+    const coords = await loadCoords(s.line);
+    coords.forEach((c) => bounds.extend(c));
+    s.measure = MapRuntime.measureLine(coords);
+    const id = s.line.id;
+    map.addSource(id, { type: 'geojson', data: lineFeature([coords[0], coords[0]]) });
+    const dash = TOKENS.dash[s.line.type];
+    map.addLayer({ id: id + '-casing', type: 'line', source: id,
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: { 'line-color': '#fff', 'line-width': (s.line.width || 6) + 5 } });
+    map.addLayer({ id, type: 'line', source: id,
+      layout: { 'line-cap': dash ? 'butt' : 'round', 'line-join': 'round' },
+      paint: { 'line-color': s.color, 'line-width': s.line.width || 6, ...(dash ? { 'line-dasharray': dash } : {}) } });
+    if (CONFIG.headDot) {
+      map.addSource(id + '-head', { type: 'geojson', data: pointFeature(coords[0]) });
+      map.addLayer({ id: id + '-head', type: 'circle', source: id + '-head',
+        paint: { 'circle-radius': (s.line.width || 6) + 3, 'circle-color': s.color, 'circle-stroke-color': '#fff', 'circle-stroke-width': 3, 'circle-opacity': 0, 'circle-stroke-opacity': 0 } });
+    }
+    for (const st of s.line.stations || []) {
+      const el = document.createElement('div');
+      el.className = 'station';
+      el.innerHTML = '<div class="station__inner"><div class="station__dot"></div><div class="station__label"></div></div>';
+      el.querySelector('.station__label').textContent = st.name;
+      new maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat(st.lngLat).addTo(map);
+      s.stations.push({ inner: el.firstChild, at: st.at ?? MapRuntime.fractionAtNearest(s.measure, st.lngLat) });
+    }
+  }
+
+  if (!CONFIG.keyframes) {
+    const c = map.cameraForBounds(bounds, { padding: CONFIG.fitPadding });
+    camera = { center: c.center.toArray ? c.center.toArray() : [c.center.lng, c.center.lat], zoom: c.zoom, bearing: c.bearing || 0, pitch: 0 };
+  }
+});
+
+function lineFeature(coords) { return { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: coords } }; }
+function pointFeature(c) { return { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: c } }; }
+
+function apply(t) {
+  if (CONFIG.keyframes) map.jumpTo(MapRuntime.cameraAt(CONFIG.keyframes, t));
+  else if (camera) map.jumpTo(camera);
+  for (const s of state) {
+    if (!s.measure) continue;
+    const f = MapRuntime.progress(t, s.line.start, s.line.duration, s.line.ease || 'power1.inOut');
+    const coords = MapRuntime.sliceLine(s.measure, f);
+    map.getSource(s.line.id).setData(lineFeature(coords));
+    if (CONFIG.headDot) {
+      const id = s.line.id + '-head';
+      const visible = f > 0 && f < 1 ? 1 : 0;
+      map.getSource(id).setData(pointFeature(coords[coords.length - 1]));
+      map.setPaintProperty(id, 'circle-opacity', visible);
+      map.setPaintProperty(id, 'circle-stroke-opacity', visible);
+    }
+    // 车站：线头经过后 0.03 的进度内弹出（纯函数，可任意 seek）
+    for (const st of s.stations) {
+      const k = MapRuntime.clamp01((f - st.at) / 0.03 + (f >= 1 ? 1 : 0));
+      const scale = gsap.parseEase('back.out(2)')(k);
+      st.inner.style.transform = `scale(${scale})`;
+      st.inner.style.opacity = k > 0 ? 1 : 0;
+    }
+  }
+}
+
+if (CONFIG.showAttribution) MapRuntime.addAttribution(stage, [MapRuntime.ATTRIBUTION.ofm]);
+
+MapRuntime.installSeek({ timeline: tl, maps: [map], apply, ready, duration: CONFIG.duration });
+</script>
+</body>
+</html>

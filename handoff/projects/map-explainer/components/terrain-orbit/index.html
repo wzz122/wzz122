@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>terrain-orbit · 立体地形运镜</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css">
+<link rel="stylesheet" href="../_shared/tokens.css">
+<script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="../_shared/map-runtime.js"></script>
+<style>
+  :root { --serif: "Songti SC", "Hiragino Mincho ProN", "Noto Serif SC", serif; }
+  /* 地名：白色衬线字 + 阴影，小红点（城市漫游修正表的样式） */
+  .place { position: absolute; left: 0; top: 0; pointer-events: none; }
+  .place__dot { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%;
+                background: #D8452F; box-shadow: 0 0 0 2px rgba(255,255,255,.9); }
+  .place__label { position: absolute; left: 14px; top: -20px; white-space: nowrap;
+                  font: 600 34px/1.1 var(--serif); color: #fff; letter-spacing: .04em;
+                  text-shadow: 0 1px 3px rgba(0,0,0,.75), 0 0 12px rgba(0,0,0,.45); }
+  .place__sub { display: block; font: 400 20px/1.3 var(--serif); opacity: .85; margin-top: 4px; }
+  /* 区域大字 */
+  .area { position: absolute; left: 0; top: 0; pointer-events: none; white-space: nowrap; transform: translate(-50%, -50%);
+          font: 700 58px/1 var(--serif); color: #FFF6E6; letter-spacing: .35em;
+          text-shadow: 0 2px 6px rgba(0,0,0,.6), 0 0 24px rgba(0,0,0,.35); }
+  /* │竖线 + 小号衬线字 注释 */
+  .note { position: absolute; left: var(--safe-x); bottom: 96px; padding-left: 16px; border-left: 3px solid #fff;
+          font: 400 26px/1.45 var(--serif); color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.7); }
+  .note b { font-weight: 700; color: #FFE1A8; }
+  .exag { position: absolute; right: var(--safe-x); top: var(--safe-y); font: 400 20px/1 var(--serif);
+          color: rgba(255,255,255,.85); text-shadow: 0 1px 3px rgba(0,0,0,.7); }
+  .attribution { color: rgba(255,255,255,.75); text-shadow: 0 1px 2px rgba(0,0,0,.6); background: none; }
+</style>
+</head>
+<!--
+  立体地形运镜：真实高程（国土地理院 DEM）+ 高程配色 + 山体阴影，相机按关键帧俯视→斜视→绕转。
+  地名用网页叠层（屏幕固定大小），每帧用 map.project 跟着地形走。
+  城市漫游测试镜头 TEST-S01：大阪上町台地。
+-->
+<body>
+<div class="stage" id="stage">
+  <div class="map" id="map"></div>
+  <div id="labels"></div>
+  <div class="note" id="note"></div>
+  <div class="exag" id="exag"></div>
+</div>
+<script>
+const CONFIG = MapRuntime.loadConfig({
+  duration: 12,
+  style: 'positron',
+  exaggeration: 6,
+  // 高程配色：低地冷灰绿 → 台地暖土色（米）
+  relief: [[-2, '#5E7C78'], [2, '#7E9488'], [6, '#A9A784'], [12, '#C9A46E'], [20, '#D9925A'], [30, '#E0864C']],
+  reliefOpacity: 0.72,
+  hillshade: 0.75,
+  // 远景雾：把远处山地压淡，视线集中在台地（null = 不加）
+  sky: { 'sky-color': '#3A4550', 'horizon-color': '#A9B1AE', 'fog-color': '#A9B1AE',
+         'sky-horizon-blend': 0.5, 'horizon-fog-blend': 0.9, 'fog-ground-blend': 0.25, 'atmosphere-blend': 0 },
+  mapFilter: 'brightness(.8) saturate(.85)',   // 地图整体压暗去色（文字不受影响）
+  keyframes: [
+    { t: 0,  center: [135.514, 34.672], zoom: 12.4, bearing: 0,  pitch: 0 },
+    { t: 3,  center: [135.512, 34.668], zoom: 13.1, bearing: 62, pitch: 50, dur: 3 },
+    { t: 12, center: [135.514, 34.667], zoom: 13.4, bearing: 92, pitch: 55, dur: 9, ease: 'sine.inOut' },
+  ],
+  places: [
+    { at: 3.4, lngLat: [135.5262, 34.6873], text: '大阪城', sub: '台地北端' },
+    { at: 3.7, lngLat: [135.5163, 34.6544], text: '四天王寺', sub: '台地上' },
+    { at: 4.0, lngLat: [135.5063, 34.6667], text: '日本桥', sub: '台地西边的低地' },
+  ],
+  area: { at: 4.6, lngLat: [135.5285, 34.6670], text: '上町台地' },
+  note: { at: 5.6, html: '南北一条窄长的高地，<b>西边一下子低下去</b>' },
+  showAttribution: true,
+});
+
+const stage = document.getElementById('stage');
+const tl = gsap.timeline({ paused: true });
+const map = MapRuntime.createMap('map', { style: CONFIG.style, camera: CONFIG.keyframes[0] });
+document.getElementById('map').style.filter = CONFIG.mapFilter;
+
+const DEM_TILES = [MapRuntime.GSI.demPng];
+const ready = MapRuntime.mapReady(map).then(() => {
+  MapRuntime.hideSymbols(map);          // 地图自带文字全关，只留我们的
+  MapRuntime.tintBasemap(map);
+  MapRuntime.registerGsiDem();
+  const below = MapRuntime.firstSymbolLayerId(map);
+  const dem = (id) => map.addSource(id, { type: 'raster-dem', tiles: DEM_TILES, tileSize: 256, maxzoom: 14, encoding: 'terrarium' });
+  dem('dem-terrain'); dem('dem-color'); dem('dem-shade');
+  map.addLayer({
+    id: 'relief', type: 'color-relief', source: 'dem-color',
+    paint: {
+      'color-relief-opacity': CONFIG.reliefOpacity,
+      'color-relief-color': ['interpolate', ['linear'], ['elevation'], ...CONFIG.relief.flat()],
+    },
+  }, below);
+  map.addLayer({
+    id: 'shade', type: 'hillshade', source: 'dem-shade',
+    paint: { 'hillshade-exaggeration': CONFIG.hillshade, 'hillshade-shadow-color': '#2B2A26',
+             'hillshade-highlight-color': '#FFF7E8', 'hillshade-illumination-direction': 100, 'hillshade-illumination-anchor': 'map' },
+  }, below);
+  // 可选：贴地线路 lines: [{ coords: [[经,纬]…], color, width }]
+  (CONFIG.lines || []).forEach((l, i) => {
+    map.addSource(`ln${i}`, { type: 'geojson', data: { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: l.coords } } });
+    map.addLayer({ id: `ln${i}`, type: 'line', source: `ln${i}`, layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: { 'line-color': l.color || '#D8452F', 'line-width': l.width || 4, 'line-opacity': l.opacity ?? 1 } });
+  });
+  map.setTerrain({ source: 'dem-terrain', exaggeration: CONFIG.exaggeration });
+  if (CONFIG.sky) map.setSky(CONFIG.sky);
+});
+
+// 网页叠层文字
+const labelsEl = document.getElementById('labels');
+const anchors = [];
+for (const p of CONFIG.places) {
+  const el = document.createElement('div');
+  el.className = 'place';
+  el.innerHTML = '<div class="place__dot"></div><div class="place__label"><span class="t"></span><span class="place__sub"></span></div>';
+  el.querySelector('.t').textContent = p.text;
+  el.querySelector('.place__sub').textContent = p.sub || '';
+  labelsEl.appendChild(el);
+  anchors.push({ el, lngLat: p.lngLat });
+  gsap.set(el, { opacity: 0 });
+  tl.to(el, { opacity: 1, duration: 0.35, ease: 'power2.out' }, p.at);
+}
+const areaEl = document.createElement('div');
+areaEl.className = 'area';
+areaEl.textContent = CONFIG.area.text;
+labelsEl.appendChild(areaEl);
+anchors.push({ el: areaEl, lngLat: CONFIG.area.lngLat, centered: true });
+gsap.set(areaEl, { opacity: 0 });
+tl.to(areaEl, { opacity: 1, duration: 0.6, ease: 'power2.out' }, CONFIG.area.at);
+
+const noteEl = document.getElementById('note');
+noteEl.innerHTML = CONFIG.note.html;
+gsap.set(noteEl, { opacity: 0, x: -12 });
+tl.to(noteEl, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' }, CONFIG.note.at);
+
+document.getElementById('exag').textContent = `高度 ×${CONFIG.exaggeration} 夸张`;
+if (CONFIG.showAttribution) MapRuntime.addAttribution(stage, [MapRuntime.ATTRIBUTION.ofm, MapRuntime.ATTRIBUTION.gsi]);
+
+function placeAnchors() {
+  for (const a of anchors) {
+    // 开了地形时 project 已按地面高程投影，文字贴在地面上
+    const pt = map.project(a.lngLat);
+    const tf = a.centered ? `translate(${pt.x}px, ${pt.y}px) translate(-50%, -50%)` : `translate(${pt.x}px, ${pt.y}px)`;
+    a.el.style.transform = tf;
+  }
+}
+
+function apply(t) {
+  map.jumpTo(MapRuntime.cameraAt(CONFIG.keyframes, t));
+  placeAnchors();
+}
+map.on('render', placeAnchors);
+
+MapRuntime.installSeek({ timeline: tl, maps: [map], apply, ready, duration: CONFIG.duration });
+</script>
+</body>
+</html>

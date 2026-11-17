@@ -1,0 +1,11 @@
+{
+  "name": "map-explainer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node scripts/render_shot.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.1"
+  }
+}

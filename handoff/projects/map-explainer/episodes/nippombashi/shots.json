@@ -1,0 +1,78 @@
+{
+ "G1-旧校舍": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   135.50726,
+   34.66192,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 15,
+   "headingTo": 55,
+   "pitch": -38,
+   "range": 420,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G2-堺筋电器街": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   135.5058,
+   34.66,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 350,
+   "headingTo": 25,
+   "pitch": -30,
+   "range": 1000,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G3-难波到学校": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   135.5045,
+   34.662,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 20,
+   "headingTo": 50,
+   "pitch": -34,
+   "range": 1500,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G4-中华学校现址": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   135.4986,
+   34.658,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 10,
+   "headingTo": 45,
+   "pitch": -38,
+   "range": 420,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ }
+}

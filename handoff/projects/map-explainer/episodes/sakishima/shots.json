@@ -1,0 +1,173 @@
+{
+ "G1-三岛全景": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.41,
+   34.652,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 30,
+   "headingTo": 60,
+   "pitch": -38,
+   "range": 9000,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": false,
+  "logoOnly": true
+ },
+ "G2-站前入管": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.4122,
+   34.642,
+   50
+  ],
+  "orbit": {
+   "headingFrom": 330,
+   "headingTo": 10,
+   "pitch": -36,
+   "range": 800,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G5-公寓群": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.4135,
+   34.642,
+   70
+  ],
+  "orbit": {
+   "headingFrom": 60,
+   "headingTo": 100,
+   "pitch": -26,
+   "range": 700,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G6-时空馆": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.4046,
+   34.6402,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 150,
+   "headingTo": 195,
+   "pitch": -24,
+   "range": 430,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G7-空地工地": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.417,
+   34.6415,
+   44
+  ],
+  "orbit": {
+   "headingFrom": 120,
+   "headingTo": 160,
+   "pitch": -40,
+   "range": 750,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G8-梦洲": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.39,
+   34.65,
+   42
+  ],
+  "orbit": {
+   "headingFrom": 40,
+   "headingTo": 75,
+   "pitch": -30,
+   "range": 3600,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G9-南港港城": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.4265,
+   34.628,
+   55
+  ],
+  "orbit": {
+   "headingFrom": 300,
+   "headingTo": 340,
+   "pitch": -32,
+   "range": 1300,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G3-ATC": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.4127,
+   34.6372,
+   45
+  ],
+  "orbit": {
+   "headingFrom": 50,
+   "headingTo": 90,
+   "pitch": -24,
+   "range": 760,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G4-WTC": {
+  "source": "google",
+  "duration": 16,
+  "target": [
+   135.4127,
+   34.6372,
+   50
+  ],
+  "orbit": {
+   "headingFrom": 250,
+   "headingTo": 290,
+   "pitch": -30,
+   "range": 780,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ }
+}

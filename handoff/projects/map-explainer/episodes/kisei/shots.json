@@ -1,0 +1,97 @@
+{
+ "G1-白良滨": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   135.3455,
+   33.6795,
+   20
+  ],
+  "orbit": {
+   "headingFrom": 250,
+   "headingTo": 290,
+   "pitch": -30,
+   "range": 1300,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G2-串本": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   135.7835,
+   33.472,
+   20
+  ],
+  "orbit": {
+   "headingFrom": 330,
+   "headingTo": 10,
+   "pitch": -32,
+   "range": 1600,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G3-胜浦港": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   135.947,
+   33.629,
+   20
+  ],
+  "orbit": {
+   "headingFrom": 40,
+   "headingTo": 80,
+   "pitch": -32,
+   "range": 1300,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G4-新宫站": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   135.9941,
+   33.7251,
+   20
+  ],
+  "orbit": {
+   "headingFrom": 200,
+   "headingTo": 240,
+   "pitch": -32,
+   "range": 1000,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ },
+ "G5-见老津": {
+  "source": "google",
+  "duration": 12,
+  "target": [
+   135.5757,
+   33.5153,
+   30
+  ],
+  "orbit": {
+   "headingFrom": 330,
+   "headingTo": 10,
+   "pitch": -28,
+   "range": 900,
+   "ease": "sine.inOut"
+  },
+  "places": [],
+  "underlay": true,
+  "logoOnly": true
+ }
+}

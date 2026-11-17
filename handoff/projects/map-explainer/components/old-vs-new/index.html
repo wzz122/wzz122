@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>old-vs-new · 老地图卷帘对比</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<link rel="stylesheet" href="../_shared/tokens.css">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="../_shared/map-runtime.js"></script>
+<style>
+  .layer { position: absolute; inset: 0; }
+  #old { will-change: clip-path; }
+  .flat { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: sepia(.25) contrast(1.05); }
+  .placeholder {
+    position: absolute; inset: 0; display: grid; place-items: center; font: 700 48px/1.4 var(--font-body); color: var(--ink-soft); text-align: center;
+    background: repeating-conic-gradient(#e6dccb 0 25%, #efe7d8 0 50%) 0 0 / 80px 80px;
+  }
+  .handle { position: absolute; top: 0; bottom: 0; width: 6px; margin-left: -3px; background: var(--paper); box-shadow: 0 0 12px rgba(0,0,0,.3); }
+  .handle__knob { position: absolute; top: 50%; left: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%;
+                  background: var(--paper); border: 5px solid var(--accent); box-sizing: border-box; }
+  .year { position: absolute; top: var(--safe-y); padding: 12px 24px; font: 600 64px/1 var(--font-num); background: rgba(244,239,230,.94); }
+  .year--old { left: var(--safe-x); color: var(--accent); }
+  .year--new { right: var(--safe-x); color: var(--ink); }
+  .credit { position: absolute; left: var(--safe-x); bottom: 10px; font: 400 16px/1 var(--font-body); color: var(--ink-soft); }
+</style>
+</head>
+<!--
+  两张同机位地图叠在一起：下层=现代底图，上层=老地图（clip-path 卷帘）。
+  老地图有两种模式：
+    georef  old.coordinates 填 4 个角 [[左上],[右上],[右下],[左下]]（lng,lat），作为 image source 贴在地图上；
+    flat    不填 coordinates，作为普通图片铺满（老照片 vs 新照片时也用这个模式）。
+  老地图必须是公有领域或许可明确允许商用；在 credits.md 登记，未核实不进成片。
+-->
+<body>
+<div class="stage" id="stage">
+  <div class="layer"><div class="map" id="map-new"></div></div>
+  <div class="layer" id="old"><div class="map" id="map-old"></div></div>
+  <div class="handle" id="handle"><div class="handle__knob"></div></div>
+  <div class="year year--old" id="label-old"></div>
+  <div class="year year--new" id="label-new"></div>
+  <div class="credit" id="credit"></div>
+</div>
+<script>
+const CONFIG = MapRuntime.loadConfig({
+  duration: 9,
+  style: 'positron',
+  labelFields: ['name:zh-Hans', 'name:zh', 'name'],
+  hideLayers: ['^poi', 'housenumber'],
+  tint: true,
+  showAttribution: true,
+
+  keyframes: [
+    { t: 0, center: [136.8905, 35.1780], zoom: 13.6, bearing: 0, pitch: 0 },
+    { t: 9, center: [136.8905, 35.1780], zoom: 14.0, bearing: 0, pitch: 0, ease: 'none' }, // 缓慢推近
+  ],
+
+  old: {
+    url: '',                // 例：'../../episodes/ep01/assets/oldmaps/nagoya-1891.jpg'
+    coordinates: null,      // georef 模式下填 4 角
+    opacity: 1,
+    label: '1891',
+    credit: '老地图：<名称> / <机构>，<许可>（待核实）',
+  },
+  newLabel: '现在',
+
+  // 卷帘位置关键帧：pos=老地图从左侧露出的比例 0..1
+  wipe: [
+    { t: 0.0, pos: 1 },
+    { t: 1.2, pos: 1 },
+    { t: 4.2, pos: 0.15, ease: 'power2.inOut' },
+    { t: 5.4, pos: 0.15 },
+    { t: 7.6, pos: 0.5, ease: 'power2.inOut' },
+  ],
+});
+
+const stage = document.getElementById('stage');
+const tl = gsap.timeline({ paused: true });
+const oldLayer = document.getElementById('old');
+const handle = document.getElementById('handle');
+const georef = Array.isArray(CONFIG.old.coordinates) && CONFIG.old.url;
+
+const mapNew = MapRuntime.createMap('map-new', { style: CONFIG.style, camera: CONFIG.keyframes[0] });
+const mapOld = georef ? MapRuntime.createMap('map-old', { style: CONFIG.style, camera: CONFIG.keyframes[0] }) : null;
+const maps = mapOld ? [mapNew, mapOld] : [mapNew];
+
+function prepBase(map) {
+  MapRuntime.setLabelLanguage(map, CONFIG.labelFields);
+  MapRuntime.hideLayers(map, CONFIG.hideLayers);
+  if (CONFIG.tint) MapRuntime.tintBasemap(map);
+}
+
+let flatReady = Promise.resolve();
+if (!georef) {
+  document.getElementById('map-old').remove();
+  if (CONFIG.old.url) {
+    const img = new Image();
+    img.className = 'flat';
+    flatReady = new Promise((res) => { img.onload = res; img.onerror = () => { showPlaceholder('老地图加载失败'); res(); }; });
+    img.src = CONFIG.old.url;
+    oldLayer.appendChild(img);
+  } else {
+    showPlaceholder('把老地图放进 assets/oldmaps/\n并填写 CONFIG.old.url');
+  }
+}
+function showPlaceholder(msg) {
+  const ph = document.createElement('div');
+  ph.className = 'placeholder';
+  ph.textContent = msg;
+  ph.style.whiteSpace = 'pre-line';
+  oldLayer.appendChild(ph);
+}
+
+const ready = Promise.all([
+  MapRuntime.mapReady(mapNew).then(() => prepBase(mapNew)),
+  mapOld && MapRuntime.mapReady(mapOld).then(() => {
+    prepBase(mapOld);
+    mapOld.addSource('oldmap', { type: 'image', url: CONFIG.old.url, coordinates: CONFIG.old.coordinates });
+    mapOld.addLayer({ id: 'oldmap', type: 'raster', source: 'oldmap',
+      paint: { 'raster-opacity': CONFIG.old.opacity, 'raster-fade-duration': 0 } }, MapRuntime.firstSymbolLayerId(mapOld));
+  }),
+  flatReady,
+]);
+
+document.getElementById('label-old').textContent = CONFIG.old.label;
+document.getElementById('label-new').textContent = CONFIG.newLabel;
+document.getElementById('credit').textContent = CONFIG.old.credit;
+['#label-old', '#label-new'].forEach((sel, i) => {
+  gsap.set(sel, { opacity: 0, y: -20 });
+  tl.to(sel, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 0.3 + i * 0.6);
+});
+
+function wipeAt(t) {
+  const kfs = CONFIG.wipe;
+  let pos = kfs[0].pos;
+  for (let i = 1; i < kfs.length; i++) {
+    const a = kfs[i - 1], b = kfs[i];
+    if (t >= b.t) { pos = b.pos; continue; }
+    if (t > a.t) pos = MapRuntime.lerp(a.pos, b.pos, MapRuntime.progress(t, a.t, b.t - a.t, b.ease || 'power2.inOut'));
+    break;
+  }
+  return pos;
+}
+
+function apply(t) {
+  const cam = MapRuntime.cameraAt(CONFIG.keyframes, t);
+  maps.forEach((m) => m.jumpTo(cam));
+  const pos = wipeAt(t);
+  oldLayer.style.clipPath = `inset(0 ${((1 - pos) * 100).toFixed(3)}% 0 0)`;
+  handle.style.left = `${(pos * 100).toFixed(3)}%`;
+  handle.style.opacity = pos > 0.001 && pos < 0.999 ? 1 : 0;
+}
+
+if (CONFIG.showAttribution) MapRuntime.addAttribution(stage, [MapRuntime.ATTRIBUTION.ofm]);
+
+MapRuntime.installSeek({ timeline: tl, maps, apply, ready, duration: CONFIG.duration });
+</script>
+</body>
+</html>

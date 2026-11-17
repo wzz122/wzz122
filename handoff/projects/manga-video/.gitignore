@@ -1,0 +1,30 @@
+node_modules
+dist
+.DS_Store
+.env
+
+# Ignore the output video from Git but not videos you import into src/.
+out
+
+# 漫画对谈流水线：生成物（可随时重新生成）
+audio/
+build/
+public/manga/
+.env.*
+!.env.example
+
+# 税务图解线：音频、视频、图片、字体、缓存和生成物不进 git（文件留在本机 / 云盘）
+cache/
+public/episodes/
+public/sfx/
+public/fonts/
+character-candidates/
+episodes/**/*.wav
+episodes/**/*.mp3
+episodes/**/*.mp4
+episodes/**/*.log
+learning/**/*.mp4
+learning/**/*.jpg
+learning/**/*.png
+docs/**/*.png
+docs/**/*.jpg

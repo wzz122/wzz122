@@ -1,0 +1,17 @@
+{
+  "fps": 30,
+  "voice": "Tingting",
+  "rate": 168,
+  "gap": 0.3,
+  "coverHold": 3.2,
+  "tail": 1.2,
+  "mediaGrade": 0,
+  "duck": true,
+  "duckRatio": 8,
+  "duckRelease": 500,
+  "loudness": -14,
+  "bgmFade": 2.5,
+  "bgmLoudness": -33,
+  "bgmVolume": 1,
+  "sceneGap": 0.8
+}

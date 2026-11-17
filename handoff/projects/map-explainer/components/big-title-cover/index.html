@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>big-title-cover · 大标题封面 / 开场</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<link rel="stylesheet" href="../_shared/tokens.css">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="../_shared/map-runtime.js"></script>
+<style>
+  .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(244,239,230,0) 35%, rgba(244,239,230,.92) 72%, rgba(244,239,230,.98) 100%); }
+  .text { position: absolute; left: var(--safe-x); right: var(--safe-x); bottom: calc(var(--safe-y) + 30px); }
+  .q { font: 700 46px/1.3 var(--font-body); color: var(--ink-soft); margin-bottom: 14px; }
+  .title { font: 900 168px/1.02 var(--font-title); color: var(--ink); letter-spacing: -0.01em;
+           -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; isolation: isolate; }
+  .title .hl { position: relative; color: var(--accent); }
+  .title .hl::before { content: ''; position: absolute; left: -0.05em; right: -0.05em; bottom: 0.08em; height: 0.32em;
+                       background: var(--highlight); z-index: -1; transform-origin: 0 50%; transform: scaleX(var(--hl, 1)); }
+  .sub { font: 600 40px/1 var(--font-num); color: var(--ink); margin-top: 22px; letter-spacing: .12em; }
+  .ring { position: absolute; left: -40px; top: -40px; width: 80px; height: 80px; border-radius: 50%; border: 5px solid var(--accent); box-sizing: border-box; }
+</style>
+</head>
+<!--
+  两种用途：
+    开场   作为 S01 的前 3–5 秒，配合疑问旁白。
+    封面   ?render 后 __seek(__duration) 截最后一帧作为缩略图（另存 1280×720 / 1920×1080）。
+  标题建议 ≤ 10 字，疑问句放 question。highlight 填标题中要高亮的子串。
+-->
+<body>
+<div class="stage" id="stage">
+  <div class="map" id="map"></div>
+  <div class="veil"></div>
+  <div class="text">
+    <div class="q" id="q"></div>
+    <div class="title" id="title"></div>
+    <div class="sub" id="sub"></div>
+  </div>
+</div>
+<script>
+const CONFIG = MapRuntime.loadConfig({
+  duration: 5,
+  question: '为什么名古屋站离名古屋城这么远？',
+  title: '名古屋的车站之谜',
+  highlight: '车站',
+  subtitle: '铁路 × 地形 × 城下町',
+  style: 'positron',
+  labelFields: ['name:zh-Hans', 'name:zh', 'name'],
+  hideLayers: ['^poi', 'housenumber'],
+  tint: true,
+  hillshade: { enabled: true, opacity: 0.45 },
+  showAttribution: true,
+  keyframes: [
+    { t: 0, center: [136.8905, 35.1780], zoom: 12.4, bearing: -20, pitch: 45 },
+    { t: 5, center: [136.8905, 35.1780], zoom: 13.0, bearing: 0,   pitch: 50, ease: 'power1.out' },
+  ],
+  pins: [
+    { at: 1.4, lngLat: [136.8815, 35.1709], text: '名古屋站' },
+    { at: 1.8, lngLat: [136.8995, 35.1856], text: '名古屋城' },
+  ],
+  // 两点之间的强调连线（可删）
+  route: { coords: [[136.8815, 35.1709], [136.8995, 35.1856]], start: 2.2, duration: 1.0, dashed: true },
+});
+
+const { TOKENS } = MapRuntime;
+const stage = document.getElementById('stage');
+const map = MapRuntime.createMap('map', { style: CONFIG.style, camera: CONFIG.keyframes[0] });
+const tl = gsap.timeline({ paused: true });
+
+// 标题 + 高亮
+const titleEl = document.getElementById('title');
+const i = CONFIG.highlight ? CONFIG.title.indexOf(CONFIG.highlight) : -1;
+if (i >= 0) {
+  titleEl.append(CONFIG.title.slice(0, i));
+  const hl = document.createElement('span');
+  hl.className = 'hl';
+  hl.textContent = CONFIG.highlight;
+  titleEl.append(hl, CONFIG.title.slice(i + CONFIG.highlight.length));
+} else {
+  titleEl.textContent = CONFIG.title;
+}
+document.getElementById('q').textContent = CONFIG.question;
+document.getElementById('sub').textContent = CONFIG.subtitle;
+
+gsap.set('#q', { opacity: 0, y: 20 });
+gsap.set('#title', { opacity: 0, y: 60 });
+gsap.set('#sub', { opacity: 0 });
+const hlEl = titleEl.querySelector('.hl');
+if (hlEl) gsap.set(hlEl, { '--hl': 0 });
+
+tl.to('#q', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.2)
+  .to('#title', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.6)
+  .to('#sub', { opacity: 1, duration: 0.5, ease: 'power3.out' }, 1.3);
+if (hlEl) tl.to(hlEl, { '--hl': 1, duration: 0.5, ease: 'power2.inOut' }, 1.2);
+
+for (const p of CONFIG.pins) {
+  const el = MapRuntime.makePin(map, p);
+  const ring = document.createElement('div');
+  ring.className = 'ring';
+  el.prepend(ring);
+  gsap.set(el, { scale: 0, opacity: 0 });
+  gsap.set(ring, { scale: 0.4, opacity: 0 });
+  tl.to(el, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(2)' }, p.at);
+  // 脉冲环：有限次 repeat，seek 结果确定
+  tl.fromTo(ring, { scale: 0.4, opacity: 0.9 }, { scale: 1.8, opacity: 0, duration: 1.2, ease: 'power1.out', repeat: 2, immediateRender: false }, p.at + 0.3);
+}
+
+let routeMeasure = null;
+const ready = MapRuntime.mapReady(map).then(() => {
+  MapRuntime.setLabelLanguage(map, CONFIG.labelFields);
+  MapRuntime.hideLayers(map, CONFIG.hideLayers);
+  if (CONFIG.tint) MapRuntime.tintBasemap(map);
+  if (CONFIG.hillshade.enabled) MapRuntime.addGsiHillshade(map, CONFIG.hillshade);
+  if (CONFIG.route && CONFIG.route.coords) {
+    routeMeasure = MapRuntime.measureLine(CONFIG.route.coords);
+    map.addSource('route', { type: 'geojson', data: line([CONFIG.route.coords[0], CONFIG.route.coords[0]]) });
+    map.addLayer({ id: 'route', type: 'line', source: 'route',
+      layout: { 'line-cap': CONFIG.route.dashed ? 'butt' : 'round' },
+      paint: { 'line-color': TOKENS.accent, 'line-width': 6, ...(CONFIG.route.dashed ? { 'line-dasharray': [2, 1.2] } : {}) } });
+  }
+});
+
+function line(c) { return { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: c } }; }
+
+function apply(t) {
+  map.jumpTo(MapRuntime.cameraAt(CONFIG.keyframes, t));
+  if (routeMeasure) {
+    const f = MapRuntime.progress(t, CONFIG.route.start, CONFIG.route.duration, 'power1.inOut');
+    map.getSource('route').setData(line(MapRuntime.sliceLine(routeMeasure, f)));
+  }
+}
+
+if (CONFIG.showAttribution) {
+  MapRuntime.addAttribution(stage, [MapRuntime.ATTRIBUTION.ofm, CONFIG.hillshade.enabled && MapRuntime.ATTRIBUTION.gsi]);
+}
+
+MapRuntime.installSeek({ timeline: tl, maps: [map], apply, ready, duration: CONFIG.duration });
+</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+/* ============ 设计系统：复刻「纸质版画 / 复古印刷」风格 ============ */
+:root{
+  --paper:#ece5d8;         /* 纸张米色 */
+  --paper-hi:#f6f1e6;      /* 纸张高光 */
+  --ink:#1c1a17;           /* 墨黑 */
+  --ink-soft:#3d3931;
+  --muted:#8d8474;         /* 灰字 */
+  --red:#b23a25;           /* 砖红主色 */
+  --red-deep:#8e2c1b;
+  --olive:#5f6b46;         /* 橄榄绿印章 */
+  --hl:#f2dd4e;            /* 荧光笔黄 */
+  --line:#c9c0ae;
+  --card:#f7f3e9;
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif SC",serif;
+  --sans:"PingFang SC","Hiragino Sans GB","STHeiti",sans-serif;
+  --hand:"Kaiti SC","STKaiti","Songti SC",serif;
+  --W:1920px; --H:1080px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:var(--W);height:var(--H);overflow:hidden;background:#000;}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+
+/* 取景框 */
+#viewport{position:fixed;inset:0;width:var(--W);height:var(--H);overflow:hidden;background:var(--paper);}
+
+/* 大画布（摄像机在它上面移动） */
+#wall{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform,filter;}
+
+/* 纸张底：噪点 + 网格 + 暗角 */
+.wall-base{position:absolute;background:var(--paper);
+  background-image:
+    linear-gradient(rgba(140,130,110,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(140,130,110,.05) 1px,transparent 1px);
+  background-size:64px 64px;}
+.paper-bg{position:absolute;left:0;top:0;background:var(--paper);}
+.paper-bg::before{content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(140,130,110,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(140,130,110,.055) 1px,transparent 1px);
+  background-size:64px 64px;}
+.paper-bg::after{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 30% 25%,rgba(255,252,244,.85),transparent 55%),
+    radial-gradient(ellipse at 75% 80%,rgba(255,252,244,.6),transparent 50%),
+    radial-gradient(ellipse at 50% 50%,transparent 45%,rgba(90,78,58,.16) 100%);
+  mix-blend-mode:multiply;opacity:.9;}
+#grain{position:fixed;left:0;top:0;width:var(--W);height:var(--H);pointer-events:none;
+  opacity:.26;mix-blend-mode:multiply;z-index:40;}
+
+/* ---------- 每一“幕”（一屏 1920x1080 的版面） ---------- */
+.scene{position:absolute;width:var(--W);height:var(--H);}
+
+/* 页眉：左上频道 / 右上章节编号 —— 复刻参考视频 */
+.hdr{position:absolute;top:44px;left:64px;right:64px;display:flex;justify-content:space-between;
+  font-family:var(--sans);font-size:19px;color:var(--muted);letter-spacing:.06em;}
+.hdr .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);
+  margin-right:10px;vertical-align:2px;}
+.hdr .series{margin-left:18px;opacity:.75;}
+.hdr .no{color:var(--red);font-weight:600;margin-right:12px;}
+
+/* ---------- 元素 ---------- */
+.el{position:absolute;will-change:transform,opacity,filter;}
+
+/* 大标题 */
+.el.title{font-family:var(--serif);font-weight:900;color:var(--ink);
+  font-size:104px;line-height:1.18;letter-spacing:.01em;}
+.el.title .hl{background:linear-gradient(transparent 52%,var(--hl) 52%,var(--hl) 92%,transparent 92%);
+  padding:0 6px;}
+.el.title .red{color:var(--red);}
+
+/* 副标题 / 说明 */
+.el.sub{font-family:var(--sans);font-size:40px;line-height:1.55;color:var(--ink-soft);font-weight:500;}
+.el.small{font-family:var(--sans);font-size:30px;line-height:1.6;color:var(--muted);}
+
+/* 英文小标（letterspaced 小字） */
+.el.kicker{font-family:"Helvetica Neue",Arial,sans-serif;font-size:30px;font-weight:600;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--ink);}
+.el.kicker::before{content:"";display:inline-block;width:10px;height:10px;background:var(--red);
+  margin-right:20px;vertical-align:5px;}
+
+/* 大数字 */
+.el.bignum{font-family:var(--serif);font-weight:900;font-size:220px;color:var(--red);line-height:1;}
+
+/* 红色手写批注 */
+.el.redword{font-family:var(--hand);font-weight:700;font-size:72px;color:var(--red);
+  transform-origin:center;}
+
+/* 纸片卡：标题 + 假文横线 + 印章 */
+.el.card{background:var(--card);border:1px solid rgba(60,52,38,.16);
+  box-shadow:6px 9px 0 rgba(60,52,38,.10),0 2px 14px rgba(60,52,38,.16);padding:34px 32px;}
+.el.card .ct{font-family:var(--serif);font-weight:900;font-size:54px;color:var(--ink);margin-bottom:26px;}
+.el.card .ln{height:2px;background:var(--line);margin:18px 0;border-radius:2px;}
+.el.card .ln:nth-child(odd){opacity:.75;}
+.el.card .stamp{display:inline-block;margin-top:26px;font-family:var(--serif);font-weight:900;
+  font-size:34px;color:var(--olive);border:3px solid var(--olive);border-radius:6px;
+  padding:6px 16px;transform:rotate(-7deg);opacity:.85;}
+.el.card.dark{background:#211f1b;border-color:#000;}
+.el.card.dark .ct{color:#f2ece0;}
+.el.card.dark .ln{background:#4a453c;}
+
+/* 便利贴 */
+.el.note{padding:26px 28px;font-family:var(--sans);font-size:34px;line-height:1.4;color:var(--ink);
+  box-shadow:4px 6px 0 rgba(60,52,38,.14);}
+.el.note.y{background:#f0e08a;} .el.note.g{background:#cdddb4;}
+.el.note.p{background:#efc8c8;} .el.note.b{background:#bcd3dd;}
+
+/* 地图图钉 */
+.el.pin{display:flex;align-items:center;gap:22px;}
+.el.pin .bead{width:78px;height:78px;border-radius:50%;background:var(--red);
+  display:flex;align-items:center;justify-content:center;color:#f7efe2;font-size:38px;
+  box-shadow:0 6px 18px rgba(120,40,20,.35);}
+.el.pin .lb{font-family:var(--serif);font-weight:900;font-size:44px;color:var(--ink);line-height:1.25;}
+
+/* 对比面板 */
+.el.panel{padding:46px;border:1px solid rgba(60,52,38,.2);background:rgba(255,252,244,.55);}
+.el.panel.dark{background:#1b1917;border-color:#000;}
+.el.panel .pk{font-family:"Helvetica Neue",Arial,sans-serif;font-size:20px;letter-spacing:.3em;
+  color:var(--muted);text-transform:uppercase;margin-bottom:22px;}
+.el.panel .pt{font-family:var(--serif);font-weight:900;font-size:64px;color:var(--ink);}
+.el.panel.dark .pt{color:#f2ece0;} .el.panel.dark .pk{color:#8a8274;}
+.el.panel .pb{font-family:var(--sans);font-size:32px;color:var(--ink-soft);margin-top:24px;line-height:1.6;}
+.el.panel.dark .pb{color:#c8c0b2;}
+
+/* 引用条 */
+.el.quote{font-family:var(--serif);font-weight:700;font-size:64px;line-height:1.5;color:var(--ink);
+  border-left:9px solid var(--red);padding-left:40px;}
+.el.quote .red{color:var(--red);font-weight:900;}
+
+/* 横条 / 分隔 */
+.el.rule{height:3px;background:var(--ink);opacity:.8;}
+.el.arrow{color:var(--red);font-size:80px;font-family:var(--sans);}
+
+/* 图片（AI 生成的插图放这里） */
+.el.img img{width:100%;height:100%;object-fit:cover;display:block;
+  box-shadow:8px 12px 0 rgba(60,52,38,.12);}
+
+/* 统计条 */
+.el.bar{display:flex;align-items:center;gap:24px;}
+.el.bar .bl{font-family:var(--sans);font-size:34px;color:var(--ink-soft);width:280px;text-align:right;}
+.el.bar .bt{height:46px;background:var(--red);}
+.el.bar .bv{font-family:var(--serif);font-weight:900;font-size:44px;color:var(--red);}
+
+/* ---------- 硬字幕 ---------- */
+#sub{position:fixed;left:50%;bottom:86px;transform:translateX(-50%);z-index:50;
+  width:max-content;max-width:1500px;text-align:center;}  /* max-content：不被 left:50% 限成半屏宽而提前折行 */
+#sub span{display:inline-block;background:rgba(22,20,17,.62);color:#fff;
+  font-family:var(--sans);font-weight:500;font-size:44px;line-height:1.35;
+  padding:10px 26px;border-radius:10px;letter-spacing:.02em;
+  text-shadow:0 2px 6px rgba(0,0,0,.4);}
+
+/* 片头 / 片尾 */
+.scene.cover .paper-bg::after{opacity:1;}
+.el.cover-title{font-family:var(--serif);font-weight:900;font-size:150px;line-height:1.15;color:var(--ink);}
+.el.cover-sub{font-family:var(--sans);font-size:42px;color:var(--muted);letter-spacing:.2em;}
+
+/* ==================== 图表 / 概念图 / 界面复刻 ==================== */
+.el.chartel{}
+.el.chartel svg.chart{overflow:visible;display:block}
+svg.chart .grid{stroke:rgba(120,110,92,.30);stroke-width:1.5}
+svg.chart .ax{font-family:var(--sans);font-size:26px;fill:var(--muted)}
+svg.chart .ax2{font-family:var(--sans);font-size:30px;fill:var(--muted)}
+svg.chart .cap{font-family:var(--sans);font-size:24px;fill:var(--muted);letter-spacing:.14em}
+svg.chart .ln{stroke:var(--ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+svg.chart .val{font-family:var(--serif);font-weight:900;font-size:42px;fill:var(--ink)}
+svg.chart .val.big{font-size:60px;fill:var(--red)}
+svg.chart .step{font-family:"Helvetica Neue",Arial,sans-serif;font-size:20px;fill:var(--muted);letter-spacing:.26em}
+svg.chart .bt{font-family:var(--serif);font-weight:900;font-size:40px;fill:var(--ink)}
+svg.chart .bt2{font-family:var(--serif);font-weight:900;font-size:34px;fill:var(--ink)}
+svg.chart .big2{font-family:var(--serif);font-weight:900;font-size:64px;fill:var(--ink)}
+svg.chart .red-t{fill:var(--red)}
+svg.chart .hl-t{fill:var(--ink)}
+svg.chart .pt,svg.chart .br,svg.chart .st,svg.chart .ar,svg.chart .tp,svg.chart .mk{transition:none}
+
+/* 方块图旁边的大百分比 */
+.el.waffnum{font-family:var(--serif);font-weight:900;font-size:150px;color:var(--red);line-height:1}
+.el.waffcap{font-family:var(--sans);font-size:40px;color:var(--red);font-weight:600}
+
+/* 热搜榜复刻 */
+.trendbox{background:rgba(255,253,247,.86);border:1px solid rgba(60,52,38,.14);
+  box-shadow:6px 9px 0 rgba(60,52,38,.09),0 3px 20px rgba(60,52,38,.14);padding:26px 30px;}
+.trendbox .tr{display:flex;align-items:center;gap:22px;padding:22px 6px;
+  border-bottom:1px solid rgba(60,52,38,.09);font-family:var(--sans);font-size:40px;color:var(--ink);}
+.trendbox .tr:last-child{border-bottom:none}
+.trendbox .ic{color:var(--muted);font-size:34px;width:34px}
+.trendbox .tx{flex:1}
+.trendbox .tx em{font-style:normal;color:var(--red)}
+.trendbox .bd{font-size:24px;color:#fff;background:var(--red);padding:5px 12px;border-radius:4px;opacity:.9}
+
+/* 公文复刻 */
+
+.docbox{background:#fffdf8;border:1px solid rgba(60,52,38,.13);
+  box-shadow:8px 12px 0 rgba(60,52,38,.08),0 4px 26px rgba(60,52,38,.16);
+  padding:46px 56px;font-family:var(--serif);color:#231f1a}
+.docbox .dt{font-weight:900;font-size:40px;text-align:center;line-height:1.4;margin-bottom:34px}
+.docbox .db p{font-size:26px;line-height:1.85;text-indent:2em;margin-bottom:14px}
+.docbox .ds{font-size:26px;text-align:right;margin-top:32px}
+.docbox .dd{font-size:26px;text-align:right;margin-top:8px}
+
+/* ==================== 素材：图片 / 视频 ==================== */
+.el.media{overflow:hidden}
+.el.media img,.el.media video{width:100%;height:100%;object-fit:cover;display:block}
+.el.media.fit img,.el.media.fit video{object-fit:contain}
+.el.media.framed{border:14px solid #f7f3e9;background:#f7f3e9;
+  box-shadow:10px 14px 0 rgba(60,52,38,.12),0 4px 30px rgba(60,52,38,.20)}
+.el.media.full{border:none;background:none;box-shadow:none}
+/* 压在素材上面的小标签 */
+.el.tag{font-family:var(--sans);font-weight:600;font-size:34px;color:#fff;
+  background:rgba(20,18,15,.70);padding:10px 22px;border-radius:8px;display:inline-block}
+/* 满屏素材上的柔化层，保证标题读得清 */
+.el.scrim{background:linear-gradient(90deg,rgba(236,229,216,.94) 0%,rgba(236,229,216,.80) 34%,rgba(236,229,216,.10) 62%,rgba(236,229,216,0) 100%)}
+
+/* ---------- 竖屏（1080×1920，小红书 / 视频号）：字幕上移避开底部界面，字更大，可两行 ---------- */
+body.portrait #sub{bottom:380px;max-width:1000px;}   /* 16 字一行 = 16×54×1.02+60 ≈ 941，940 会把最后一个字挤到下一行 */
+body.portrait #sub span{font-size:54px;line-height:1.42;padding:12px 30px;}
+body.portrait .hdr{top:150px;left:60px;right:60px;font-size:24px;}
+body.portrait .hdr.fixed{z-index:30;}
+body.portrait .el.panel .pt{font-size:72px;line-height:1.2;}
+body.portrait .el.panel .pb{font-size:44px;line-height:1.55;margin-top:22px;}
+/* 引用：开头的「」『』“ 字形在字框右半边，首行往左挂半个字，和第二行对齐（横竖屏通用） */
+.el.quote.hang{text-indent:-.5em;}
+body.portrait .el.sub.tr{color:var(--ink);font-weight:600;line-height:1.55;}
+body.portrait .el.sub.strong{font-family:var(--serif);font-weight:900;color:var(--ink);line-height:1.42;}
+/* 热搜榜：竖屏字放大 */
+body.portrait .trendbox{padding:26px 30px;}
+body.portrait .trendbox .tr{font-size:46px;line-height:1.35;padding:26px 6px;gap:22px;}
+body.portrait .trendbox .tx small{display:block;font-size:32px;color:var(--ink-soft);margin-top:6px;}
+body.portrait .trendbox .ic{font-size:40px;width:40px;}
+body.portrait .trendbox .bd{font-size:26px;padding:6px 14px;}
+body.portrait .el.title, body.portrait .el.cover-title, body.portrait .el.quote{text-wrap:balance;}
+/* 标题里句中的全角逗号/冒号后面空得像两个空格：收掉标点右半边的空白 */
+body.portrait .el.title .pc{margin-right:-.38em;}   /* 竖屏标题两行字数均衡，避免单字成行 */
+/* 竖屏卡片（vcard）：满宽竖叠，长印章少转一点免得压到标题；竖屏图表的轴标签、数值放大，手机上看得清（2026-10-05） */
+body.portrait .el.card.vcard .stamp{transform:rotate(-2.5deg);}
+body.portrait svg.chart .ax{font-size:34px}
+body.portrait svg.chart .ax2{font-size:40px}
+body.portrait svg.chart .step{font-size:22px}
+body.portrait svg.chart .val{font-size:54px}
+body.portrait .el.card.vcard{padding:24px 30px;}
+body.portrait .el.card.vcard .ct{font-size:50px;margin-bottom:12px;}
+body.portrait .el.card.vcard .stamp{margin-top:8px;}
+
+/* 按旁白触发的效果（2026-10-05）：[弹字] 贴纸字、[盖章] 大印章、[推近] 的扫光 */
+.el.pop{font-family:var(--sans);font-weight:800;line-height:1.28;white-space:pre;padding:.3em .72em;border-radius:.42em;
+  border:5px solid var(--ink);background:#fffdf7;color:var(--ink);box-shadow:6px 8px 0 rgba(40,34,26,.16);}
+.el.pop.py{background:#ffe24a;}
+.el.pop.pr{background:var(--red);border-color:var(--red);color:#fffdf7;}
+.el.pop.pk{background:var(--ink);color:#fffdf7;}
+.el.bigstamp{font-family:var(--serif);font-weight:900;color:var(--red);border:.085em solid var(--red);border-radius:.12em;
+  padding:.04em .3em .08em;letter-spacing:.06em;white-space:pre;line-height:1.12;mix-blend-mode:multiply;}
+.el.sweep{background:rgba(255,204,0,.42);mix-blend-mode:multiply;border-radius:6px;}
+
+/* ==================== 笔墨版式（2026-10-05）：人群 / 印章 / 墨圈 / 声波 / 线描 + 折线图批注 ==================== */
+:root{
+  --brush:"Xingkai SC","STXingkai","Kaiti SC","STKaiti",serif;      /* 行楷：毛笔大字、竖题 */
+  --seal:"Weibei SC","Kaiti SC","STKaiti","Songti SC",serif;        /* 魏碑：印章 */
+  --oldnum:"Bodoni 72 Oldstyle","Bodoni 72","Didot","Songti SC",serif;   /* 老式数字 */
+}
+/* 折线图批注 */
+svg.chart .dash{stroke:rgba(90,80,64,.62);stroke-width:2;stroke-dasharray:9 8}
+svg.chart .anlb{font-family:var(--sans);font-size:30px;font-weight:500;fill:var(--ink-soft)}
+svg.chart .anlb.red-t{fill:var(--red);font-family:var(--serif);font-weight:700;font-size:34px}
+svg.chart .anbig{font-family:var(--oldnum);font-weight:700;font-size:136px;fill:var(--red)}
+svg.chart .arw{stroke:var(--red);stroke-width:5;stroke-linecap:round}
+svg.chart .arwh{fill:var(--red)}
+/* 人群 */
+svg.crowd .hz{stroke:rgba(60,54,44,.55);stroke-width:2}
+svg.crowd .mid{stroke:rgba(60,54,44,.5);stroke-width:2.5;stroke-dasharray:22 20}
+svg.crowd .gd{fill:#24211d}
+svg.crowd .rw .k{fill:#191714}
+svg.crowd .rw .r{fill:#c9412b}
+svg.crowd .rw .st{stroke:#191714;stroke-width:1.6;fill:none}
+svg.crowd .vp{fill:var(--red)}
+svg.crowd .ld{stroke:var(--ink-soft);stroke-width:2}
+svg.crowd .tip{fill:var(--ink)}
+svg.crowd .lt{font-family:var(--serif);font-weight:700;fill:var(--ink)}
+/* 墨圈 */
+svg.enso .ink{fill:#1a1815}
+svg.enso .em{font-family:var(--brush);font-weight:700;fill:var(--red)}
+svg.enso .es{font-family:var(--serif);font-weight:700;fill:var(--ink)}
+/* 声波 */
+svg.mic .mesh line{stroke:#1a1815;stroke-width:1.6}
+svg.mic .cap0{stroke:#1a1815;stroke-width:5}
+svg.mic .hold{stroke:#1a1815;stroke-width:5;stroke-linecap:square}
+svg.mic .arc{stroke:rgba(60,54,44,.5);stroke-width:2.2}
+svg.mic .arc.red{stroke:var(--red)}
+/* 线描 */
+.labox{width:100%;height:100%}
+.labox svg{display:block;overflow:visible}
+.labox.miss{display:flex;align-items:center;justify-content:center;text-align:center;border:3px dashed var(--line);
+  font-family:var(--sans);font-size:34px;line-height:1.6;color:var(--muted)}
+/* 印章：红底白字，边缘和印面做旧 */
+.el.seal{display:grid;grid-template-columns:repeat(var(--c,2),1em);background:#c33d27;color:#f6efe1;
+  font-family:var(--seal);font-weight:700;line-height:1;padding:.13em .14em .15em;border-radius:.05em;
+  filter:url(#seal-worn);}
+.el.seal span{display:block;width:1em;height:1em;text-align:center}
+/* 毛笔大字、竖排题字 */
+.el.brush{font-family:var(--brush);font-weight:700;line-height:1.05;white-space:pre;color:var(--ink);filter:url(#ink-rough);}
+.el.brush .red,.el.vbrush .red{color:var(--red)}
+.el.vbrush{font-family:var(--brush);font-weight:700;line-height:1;white-space:pre;color:var(--ink);
+  writing-mode:vertical-rl;letter-spacing:.06em;filter:url(#ink-rough);}
+.el.sealnote{font-family:var(--serif);font-weight:500;color:var(--ink-soft);white-space:pre;}
+body.portrait svg.chart .anlb{font-size:36px}

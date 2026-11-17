@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>terrain-compare · 地形左右对比</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<link rel="stylesheet" href="../_shared/tokens.css">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="../_shared/map-runtime.js"></script>
+<style>
+  .half { position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden; }
+  .half--a { left: 0; }
+  .half--b { right: 0; }
+  .divider { position: absolute; left: 50%; top: 0; bottom: 0; width: 6px; margin-left: -3px; background: var(--paper); transform-origin: 50% 0; }
+  .tag {
+    position: absolute; top: var(--safe-y); padding: 18px 26px; background: rgba(244,239,230,.94);
+    border-top: 8px solid var(--accent); min-width: 320px;
+  }
+  .half--a .tag { left: var(--safe-x); }
+  .half--b .tag { right: var(--safe-x); }
+  .tag__title { font: 900 56px/1.1 var(--font-title); }
+  .tag__sub { font: 500 28px/1.3 var(--font-body); color: var(--ink-soft); margin-top: 6px; }
+  .tag__elev { font: 600 72px/1 var(--font-num); color: var(--accent); margin-top: 12px; }
+  .tag__src { font: 400 18px/1.2 var(--font-body); color: var(--ink-soft); margin-top: 8px; }
+  .vs { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 120px; height: 120px; border-radius: 50%;
+        background: var(--ink); color: var(--paper); display: grid; place-items: center; font: 600 54px/1 var(--font-num); }
+</style>
+</head>
+<!--
+  左右两张同步渲染的地图：底图 + 国土地理院陰影起伏図 + 可选 3D 地形（GSI DEM → terrarium）。
+  海拔数字由人工填写，必须附出处；没核实的写「待核实」。GSI 数据只覆盖日本。
+-->
+<body>
+<div class="stage" id="stage">
+  <div class="half half--a"><div class="map" id="map-a"></div><div class="tag" id="tag-a"></div></div>
+  <div class="half half--b"><div class="map" id="map-b"></div><div class="tag" id="tag-b"></div></div>
+  <div class="divider" id="divider"></div>
+  <div class="vs" id="vs">VS</div>
+</div>
+<script>
+const CONFIG = MapRuntime.loadConfig({
+  duration: 10,
+  style: 'positron',
+  labelFields: ['name:zh-Hans', 'name:zh', 'name'],
+  hideLayers: ['^poi', 'housenumber', 'road.*label'],
+  tint: true,
+  hillshadeOpacity: 0.55,
+  terrain: true,          // 3D 地形
+  exaggeration: 1.8,
+  orbit: 18,              // 全程 bearing 旋转角度
+  showAttribution: true,
+
+  a: { title: '东京', sub: '武藏野台地与低地', center: [139.70, 35.68], zoom: 11.5, pitch: 55, bearing: -10,
+       elev: 40, elevUnit: 'm', elevLabel: '≈', source: '待核实' },
+  b: { title: '神户', sub: '六甲山直逼海岸', center: [135.19, 34.70], zoom: 11.5, pitch: 55, bearing: -10,
+       elev: 931, elevUnit: 'm', elevLabel: '最高', source: '待核实' },
+
+  timing: { tagsIn: 0.6, countFrom: 1.0, countDur: 1.6, divider: 0.2 },
+});
+
+const { TOKENS } = MapRuntime;
+const stage = document.getElementById('stage');
+const tl = gsap.timeline({ paused: true });
+const sides = ['a', 'b'].map((key) => {
+  const cfg = CONFIG[key];
+  const map = MapRuntime.createMap('map-' + key, { style: CONFIG.style, camera: cfg });
+  const tag = document.getElementById('tag-' + key);
+  tag.innerHTML = '<div class="tag__title"></div><div class="tag__sub"></div><div class="tag__elev"></div><div class="tag__src"></div>';
+  tag.querySelector('.tag__title').textContent = cfg.title;
+  tag.querySelector('.tag__sub').textContent = cfg.sub;
+  tag.querySelector('.tag__src').textContent = '海拔出处：' + cfg.source;
+  return { key, cfg, map, tag, elevEl: tag.querySelector('.tag__elev') };
+});
+
+const ready = Promise.all(sides.map(({ map }) => MapRuntime.mapReady(map).then(() => {
+  MapRuntime.setLabelLanguage(map, CONFIG.labelFields);
+  MapRuntime.hideLayers(map, CONFIG.hideLayers);
+  if (CONFIG.tint) MapRuntime.tintBasemap(map);
+  MapRuntime.addGsiHillshade(map, { opacity: CONFIG.hillshadeOpacity });
+  if (CONFIG.terrain) MapRuntime.addGsiTerrain(map, { exaggeration: CONFIG.exaggeration });
+})));
+
+// DOM 动画
+const T = CONFIG.timing;
+gsap.set('#divider', { scaleY: 0 });
+gsap.set('#vs', { scale: 0 });
+tl.to('#divider', { scaleY: 1, duration: 0.6, ease: 'power2.inOut' }, T.divider);
+tl.to('#vs', { scale: 1, duration: 0.4, ease: 'back.out(2)' }, T.divider + 0.5);
+sides.forEach((s, i) => {
+  gsap.set(s.tag, { opacity: 0, y: -30 });
+  tl.to(s.tag, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, T.tagsIn + i * 0.15);
+});
+
+function apply(t) {
+  const k = t / CONFIG.duration;
+  for (const s of sides) {
+    const c = s.cfg;
+    s.map.jumpTo({ center: c.center, zoom: c.zoom, pitch: c.pitch, bearing: c.bearing + CONFIG.orbit * k });
+    // 数字滚动：纯函数，任意 seek 结果一致
+    const p = MapRuntime.progress(t, T.countFrom, T.countDur, 'power2.out');
+    s.elevEl.textContent = `${c.elevLabel} ${Math.round(c.elev * p).toLocaleString('en-US')} ${c.elevUnit}`;
+  }
+}
+
+if (CONFIG.showAttribution) MapRuntime.addAttribution(stage, [MapRuntime.ATTRIBUTION.ofm, MapRuntime.ATTRIBUTION.gsi]);
+
+MapRuntime.installSeek({ timeline: tl, maps: sides.map((s) => s.map), apply, ready, duration: CONFIG.duration });
+</script>
+</body>
+</html>
